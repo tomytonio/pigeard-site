@@ -257,6 +257,7 @@ footer.site{padding:clamp(80px,11vh,140px) 0 46px;border-top:1px solid var(--lig
   .stats-grid{grid-template-columns:repeat(2,1fr);gap:40px 20px}
   .grid-shops{grid-template-columns:1fr}
   .hero-watermark{display:none}
+  .intro-grid{grid-template-columns:1fr!important;gap:34px}
 }
 @media(max-width:560px){
   .grid-3,.grid-2,.grid-members{grid-template-columns:1fr}

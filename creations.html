@@ -9,16 +9,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300..700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..700&family=Reenie+Beanie&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
 <style>
-.crea-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.crea-card{border-radius:16px;overflow:hidden;background:var(--noir-2);border:1px solid var(--ligne);transition:transform .55s var(--ease),border-color .55s;display:flex;flex-direction:column}
-.crea-card:hover{transform:translateY(-6px);border-color:rgba(126,140,90,.5)}
-.crea-card .img{aspect-ratio:1/1;overflow:hidden}
+.crea-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.crea-card{border-radius:16px;overflow:hidden;background:#fff;border:1px solid var(--ligne);transition:transform .55s var(--ease),box-shadow .55s;display:flex;flex-direction:column}
+.crea-card:hover{transform:translateY(-6px);box-shadow:0 26px 54px -26px rgba(0,0,0,.75)}
+.crea-card .img{aspect-ratio:1/1;overflow:hidden;background:#fff}
 .crea-card .img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
-.crea-card:hover .img img{transform:scale(1.05)}
-.crea-card .info{padding:20px 22px 24px;display:flex;flex-direction:column;gap:6px}
-.crea-card .nm{font-family:var(--serif);font-size:1.5rem;font-weight:700;line-height:1}
-.crea-card .tl{font-family:var(--hand);font-size:1.45rem;color:var(--camel);line-height:1}
-.crea-card .desc{color:var(--muted);font-size:.9rem;margin-top:6px;line-height:1.5}
+.crea-card:hover .img img{transform:scale(1.04)}
+.crea-card .info{padding:22px 22px 24px;display:flex;flex-direction:column;gap:5px;background:#FBF6EC;border-top:4px solid var(--ac,#7E8C5A)}
+.crea-card .nm{font-family:var(--serif);font-size:1.5rem;font-weight:700;line-height:1;color:var(--encre)}
+.crea-card .tl{font-family:var(--hand);font-size:1.5rem;color:var(--ac,#866549);line-height:1}
+.crea-card .desc{color:#6B6358;font-size:.9rem;margin-top:6px;line-height:1.5}
 @media(max-width:900px){.crea-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.crea-grid{grid-template-columns:1fr}}
 </style>
@@ -77,9 +77,11 @@
 (function(){
   var grid=document.getElementById('creaGrid');
   fetch('assets/data/creations.json').then(function(r){return r.json();}).then(function(data){
-    data.creations.forEach(function(c){
+    var PAL=['#7E8C5A','#D1A379','#D1A04B','#FF625B','#866549','#79855D'];
+    data.creations.forEach(function(c,i){
       var a=document.createElement('article');
       a.className='crea-card';a.setAttribute('data-cat',(c.cats||[]).join(' '));
+      a.style.setProperty('--ac', PAL[i%PAL.length]);
       a.innerHTML='<div class="img"><img src="'+c.image+'" alt="Monture sur mesure '+c.name+' — Pigeard" loading="lazy"></div>'+
                   '<div class="info"><div class="nm">'+c.name+'</div><div class="tl">'+(c.tagline||'')+'</div><div class="desc">'+(c.description||'')+'</div></div>';
       grid.appendChild(a);
