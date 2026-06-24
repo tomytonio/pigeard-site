@@ -1,0 +1,4 @@
+# Déploiement Netlify — site statique Pigeard (aucune compilation nécessaire)
+[build]
+  publish = "."
+  command = ""
