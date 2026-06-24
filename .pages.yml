@@ -14,6 +14,33 @@ media:
 
 # Contenus modifiables dans l'éditeur
 content:
+  # ---- TEXTES DE LA PAGE D'ACCUEIL ----
+  - name: textes-accueil
+    label: Textes — Page d'accueil
+    type: file
+    path: assets/data/textes.json
+    fields:
+      - name: accueil
+        label: Accueil
+        type: object
+        fields:
+          - { name: heroLead, label: "Accroche principale (sous le logo)", type: string }
+          - { name: heroNote, label: "Petite note manuscrite", type: string }
+          - { name: introTexte, label: "Paragraphe d'introduction", type: text }
+          - { name: friseTitre, label: "Titre de la frise du temps", type: string }
+          - { name: expertisesTitre, label: "Titre — Nos expertises", type: string }
+          - { name: expertisesTexte, label: "Texte — Nos expertises", type: text }
+          - { name: savoirTitre, label: "Titre — Savoir-faire (Entrée = 2e ligne)", type: text }
+          - { name: savoirTexte, label: "Texte — Savoir-faire", type: text }
+          - { name: mutuellesTitre, label: "Titre — Mutuelles (Entrée = 2e ligne)", type: text }
+          - { name: equipeTitre, label: "Titre — Équipe (Entrée = 2e ligne)", type: text }
+          - { name: equipeTexte, label: "Texte — Équipe", type: text }
+          - { name: instagramTitre, label: "Titre — Instagram (Entrée = 2e ligne)", type: text }
+          - { name: ctaTitre, label: "Titre — Venez choisir votre regard", type: string }
+          - { name: ctaNote, label: "Note manuscrite — sous le titre", type: string }
+          - { name: magasinsTitre, label: "Titre — Nos magasins", type: string }
+          - { name: magasinsTexte, label: "Texte — Nos magasins", type: text }
+
   # ---- LES CRÉATIONS SUR-MESURE ----
   - name: creations
     label: Créations sur-mesure

@@ -84,3 +84,39 @@
     });
   }, 2200);
 })();
+
+/* ============================================================
+   ÉDITION DE CONTENU — surcharge les textes/photos depuis
+   assets/data/*.json (modifiables via l'éditeur Pages CMS).
+   Si le fichier ou la clé n'existe pas, le texte d'origine reste
+   (donc aucun risque, et bon pour le référencement).
+   ============================================================ */
+(function(){
+  function get(o,p){ return p.split('.').reduce(function(a,k){ return (a!=null && a[k]!=null) ? a[k] : undefined; }, o); }
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function apply(data){
+    document.querySelectorAll('[data-bind]').forEach(function(el){
+      var v = get(data, el.getAttribute('data-bind')); if(v==null || v==='') return;
+      if(el.hasAttribute('data-bind-multiline')) el.innerHTML = esc(v).replace(/\n/g,'<br>');
+      else el.textContent = v;
+    });
+    document.querySelectorAll('[data-bind-href]').forEach(function(el){
+      var v = get(data, el.getAttribute('data-bind-href')); if(v!=null && v!=='') el.setAttribute('href', v);
+    });
+    document.querySelectorAll('[data-bind-src]').forEach(function(el){
+      var v = get(data, el.getAttribute('data-bind-src')); if(v!=null && v!=='') el.setAttribute('src', v);
+    });
+  }
+  if(!document.querySelector('[data-bind],[data-bind-href],[data-bind-src]')) return;
+  var files = { textes:'assets/data/textes.json' };
+  var data = {};
+  Promise.all(Object.keys(files).map(function(key){
+    return fetch(files[key], {cache:'no-cache'})
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(j){ if(j) data[key]=j; })
+      .catch(function(){});
+  })).then(function(){
+    apply(data);
+    if(window.ScrollTrigger){ try{ ScrollTrigger.refresh(); }catch(e){} }
+  });
+})();

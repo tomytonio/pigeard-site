@@ -41,9 +41,12 @@ Dès que tu cliques **Save**, la modification est envoyée sur GitHub et **ton s
 
 ## 📌 Ce qui est modifiable aujourd'hui
 
+- ✅ **Textes — Page d'accueil** (accroches, titres et paragraphes de la page d'accueil)
 - ✅ **Créations sur-mesure** (noms, accroches, descriptifs, photos)
 - ✅ **Nos marques** (noms, accroches, présentations…)
 
-**Prochaine étape (je m'en occupe) :** rendre aussi modifiables les **infos des magasins** (horaires, adresses, téléphones), l'**équipe**, et les **grands textes des pages**.
+> 💡 Pour les titres sur **2 lignes** (ex. « Un savoir-faire / qui se transmet »), appuie sur **Entrée** dans la case pour créer la 2ᵉ ligne.
+
+**Prochaine étape (je m'en occupe) :** rendre aussi modifiables les **infos des magasins** (horaires, adresses, téléphones), l'**équipe**, et les **textes des autres pages**.
 
 Une question ou un souci ? Dis-le-moi. 👓
