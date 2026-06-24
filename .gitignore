@@ -4,6 +4,10 @@ assets/brand/*.ai
 content/
 _deploy/
 *.pdf
+assets/creations/raw/
+assets/creations/_prev/
+**/_review.png
+**/_sheet.png
 
 # Systèmes
 .DS_Store

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nos créations sur mesure — Pigeard, opticien depuis 1863</title>
+<meta name="description" content="Découvrez les montures sur mesure faites main dans l'atelier Pigeard de Nogent-le-Rotrou : des créations uniques, colorées, à personnaliser et essayer en boutique." />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300..700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<style>
+.crea-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.crea-card{border-radius:16px;overflow:hidden;background:var(--noir-2);border:1px solid var(--ligne);transition:transform .55s var(--ease),border-color .55s;display:flex;flex-direction:column}
+.crea-card:hover{transform:translateY(-6px);border-color:rgba(126,140,90,.5)}
+.crea-card .img{aspect-ratio:1/1;overflow:hidden}
+.crea-card .img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.crea-card:hover .img img{transform:scale(1.05)}
+.crea-card .info{padding:20px 22px 24px;display:flex;flex-direction:column;gap:6px}
+.crea-card .nm{font-family:var(--serif);font-size:1.5rem;font-weight:700;line-height:1}
+.crea-card .tl{font-family:var(--hand);font-size:1.45rem;color:var(--camel);line-height:1}
+.crea-card .desc{color:var(--muted);font-size:.9rem;margin-top:6px;line-height:1.5}
+@media(max-width:900px){.crea-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.crea-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="grain"></div><div class="progress" id="progress"></div>
+<header class="nav" id="nav">
+  <a href="index.html"><img class="nav-logo" src="assets/brand/pigeard-logo-white.svg" alt="Pigeard"></a>
+  <nav class="nav-links"><a href="histoire.html">Notre histoire</a><a href="services.html" class="active">Nos expertises</a><a href="marques.html">Nos marques</a><a href="equipe.html">L'équipe</a><a href="magasins.html">Magasins</a></nav>
+  <button class="nav-cta" onclick="location.href='magasins.html#rdv'">Prendre rendez-vous</button>
+  <button class="burger" aria-label="Menu">☰</button>
+</header>
+<div class="mobile-menu"><button class="close">✕</button><a href="index.html">Accueil</a><a href="histoire.html">Notre histoire</a><a href="services.html">Nos expertises</a><a href="marques.html">Nos marques</a><a href="equipe.html">L'équipe</a><a href="magasins.html">Magasins</a></div>
+
+<section class="page-hero wrap">
+  <div class="hero-bg"><div class="blob v" style="width:40vw;height:40vw;top:-10%;right:-4%"></div><div class="blob c" style="width:24vw;height:24vw;bottom:-18%;left:6%"></div></div>
+  <div style="position:relative;z-index:2">
+    <span class="eyebrow">Sur mesure · fait main</span>
+    <h1 style="margin-top:18px">Nos créations.</h1>
+    <p class="lede">Chaque modèle est dessiné et façonné à la main dans notre atelier de Nogent-le-Rotrou. Des pièces uniques, à personnaliser et à essayer en boutique.</p>
+  </div>
+</section>
+
+<section class="sec-sm wrap" style="padding-top:0">
+  <div class="filters" id="filters">
+    <button class="filter active" data-f="all">Toutes</button>
+    <button class="filter" data-f="femme">Femme</button>
+    <button class="filter" data-f="homme">Homme</button>
+    <button class="filter" data-f="solaire">Solaire</button>
+    <span class="count" id="count" style="color:var(--muted);font-size:.85rem;margin-left:auto"></span>
+  </div>
+  <div class="crea-grid" id="creaGrid"></div>
+  <div style="margin-top:46px;padding:clamp(30px,5vw,50px);border:1px solid var(--ligne);border-radius:20px;background:linear-gradient(160deg,rgba(126,140,90,.08),rgba(255,255,255,.01));display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
+    <div><h3 style="font-family:var(--serif);font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:700">Et la vôtre ?</h3><p style="color:var(--muted);max-width:46ch;margin-top:8px">Choisissez un modèle ou imaginons ensemble une monture qui n'existe nulle part ailleurs.</p></div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn--primary" href="magasins.html#rdv">Prendre rendez-vous <span class="arr">→</span></a><a class="btn btn--ghost" href="services.html#sur-mesure">Comment ça marche</a></div>
+  </div>
+</section>
+
+<footer class="site"><div class="wrap">
+  <div class="foot-top">
+    <div class="foot-brand"><img class="mac" src="assets/brand/macaron-cream.svg" alt="Pigeard depuis 1863"><h3>Créateur de regards depuis 1863.</h3><span class="hand">à très vite chez Pigeard</span></div>
+    <div class="foot-links">
+      <div class="foot-col"><h4>La maison</h4><a href="histoire.html">Notre histoire</a><a href="equipe.html">L'équipe</a><a href="engagements.html">Nos engagements</a></div>
+      <div class="foot-col"><h4>Expertises</h4><a href="services.html">Nos expertises</a><a href="creations.html">Nos créations</a><a href="marques.html">Nos marques</a></div>
+      <div class="foot-col"><h4>Magasins</h4><a href="magasins.html">Nos 3 magasins</a><a href="contact.html">Contact</a><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a></div>
+    </div>
+  </div>
+  <div class="foot-bottom"><span>© 2026 Pigeard — Créateur de regards depuis 1863.</span><span>Nogent-le-Rotrou · Brou · La Loupe</span></div>
+</div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+(function(){
+  var grid=document.getElementById('creaGrid');
+  fetch('assets/data/creations.json').then(function(r){return r.json();}).then(function(data){
+    data.creations.forEach(function(c){
+      var a=document.createElement('article');
+      a.className='crea-card';a.setAttribute('data-cat',(c.cats||[]).join(' '));
+      a.innerHTML='<div class="img"><img src="'+c.image+'" alt="Monture sur mesure '+c.name+' — Pigeard" loading="lazy"></div>'+
+                  '<div class="info"><div class="nm">'+c.name+'</div><div class="tl">'+(c.tagline||'')+'</div><div class="desc">'+(c.description||'')+'</div></div>';
+      grid.appendChild(a);
+    });
+    var cards=[].slice.call(grid.querySelectorAll('.crea-card'));
+    document.getElementById('count').textContent=cards.length+' créations';
+    document.querySelectorAll('.filter').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        document.querySelectorAll('.filter').forEach(function(x){x.classList.remove('active');});btn.classList.add('active');
+        var f=btn.dataset.f,vis=0;
+        cards.forEach(function(c){var ok=f==='all'||(c.getAttribute('data-cat')||'').indexOf(f)>-1;c.style.display=ok?'':'none';if(ok)vis++;});
+        document.getElementById('count').textContent=vis+' création'+(vis>1?'s':'');
+      });
+    });
+    if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
+      gsap.from(cards,{autoAlpha:0,y:30,stagger:.04,duration:.7,ease:'power3.out',scrollTrigger:{trigger:grid,start:'top 88%'}});
+      if(window.ScrollTrigger)ScrollTrigger.refresh();
+    }
+  });
+})();
+</script>
+</body>
+</html>
