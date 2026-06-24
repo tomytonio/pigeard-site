@@ -197,7 +197,7 @@ header.nav.scrolled{background:rgba(14,13,11,.74);backdrop-filter:blur(14px);bor
 
 /* Fil du temps horizontal épinglé — dates BEIGE pleines + TRAIT reliant les billes (accueil + histoire, desktop ET mobile) */
 .fil-h{height:100svh;overflow:hidden;position:relative}
-.fil-h .fil-head{position:absolute;top:42px;left:0;width:100%;z-index:5;pointer-events:none}
+.fil-h .fil-head{position:absolute;top:clamp(86px,12vh,110px);left:0;width:100%;z-index:5;pointer-events:none}
 .fil-h .fil-head .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
 .fil-h .fil-head h2{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.8rem);font-weight:700;line-height:1}
 .fil-track{display:flex;align-items:center;height:100%;will-change:transform;padding:0 calc(50vw - min(30vw,180px));gap:5vw}
