@@ -30,6 +30,28 @@
 .brand-nav a{color:var(--muted);transition:color .3s}.brand-nav a:hover{color:var(--blanc-chaud)}
 .brand-nav .nm{font-family:var(--serif);font-size:1.4rem;color:var(--blanc-chaud);display:block;margin-top:4px}
 @media(max-width:900px){.brand-body .wrap{grid-template-columns:1fr}.brand-aside{position:static}}
+@media(max-width:600px){
+  /* hero: tame the large minimum top padding */
+  .brand-hero{padding-top:clamp(100px,18vh,150px);padding-bottom:clamp(28px,4vh,50px)}
+  /* brand name: clamp min of 3rem is 48px — bring it down a touch */
+  .brand-name{font-size:clamp(2.2rem,11vw,4rem)}
+  /* tagline sits closer on mobile */
+  .brand-tagline{font-size:clamp(1.1rem,4.5vw,1.5rem);margin-top:10px}
+  /* watermark: huge text decorative — hide at 600 to avoid layout impact */
+  .brand-hero .watermark{display:none}
+  /* meta badges: smaller padding so they fit in 2 cols on 390px */
+  .brand-meta span{padding:6px 10px;font-size:.68rem}
+  /* aside card: reduce inner padding */
+  .brand-aside{padding:20px 18px}
+  /* prev/next nav: stack vertically, add clear separation */
+  .brand-nav{flex-direction:column;gap:16px;padding-top:24px}
+  .brand-nav a{display:block}
+  .brand-nav a:last-child{text-align:left}
+  .brand-nav .nm{font-size:1.2rem}
+}
+@media(max-width:400px){
+  .brand-name{font-size:clamp(2rem,10vw,3rem)}
+}
 </style>
 </head>
 <body>

@@ -43,6 +43,23 @@
   .contact-layout{grid-template-columns:1fr}
   .form-row{grid-template-columns:1fr}
 }
+@media(max-width:600px){
+  /* submit row: stack button + notice, button full-width */
+  .form-submit-row{flex-direction:column!important;align-items:stretch!important;gap:12px!important}
+  .form-submit-row .btn{width:100%;justify-content:center;min-height:48px}
+  /* coords block: tighter padding */
+  .coords-block{padding:20px 18px}
+  /* shop city names: slightly smaller */
+  .shop-entry .city{font-size:1.2rem}
+  /* social buttons: full row each */
+  .social-row{flex-direction:column;gap:8px}
+  .social-btn{justify-content:center;padding:12px 18px}
+  /* rdv reminder: tighter spacing */
+  .rdv-reminder{padding:clamp(22px,5vw,36px)}
+}
+@media(max-width:400px){
+  .coords-block{padding:16px 14px}
+}
 </style>
 </head>
 <body>
@@ -123,7 +140,7 @@
           <textarea id="message" name="message" placeholder="Votre message…" required></textarea>
         </div>
 
-        <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:8px">
+        <div class="form-submit-row" style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:8px">
           <button type="submit" class="btn btn--primary">Envoyer <span class="arr">→</span></button>
           <span class="form-notice">Nous vous répondons sous 24 h (jours ouvrés).</span>
         </div>

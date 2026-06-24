@@ -56,6 +56,48 @@
   .fil-h{height:auto;overflow:visible}.fil-track{flex-direction:column;height:auto;padding:30px 0;gap:50px}.fil-card{width:100%}.fil-prog{display:none}.fil-h .head{position:relative;top:0;margin-bottom:10px}
   .chapter .wrap{grid-template-columns:1fr;gap:26px}.chapter.flip .media{order:0}
 }
+/* ===== Affinage TÉLÉPHONE (≤768 / ≤600 / ≤400) — n'affecte jamais le bureau ===== */
+@media(max-width:768px){
+  /* en-tête du fil empilé : titre plus contenu */
+  .fil-h .head h2{font-size:clamp(1.6rem,7vw,2.2rem)}
+}
+@media(max-width:600px){
+  /* HERO : titre légèrement réduit pour respirer */
+  .hero h1{font-size:clamp(2.9rem,12vw,4.4rem)!important}
+  .span-years{gap:12px}
+  /* ANNÉES FANTÔMES en filigrane : plus petites, rentrées dans le cadre, sans déborder */
+  .chapter .year-ghost{font-size:clamp(4.6rem,21vw,6.4rem);top:2%}
+  .chapter:not(.flip) .year-ghost{right:2%}
+  .chapter.flip .year-ghost{left:2%}
+  /* CHAPITRES : rythme vertical resserré, proportions images/textes */
+  .chapter{padding:clamp(46px,9vh,72px) 0}
+  .chapter .wrap{gap:20px}
+  .media .frame{aspect-ratio:4/5}
+  .media .frame.wide{aspect-ratio:5/4}
+  .media .cap{font-size:1.45rem;left:14px;bottom:12px}
+  .txt h2{font-size:clamp(1.85rem,7.6vw,2.5rem)}
+  .txt h2 .sub{font-size:.5em;margin-top:6px}
+  .txt p{margin-top:14px}
+  .txt .chip{font-size:.85rem;padding:5px 12px;margin-bottom:14px}
+  .txt .note{font-size:1.4rem;margin-top:16px}
+  /* FIL DU TEMPS (pile verticale) : cartes centrées, compactes, points alignés */
+  .fil-track{padding:8px 0;gap:30px}
+  .fil-card{text-align:center}
+  .fil-card .yy{font-size:clamp(2.8rem,15vw,4rem)}
+  .fil-card h3{font-size:1.3rem;margin-top:8px}
+  .fil-card p{margin-top:6px;max-width:30ch;margin-left:auto;margin-right:auto}
+  .fil-card .dot{margin:16px auto 0}
+  /* INTERLUDE : moins de vide vertical, mot-clé qui ne déborde pas */
+  .interlude{padding:clamp(64px,11vh,110px) 0}
+  .interlude h2{font-size:clamp(1.75rem,8vw,2.6rem);max-width:16ch}
+}
+@media(max-width:400px){
+  .hero h1{font-size:clamp(2.6rem,12vw,3.4rem)!important}
+  .chapter .year-ghost{font-size:clamp(4rem,20vw,5.4rem)}
+  .fil-card .yy{font-size:clamp(2.5rem,13vw,3rem)}
+  .media .cap{font-size:1.3rem}
+  .interlude h2{font-size:clamp(1.6rem,8vw,2.2rem)}
+}
 @media(prefers-reduced-motion:reduce){html:not(.force-motion) .interlude .word{opacity:1;transform:none}html:not(.force-motion) .fil-card .yy{color:var(--vert);-webkit-text-stroke:0}}
 </style>
 </head>

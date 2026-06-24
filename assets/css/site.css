@@ -258,10 +258,81 @@ footer.site{padding:clamp(80px,11vh,140px) 0 46px;border-top:1px solid var(--lig
   .grid-shops{grid-template-columns:1fr}
   .hero-watermark{display:none}
   .intro-grid{grid-template-columns:1fr!important;gap:34px}
+  .fil-h .fil-head .hand{display:none}                 /* "faites défiler →" hors-sujet en pile verticale */
+  .fil-h>a.btn{position:static!important;display:inline-flex;margin:10px 0 0 clamp(20px,5vw,64px)}
 }
-@media(max-width:560px){
-  .grid-3,.grid-2,.grid-members{grid-template-columns:1fr}
+
+/* ----- TABLETTE / GRAND TÉLÉPHONE ----- */
+@media(max-width:768px){
+  .sec{padding:clamp(58px,9vh,82px) 0}
+  .sec-sm{padding:clamp(48px,7vh,68px) 0}
+  .sec-head{margin-bottom:34px;gap:16px}
+  .page-hero{padding:clamp(108px,16vh,150px) 0 clamp(38px,6vh,58px)}
+  footer.site{padding:clamp(60px,9vh,90px) 0 38px}
+  header.nav{padding-top:14px;padding-bottom:14px}
+  header.nav.scrolled{padding-top:10px;padding-bottom:10px}
+  .nav-logo{height:30px}
+  .btn{padding:14px 22px}
+}
+
+/* ----- TÉLÉPHONE ----- */
+@media(max-width:600px){
+  .wrap{padding-inline:20px}
+  /* grilles en une colonne (membres : voir equipe.html → 2 colonnes) */
+  .grid-3,.grid-2{grid-template-columns:1fr}
   .brand-grid{grid-template-columns:repeat(2,1fr)}
+  /* titres de section : empilés, pleine largeur */
+  .sec-head{flex-direction:column;align-items:flex-start;margin-bottom:26px}
+  .sec-head h2{font-size:clamp(2rem,8.4vw,2.7rem);line-height:1.05}
+  .sec-head p{max-width:100%;font-size:.95rem}
+  /* hero */
+  .hero-logo{width:84vw}
+  .hero-lead{font-size:1.12rem;margin-top:16px}
+  .hero-note{font-size:1.5rem}
+  .page-hero h1{font-size:clamp(2.5rem,11vw,3.5rem)}
+  .page-hero .lede{font-size:1.04rem;line-height:1.5}
+  /* cartes services */
+  .svc-card{min-height:0;padding:26px 22px}
+  .svc-card h3{font-size:1.5rem}
+  .svc-card p{font-size:.9rem}
+  /* chiffres */
+  .stats-grid{gap:28px 16px}
+  .stat .n{font-size:clamp(2.7rem,15vw,3.4rem)}
+  .stat .l{font-size:.85rem}
+  /* équipe */
+  .member .nm{font-size:1.2rem}
+  .member .info{padding:14px 15px 18px}
+  /* fil du temps (pile compacte) */
+  .fil-track{padding:10px 0;gap:30px}
+  .fil-card .yy{font-size:clamp(3rem,16vw,4.1rem)}
+  .fil-card h3{font-size:1.35rem}
+  .fil-h .fil-head{margin-bottom:4px}
+  /* marquees plus discrets */
+  .marquee-wrap{padding:30px 0}
+  .marquee{gap:36px}
+  .marquee span{font-size:1.3rem}
+  #marqueeMutuelles span{font-size:1rem}
+  /* boutons : meilleure cible tactile */
+  .btn{padding:15px 22px;font-size:.8rem}
+  /* footer compact */
+  .foot-top{gap:32px}
+  .foot-links{gap:26px 36px}
+  .foot-brand h3{font-size:1.7rem;max-width:18ch}
+  .foot-brand img.mac{height:72px}
+  .foot-bottom{flex-direction:column;align-items:flex-start;gap:8px;margin-top:36px}
+  /* photos encadrées : ombre/scotch plus discrets */
+  .tape{width:84px;height:26px}
+  .frame{box-shadow:0 24px 50px -28px rgba(0,0,0,.85)}
+  /* filtres */
+  .filters{gap:8px}
+  .filter{padding:8px 14px;font-size:.74rem}
+}
+
+@media(max-width:400px){
+  .wrap{padding-inline:16px}
+  .sec-head h2{font-size:clamp(1.8rem,9vw,2.3rem)}
+  .hero-lead{font-size:1.05rem}
+  .foot-links{gap:22px 30px}
 }
 @media(prefers-reduced-motion:reduce){
   html:not(.force-motion) *{animation:none!important;transition:none!important}

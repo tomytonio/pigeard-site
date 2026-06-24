@@ -58,8 +58,38 @@
   .piliers-grid{grid-template-columns:1fr}
   .offres-grid{grid-template-columns:1fr}
 }
-@media(max-width:560px){
+@media(max-width:600px){
+  /* atouts → 1 col sooner (was 560px, slightly expand) */
   .atouts-grid{grid-template-columns:1fr}
+
+  /* atout card: reduce padding */
+  .atout{padding:22px 18px}
+
+  /* pilier: reduce padding for single-col comfort */
+  .pilier{padding:26px 20px 30px}
+  .pilier h3{font-size:1.55rem;margin-bottom:14px}
+
+  /* offres: reduce generous card padding on mobile */
+  .offre-card{padding:26px 22px}
+  .offre-card h3{font-size:1.4rem}
+  .offre-card .prix{font-size:1.2rem;margin-top:14px}
+
+  /* sante-badge: let it wrap if needed */
+  .sante-badge{font-size:.72rem;padding:7px 14px;text-align:center}
+
+  /* mutu marquee text: already clamps to 1.2rem min — fine as-is */
+
+  /* CTA final hand note */
+  .cta-final .hand{font-size:1.5rem!important}
+
+  /* CTA h2 inline: clamp min 2rem is fine, no override needed */
+}
+@media(max-width:400px){
+  /* Hero h1 — no inline clamp set, inherits site.css page-hero h1 sizing */
+  #heroH1{font-size:clamp(2.2rem,9vw,2.8rem)}
+
+  /* pilier heading */
+  .pilier h3{font-size:1.35rem}
 }
 </style>
 </head>

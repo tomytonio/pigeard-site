@@ -31,6 +31,55 @@
 .team-grid{padding:0 0 clamp(60px,9vh,110px)}
 .member .acc{min-height:0}
 @media(max-width:980px){.mag-cover .wrap{grid-template-columns:1fr;gap:26px}.mag-cover.flip .mc-media{order:0}}
+
+/* ── Mobile ≤ 768px ── */
+@media(max-width:768px){
+  /* Grilles 3-col Brou & La Loupe → 2 col */
+  .team-grid .grid-members[style*="repeat(3"]{grid-template-columns:repeat(2,1fr)!important}
+}
+
+/* ── Mobile ≤ 600px ── */
+@media(max-width:600px){
+  /* Hero équipe */
+  .eq-hero{padding:clamp(110px,18vh,150px) 0 clamp(30px,5vh,50px)}
+  .eq-hero h1{font-size:clamp(2.4rem,11vw,3.2rem)}
+
+  /* Séparateur de magasin : réduire padding et watermark */
+  .mag-cover{padding:clamp(50px,10vh,80px) 0 clamp(24px,4vh,40px)}
+
+  /* Ghost watermark : contenir dans l'écran, rendre plus discret */
+  .mag-cover .ghost{
+    font-size:clamp(4rem,22vw,6rem);
+    -webkit-text-stroke:1px rgba(231,221,203,.04);
+    /* on laisse l'overflow caché par overflow:hidden déjà sur .mag-cover */
+  }
+
+  /* Titre de magasin */
+  .mag-cover h2{font-size:clamp(2rem,9vw,2.8rem)}
+
+  /* Numéro de magasin */
+  .mc-num{font-size:.72rem;letter-spacing:.16em}
+
+  /* Note manuscrite : moins grande, éviter débordement */
+  .mc-hand{font-size:1.3rem;margin-top:12px}
+
+  /* Badge comptage membres */
+  .mc-count{font-size:.72rem;padding:7px 13px}
+
+  /* Grilles membres : 2 colonnes sur téléphone (plus compact et élégant qu'1) */
+  .grid-members{grid-template-columns:repeat(2,1fr)!important;gap:12px}
+
+  /* Outro "la meilleure vue" */
+  .sec--cream .wrap h2{font-size:clamp(1.8rem,8vw,2.4rem)!important}
+  .sec--cream .wrap .hand{font-size:1.5rem}
+}
+
+/* ── Mobile ≤ 400px ── */
+@media(max-width:400px){
+  .mag-cover .ghost{font-size:clamp(3rem,20vw,4.5rem)}
+  .mag-cover h2{font-size:clamp(1.8rem,9vw,2.4rem)}
+  .eq-hero h1{font-size:clamp(2rem,12vw,2.8rem)}
+}
 </style>
 </head>
 <body>

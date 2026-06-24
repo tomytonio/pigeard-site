@@ -75,8 +75,54 @@
   .expert-grid.flip .expert-media{order:0}
   .engagements-grid{grid-template-columns:repeat(2,1fr)}
 }
-@media(max-width:560px){
+@media(max-width:768px){
+  /* Hero nav-links row: smaller tap targets already wrap via flex-wrap */
+  #heroLinks{gap:8px}
+  #heroLinks .btn{padding:10px 16px;font-size:.85rem}
+
+  /* Santé visuelle 2-col layout → stack */
+  .sante-layout{grid-template-columns:1fr!important;gap:28px!important}
+
+  /* .hand captions: absolute positioned, can spill below frame */
+  .expert-media .hand{position:relative!important;bottom:auto!important;left:auto!important;right:auto!important;display:block;margin-top:14px;font-size:1.4rem!important;text-align:center;transform:none!important}
+}
+@media(max-width:600px){
+  /* Engagements Optikid → 1 col */
   .engagements-grid{grid-template-columns:1fr}
+
+  /* Ghost "1/10" outline text in basse-vision: clamp min 5rem is too big */
+  .expert-media .frame [style*="-webkit-text-stroke"]{font-size:clamp(3.2rem,18vw,6rem)!important}
+
+  /* badge-reseau: can get cramped */
+  .badge-reseau{flex-wrap:wrap;gap:8px;padding:10px 14px}
+  .badge-reseau span{font-size:.78rem}
+
+  /* patho-tags: already flex-wrap, just tighten spacing */
+  .patho-list{gap:7px}
+  .patho-tag{font-size:.75rem;padding:7px 13px}
+
+  /* price badge inline in sur-mesure */
+  div[style*="display:inline-flex"][style*="300 €"]{font-size:.85rem}
+
+  /* steps timeline: reduce side padding so numbers/text breathe */
+  .steps{padding-left:28px}
+  .step::before{left:-28px}
+
+  /* Le saviez-vous card: padding */
+  div[style*="padding:24px"][style*="border-radius:16px"]{padding:16px!important}
+
+  /* CTA finale hand subtitle */
+  .cta-finale .subtitle{font-size:1.5rem}
+
+  /* expert-grid gap already 30px at ≤980; keep frame proportions */
+  .expert-media .frame{aspect-ratio:3/2!important}
+}
+@media(max-width:400px){
+  /* Very narrow: hero heading */
+  #heroTitle{font-size:clamp(2rem,10vw,2.6rem)!important}
+
+  /* Section h2 headings inside expert sections — clamp min already 2.2rem; override at 400px */
+  .expert-grid h2{font-size:2rem!important}
 }
 </style>
 </head>
@@ -372,7 +418,7 @@
       <p style="max-width:36ch">De l'examen de vue à l'ajustage à vie : voici comment nous prenons soin de votre regard.</p>
     </div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,100px);align-items:start">
+    <div class="sante-layout" style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,100px);align-items:start">
       <!-- Intro + CTA gauche -->
       <div class="reveal">
         <p style="color:#5c554a;max-width:46ch;font-size:1.05rem;line-height:1.65">Chez Pigeard, une consultation n'est pas une simple vente. C'est un vrai parcours opticien, pensé pour vous accompagner de A à Z — avec la même rigueur depuis 1863.</p>

@@ -54,6 +54,66 @@
 @media(max-width:560px){
   .mag-actions-row{flex-direction:column;align-items:flex-start}
 }
+
+/* ── Mobile ≤ 600px ── */
+@media(max-width:600px){
+  /* Bloc magasin : réduire le padding vertical */
+  .mag-block{padding:clamp(40px,8vh,60px) 0;gap:20px}
+
+  /* Note manuscrite absolue sous la photo : laisser de l'espace pour qu'elle ne coupe pas */
+  .mag-photo{padding-bottom:36px}
+  .mag-photo .hand{
+    font-size:1.3rem;
+    bottom:-18px;
+  }
+
+  /* Nom de ville */
+  .mag-info .city-name{font-size:clamp(1.6rem,7vw,2.2rem)}
+
+  /* Badge siège : le descendre sur sa propre ligne */
+  .mag-info .city-name .siege-badge{
+    display:block;
+    margin:8px 0 0;
+    transform:none;
+    align-self:flex-start;
+    width:fit-content;
+  }
+
+  /* Liens contact : empiler verticalement */
+  .contact-links{flex-direction:column;gap:10px}
+  .contact-links a{font-size:.85rem;min-height:44px;align-items:center}
+
+  /* Tag PMR */
+  .pmr-tag{margin-top:12px}
+
+  /* Tableau horaires : empiler jour et horaire sur ≤400 (voir ci-dessous) */
+  .hours-row{flex-wrap:wrap;gap:2px}
+  .hours-row .day{flex:0 0 100%;font-size:.82rem}
+  .hours-row .time{font-size:.82rem;text-align:left}
+
+  /* Actions : bouton pleine largeur + Maps link dessous */
+  .mag-actions{gap:10px}
+  .mag-actions-row{flex-direction:column;align-items:stretch;gap:10px}
+  .mag-actions-row .btn{width:100%;text-align:center;min-height:48px;display:flex;align-items:center;justify-content:center}
+  .mag-actions-row .map-link{font-size:.82rem;padding:4px 0;min-height:44px;display:flex;align-items:center}
+
+  /* Lien visite virtuelle */
+  .mag-actions .link-arrow{display:inline-flex;align-items:center;min-height:44px;font-size:.9rem}
+
+  /* Section RDV */
+  .rdv-section{padding:clamp(60px,10vh,90px) 0}
+  .rdv-grid{margin-top:28px;gap:14px}
+  .rdv-card{padding:24px 20px;gap:10px;border-radius:14px}
+  .rdv-card .city{font-size:1.3rem}
+  .rdv-card .addr-sm{font-size:.82rem}
+  .rdv-card .btn{min-height:48px;display:flex;align-items:center;justify-content:center}
+}
+
+/* ── Mobile ≤ 400px ── */
+@media(max-width:400px){
+  .mag-info .city-name{font-size:clamp(1.4rem,8vw,1.9rem)}
+  .hours-row .time{font-size:.78rem}
+}
 </style>
 </head>
 <body>

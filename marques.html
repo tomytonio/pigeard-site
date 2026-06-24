@@ -15,6 +15,19 @@
 .brand-card.pigeard{border-color:rgba(126,140,90,.55);background:linear-gradient(160deg,rgba(126,140,90,.14),rgba(255,255,255,.02))}
 .brand-card.pigeard span:not(.brand-tag):not(.tl){font-family:var(--serif);font-style:italic}
 .count{color:var(--muted);font-size:.85rem;margin-left:auto}
+@media(max-width:600px){
+  /* count badge wraps onto its own line instead of stretching the filter row */
+  .count{margin-left:0;align-self:flex-end}
+  /* brand-grid card names: reduce font so 2-col cards aren't cramped */
+  .brand-card span:not(.brand-tag):not(.tl){font-size:.85rem}
+  .brand-card .brand-tag{font-size:.62rem}
+  /* blob decoratives: contain them so they don't cause horizontal overflow */
+  .page-hero .hero-bg .blob{width:70vw!important;height:70vw!important}
+}
+@media(max-width:400px){
+  /* tighten card padding further on very small screens */
+  .brand-card{padding:14px 10px}
+}
 </style>
 </head>
 <body>

@@ -21,6 +21,12 @@
 .crea-card .desc{color:#6B6358;font-size:.9rem;margin-top:6px;line-height:1.5}
 @media(max-width:900px){.crea-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.crea-grid{grid-template-columns:1fr}}
+@media(max-width:600px){
+  /* CTA box: stack content column, full-width buttons */
+  .crea-cta-box{flex-direction:column!important;align-items:stretch!important;gap:20px!important;padding:clamp(22px,5vw,30px)!important}
+  .crea-cta-box .cta-btns{flex-direction:column!important;gap:10px!important;flex-wrap:nowrap!important}
+  .crea-cta-box .cta-btns .btn{width:100%;justify-content:center;text-align:center}
+}
 </style>
 </head>
 <body>
@@ -51,9 +57,9 @@
     <span class="count" id="count" style="color:var(--muted);font-size:.85rem;margin-left:auto"></span>
   </div>
   <div class="crea-grid" id="creaGrid"></div>
-  <div style="margin-top:46px;padding:clamp(30px,5vw,50px);border:1px solid var(--ligne);border-radius:20px;background:linear-gradient(160deg,rgba(126,140,90,.08),rgba(255,255,255,.01));display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
+  <div class="crea-cta-box" style="margin-top:46px;padding:clamp(30px,5vw,50px);border:1px solid var(--ligne);border-radius:20px;background:linear-gradient(160deg,rgba(126,140,90,.08),rgba(255,255,255,.01));display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
     <div><h3 style="font-family:var(--serif);font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:700">Et la vôtre ?</h3><p style="color:var(--muted);max-width:46ch;margin-top:8px">Choisissez un modèle ou imaginons ensemble une monture qui n'existe nulle part ailleurs.</p></div>
-    <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn--primary" href="magasins.html#rdv">Prendre rendez-vous <span class="arr">→</span></a><a class="btn btn--ghost" href="services.html#sur-mesure">Comment ça marche</a></div>
+    <div class="cta-btns" style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn--primary" href="magasins.html#rdv">Prendre rendez-vous <span class="arr">→</span></a><a class="btn btn--ghost" href="services.html#sur-mesure">Comment ça marche</a></div>
   </div>
 </section>
 
