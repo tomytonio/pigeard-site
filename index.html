@@ -244,7 +244,7 @@ if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
   if(window.innerWidth>980){
     var ftH=document.getElementById('filTrackHome'), fpH=document.getElementById('filProgHome');
     var cardsH=gsap.utils.toArray('#filAccueil .fil-card');
-    var distH=function(){return ftH.scrollWidth-window.innerWidth;};
+    var distH=function(){var L=cardsH[cardsH.length-1];return L?(L.offsetLeft+L.offsetWidth/2-window.innerWidth/2):0;};
     function centerHighlightH(){
       var cx=window.innerWidth/2, best=null, bd=1e9;
       cardsH.forEach(function(c){var r=c.getBoundingClientRect();var d=Math.abs((r.left+r.width/2)-cx);if(d<bd){bd=d;best=c;}});

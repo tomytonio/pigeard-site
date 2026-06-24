@@ -218,8 +218,8 @@ if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
   /* FIL HORIZONTAL épinglé : défilement vers la droite (le contenu glisse à gauche) */
   if(window.innerWidth>980){
     var ft=document.getElementById('filTrack'), fp=document.getElementById('filProg');
-    var dist=function(){return ft.scrollWidth-window.innerWidth;};
     var fcards=gsap.utils.toArray('.fil-card');
+    var dist=function(){var L=fcards[fcards.length-1];return L?(L.offsetLeft+L.offsetWidth/2-window.innerWidth/2):0;};
     function centerHl(){
       var cx=window.innerWidth/2, best=null, bd=1e9;
       fcards.forEach(function(c){var r=c.getBoundingClientRect();var d=Math.abs((r.left+r.width/2)-cx);if(d<bd){bd=d;best=c;}});
