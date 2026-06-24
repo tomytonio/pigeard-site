@@ -272,7 +272,12 @@ if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
       .to(ft,{x:function(){return -dist();},ease:'none',duration:1})
       .to(ft,{x:function(){return -dist();},duration:DWELL});
     centerHl();
-  } else { document.querySelectorAll('.fil-card').forEach(function(c){c.classList.add('on');}); }
+  } else {
+    /* Mobile : pile verticale ANIMÉE — chaque date glisse, apparaît et s'allume au défilement */
+    gsap.utils.toArray('.fil-card').forEach(function(c){
+      gsap.from(c,{autoAlpha:0,y:48,duration:.7,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%',onEnter:function(){c.classList.add('on');}}});
+    });
+  }
 
   /* Chapitres : photo (clip + zoom), textes, ghost parallax + activation de l'année (gauche) */
   gsap.utils.toArray('.chapter').forEach(function(ch){

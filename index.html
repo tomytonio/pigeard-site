@@ -256,7 +256,12 @@ if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
       .to(ftH,{x:function(){return -distH();},ease:'none',duration:1})
       .to(ftH,{x:function(){return -distH();},duration:DWELL});
     centerHighlightH();
-  } else { document.querySelectorAll('#filAccueil .fil-card').forEach(function(c){c.classList.add('on');}); }
+  } else {
+    /* Mobile : pile verticale ANIMÉE — chaque date glisse, apparaît et s'allume au défilement */
+    gsap.utils.toArray('#filAccueil .fil-card').forEach(function(c){
+      gsap.from(c,{autoAlpha:0,y:48,duration:.7,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%',onEnter:function(){c.classList.add('on');}}});
+    });
+  }
   /* marquees défilants */
   gsap.to('#marquee',{xPercent:-50,duration:32,ease:'none',repeat:-1});
   gsap.fromTo('#marqueeBrands',{xPercent:-50},{xPercent:0,duration:42,ease:'none',repeat:-1});
