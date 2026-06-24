@@ -57,7 +57,7 @@
     <button class="filter" data-f="enfant">Enfant</button>
     <button class="filter" data-f="solaire">Solaire</button>
     <button class="filter" data-f="sport">Sport</button>
-    <button class="filter" data-f="made-in-france">Made in France</button>
+    <button class="filter" data-f="france">France</button>
     <button class="filter" data-f="createur">Créateurs</button>
     <span class="count" id="count"></span>
   </div>
@@ -87,7 +87,7 @@
   var grid=document.getElementById('brandGrid');
   var pig=document.createElement('a');
   pig.className='brand-card pigeard';pig.href='services.html#sur-mesure';
-  pig.setAttribute('data-cat','made-in-france femme homme createur');
+  pig.setAttribute('data-cat','france femme homme createur');
   pig.innerHTML='<span class="brand-tag">la maison</span><span>Pigeard<br>sur mesure</span><span class="tl">Nos créations, faites main à Nogent →</span>';
   grid.appendChild(pig);
 
@@ -95,8 +95,9 @@
     data.brands.forEach(function(b){
       var a=document.createElement('a');
       a.className='brand-card';a.href='marque.html?b='+b.slug;
-      a.setAttribute('data-cat',(b.category||[]).join(' ')+(b.madeInFrance?' made-in-france':''));
-      var tag=b.madeInFrance?'Made in France':(b.origin||'').split('(')[0].trim();
+      var isFr=(b.origin||'').toLowerCase().indexOf('france')>-1;
+      a.setAttribute('data-cat',(b.category||[]).join(' ')+(isFr?' france':''));
+      var tag=(b.origin||'').split('(')[0].trim();
       a.innerHTML='<span class="brand-tag">'+tag+'</span><span>'+b.name+'</span><span class="tl">'+(b.tagline||'')+'</span>';
       grid.appendChild(a);
     });
