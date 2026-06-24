@@ -195,22 +195,25 @@ header.nav.scrolled{background:rgba(14,13,11,.74);backdrop-filter:blur(14px);bor
 @media(max-width:900px){.ig-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:560px){.ig-grid{grid-template-columns:repeat(2,1fr)}}
 
-/* Fil du temps horizontal épinglé (partagé accueil + histoire) */
-.fil-h{height:100vh;overflow:hidden;position:relative}
+/* Fil du temps horizontal épinglé — dates BEIGE pleines + TRAIT reliant les billes (accueil + histoire, desktop ET mobile) */
+.fil-h{height:100svh;overflow:hidden;position:relative}
 .fil-h .fil-head{position:absolute;top:42px;left:0;width:100%;z-index:5;pointer-events:none}
 .fil-h .fil-head .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
 .fil-h .fil-head h2{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.8rem);font-weight:700;line-height:1}
 .fil-track{display:flex;align-items:center;height:100%;will-change:transform;padding:0 calc(50vw - min(30vw,180px));gap:5vw}
-.fil-card{flex:0 0 auto;width:min(60vw,360px);position:relative}
-.fil-card .yy{font-family:var(--serif);font-weight:900;font-size:clamp(3.4rem,8vw,6rem);line-height:.9;color:transparent;-webkit-text-stroke:1.5px var(--vert)}
-.fil-card.on .yy{color:var(--vert);-webkit-text-stroke:0}
+.fil-card{flex:0 0 auto;width:min(60vw,360px);position:relative;display:flex;flex-direction:column}
+.fil-card .yy{font-family:var(--serif);font-weight:900;font-size:clamp(3.2rem,8vw,6rem);line-height:.9;color:var(--creme);transition:color .35s var(--ease)}
+.fil-card.on .yy{color:var(--vert)}
 .fil-card h3{font-family:var(--serif);font-size:1.5rem;font-weight:700;margin-top:14px}
-.fil-card p{color:var(--muted);margin-top:8px;font-size:.95rem}
-.fil-card .dot{width:14px;height:14px;border-radius:50%;background:var(--noir-3);border:2px solid var(--muted);margin:22px 0 0}
-.fil-card.on .dot{background:var(--corail);border-color:var(--corail);box-shadow:0 0 14px rgba(255,98,91,.6)}
-.fil-prog{position:absolute;left:0;bottom:54px;height:2px;width:100%;background:var(--ligne);z-index:5}
-.fil-prog i{position:absolute;left:0;top:0;height:100%;width:0;background:linear-gradient(90deg,var(--vert),var(--moutarde))}
-@media(max-width:980px){.fil-h{height:auto;overflow:visible}.fil-track{flex-direction:column;height:auto;padding:30px 0;gap:50px}.fil-card{width:100%}.fil-prog{display:none}.fil-h .fil-head{position:relative;top:0;margin-bottom:10px}}
+.fil-card p{color:var(--muted);margin-top:8px;font-size:.95rem;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.9em}
+/* le trait qui relie les dates + la bille corail qui suit l'évolution */
+.fil-card .dot{position:relative;width:15px;height:15px;border-radius:50%;background:var(--noir-3);border:2px solid var(--muted);margin:26px 0 0;z-index:2;transition:background .4s,border-color .4s,box-shadow .4s}
+.fil-card .dot::after{content:"";position:absolute;left:6px;top:50%;transform:translateY(-50%);height:2px;width:calc(min(60vw,360px) + 5vw);background:var(--ligne);z-index:-1;transition:background .4s}
+.fil-card:last-child .dot::after{display:none}
+.fil-card.passed .dot{background:var(--corail);border-color:var(--corail);box-shadow:0 0 14px rgba(255,98,91,.6)}
+.fil-card.passed .dot::after{background:var(--corail)}
+.fil-prog{position:absolute;left:0;bottom:46px;height:2px;width:100%;background:var(--ligne);z-index:5}
+.fil-prog i{position:absolute;left:0;top:0;height:100%;width:0;background:linear-gradient(90deg,var(--corail),var(--moutarde))}
 
 /* magasins */
 .grid-shops{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -256,10 +259,7 @@ footer.site{padding:clamp(80px,11vh,140px) 0 46px;border-top:1px solid var(--lig
   .grid-members{grid-template-columns:repeat(2,1fr)}
   .stats-grid{grid-template-columns:repeat(2,1fr);gap:40px 20px}
   .grid-shops{grid-template-columns:1fr}
-  .hero-watermark{display:none}
   .intro-grid{grid-template-columns:1fr!important;gap:34px}
-  .fil-h .fil-head .hand{display:none}                 /* "faites défiler →" hors-sujet en pile verticale */
-  .fil-h>a.btn{position:static!important;display:inline-flex;margin:10px 0 0 clamp(20px,5vw,64px)}
 }
 
 /* ----- TABLETTE / GRAND TÉLÉPHONE ----- */
@@ -302,11 +302,8 @@ footer.site{padding:clamp(80px,11vh,140px) 0 46px;border-top:1px solid var(--lig
   /* équipe */
   .member .nm{font-size:1.2rem}
   .member .info{padding:14px 15px 18px}
-  /* fil du temps (pile compacte) */
-  .fil-track{padding:10px 0;gap:30px}
-  .fil-card .yy{font-size:clamp(3rem,16vw,4.1rem)}
-  .fil-card h3{font-size:1.35rem}
-  .fil-h .fil-head{margin-bottom:4px}
+  /* lunette en filigrane derrière le logo : visible aussi sur mobile */
+  .hero-watermark{width:min(98vw,440px);opacity:.08}
   /* marquees plus discrets */
   .marquee-wrap{padding:30px 0}
   .marquee{gap:36px}
@@ -337,4 +334,9 @@ footer.site{padding:clamp(80px,11vh,140px) 0 46px;border-top:1px solid var(--lig
 @media(prefers-reduced-motion:reduce){
   html:not(.force-motion) *{animation:none!important;transition:none!important}
   html:not(.force-motion) .reveal{opacity:1;transform:none}
+  /* fil du temps : repli en liste verticale lisible quand les animations sont réduites */
+  html:not(.force-motion) .fil-h{height:auto;overflow:visible}
+  html:not(.force-motion) .fil-track{flex-direction:column;height:auto;padding:24px 0;gap:30px}
+  html:not(.force-motion) .fil-card{width:100%}
+  html:not(.force-motion) .fil-card .dot::after{display:none}
 }

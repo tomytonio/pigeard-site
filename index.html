@@ -242,26 +242,21 @@ if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
   gsap.to('.blob.v',{yPercent:32,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
   gsap.to('.blob.c',{yPercent:-22,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
   /* FIL DU TEMPS horizontal épinglé : commence/finit au centre, UNE SEULE date active (celle au centre) */
-  if(window.innerWidth>980){
+  (function(){
     var ftH=document.getElementById('filTrackHome'), fpH=document.getElementById('filProgHome');
     var cardsH=gsap.utils.toArray('#filAccueil .fil-card');
     var distH=function(){var L=cardsH[cardsH.length-1];return L?(L.offsetLeft+L.offsetWidth/2-window.innerWidth/2):0;};
     function centerHighlightH(){
-      var cx=window.innerWidth/2, best=null, bd=1e9;
-      cardsH.forEach(function(c){var r=c.getBoundingClientRect();var d=Math.abs((r.left+r.width/2)-cx);if(d<bd){bd=d;best=c;}});
-      cardsH.forEach(function(c){c.classList.toggle('on',c===best);});
+      var cx=window.innerWidth/2, best=0, bd=1e9;
+      cardsH.forEach(function(c,i){var r=c.getBoundingClientRect();var d=Math.abs((r.left+r.width/2)-cx);if(d<bd){bd=d;best=i;}});
+      cardsH.forEach(function(c,i){c.classList.toggle('on',i===best);c.classList.toggle('passed',i<=best);});
     }
     var DWELL=0.35;
     gsap.timeline({scrollTrigger:{trigger:'#filAccueil',start:'top top',end:function(){return '+='+(distH()*(1+DWELL));},scrub:1.1,pin:true,invalidateOnRefresh:true,onRefresh:centerHighlightH,onUpdate:function(s){if(fpH)fpH.style.width=(s.progress*100)+'%';centerHighlightH();}}})
       .to(ftH,{x:function(){return -distH();},ease:'none',duration:1})
       .to(ftH,{x:function(){return -distH();},duration:DWELL});
     centerHighlightH();
-  } else {
-    /* Mobile : pile verticale ANIMÉE — chaque date glisse, apparaît et s'allume au défilement */
-    gsap.utils.toArray('#filAccueil .fil-card').forEach(function(c){
-      gsap.from(c,{autoAlpha:0,y:48,duration:.7,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%',onEnter:function(){c.classList.add('on');}}});
-    });
-  }
+  })();
   /* marquees défilants */
   gsap.to('#marquee',{xPercent:-50,duration:32,ease:'none',repeat:-1});
   gsap.fromTo('#marqueeBrands',{xPercent:-50},{xPercent:0,duration:42,ease:'none',repeat:-1});
