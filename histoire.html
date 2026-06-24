@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Notre histoire — Pigeard, opticien depuis 1863</title>
+<meta name="description" content="De 1863 à aujourd'hui : Auguste Pigeard le coutelier devenu opticien, le bombardement de 1944, le centenaire, le Rotary Aphaque System… Six générations d'opticiens Pigeard." />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300..700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<style>
+/* ===== Page Histoire : échelle de dates (gauche) qui défile + fil horizontal ===== */
+.year-rail{position:fixed;left:30px;top:0;height:100vh;display:flex;align-items:center;z-index:40;pointer-events:none}
+.year-rail .mask{height:320px;overflow:hidden;-webkit-mask:linear-gradient(transparent,#000 26%,#000 74%,transparent);mask:linear-gradient(transparent,#000 26%,#000 74%,transparent)}
+.year-rail .track{display:flex;flex-direction:column;will-change:transform}
+.year-rail .yr{height:46px;display:flex;align-items:center;gap:12px;font-family:var(--serif);font-weight:800;font-size:1.35rem;color:var(--muted);opacity:.45;transition:opacity .4s,color .4s,font-size .4s,transform .4s}
+.year-rail .yr::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor;flex:0 0 8px;opacity:.6}
+.year-rail .yr.active{color:var(--vert);opacity:1;font-size:1.9rem;transform:translateX(4px)}
+.year-rail .yr.active::before{box-shadow:0 0 12px rgba(126,140,90,.7)}
+
+/* Fil horizontal épinglé (le rythme « vers la droite ») */
+.fil-h{height:100vh;overflow:hidden;position:relative}
+.fil-h .head{position:absolute;top:42px;left:0;width:100%;z-index:5;pointer-events:none}
+.fil-h .head .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
+.fil-h .head h2{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.8rem);font-weight:700;line-height:1}
+.fil-track{display:flex;align-items:center;height:100%;will-change:transform;padding:0 12vw;gap:5vw}
+.fil-card{flex:0 0 auto;width:min(60vw,360px);position:relative}
+.fil-card .yy{font-family:var(--serif);font-weight:900;font-size:clamp(3.4rem,8vw,6rem);line-height:.9;color:transparent;-webkit-text-stroke:1.5px var(--vert)}
+.fil-card.on .yy{color:var(--vert);-webkit-text-stroke:0}
+.fil-card h3{font-family:var(--serif);font-size:1.5rem;font-weight:700;margin-top:14px}
+.fil-card p{color:var(--muted);margin-top:8px;font-size:.95rem}
+.fil-card .dot{width:14px;height:14px;border-radius:50%;background:var(--noir-3);border:2px solid var(--muted);margin:22px 0 0}
+.fil-card.on .dot{background:var(--corail);border-color:var(--corail);box-shadow:0 0 14px rgba(255,98,91,.6)}
+.fil-prog{position:absolute;left:0;bottom:54px;height:2px;width:100%;background:var(--ligne);z-index:5}
+.fil-prog i{position:absolute;left:0;top:0;height:100%;width:0;background:linear-gradient(90deg,var(--vert),var(--moutarde))}
+
+/* Chapitres verticaux */
+.chapter{padding:clamp(80px,14vh,150px) 0;position:relative}
+.chapter .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,90px);align-items:center}
+.chapter.flip .media{order:2}
+.chapter .year-ghost{position:absolute;top:4%;font-family:var(--serif);font-weight:900;font-size:clamp(7rem,18vw,16rem);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(231,221,203,.10);z-index:0;pointer-events:none}
+.chapter:not(.flip) .year-ghost{right:4%}.chapter.flip .year-ghost{left:4%}
+.media{position:relative;z-index:2}.media .frame{aspect-ratio:4/5}.media .frame.wide{aspect-ratio:4/3}
+.media .cap{position:absolute;left:18px;bottom:16px;font-family:var(--hand);font-size:1.7rem;color:#fff;line-height:1.05;text-shadow:0 2px 14px rgba(0,0,0,.7);z-index:3}
+.txt .chip{display:inline-block;font-weight:700;font-size:1rem;letter-spacing:.05em;color:#0E0D0B;padding:6px 15px;border-radius:4px;margin-bottom:18px}
+.txt h2{font-family:var(--serif);font-weight:700;font-size:clamp(2rem,5vw,3.6rem);line-height:1.04;letter-spacing:-.02em}
+.txt h2 .sub{display:block;font-size:.46em;color:var(--muted);font-weight:400;font-style:italic;margin-top:8px}
+.txt p{color:var(--creme);margin-top:18px;max-width:48ch}
+.txt p.lede2{font-family:var(--serif);font-style:italic;color:var(--blanc-chaud);font-size:clamp(1.15rem,2.2vw,1.45rem)}
+.txt .note{font-family:var(--hand);font-size:1.6rem;color:var(--camel);margin-top:20px;display:inline-block;transform:rotate(-2deg)}
+.interlude{padding:clamp(110px,18vh,220px) 0;text-align:center}
+.interlude h2{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,5.5vw,4.6rem);line-height:1.08;max-width:20ch;margin:0 auto}
+.interlude .accent{color:var(--vert);font-style:italic}.interlude .word{display:inline-block;opacity:.14;transform:translateY(.2em)}
+@media(max-width:980px){
+  .year-rail{display:none}
+  .fil-h{height:auto;overflow:visible}.fil-track{flex-direction:column;height:auto;padding:30px 0;gap:50px}.fil-card{width:100%}.fil-prog{display:none}.fil-h .head{position:relative;top:0;margin-bottom:10px}
+  .chapter .wrap{grid-template-columns:1fr;gap:26px}.chapter.flip .media{order:0}
+}
+@media(prefers-reduced-motion:reduce){html:not(.force-motion) .interlude .word{opacity:1;transform:none}html:not(.force-motion) .fil-card .yy{color:var(--vert);-webkit-text-stroke:0}}
+</style>
+</head>
+<body>
+<div class="grain"></div><div class="progress" id="progress"></div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="index.html"><img class="nav-logo" src="assets/brand/pigeard-logo-white.svg" alt="Pigeard"></a>
+  <nav class="nav-links"><a href="histoire.html" class="active">Notre histoire</a><a href="services.html">Nos expertises</a><a href="marques.html">Nos marques</a><a href="equipe.html">L'équipe</a><a href="magasins.html">Magasins</a></nav>
+  <button class="nav-cta" onclick="location.href='magasins.html#rdv'">Prendre rendez-vous</button>
+  <button class="burger" aria-label="Menu">☰</button>
+</header>
+<div class="mobile-menu"><button class="close">✕</button><a href="index.html">Accueil</a><a href="histoire.html">Notre histoire</a><a href="services.html">Nos expertises</a><a href="marques.html">Nos marques</a><a href="equipe.html">L'équipe</a><a href="magasins.html">Magasins</a></div>
+
+<!-- ÉCHELLE DE DATES (gauche, défile avec le scroll) -->
+<div class="year-rail" id="yearRail"><div class="mask"><div class="track" id="yearTrack">
+  <span class="yr" data-y="1863">1863</span><span class="yr" data-y="1900">1900</span><span class="yr" data-y="1944">1944</span><span class="yr" data-y="1945">1945</span><span class="yr" data-y="1963">1963</span><span class="yr" data-y="1980">1980</span><span class="yr" data-y="2004">2004</span><span class="yr" data-y="2013">2013</span><span class="yr" data-y="2027">demain</span>
+</div></div></div>
+
+<!-- HERO -->
+<section class="hero" id="top" data-year="1863">
+  <div class="hero-bg"><div class="blob v" style="width:46vw;height:46vw;top:-14%;right:-6%"></div><div class="blob c" style="width:34vw;height:34vw;bottom:-18%;left:-8%"></div></div>
+  <div class="hero-inner wrap">
+    <span class="kicker">depuis six générations…</span>
+    <h1 style="font-size:clamp(3.4rem,11vw,10rem);margin:8px 0 18px">Notre <em style="font-style:italic;color:var(--creme)">histoire</em></h1>
+    <div class="span-years" style="display:flex;gap:18px;justify-content:center;align-items:center;font-size:clamp(.9rem,2vw,1.1rem);letter-spacing:.3em;color:var(--muted)"><span>1863</span><span style="width:60px;height:1px;background:var(--ligne)"></span><span>aujourd'hui</span></div>
+  </div>
+  <div class="scrollcue"><span>Dérouler le fil</span><span class="line"></span></div>
+</section>
+
+<!-- FIL HORIZONTAL (rythme vers la droite) -->
+<section class="fil-h" id="fil">
+  <div class="head"><div class="wrap"><h2>Le fil du temps</h2><span class="hand" style="font-size:1.6rem">de 1863 à demain →</span></div></div>
+  <div class="fil-track" id="filTrack">
+    <article class="fil-card"><div class="yy">1863</div><h3>La fondation</h3><p>Auguste Pigeard, coutelier, ouvre son échoppe à Nogent.</p><div class="dot"></div></article>
+    <article class="fil-card"><div class="yy">1944</div><h3>Le bombardement</h3><p>Le magasin détruit — 80 ans effacés en une nuit.</p><div class="dot"></div></article>
+    <article class="fil-card"><div class="yy">1963</div><h3>Le centenaire</h3><p>Cent ans, l'ouverture de Brou, la modernité.</p><div class="dot"></div></article>
+    <article class="fil-card"><div class="yy">1980</div><h3>L'aventure humaine</h3><p>Le Rotary Aphaque System, des lunettes pour le monde.</p><div class="dot"></div></article>
+    <article class="fil-card"><div class="yy">2004</div><h3>Christophe</h3><p>La 5ᵉ génération ouvre La Loupe.</p><div class="dot"></div></article>
+    <article class="fil-card"><div class="yy">2013</div><h3>Antoine</h3><p>La 6ᵉ génération écrit la suite.</p><div class="dot"></div></article>
+    <article class="fil-card"><div class="yy">2027</div><h3>Demain</h3><p>Pigeard Audition — un nouveau regard sur l'écoute.</p><div class="dot"></div></article>
+  </div>
+  <div class="fil-prog"><i id="filProg"></i></div>
+</section>
+
+<!-- CHAPITRES -->
+<section class="chapter" data-year="1863">
+  <span class="year-ghost">1863</span>
+  <div class="wrap">
+    <div class="media"><div class="frame"><span class="tape" style="top:-16px;left:24px;transform:rotate(-4deg)"></span><img src="assets/histoire/aieux.jpg" alt="Les aïeux Pigeard"><span class="cap">la famille Pigeard,<br>aux origines</span></div></div>
+    <div class="txt"><span class="chip" style="background:var(--creme)">1863 — Auguste</span><h2>Le coutelier<br>devenu opticien.<span class="sub">rue Giroust, à Nogent-le-Rotrou</span></h2><p class="lede2">Tout commence en 1863, sous Napoléon III, dans l'échoppe d'Auguste Pigeard.</p><p>Maître coutelier originaire d'Authon-du-Perche, Auguste aiguise les lames… et façonne déjà les verres de lunettes sur ses meules. L'optique est née de la coutellerie. Héros de la guerre de 1870, il échappe de justesse au peloton — sauvé par un général allemand dont il avait soigné le fils.</p><span class="note">le tout début de l'aventure</span></div>
+  </div>
+</section>
+<section class="chapter flip" data-year="1900">
+  <span class="year-ghost">1900</span>
+  <div class="wrap">
+    <div class="media"><div class="frame"><span class="tape" style="top:-16px;left:30px;transform:rotate(4deg)"></span><img src="assets/histoire/centenaire.jpg" alt="La maison Pigeard au fil du temps"></div></div>
+    <div class="txt"><span class="chip" style="background:var(--moutarde)">1900 → 1939 — Georges</span><h2>Quand l'optique<br>prend le dessus.</h2><p>Georges Pigeard, formé à l'optique à Paris et maître coutelier de Thiers, fait la réputation des couteaux Pigeard — primés dans toute la région. Mais l'industrie bouscule la coutellerie : à la fin des années 30, l'optique devient le cœur de la maison.</p><span class="note">l'artisan se réinvente</span></div>
+  </div>
+</section>
+<section class="chapter" data-year="1944">
+  <span class="year-ghost">1944</span>
+  <div class="wrap">
+    <div class="media"><div class="frame"><span class="tape" style="top:-16px;left:24px;transform:rotate(-3deg)"></span><img src="assets/histoire/bombardement.jpg" alt="Le magasin détruit par le bombardement de 1944"><span class="cap">juin 1944 —<br>tout est détruit</span></div></div>
+    <div class="txt"><span class="chip" style="background:var(--corail)">1944 — l'épreuve</span><h2>Près de 80 ans<br>effacés en une nuit.</h2><p>En juin 1944, le bombardement de Nogent-le-Rotrou rase le magasin. Quatre-vingts ans d'histoire familiale partent en fumée. L'aventure aurait pu s'arrêter là… mais la famille Pigeard n'avait pas dit son dernier mot.</p><span class="note">on ne lâche rien</span></div>
+  </div>
+</section>
+<section class="chapter flip" data-year="1945">
+  <span class="year-ghost">1945</span>
+  <div class="wrap">
+    <div class="media"><div class="frame wide"><span class="tape" style="top:-16px;left:30px;transform:rotate(3deg)"></span><img src="assets/histoire/boutique-1945.jpg" alt="La nouvelle boutique après la Libération, 1945"><span class="cap">la nouvelle boutique,<br>après la Libération</span></div></div>
+    <div class="txt"><span class="chip" style="background:var(--vert);color:#fff">L'après-guerre — Georges &amp; Fernande</span><h2>Repartir de zéro,<br>sur les routes du Perche.</h2><p>Georges et son épouse Fernande, opticiens tous les deux, relancent la maison au 6 rue de Sully. Chaque semaine, ils sillonnent les marchés ; les examens de vue se font dans les halls d'hôtels, l'équipement livré la semaine suivante. La renommée Pigeard gagne tout le Perche.</p><span class="note">le métier dans les jambes</span></div>
+  </div>
+</section>
+<section class="chapter" data-year="1963">
+  <span class="year-ghost">1963</span>
+  <div class="wrap">
+    <div class="media"><div class="frame"><span class="tape" style="top:-16px;left:24px;transform:rotate(-4deg)"></span><img src="assets/histoire/presse-centenaire.jpg" alt="Article de presse pour le centenaire"><span class="cap">100 ans —<br>la presse en parle</span></div></div>
+    <div class="txt"><span class="chip" style="background:var(--creme)">1963 — le centenaire</span><h2>Cent ans,<br>et déjà en avance.</h2><p>En 1963, la maison fête ses cent ans. Georges Pigeard, sorti de l'école d'optique de Morez, ouvre la première succursale à <b style="color:var(--blanc-chaud)">Brou</b> et révolutionne la boutique : les montures sont présentées en libre accès, « à l'américaine » — une idée alors inédite en France.</p><span class="note">toujours un temps d'avance</span></div>
+  </div>
+</section>
+<section class="chapter flip" data-year="1980">
+  <span class="year-ghost">1980</span>
+  <div class="wrap">
+    <div class="media"><div class="frame"><span class="tape" style="top:-16px;left:30px;transform:rotate(4deg)"></span><img src="assets/histoire/afrique.jpg" alt="Actions humanitaires en Afrique"><span class="cap">des lunettes<br>pour le plus grand nombre</span></div></div>
+    <div class="txt"><span class="chip" style="background:var(--bois);color:#fff">Années 80 — l'engagement</span><h2>Rendre la vue,<br>partout dans le monde.</h2><p>Au début des années 80, Georges Pigeard invente le « Rotary Aphaque System » et devient l'un des fondateurs d'« Ophtalmos Sans Frontières ». Ses lunettes ingénieuses pour les opérés de la cataracte — un verre standardisé monté au tournevis, sans machine ni électricité — seront fabriquées par centaines de milliers pendant plus de 15 ans.</p><span class="note">l'optique au service des autres</span></div>
+  </div>
+</section>
+<section class="chapter" data-year="2004">
+  <span class="year-ghost">2004</span>
+  <div class="wrap">
+    <div class="media"><div class="frame"><span class="tape" style="top:-16px;left:24px;transform:rotate(-3deg)"></span><img src="assets/photos/mag-laloupe.jpg" alt="Le magasin de La Loupe"><span class="cap">un troisième<br>magasin : La Loupe</span></div></div>
+    <div class="txt"><span class="chip" style="background:var(--vert);color:#fff">2004 — Christophe</span><h2>La cinquième<br>génération.</h2><p>Au décès de son père, Christophe Pigeard reprend la maison et ouvre en 2004 un troisième point de vente à <b style="color:var(--blanc-chaud)">La Loupe</b>, là où son grand-père tenait jadis le marché. La famille veille, toujours, sur le regard de ses clients.</p><span class="note">trois villes, une famille</span></div>
+  </div>
+</section>
+<section class="chapter flip" data-year="2013">
+  <span class="year-ghost">2013</span>
+  <div class="wrap">
+    <div class="media"><div class="frame wide"><span class="tape" style="top:-16px;left:30px;transform:rotate(3deg)"></span><img src="assets/photos/mag-nogent.jpg" alt="Le magasin de Nogent-le-Rotrou aujourd'hui"></div></div>
+    <div class="txt"><span class="chip" style="background:var(--moutarde)">2013 → aujourd'hui — Antoine</span><h2>La sixième<br>génération écrit la suite.</h2><p class="lede2">En 2013, c'est à mon tour de faire de l'optique mon métier.</p><p>Formé à l'AEPO de Paris, je travaille aujourd'hui aux côtés de mon père. Trois magasins agrandis (Brou en 2014, Nogent en 2021), une équipe passionnée, et toujours la même idée : prendre soin de chaque regard comme s'il était unique. Parce qu'il l'est.</p><span class="note">à mon tour de transmettre</span></div>
+  </div>
+</section>
+
+<!-- INTERLUDE -->
+<section class="interlude wrap" data-year="2013"><h2 data-split>« Les opticiens Pigeard, éternellement jeunes, de <span class="accent">génération en génération.</span> »</h2></section>
+
+<!-- FUTUR -->
+<section class="sec-sm" data-year="2027"><div class="wrap" style="text-align:center">
+  <div class="reveal" style="border:1px solid rgba(209,160,75,.35);border-radius:22px;background:linear-gradient(160deg,rgba(209,160,75,.08),rgba(255,255,255,.01));padding:clamp(36px,6vw,68px);max-width:760px;margin:0 auto">
+    <span class="foot-soon" style="position:static">◷ bientôt — 2027</span>
+    <h2 style="font-family:var(--serif);font-weight:700;font-size:clamp(2rem,5vw,3.4rem);margin:18px 0 12px">Pigeard Audition</h2>
+    <p style="color:var(--muted);max-width:52ch;margin:0 auto">Demain, la maison élargit son regard à l'écoute. Un nouveau métier, le même soin, la même proximité. Les contours seront dévoilés très bientôt.</p>
+  </div>
+</div></section>
+
+<!-- CTA -->
+<section class="sec-sm sec--cream"><div class="wrap" style="text-align:center">
+  <h2 class="reveal" style="font-family:var(--serif);font-weight:700;font-size:clamp(2.2rem,6vw,4rem);line-height:1.04;max-width:18ch;margin:0 auto">La suite de l'histoire s'écrit avec vous.</h2>
+  <div class="reveal" style="margin-top:34px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap"><a class="btn btn--primary" href="magasins.html#rdv">Prendre rendez-vous <span class="arr">→</span></a><a class="btn btn--ghost" href="equipe.html">Rencontrer l'équipe</a></div>
+</div></section>
+
+<!-- FOOTER -->
+<footer class="site"><div class="wrap">
+  <div class="foot-top">
+    <div class="foot-brand"><img class="mac" src="assets/brand/macaron-cream.svg" alt="Pigeard depuis 1863"><h3>Créateur de regards depuis 1863.</h3><span class="hand">à très vite chez Pigeard</span></div>
+    <div class="foot-links">
+      <div class="foot-col"><h4>La maison</h4><a href="histoire.html">Notre histoire</a><a href="equipe.html">L'équipe</a><a href="engagements.html">Nos engagements</a></div>
+      <div class="foot-col"><h4>Expertises</h4><a href="services.html">Nos expertises</a><a href="marques.html">Nos marques</a></div>
+      <div class="foot-col"><h4>Magasins</h4><a href="magasins.html">Nos 3 magasins</a><a href="contact.html">Contact</a><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a></div>
+    </div>
+  </div>
+  <div class="foot-bottom"><span>© 2026 Pigeard — Créateur de regards depuis 1863.</span><span>Nogent-le-Rotrou · Brou · La Loupe</span></div>
+</div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+/* Échelle de dates à gauche : centrer + activer l'année du chapitre courant */
+var track=document.getElementById('yearTrack');
+var yrs=track?[].slice.call(track.querySelectorAll('.yr')):[];
+function activateYear(y){
+  var target=null;
+  yrs.forEach(function(el){var on=el.dataset.y===String(y);el.classList.toggle('active',on);if(on)target=el;});
+  if(target && window.gsap){
+    var railH=320, center=railH/2; // hauteur du masque
+    var ty=center-(target.offsetTop+target.offsetHeight/2);
+    gsap.to(track,{y:ty,duration:.6,ease:'power3.out'});
+  }
+}
+if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
+  /* hero */
+  gsap.from('.hero .kicker',{y:20,autoAlpha:0,duration:1,ease:'power3.out',delay:.1});
+  gsap.from('.hero h1',{y:50,scale:.94,autoAlpha:0,filter:'blur(12px)',duration:1.5,ease:'expo.out',delay:.2});
+  gsap.from('.span-years',{y:20,autoAlpha:0,duration:1,ease:'power3.out',delay:.6});
+  gsap.to('.hero-inner',{yPercent:24,autoAlpha:.2,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+
+  /* FIL HORIZONTAL épinglé : défilement vers la droite (le contenu glisse à gauche) */
+  if(window.innerWidth>980){
+    var ft=document.getElementById('filTrack'), fp=document.getElementById('filProg');
+    var dist=function(){return ft.scrollWidth-window.innerWidth;};
+    var fcards=gsap.utils.toArray('.fil-card');
+    function centerHl(){
+      var cx=window.innerWidth/2, best=null, bd=1e9;
+      fcards.forEach(function(c){var r=c.getBoundingClientRect();var d=Math.abs((r.left+r.width/2)-cx);if(d<bd){bd=d;best=c;}});
+      fcards.forEach(function(c){c.classList.toggle('on',c===best);});
+    }
+    var DWELL=0.35;
+    gsap.timeline({scrollTrigger:{trigger:'.fil-h',start:'top top',end:function(){return '+='+(dist()*(1+DWELL));},scrub:1.1,pin:true,invalidateOnRefresh:true,onRefresh:centerHl,onUpdate:function(s){if(fp)fp.style.width=(s.progress*100)+'%';centerHl();}}})
+      .to(ft,{x:function(){return -dist();},ease:'none',duration:1})
+      .to(ft,{x:function(){return -dist();},duration:DWELL});
+    centerHl();
+  } else { document.querySelectorAll('.fil-card').forEach(function(c){c.classList.add('on');}); }
+
+  /* Chapitres : photo (clip + zoom), textes, ghost parallax + activation de l'année (gauche) */
+  gsap.utils.toArray('.chapter').forEach(function(ch){
+    var img=ch.querySelector('.frame img');
+    gsap.fromTo(img,{clipPath:'inset(0 0 100% 0)',scale:1.2},{clipPath:'inset(0 0 0% 0)',scale:1,ease:'power3.out',duration:1.2,scrollTrigger:{trigger:ch,start:'top 72%'}});
+    gsap.from(ch.querySelectorAll('.tape,.cap'),{autoAlpha:0,y:24,stagger:.12,duration:.8,ease:'power3.out',scrollTrigger:{trigger:ch,start:'top 66%'}});
+    gsap.from(ch.querySelectorAll('.chip,.txt h2,.txt p,.txt .note'),{autoAlpha:0,y:40,stagger:.1,duration:.9,ease:'power3.out',scrollTrigger:{trigger:ch,start:'top 70%'}});
+    gsap.to(ch.querySelector('.year-ghost'),{yPercent:-28,ease:'none',scrollTrigger:{trigger:ch,start:'top bottom',end:'bottom top',scrub:true}});
+  });
+  /* activation de l'échelle de dates : section [data-year] la plus proche du centre de l'écran (robuste au pin) */
+  var ySections=[].slice.call(document.querySelectorAll('[data-year]'));
+  function updateLadder(){
+    var sc=(window.scrollY||window.pageYOffset), mid=sc+window.innerHeight/2, best=null, bd=1e9;
+    ySections.forEach(function(s){var r=s.getBoundingClientRect();var c=sc+r.top+r.height/2;var d=Math.abs(c-mid);if(d<bd){bd=d;best=s;}});
+    if(best) activateYear(best.dataset.year);
+  }
+  ScrollTrigger.create({start:0,end:'max',onUpdate:updateLadder});
+  updateLadder();
+  /* interlude */
+  (function(){var p=document.querySelector('[data-split]');p.innerHTML=p.innerHTML.replace(/(<span class="accent">[\s\S]*?<\/span>|[^\s<]+)/g,function(m){return '<span class="word">'+m+'</span>';});gsap.to(p.querySelectorAll('.word'),{opacity:1,y:0,stagger:.05,ease:'power2.out',scrollTrigger:{trigger:p,start:'top 80%',end:'top 35%',scrub:true}});})();
+
+  activateYear('1863');
+}else{
+  activateYear('1863');
+  document.querySelectorAll('.frame img').forEach(function(e){e.style.clipPath='none';});
+  document.querySelectorAll('.interlude .word,.fil-card').forEach(function(e){e.style.opacity=1;e.classList&&e.classList.add('on');});
+}
+</script>
+</body>
+</html>

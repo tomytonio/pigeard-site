@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact — Pigeard Opticiens · Nogent-le-Rotrou, Brou & La Loupe</title>
+<meta name="description" content="Contactez Pigeard Opticiens : une question, un conseil, un rendez-vous ? Trois magasins dans le Perche — Nogent-le-Rotrou, Brou, La Loupe." />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300..700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<style>
+/* ── Formulaire de contact ── */
+.contact-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(40px,7vw,100px);align-items:start}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:20px}
+.form-group label{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--muted)}
+.form-group input,
+.form-group select,
+.form-group textarea{background:var(--noir-2);border:1px solid var(--ligne);border-radius:8px;color:var(--blanc-chaud);font-family:var(--sans);font-size:.95rem;padding:12px 16px;outline:none;transition:border-color .3s,box-shadow .3s;width:100%;appearance:none;-webkit-appearance:none}
+.form-group select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23938B7C' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:40px;cursor:pointer}
+.form-group select option{background:var(--noir-3);color:var(--blanc-chaud)}
+.form-group textarea{resize:vertical;min-height:130px;line-height:1.6}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{border-color:var(--vert);box-shadow:0 0 0 3px rgba(126,140,90,.18)}
+.form-group input::placeholder,
+.form-group textarea::placeholder{color:var(--muted);opacity:.7}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-notice{font-size:.78rem;color:var(--muted);margin-top:6px;line-height:1.55}
+.coords-block{background:var(--noir-2);border:1px solid var(--ligne);border-radius:16px;padding:clamp(24px,4vw,40px)}
+.shop-entry{padding:22px 0;border-bottom:1px solid var(--ligne)}
+.shop-entry:last-of-type{border-bottom:none;padding-bottom:0}
+.shop-entry .city{font-family:var(--serif);font-size:1.4rem;font-weight:700;margin-bottom:8px}
+.shop-entry .addr{color:var(--muted);font-size:.88rem;line-height:1.6}
+.shop-entry .contact-links{margin-top:10px;display:flex;flex-direction:column;gap:5px}
+.shop-entry .contact-links a{font-size:.88rem;color:var(--creme);display:inline-flex;align-items:center;gap:8px;transition:color .3s}
+.shop-entry .contact-links a:hover{color:var(--vert)}
+.social-row{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+.social-btn{display:inline-flex;align-items:center;gap:9px;font-size:.8rem;letter-spacing:.08em;font-weight:600;text-transform:uppercase;padding:11px 18px;border-radius:100px;border:1px solid var(--ligne);color:var(--creme);transition:border-color .35s,background .35s,color .35s}
+.social-btn:hover{border-color:var(--vert);background:rgba(126,140,90,.12);color:var(--blanc-chaud)}
+.rdv-reminder{margin-top:clamp(60px,10vw,90px);background:var(--noir-2);border:1px solid var(--ligne);border-radius:16px;padding:clamp(28px,4vw,44px);text-align:center}
+.rdv-reminder p{color:var(--muted);font-size:.94rem;max-width:46ch;margin:12px auto 0}
+@media(max-width:900px){
+  .contact-layout{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="grain"></div><div class="progress" id="progress"></div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="index.html"><img class="nav-logo" src="assets/brand/pigeard-logo-white.svg" alt="Pigeard — créateur de regards depuis 1863"></a>
+  <nav class="nav-links">
+    <a href="histoire.html">Notre histoire</a>
+    <a href="services.html">Nos expertises</a>
+    <a href="marques.html">Nos marques</a>
+    <a href="equipe.html">L'équipe</a>
+    <a href="magasins.html">Magasins</a>
+  </nav>
+  <button class="nav-cta" onclick="location.href='magasins.html#rdv'">Prendre rendez-vous</button>
+  <button class="burger" aria-label="Ouvrir le menu">☰</button>
+</header>
+<div class="mobile-menu"><button class="close" aria-label="Fermer">✕</button>
+  <a href="histoire.html">Notre histoire</a><a href="services.html">Nos expertises</a><a href="marques.html">Nos marques</a><a href="equipe.html">L'équipe</a><a href="magasins.html">Magasins</a><a href="magasins.html#rdv">Prendre rendez-vous</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero wrap">
+  <span class="eyebrow reveal">Contactez-nous</span>
+  <h1 class="reveal" style="margin-top:16px">Contact</h1>
+  <p class="lede reveal">Une question, un conseil, un rendez-vous ?<br>Écrivez-nous ou poussez la porte.</p>
+</section>
+
+<!-- FORMULAIRE + COORDONNÉES -->
+<section class="sec wrap" style="padding-top:0">
+  <div class="contact-layout">
+
+    <!-- COLONNE GAUCHE : Formulaire -->
+    <div class="reveal">
+      <span class="eyebrow" style="margin-bottom:32px;display:inline-flex">Nous écrire</span>
+
+      <!--
+        Formulaire mailto — aucun backend requis.
+        Pour connecter un vrai service (Formspree, EmailJS, Shopify Contact Form, Make/n8n…),
+        remplacer l'attribut action et la logique JS ci-dessous par l'endpoint approprié.
+      -->
+      <form id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="votre@email.fr" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="tel">Téléphone <span style="font-size:.72rem;font-style:italic;text-transform:none;letter-spacing:0">(optionnel)</span></label>
+            <input type="tel" id="tel" name="tel" placeholder="06 00 00 00 00">
+          </div>
+          <div class="form-group">
+            <label for="magasin">Magasin concerné</label>
+            <select id="magasin" name="magasin">
+              <option value="">— Choisir un magasin —</option>
+              <option value="Nogent-le-Rotrou">Nogent-le-Rotrou</option>
+              <option value="Brou">Brou</option>
+              <option value="La Loupe">La Loupe</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="objet">Objet</label>
+          <input type="text" id="objet" name="objet" placeholder="Ex. : Question sur un verre progressif" required>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Votre message…" required></textarea>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:8px">
+          <button type="submit" class="btn btn--primary">Envoyer <span class="arr">→</span></button>
+          <span class="form-notice">Nous vous répondons sous 24 h (jours ouvrés).</span>
+        </div>
+      </form>
+    </div>
+
+    <!-- COLONNE DROITE : Coordonnées -->
+    <div class="reveal">
+      <span class="eyebrow" style="margin-bottom:32px;display:inline-flex">Nos coordonnées</span>
+      <div class="coords-block">
+
+        <div class="shop-entry">
+          <div class="city">Nogent-le-Rotrou</div>
+          <div class="addr">4 Rue Gouverneur<br>28400 Nogent-le-Rotrou</div>
+          <div class="contact-links">
+            <a href="tel:0237520339">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.1 1.18 2 2 0 012.1 0h3a2 2 0 012 1.72c.13 1.02.36 2 .71 2.95a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.13-1.27a2 2 0 012.11-.45c.95.35 1.93.58 2.95.71A2 2 0 0122 14.9v2z"/></svg>
+              02 37 52 03 39
+            </a>
+            <a href="mailto:pigeard.nogent@orange.fr">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline stroke-linecap="round" stroke-linejoin="round" points="22,6 12,13 2,6"/></svg>
+              pigeard.nogent@orange.fr
+            </a>
+          </div>
+        </div>
+
+        <div class="shop-entry">
+          <div class="city">Brou</div>
+          <div class="addr">1 Place d'Armes<br>28160 Brou</div>
+          <div class="contact-links">
+            <a href="tel:0237470529">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.1 1.18 2 2 0 012.1 0h3a2 2 0 012 1.72c.13 1.02.36 2 .71 2.95a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.13-1.27a2 2 0 012.11-.45c.95.35 1.93.58 2.95.71A2 2 0 0122 14.9v2z"/></svg>
+              02 37 47 05 29
+            </a>
+            <a href="mailto:pigeard.brou@orange.fr">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline stroke-linecap="round" stroke-linejoin="round" points="22,6 12,13 2,6"/></svg>
+              pigeard.brou@orange.fr
+            </a>
+          </div>
+        </div>
+
+        <div class="shop-entry">
+          <div class="city">La Loupe</div>
+          <div class="addr">10 Place de l'Hôtel de Ville<br>28240 La Loupe</div>
+          <div class="contact-links">
+            <a href="tel:0237810712">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.1 1.18 2 2 0 012.1 0h3a2 2 0 012 1.72c.13 1.02.36 2 .71 2.95a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.13-1.27a2 2 0 012.11-.45c.95.35 1.93.58 2.95.71A2 2 0 0122 14.9v2z"/></svg>
+              02 37 81 07 12
+            </a>
+            <a href="mailto:pigeard.laloupe@orange.fr">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline stroke-linecap="round" stroke-linejoin="round" points="22,6 12,13 2,6"/></svg>
+              pigeard.laloupe@orange.fr
+            </a>
+          </div>
+        </div>
+
+        <!-- Réseaux sociaux -->
+        <div class="social-row">
+          <a class="social-btn" href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            Instagram
+          </a>
+          <a class="social-btn" href="https://facebook.com/pigeard.opticiens" target="_blank" rel="noopener">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            Facebook
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RAPPEL RDV -->
+  <div class="rdv-reminder reveal">
+    <span class="eyebrow" style="justify-content:center;margin-bottom:16px">Pour votre confort</span>
+    <p class="lede" style="font-size:clamp(1.1rem,2.2vw,1.4rem);margin-top:0;text-align:center">Il est recommandé de prendre rendez-vous.</p>
+    <p>Nos opticiens vous accueillent sur mesure — pour un examen de vue, une commande ou un conseil personnalisé.</p>
+    <div style="margin-top:28px">
+      <a class="btn btn--ghost" href="magasins.html#rdv">Prendre rendez-vous <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site"><div class="wrap">
+  <div class="foot-top">
+    <div class="foot-brand">
+      <img class="mac" src="assets/brand/macaron-cream.svg" alt="Pigeard depuis 1863">
+      <h3>Créateur de regards depuis 1863.</h3>
+      <span class="hand">à très vite chez Pigeard</span>
+      <div><span class="foot-soon">◷ Pigeard Audition — bientôt, 2027</span></div>
+    </div>
+    <div class="foot-links">
+      <div class="foot-col"><h4>La maison</h4><a href="histoire.html">Notre histoire</a><a href="equipe.html">L'équipe</a><a href="engagements.html">Nos engagements</a><a href="engagements.html#mutuelles">Nos mutuelles</a></div>
+      <div class="foot-col"><h4>Expertises</h4><a href="services.html#sur-mesure">Sur mesure</a><a href="services.html#optikid">Optikid</a><a href="services.html#basse-vision">Basse vision</a><a href="services.html#nuance-audio">Nuance Audio</a><a href="marques.html">Nos marques</a></div>
+      <div class="foot-col"><h4>Magasins</h4><a href="magasins.html">Nos 3 magasins</a><a href="contact.html">Contact</a><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a><a href="https://facebook.com/pigeard.opticiens" target="_blank" rel="noopener">Facebook</a></div>
+    </div>
+  </div>
+  <div class="foot-bottom"><span>© 2026 Pigeard — Créateur de regards depuis 1863.</span><span>Nogent-le-Rotrou · Brou · La Loupe</span></div>
+</div></footer>
+
+<!-- LIBS + MOTEUR + SCRIPT PAGE -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+/* ── Animations hero entrée ── */
+if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
+  gsap.from('.page-hero h1',{y:40,autoAlpha:0,duration:1.2,ease:'expo.out',delay:.1});
+  gsap.from('.page-hero .lede',{y:24,autoAlpha:0,duration:1,ease:'power3.out',delay:.35});
+  gsap.from('.page-hero .eyebrow',{y:16,autoAlpha:0,duration:.9,ease:'power3.out',delay:.05});
+}
+
+/* ── Logique mailto formulaire ──
+   Fonctionne sans GSAP et sans backend.
+   Pour brancher un vrai service (Formspree : action="https://formspree.io/f/XXXXX" method="POST",
+   ou n8n webhook, Make, etc.), supprimer ce listener et configurer l'attribut action du <form>.
+*/
+(function(){
+  var form = document.getElementById('contactForm');
+  if(!form) return;
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    var nom     = (document.getElementById('nom').value     || '').trim();
+    var email   = (document.getElementById('email').value   || '').trim();
+    var tel     = (document.getElementById('tel').value     || '').trim();
+    var magasin = (document.getElementById('magasin').value || '').trim();
+    var objet   = (document.getElementById('objet').value   || '').trim();
+    var message = (document.getElementById('message').value || '').trim();
+
+    /* Validation minimale */
+    if(!nom || !email || !objet || !message){
+      var btn = form.querySelector('button[type="submit"]');
+      btn.textContent = 'Remplissez les champs requis';
+      btn.style.background = 'var(--corail)';
+      btn.style.borderColor = 'var(--corail)';
+      setTimeout(function(){
+        btn.innerHTML = 'Envoyer <span class="arr">→</span>';
+        btn.style.background = '';
+        btn.style.borderColor = '';
+      }, 2500);
+      return;
+    }
+
+    /* Construction de l'objet et du corps du mail */
+    var sujet = objet + (magasin ? ' [' + magasin + ']' : '');
+
+    var corps = 'Bonjour,\n\n'
+      + 'Message envoyé depuis le formulaire de contact pigeard-opticiens.fr\n\n'
+      + 'Nom : ' + nom + '\n'
+      + 'Email : ' + email + '\n'
+      + (tel ? 'Téléphone : ' + tel + '\n' : '')
+      + (magasin ? 'Magasin : ' + magasin + '\n' : '')
+      + '\nMessage :\n' + message + '\n';
+
+    var mailto = 'mailto:pigeard.nogent@orange.fr'
+      + '?subject=' + encodeURIComponent(sujet)
+      + '&body='    + encodeURIComponent(corps);
+
+    window.location.href = mailto;
+  });
+})();
+</script>
+</body>
+</html>

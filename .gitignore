@@ -1,0 +1,11 @@
+# Sources lourdes / internes — pas nécessaires au site en ligne
+assets/charte/
+assets/brand/*.ai
+content/
+_deploy/
+*.pdf
+
+# Systèmes
+.DS_Store
+Thumbs.db
+desktop.ini

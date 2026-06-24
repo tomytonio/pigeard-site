@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Marque — Pigeard</title>
+<meta name="description" content="Découvrez les marques de lunettes sélectionnées par la maison Pigeard." />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300..700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<style>
+.brand-hero{padding:clamp(150px,24vh,260px) 0 clamp(40px,6vh,70px);position:relative;overflow:hidden}
+.brand-hero .watermark{position:absolute;right:-2%;top:30%;font-family:var(--serif);font-weight:900;font-size:clamp(8rem,28vw,26rem);line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(231,221,203,.07);z-index:0;pointer-events:none;white-space:nowrap}
+.brand-hero .back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:26px}
+.brand-hero .back:hover{color:var(--vert)}
+.brand-name{font-family:var(--serif);font-weight:800;font-size:clamp(3rem,9vw,8rem);line-height:.92;letter-spacing:-.02em}
+.brand-tagline{font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,3vw,2rem);color:var(--creme);margin-top:16px}
+.brand-meta{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+.brand-meta span{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border:1px solid var(--ligne);padding:7px 14px;border-radius:100px}
+.brand-meta span.mif{color:var(--vert);border-color:rgba(126,140,90,.5)}
+.brand-body{padding:clamp(20px,4vh,40px) 0 clamp(90px,14vh,170px)}
+.brand-body .wrap{display:grid;grid-template-columns:1.4fr .6fr;gap:clamp(30px,6vw,80px);align-items:start}
+.brand-body p{color:var(--creme);font-size:1.06rem;margin-bottom:20px;max-width:60ch}
+.brand-aside{position:sticky;top:120px;border:1px solid var(--ligne);border-radius:16px;padding:28px;background:var(--noir-2)}
+.brand-aside h4{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.brand-aside .v{font-family:var(--serif);font-size:1.3rem;margin-bottom:18px}
+.brand-aside .btn{width:100%;justify-content:center;margin-top:6px}
+.brand-aside a.site{display:inline-flex;align-items:center;gap:8px;color:var(--vert);font-size:.85rem;margin-top:16px}
+.brand-nav{display:flex;justify-content:space-between;border-top:1px solid var(--ligne);padding-top:30px;margin-top:30px;gap:20px;flex-wrap:wrap}
+.brand-nav a{color:var(--muted);transition:color .3s}.brand-nav a:hover{color:var(--blanc-chaud)}
+.brand-nav .nm{font-family:var(--serif);font-size:1.4rem;color:var(--blanc-chaud);display:block;margin-top:4px}
+@media(max-width:900px){.brand-body .wrap{grid-template-columns:1fr}.brand-aside{position:static}}
+</style>
+</head>
+<body>
+<div class="grain"></div><div class="progress" id="progress"></div>
+<header class="nav" id="nav">
+  <a href="index.html"><img class="nav-logo" src="assets/brand/pigeard-logo-white.svg" alt="Pigeard"></a>
+  <nav class="nav-links"><a href="histoire.html">Notre histoire</a><a href="services.html">Nos expertises</a><a href="marques.html" class="active">Nos marques</a><a href="equipe.html">L'équipe</a><a href="magasins.html">Magasins</a></nav>
+  <button class="nav-cta" onclick="location.href='magasins.html#rdv'">Prendre rendez-vous</button>
+  <button class="burger" aria-label="Menu">☰</button>
+</header>
+<div class="mobile-menu"><button class="close">✕</button><a href="index.html">Accueil</a><a href="histoire.html">Notre histoire</a><a href="services.html">Nos expertises</a><a href="marques.html">Nos marques</a><a href="equipe.html">L'équipe</a><a href="magasins.html">Magasins</a></div>
+
+<main id="brandRoot">
+  <section class="brand-hero wrap">
+    <div class="watermark" id="bWatermark"></div>
+    <a class="back" href="marques.html">← Toutes nos marques</a>
+    <h1 class="brand-name" id="bName">…</h1>
+    <p class="brand-tagline" id="bTagline"></p>
+    <div class="brand-meta" id="bMeta"></div>
+  </section>
+  <section class="brand-body"><div class="wrap">
+    <div id="bParas"></div>
+    <aside class="brand-aside">
+      <h4>Origine</h4><div class="v" id="bOrigin">—</div>
+      <h4>Depuis</h4><div class="v" id="bFounded">—</div>
+      <h4>Esprit</h4><div class="v" id="bStyle" style="font-size:1.05rem;font-style:italic;color:var(--creme)">—</div>
+      <a class="btn btn--primary" href="magasins.html#rdv">Essayer en boutique <span class="arr">→</span></a>
+      <a class="site" id="bSite" href="#" target="_blank" rel="noopener" style="display:none">Site officiel ↗</a>
+    </aside>
+  </div></section>
+  <section class="wrap"><div class="brand-nav">
+    <a id="bPrev" href="#">← Précédente<span class="nm" id="bPrevName"></span></a>
+    <a id="bNext" href="#" style="text-align:right">Suivante →<span class="nm" id="bNextName"></span></a>
+  </div></section>
+  <section class="sec-sm sec--cream"><div class="wrap" style="text-align:center">
+    <h2 class="reveal" style="font-family:var(--serif);font-weight:700;font-size:clamp(1.8rem,5vw,3rem);max-width:20ch;margin:0 auto">Envie de l'essayer ? Venez la voir chez Pigeard.</h2>
+    <div class="reveal" style="margin-top:26px"><a class="btn btn--primary" href="magasins.html#rdv">Prendre rendez-vous <span class="arr">→</span></a></div>
+  </div></section>
+</main>
+
+<footer class="site"><div class="wrap">
+  <div class="foot-top">
+    <div class="foot-brand"><img class="mac" src="assets/brand/macaron-cream.svg" alt="Pigeard depuis 1863"><h3>Créateur de regards depuis 1863.</h3><span class="hand">à très vite chez Pigeard</span></div>
+    <div class="foot-links">
+      <div class="foot-col"><h4>La maison</h4><a href="histoire.html">Notre histoire</a><a href="equipe.html">L'équipe</a><a href="engagements.html">Nos engagements</a></div>
+      <div class="foot-col"><h4>Expertises</h4><a href="services.html">Nos expertises</a><a href="marques.html">Nos marques</a></div>
+      <div class="foot-col"><h4>Magasins</h4><a href="magasins.html">Nos 3 magasins</a><a href="contact.html">Contact</a><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a></div>
+    </div>
+  </div>
+  <div class="foot-bottom"><span>© 2026 Pigeard — Créateur de regards depuis 1863.</span><span>Nogent-le-Rotrou · Brou · La Loupe</span></div>
+</div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+(function(){
+  var slug=new URLSearchParams(location.search).get('b');
+  fetch('assets/data/marques.json').then(function(r){return r.json();}).then(function(data){
+    var B=data.brands, i=B.findIndex(function(x){return x.slug===slug;});
+    if(i<0){ location.replace('marques.html'); return; }
+    var b=B[i], prev=B[(i-1+B.length)%B.length], next=B[(i+1)%B.length];
+    document.title=b.name+' — Nos marques · Pigeard';
+    document.getElementById('bWatermark').textContent=b.name;
+    document.getElementById('bName').textContent=b.name;
+    document.getElementById('bTagline').textContent=b.tagline||'';
+    var meta=document.getElementById('bMeta'), cats=(b.category||[]).slice(0,5);
+    cats.forEach(function(c){var s=document.createElement('span');s.textContent=c.replace('made-in-france','made in France').replace('createur','créateur');meta.appendChild(s);});
+    if(b.madeInFrance){var m=document.createElement('span');m.className='mif';m.textContent='◆ Fabriqué en France';meta.appendChild(m);}
+    var paras=document.getElementById('bParas');(b.paragraphs||[]).forEach(function(t){var p=document.createElement('p');p.textContent=t;paras.appendChild(p);});
+    document.getElementById('bOrigin').textContent=b.origin||'—';
+    document.getElementById('bFounded').textContent=b.founded?('depuis '+b.founded):'—';
+    document.getElementById('bStyle').textContent=b.style||'—';
+    if(b.url){var site=document.getElementById('bSite');site.href=b.url;site.style.display='inline-flex';}
+    var pv=document.getElementById('bPrev');pv.href='marque.html?b='+prev.slug;document.getElementById('bPrevName').textContent=prev.name;
+    var nx=document.getElementById('bNext');nx.href='marque.html?b='+next.slug;document.getElementById('bNextName').textContent=next.name;
+    // entrée douce
+    if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
+      gsap.from('.brand-name',{y:40,autoAlpha:0,duration:1.1,ease:'expo.out'});
+      gsap.from('.brand-tagline,.brand-meta',{y:20,autoAlpha:0,duration:.9,ease:'power3.out',stagger:.12,delay:.2});
+      gsap.from('#bParas p',{y:30,autoAlpha:0,duration:.8,ease:'power3.out',stagger:.12,scrollTrigger:{trigger:'#bParas',start:'top 85%'}});
+      if(window.ScrollTrigger)ScrollTrigger.refresh();
+    }
+  }).catch(function(){ location.replace('marques.html'); });
+})();
+</script>
+</body>
+</html>

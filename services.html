@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nos expertises — Pigeard, opticien depuis 1863 · Sur mesure, Optikid, Basse vision, Nuance Audio, Verres Nikon</title>
+<meta name="description" content="Lunettes sur mesure, Optikid (enfants), basse vision & malvoyance, Nuance Audio, verres Nikon Made in France. Trois magasins dans le Perche : Nogent-le-Rotrou, Brou, La Loupe." />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300..700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<style>
+/* ---- styles spécifiques services.html ---- */
+
+/* Hero page */
+.page-hero .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.page-hero .hero-inner{position:relative;z-index:2}
+
+/* 2-col layout expert */
+.expert-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,100px);align-items:center}
+.expert-grid.flip .expert-media{order:2}
+.expert-media{position:relative}
+
+/* Photo frame avec tape */
+.expert-media .frame{aspect-ratio:4/5}
+
+/* Numéro de section + titre expertise */
+.svc-num{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--vert);display:flex;align-items:center;gap:.8em;margin-bottom:18px}
+.svc-num::before{content:"";width:28px;height:1px;background:var(--vert);display:inline-block}
+
+/* 6 engagements Optikid */
+.engagements-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:32px}
+.eng-card{background:rgba(255,255,255,.05);border:1px solid var(--ligne);border-radius:12px;padding:18px 16px;transition:border-color .4s,transform .4s var(--ease)}
+.eng-card:hover{border-color:rgba(126,140,90,.5);transform:translateY(-4px)}
+.sec--cream .eng-card{background:rgba(38,35,28,.05);border-color:rgba(38,35,28,.14)}
+.sec--cream .eng-card:hover{border-color:var(--vert)}
+.eng-card .ico{width:32px;height:32px;border-radius:50%;background:var(--vert);display:grid;place-items:center;margin-bottom:10px;font-size:.9rem;color:#0E0D0B;font-weight:700}
+.eng-card h4{font-family:var(--serif);font-size:1.05rem;font-weight:700;line-height:1.15}
+.eng-card p{font-size:.82rem;color:var(--muted);margin-top:5px;line-height:1.45}
+.sec--cream .eng-card h4{color:var(--encre)}
+.sec--cream .eng-card p{color:#5c554a}
+
+/* Pathologies Basse vision */
+.patho-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.patho-tag{font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(126,140,90,.4);border-radius:100px;padding:8px 16px;color:var(--vert-clair);background:rgba(126,140,90,.07);transition:background .35s,color .35s}
+.patho-tag:hover{background:rgba(126,140,90,.18);color:var(--blanc-chaud)}
+
+/* Réseau badge */
+.badge-reseau{display:inline-flex;align-items:center;gap:12px;margin-top:30px;border:1px solid rgba(209,160,75,.38);border-radius:100px;padding:10px 20px;background:rgba(209,160,75,.07)}
+.badge-reseau span{font-size:.82rem;color:var(--moutarde);letter-spacing:.06em}
+.badge-reseau strong{font-weight:700;color:var(--blanc-chaud)}
+
+/* Verres / avantages */
+.verres-list{margin-top:24px;display:flex;flex-direction:column;gap:14px}
+.verres-item{display:flex;gap:14px;align-items:flex-start}
+.verres-item .dot{flex-shrink:0;width:8px;height:8px;border-radius:50%;background:var(--vert);margin-top:7px}
+.verres-item p{color:var(--muted);font-size:.94rem;line-height:1.5}
+.verres-item strong{color:var(--blanc-chaud)}
+
+/* Parcours / étapes — override .sec--cream */
+.sec--cream .steps::before{background:rgba(38,35,28,.12)}
+.sec--cream .steps .fill{background:linear-gradient(var(--vert),var(--bois))}
+.sec--cream .step::before{background:var(--creme);border-color:rgba(38,35,28,.25)}
+.sec--cream .step.on::before{background:var(--vert);border-color:var(--vert)}
+.sec--cream .step h3{color:var(--encre)}
+.sec--cream .step .n{color:var(--bois)}
+.sec--cream .step p{color:#5c554a}
+
+/* CTA finale */
+.cta-finale{text-align:center}
+.cta-finale .subtitle{font-family:var(--hand);font-size:2rem;color:var(--camel);display:inline-block;transform:rotate(-2.5deg);margin-top:14px}
+
+/* Responsive */
+@media(max-width:980px){
+  .expert-grid{grid-template-columns:1fr;gap:30px}
+  .expert-grid.flip .expert-media{order:0}
+  .engagements-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:560px){
+  .engagements-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="grain"></div><div class="progress" id="progress"></div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="index.html"><img class="nav-logo" src="assets/brand/pigeard-logo-white.svg" alt="Pigeard — créateur de regards depuis 1863"></a>
+  <nav class="nav-links">
+    <a href="histoire.html">Notre histoire</a>
+    <a href="services.html" class="active">Nos expertises</a>
+    <a href="marques.html">Nos marques</a>
+    <a href="equipe.html">L'équipe</a>
+    <a href="magasins.html">Magasins</a>
+  </nav>
+  <button class="nav-cta" onclick="location.href='magasins.html#rdv'">Prendre rendez-vous</button>
+  <button class="burger" aria-label="Ouvrir le menu">☰</button>
+</header>
+<div class="mobile-menu"><button class="close" aria-label="Fermer">✕</button>
+  <a href="histoire.html">Notre histoire</a><a href="services.html">Nos expertises</a><a href="marques.html">Nos marques</a><a href="equipe.html">L'équipe</a><a href="magasins.html">Magasins</a><a href="magasins.html#rdv">Prendre rendez-vous</a>
+</div>
+
+<!-- HERO PAGE -->
+<section class="page-hero" id="top">
+  <div class="hero-bg">
+    <div class="blob v" style="width:52vw;height:52vw;top:-18%;right:-8%"></div>
+    <div class="blob c" style="width:36vw;height:36vw;bottom:-20%;left:-10%"></div>
+    <div class="blob m" style="width:24vw;height:24vw;top:50%;left:38%"></div>
+  </div>
+  <div class="hero-inner wrap">
+    <span class="eyebrow" id="heroEyebrow">Maison Pigeard · depuis 1863</span>
+    <h1 id="heroTitle" style="margin-top:18px">Nos <em style="font-style:italic;color:var(--vert)">expertises</em></h1>
+    <p class="lede" id="heroLede" style="max-width:52ch;margin-top:22px">Bien plus que des lunettes : un accompagnement complet pour chaque regard, à chaque âge de la vie — du sur-mesure artisanal aux aides visuelles spécialisées.</p>
+    <div style="margin-top:36px;display:flex;gap:12px;flex-wrap:wrap" id="heroLinks">
+      <a class="btn btn--ghost" href="#sur-mesure">Sur mesure</a>
+      <a class="btn btn--ghost" href="#optikid">Optikid</a>
+      <a class="btn btn--ghost" href="#basse-vision">Basse vision</a>
+      <a class="btn btn--ghost" href="#nuance-audio">Nuance Audio</a>
+      <a class="btn btn--ghost" href="#verres">Verres Nikon</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     01 — LUNETTES SUR MESURE
+     ══════════════════════════════════════════ -->
+<section class="sec wrap" id="sur-mesure">
+  <div class="expert-grid">
+    <!-- Texte -->
+    <div class="reveal">
+      <div class="svc-num">01 — Lunettes sur mesure</div>
+      <h2 style="font-family:var(--serif);font-weight:700;font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.03;letter-spacing:-.02em">Faites main,<br>rien que pour <em style="font-style:italic;color:var(--vert)">vous</em>.</h2>
+      <p class="lede" style="margin-top:24px">Conçues de A à Z dans notre atelier de Nogent-le-Rotrou.</p>
+      <p style="color:var(--muted);margin-top:16px;max-width:50ch">Notre machine numérique <strong style="color:var(--blanc-chaud)">Opti3</strong> et le logiciel <strong style="color:var(--blanc-chaud)">Logic Side Carve</strong> permettent de pré-visualiser votre monture sur votre visage avant même qu'elle soit fabriquée.</p>
+      <p style="color:var(--muted);margin-top:14px;max-width:50ch">Choix du style, de la forme, des couleurs. Prise de mesures précise (visage, nez, longueur des branches). Maquette, puis fabrication de votre paire unique, faite main dans des plaques d'acétate du Jura.</p>
+      <p style="color:var(--muted);margin-top:14px;max-width:50ch">Modèles maison : <em style="color:var(--creme)">Véronique, Maryse, Francesca, Bruno, Hugues, Mini ronde, Delphine, Citronnelle, Snake, Gulf…</em></p>
+      <div style="margin-top:14px;display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(126,140,90,.35);border-radius:100px;padding:9px 18px;background:rgba(126,140,90,.07)">
+        <span style="font-size:.8rem;color:var(--vert);letter-spacing:.06em;text-transform:uppercase">À partir de</span>
+        <strong style="font-family:var(--serif);font-size:1.4rem;color:var(--blanc-chaud)">~300 €</strong>
+      </div>
+      <div style="margin-top:32px">
+        <a class="btn btn--primary" href="magasins.html#rdv">Prendre rendez-vous <span class="arr">→</span></a>
+      </div>
+    </div>
+    <!-- Photo -->
+    <div class="expert-media reveal">
+      <div class="frame">
+        <span class="tape" style="top:-16px;left:24px;transform:rotate(-4deg)"></span>
+        <img src="assets/photos/gen-atelier.jpg" alt="L'atelier lunettes sur mesure Pigeard — fabrication à la main">
+      </div>
+      <span class="hand" style="position:absolute;bottom:-28px;right:6%;font-size:1.8rem;transform:rotate(-3deg);color:var(--camel)">fait main, avec soin</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     02 — OPTIKID (section beige)
+     ══════════════════════════════════════════ -->
+<section class="sec sec--cream" id="optikid">
+  <div class="wrap">
+    <div class="expert-grid flip">
+      <!-- Photo -->
+      <div class="expert-media reveal">
+        <div class="frame">
+          <span class="tape" style="top:-16px;left:30px;transform:rotate(4deg)"></span>
+          <img src="assets/photos/ambiance-3.jpg" alt="Optikid — lunettes enfants chez Pigeard">
+        </div>
+        <span class="hand" style="position:absolute;bottom:-28px;left:6%;font-size:1.8rem;transform:rotate(2deg);color:var(--bois)">les tout-petits comptent</span>
+      </div>
+      <!-- Texte -->
+      <div class="reveal">
+        <div class="svc-num" style="color:var(--bois)"><span style="width:28px;height:1px;background:var(--bois);display:inline-block"></span>02 — Optikid</div>
+        <h2 style="font-family:var(--serif);font-weight:700;font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.03;letter-spacing:-.02em;color:var(--encre)">L'œil de votre<br>enfant mérite<br><em style="font-style:italic;color:var(--vert)">le meilleur.</em></h2>
+        <p style="color:#5c554a;margin-top:20px;max-width:50ch">L'équipement optique d'un enfant ne s'improvise pas. De la naissance à 10 ans, la vision est en plein développement — une erreur de correction peut avoir des conséquences durables.</p>
+        <p style="color:#5c554a;margin-top:12px;max-width:50ch">La lumière bleue (380–500 nm) mérite une attention particulière chez les jeunes yeux. Montures adaptées à la morphologie, confort optimisé, suivi régulier : notre équipe est formée pour accompagner chaque étape.</p>
+      </div>
+    </div>
+
+    <!-- 6 engagements Optikid -->
+    <div style="margin-top:60px">
+      <div class="sec-head reveal" style="margin-bottom:32px">
+        <h3 style="font-family:var(--serif);font-weight:700;font-size:clamp(1.6rem,3.5vw,2.4rem);color:var(--encre)">Nos 6 engagements Optikid</h3>
+        <p style="max-width:36ch;color:#5c554a">Parce que chaque regard en herbe compte autant que celui d'un adulte.</p>
+      </div>
+      <div class="engagements-grid">
+        <div class="eng-card reveal">
+          <div class="ico">F</div>
+          <h4>Formations</h4>
+          <p>Équipe spécialement formée à l'optique pédiatrique et aux besoins visuels de 0 à 10 ans.</p>
+        </div>
+        <div class="eng-card reveal">
+          <div class="ico">✓</div>
+          <h4>Satisfaction</h4>
+          <p>Suivi post-équipement, ajustements gratuits, garantie sérénité à chaque visite.</p>
+        </div>
+        <div class="eng-card reveal">
+          <div class="ico">◈</div>
+          <h4>Choix</h4>
+          <p>Large sélection de montures adaptées aux petites morphologies, colorées et solides.</p>
+        </div>
+        <div class="eng-card reveal">
+          <div class="ico">⊕</div>
+          <h4>Prescripteurs</h4>
+          <p>Étroite collaboration avec les ophtalmologistes de la région pour un suivi cohérent.</p>
+        </div>
+        <div class="eng-card reveal">
+          <div class="ico">✦</div>
+          <h4>Personnalisation</h4>
+          <p>Chaque paire est ajustée avec soin : longueur des branches, largeur du pont, cambrure.</p>
+        </div>
+        <div class="eng-card reveal">
+          <div class="ico">i</div>
+          <h4>Informations</h4>
+          <p>Conseils clairs sur la lumière bleue, le temps d'écran et le suivi visuel régulier.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     03 — BASSE VISION
+     ══════════════════════════════════════════ -->
+<section class="sec wrap" id="basse-vision">
+  <div class="expert-grid">
+    <!-- Texte -->
+    <div class="reveal">
+      <div class="svc-num">03 — Basse vision · Malvoyance</div>
+      <h2 style="font-family:var(--serif);font-weight:700;font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.03;letter-spacing:-.02em">Spécialistes<br>des <em style="font-style:italic;color:var(--vert)">aides visuelles</em>.</h2>
+      <p style="color:var(--muted);margin-top:22px;max-width:50ch">La basse vision, c'est une perte partielle de la vue qui ne peut pas être entièrement corrigée par des lunettes classiques. Elle touche notamment les personnes atteintes de DMLA ou d'autres pathologies rétiniennes.</p>
+      <p style="color:var(--muted);margin-top:14px;max-width:50ch">Notre équipe, spécialement formée, réalise des tests en magasin — <strong style="color:var(--blanc-chaud)">sur rendez-vous téléphonique</strong> — dans des conditions réelles d'utilisation. Nous vous accompagnons et assurons un suivi personnalisé.</p>
+
+      <div class="patho-list">
+        <span class="patho-tag">DMLA</span>
+        <span class="patho-tag">Glaucome</span>
+        <span class="patho-tag">Diabète</span>
+        <span class="patho-tag">Rétine pigmentaire</span>
+        <span class="patho-tag">Rétinopathie diabétique</span>
+      </div>
+
+      <div class="badge-reseau">
+        <span style="font-size:1.2rem">🔗</span>
+        <div>
+          <span>Réseau partenaire</span><br>
+          <strong>Un Dixième+</strong>
+        </div>
+      </div>
+
+      <div style="margin-top:34px;display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn btn--primary" href="magasins.html#rdv">Prendre rendez-vous <span class="arr">→</span></a>
+        <a class="btn btn--ghost" href="tel:0237520339">Appeler Nogent</a>
+      </div>
+    </div>
+    <!-- Visuel texte déco -->
+    <div class="expert-media reveal">
+      <div class="frame" style="aspect-ratio:4/5;background:linear-gradient(160deg,var(--noir-2),var(--noir-3));display:flex;align-items:center;justify-content:center;padding:40px">
+        <div style="text-align:center">
+          <span style="font-family:var(--serif);font-size:clamp(5rem,14vw,11rem);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(126,140,90,.4);display:block">1/10</span>
+          <p style="font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--muted);margin-top:16px;max-width:22ch;margin-left:auto;margin-right:auto">La basse vision commence à un dixième. Nous sommes là pour aller plus loin.</p>
+          <span class="hand" style="font-size:1.6rem;color:var(--camel);margin-top:18px;display:inline-block;transform:rotate(-2deg)">réseau Un Dixième+</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     04 — NUANCE AUDIO (section beige)
+     ══════════════════════════════════════════ -->
+<section class="sec sec--cream" id="nuance-audio">
+  <div class="wrap">
+    <div class="expert-grid flip">
+      <!-- Visuel déco -->
+      <div class="expert-media reveal">
+        <div class="frame">
+          <span class="tape" style="top:-16px;left:24px;transform:rotate(-3deg)"></span>
+          <img src="assets/photos/gen-eyewear-paper.jpg" alt="Lunettes Nuance Audio — assistance auditive invisible">
+        </div>
+        <span class="hand" style="position:absolute;bottom:-28px;left:6%;font-size:1.7rem;transform:rotate(-2deg);color:var(--bois)">on n'y voit que du feu</span>
+      </div>
+      <!-- Texte -->
+      <div class="reveal">
+        <div class="svc-num" style="color:var(--bois)"><span style="width:28px;height:1px;background:var(--bois);display:inline-block"></span>04 — Nuance Audio</div>
+        <h2 style="font-family:var(--serif);font-weight:700;font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.03;letter-spacing:-.02em;color:var(--encre)">L'assistance auditive<br>que personne ne <em style="font-style:italic;color:var(--vert)">verra</em>.</h2>
+        <p style="color:#5c554a;margin-top:22px;max-width:50ch">Des lunettes à assistance auditive <strong style="color:var(--encre)">invisible</strong> intégrée à la monture, conçues pour une gêne légère à modérée. Parfaites pour les lieux bruyants, les réunions, regarder la télé ou simplement converser en famille.</p>
+        <p style="color:#5c554a;margin-top:14px;max-width:50ch">Un design élégant qui ne trahit rien. La technologie disparaît dans le style — et le son revient naturellement.</p>
+        <div style="margin-top:22px;display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;align-items:flex-start;gap:12px">
+            <div style="flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--vert);display:grid;place-items:center;margin-top:2px"><span style="font-size:.8rem;color:#0E0D0B;font-weight:700">✓</span></div>
+            <p style="color:#5c554a;font-size:.94rem;line-height:1.5">Compatible avec les verres <strong style="color:var(--encre)">Transitions®</strong> — un seul équipement, double bénéfice.</p>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px">
+            <div style="flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--vert);display:grid;place-items:center;margin-top:2px"><span style="font-size:.8rem;color:#0E0D0B;font-weight:700">✓</span></div>
+            <p style="color:#5c554a;font-size:.94rem;line-height:1.5">Test en magasin — venez essayer sans engagement, notre équipe est à votre écoute (littéralement).</p>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px">
+            <div style="flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--vert);display:grid;place-items:center;margin-top:2px"><span style="font-size:.8rem;color:#0E0D0B;font-weight:700">✓</span></div>
+            <p style="color:#5c554a;font-size:.94rem;line-height:1.5">Gêne légère à modérée : la solution discrète avant l'appareillage classique.</p>
+          </div>
+        </div>
+        <div style="margin-top:34px">
+          <a class="btn btn--primary" href="magasins.html#rdv">Tester Nuance Audio <span class="arr">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     05 — NOS VERRES NIKON
+     ══════════════════════════════════════════ -->
+<section class="sec wrap" id="verres">
+  <div class="sec-head reveal">
+    <h2>Nos verres</h2>
+    <p>La technologie japonaise, fabriquée en France.</p>
+  </div>
+
+  <div class="expert-grid">
+    <!-- Texte -->
+    <div class="reveal">
+      <div class="svc-num">05 — Verres Nikon</div>
+      <h2 style="font-family:var(--serif);font-weight:700;font-size:clamp(2rem,4.5vw,3.2rem);line-height:1.04;letter-spacing:-.02em">La précision japonaise,<br>fabriquée à <em style="font-style:italic;color:var(--vert)">Provins</em>.</h2>
+      <p style="color:var(--muted);margin-top:20px;max-width:50ch">Pigeard propose exclusivement des verres <strong style="color:var(--blanc-chaud)">Nikon</strong>, fabriqués en France à Provins (77). Précision, finesse, légèreté : la techno japonaise au service de chaque correction.</p>
+
+      <div class="verres-list">
+        <div class="verres-item">
+          <span class="dot"></span>
+          <p><strong>Made in France</strong> — Certifiés AFNOR, fabriqués à Provins (Seine-et-Marne). Pas un verre importé.</p>
+        </div>
+        <div class="verres-item">
+          <span class="dot"></span>
+          <p><strong>Verres pour daltoniens</strong> — Test <strong>EnChroma</strong> en magasin : découvrez (ou redécouvrez) les couleurs.</p>
+        </div>
+        <div class="verres-item">
+          <span class="dot"></span>
+          <p><strong>Progressifs</strong> — De 149 € à 600 € selon la technologie. 100% Santé inclus dans nos offres.</p>
+        </div>
+        <div class="verres-item">
+          <span class="dot"></span>
+          <p><strong>Transitions®</strong> — Verres photochromiques qui s'adaptent à la lumière, en option sur toutes nos montures.</p>
+        </div>
+        <div class="verres-item">
+          <span class="dot"></span>
+          <p><strong>Antireflet garanti</strong> — Jusqu'à 3 ans. Remplacement sans surprise.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:34px;display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn btn--primary" href="magasins.html#rdv">Prendre rendez-vous <span class="arr">→</span></a>
+        <a class="btn btn--ghost" href="marques.html">Voir toutes nos marques <span class="arr">→</span></a>
+      </div>
+    </div>
+    <!-- Visuel déco -->
+    <div class="expert-media reveal">
+      <div class="frame">
+        <span class="tape" style="top:-16px;left:24px;transform:rotate(-3deg)"></span>
+        <img src="assets/photos/gen-lens-macro.jpg" alt="Verre optique Nikon — précision, finesse et légèreté">
+      </div>
+      <span class="hand" style="position:absolute;bottom:-28px;right:6%;font-size:1.7rem;transform:rotate(-2deg);color:var(--camel)">la précision au millième</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     06 — SANTÉ VISUELLE (parcours animé, section beige)
+     ══════════════════════════════════════════ -->
+<section class="sec sec--cream" id="sante-visuelle">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Votre santé<br>visuelle</h2>
+      <p style="max-width:36ch">De l'examen de vue à l'ajustage à vie : voici comment nous prenons soin de votre regard.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,100px);align-items:start">
+      <!-- Intro + CTA gauche -->
+      <div class="reveal">
+        <p style="color:#5c554a;max-width:46ch;font-size:1.05rem;line-height:1.65">Chez Pigeard, une consultation n'est pas une simple vente. C'est un vrai parcours opticien, pensé pour vous accompagner de A à Z — avec la même rigueur depuis 1863.</p>
+        <p style="color:#5c554a;max-width:46ch;margin-top:16px">Chaque étape a son importance. Pas de raccourci, pas d'improvisation. Votre vision mérite le même soin que celui que nous apportons à nos montures sur mesure.</p>
+        <div style="margin-top:32px;padding:24px;border-radius:16px;background:rgba(38,35,28,.06);border:1px solid rgba(38,35,28,.1)">
+          <span style="font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--bois);font-weight:600">Le saviez-vous ?</span>
+          <p style="color:var(--encre);margin-top:10px;font-size:.94rem;line-height:1.55">L'adaptation à de nouveaux verres peut prendre quelques jours. Notre équipe assure un suivi téléphonique et vous accueille gratuitement pour tout ajustement dans les <strong>60 jours</strong> suivant l'équipement.</p>
+        </div>
+        <div style="margin-top:28px">
+          <a class="btn btn--primary" href="magasins.html#rdv">Démarrer mon parcours <span class="arr">→</span></a>
+        </div>
+      </div>
+
+      <!-- Parcours étapes -->
+      <div class="reveal" id="stepsSection">
+        <div class="steps" id="stepsContainer">
+          <div class="fill" id="stepsFill"></div>
+
+          <div class="step" data-step="0">
+            <span class="n">Étape 01</span>
+            <h3>Examen de vue</h3>
+            <p>Bilan visuel complet avec nos opticiens diplômés. Mesure précise de votre correction, contrôle de la vision binoculaire et conseil sur les verres adaptés à votre mode de vie.</p>
+          </div>
+
+          <div class="step" data-step="1">
+            <span class="n">Étape 02</span>
+            <h3>Prise de mesures</h3>
+            <p>Écart pupillaire, hauteur de montage, longueur des branches, profil du nez : chaque millimètre compte pour un verre bien centré et un port confortable.</p>
+          </div>
+
+          <div class="step" data-step="2">
+            <span class="n">Étape 03</span>
+            <h3>Conseil & choix de la monture</h3>
+            <p>Votre visage, votre style, votre budget. Nous vous guidons parmi nos marques — en privilégiant toujours le français — et visualisons la monture sur votre visage avant commande.</p>
+          </div>
+
+          <div class="step" data-step="3">
+            <span class="n">Étape 04</span>
+            <h3>Fabrication des verres</h3>
+            <p>Vos verres Nikon sont taillés à Provins (77), Made in France, certifiés AFNOR. Précision japonaise, fabrication française. Délai habituel : 5 à 10 jours.</p>
+          </div>
+
+          <div class="step" data-step="4">
+            <span class="n">Étape 05</span>
+            <h3>Ajustage & suivi à vie</h3>
+            <p>Lors de la remise, nous ajustons la monture à votre visage avec minutie. Et après ? Réglages, entretien, réparations : tout est gratuit, à vie, dans nos trois magasins.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CTA FINALE
+     ══════════════════════════════════════════ -->
+<section class="sec-sm sec--cream" style="background:var(--noir)">
+  <div class="wrap cta-finale">
+    <img src="assets/brand/macaron-cream.svg" alt="" style="height:88px;margin:0 auto 28px;opacity:.55;filter:brightness(.9)" class="reveal">
+    <h2 class="reveal" style="font-family:var(--serif);font-weight:700;font-size:clamp(2.2rem,6vw,4.2rem);line-height:1.04;max-width:20ch;margin:0 auto;color:var(--blanc-chaud)">Votre regard mérite<br>l'expertise Pigeard.</h2>
+    <div class="subtitle reveal">depuis 1863, six générations</div>
+    <p class="reveal" style="color:var(--muted);max-width:44ch;margin:22px auto 0;font-size:1rem">Trois magasins, une même famille, un seul engagement : prendre soin de chaque regard comme s'il était unique. Parce qu'il l'est.</p>
+    <div class="reveal" style="margin-top:34px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+      <a class="btn btn--primary" href="magasins.html#rdv">Prendre rendez-vous <span class="arr">→</span></a>
+      <a class="btn btn--ghost" href="magasins.html">Nos 3 magasins <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site"><div class="wrap">
+  <div class="foot-top">
+    <div class="foot-brand">
+      <img class="mac" src="assets/brand/macaron-cream.svg" alt="Pigeard depuis 1863">
+      <h3>Créateur de regards depuis 1863.</h3>
+      <span class="hand">à très vite chez Pigeard</span>
+      <div><span class="foot-soon">◷ Pigeard Audition — bientôt, 2027</span></div>
+    </div>
+    <div class="foot-links">
+      <div class="foot-col"><h4>La maison</h4><a href="histoire.html">Notre histoire</a><a href="equipe.html">L'équipe</a><a href="engagements.html">Nos engagements</a><a href="engagements.html#mutuelles">Nos mutuelles</a></div>
+      <div class="foot-col"><h4>Expertises</h4><a href="services.html#sur-mesure">Sur mesure</a><a href="services.html#optikid">Optikid</a><a href="services.html#basse-vision">Basse vision</a><a href="services.html#nuance-audio">Nuance Audio</a><a href="marques.html">Nos marques</a></div>
+      <div class="foot-col"><h4>Magasins</h4><a href="magasins.html">Nos 3 magasins</a><a href="contact.html">Contact</a><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a><a href="https://facebook.com/pigeard.opticiens" target="_blank" rel="noopener">Facebook</a></div>
+    </div>
+  </div>
+  <div class="foot-bottom"><span>© 2026 Pigeard — Créateur de regards depuis 1863.</span><span>Nogent-le-Rotrou · Brou · La Loupe</span></div>
+</div></footer>
+
+<!-- LIBS + MOTEUR + SCRIPT PAGE -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+/* ---- Fallback no-JS : tout visible ---- */
+document.querySelectorAll('.step').forEach(function(s){ s.classList.add('on'); });
+
+if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
+
+  /* -- Hero entrée -- */
+  gsap.from('#heroEyebrow',{y:20,autoAlpha:0,duration:1,ease:'power3.out',delay:.1});
+  gsap.from('#heroTitle',{y:60,scale:.92,autoAlpha:0,filter:'blur(14px)',duration:1.6,ease:'expo.out',delay:.2});
+  gsap.from('#heroLede',{y:28,autoAlpha:0,duration:1.1,ease:'power3.out',delay:.55});
+  gsap.from('#heroLinks .btn',{y:18,autoAlpha:0,stagger:.08,duration:.9,ease:'power3.out',delay:.75});
+  gsap.to('.page-hero .hero-inner',{yPercent:20,autoAlpha:.25,ease:'none',scrollTrigger:{trigger:'.page-hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.page-hero .blob.v',{yPercent:30,ease:'none',scrollTrigger:{trigger:'.page-hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.page-hero .blob.c',{yPercent:-20,ease:'none',scrollTrigger:{trigger:'.page-hero',start:'top top',end:'bottom top',scrub:true}});
+
+  /* -- Réinitialiser fallback no-JS, laisser GSAP gérer -- */
+  document.querySelectorAll('.step').forEach(function(s){ s.classList.remove('on'); });
+
+  /* -- Parcours santé visuelle : fill + steps.on -- */
+  var fill = document.getElementById('stepsFill');
+  var steps = document.querySelectorAll('#stepsContainer .step');
+  var container = document.getElementById('stepsContainer');
+
+  if(fill && steps.length && container){
+    /* Fill au scroll */
+    gsap.to(fill, {
+      height: '100%',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: container,
+        start: 'top 75%',
+        end: 'bottom 40%',
+        scrub: 0.6
+      }
+    });
+
+    /* Chaque étape s'illumine quand elle entre dans le cadre */
+    steps.forEach(function(step){
+      ScrollTrigger.create({
+        trigger: step,
+        start: 'top 72%',
+        onEnter: function(){ step.classList.add('on'); },
+        onLeaveBack: function(){ step.classList.remove('on'); }
+      });
+    });
+  }
+
+  /* -- Photo reveal avec clip-path sur les frames -- */
+  document.querySelectorAll('.expert-media .frame img').forEach(function(img){
+    gsap.fromTo(img,
+      {clipPath:'inset(0 0 100% 0)', scale:1.15},
+      {clipPath:'inset(0 0 0% 0)', scale:1, ease:'power3.out', duration:1.2,
+       scrollTrigger:{trigger:img, start:'top 78%'}});
+  });
+
+  /* -- Tape reveal -- */
+  gsap.utils.toArray('.tape').forEach(function(t){
+    gsap.from(t,{autoAlpha:0,y:16,duration:.8,ease:'power3.out',scrollTrigger:{trigger:t,start:'top 85%'}});
+  });
+
+  /* -- Stagger des eng-cards -- */
+  gsap.from('.engagements-grid .eng-card',{
+    autoAlpha:0,y:30,stagger:.07,duration:.8,ease:'power3.out',
+    scrollTrigger:{trigger:'.engagements-grid',start:'top 80%'}
+  });
+
+  /* -- Patho tags -- */
+  gsap.from('.patho-tag',{
+    autoAlpha:0,y:14,stagger:.06,duration:.6,ease:'power3.out',
+    scrollTrigger:{trigger:'.patho-list',start:'top 85%'}
+  });
+}
+</script>
+</body>
+</html>

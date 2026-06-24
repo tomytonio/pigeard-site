@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nos engagements, offres &amp; mutuelles — Pigeard Opticien depuis 1863</title>
+<meta name="description" content="Qualité, service, garanties : ce que vous pouvez attendre de Pigeard depuis 1863. AFNOR Qualité Optique, verres 100% français, tiers-payant toutes mutuelles." />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300..700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<style>
+/* ── page-hero décoratif ── */
+.eng-hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+
+/* ── stats atouts ── */
+.atouts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:0}
+.atout{border:1px solid var(--ligne);border-radius:14px;padding:32px 24px;background:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.012));text-align:center;transition:transform .55s var(--ease),border-color .55s}
+.atout:hover{transform:translateY(-5px);border-color:rgba(126,140,90,.5)}
+.atout .ico{font-size:2rem;margin-bottom:14px;display:block}
+.atout strong{font-family:var(--serif);font-size:1.18rem;font-weight:700;display:block;color:var(--blanc-chaud);line-height:1.15}
+.atout span{font-size:.86rem;color:var(--muted);margin-top:6px;display:block}
+
+/* ── piliers ── */
+.piliers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.pilier{border:1px solid var(--ligne);border-radius:14px;padding:36px 28px 40px;background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.012));transition:transform .55s var(--ease),border-color .55s}
+.pilier:hover{transform:translateY(-6px);border-color:rgba(126,140,90,.5)}
+.pilier .pill-num{font-size:.72rem;letter-spacing:.22em;color:var(--vert);text-transform:uppercase;font-weight:600}
+.pilier h3{font-family:var(--serif);font-size:1.9rem;font-weight:700;margin:12px 0 22px;line-height:1.05}
+.pilier ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.pilier ul li{font-size:.92rem;color:var(--muted);padding-left:20px;position:relative;line-height:1.45}
+.pilier ul li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:var(--vert);flex-shrink:0}
+
+/* ── offres ── */
+.offres-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.offre-card{border-radius:14px;padding:38px 34px;border:1px solid rgba(38,35,28,.22);background:rgba(255,255,255,.04);transition:transform .55s var(--ease),box-shadow .55s}
+.sec--cream .offre-card{background:#fff;border-color:rgba(38,35,28,.12);box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.offre-card:hover{transform:translateY(-5px);box-shadow:0 20px 50px -18px rgba(0,0,0,.18)}
+.offre-card .tag{display:inline-block;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:#fff;background:var(--vert);padding:5px 14px;border-radius:100px;margin-bottom:18px}
+.sec--cream .offre-card .tag{color:#fff}
+.offre-card h3{font-family:var(--serif);font-size:1.7rem;font-weight:700;line-height:1.1;margin-bottom:12px;color:var(--encre)}
+.offre-card p{font-size:.95rem;color:#5c554a;line-height:1.6}
+.offre-card .prix{margin-top:22px;font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--bois)}
+.sante-badge{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--bois);border:1px solid rgba(134,101,73,.4);padding:8px 18px;border-radius:100px;margin-top:32px}
+.sante-badge::before{content:"✓";font-weight:700;color:var(--vert)}
+
+/* ── mutuelles marquee ── */
+.mutu-wrap{overflow:hidden;padding:38px 0;border-top:1px solid var(--ligne);border-bottom:1px solid var(--ligne)}
+.mutu-track{display:flex;gap:56px;width:max-content;will-change:transform}
+.mutu-track span{font-family:var(--serif);font-size:clamp(1.2rem,2.4vw,1.9rem);color:var(--muted);font-style:italic;white-space:nowrap}
+.mutu-track span b{color:var(--blanc-chaud);font-style:normal;font-weight:700}
+
+/* ── CTA final ── */
+.cta-final{text-align:center}
+
+/* responsive */
+@media(max-width:980px){
+  .atouts-grid{grid-template-columns:repeat(2,1fr)}
+  .piliers-grid{grid-template-columns:1fr}
+  .offres-grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .atouts-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="grain"></div><div class="progress" id="progress"></div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="index.html"><img class="nav-logo" src="assets/brand/pigeard-logo-white.svg" alt="Pigeard — créateur de regards depuis 1863"></a>
+  <nav class="nav-links">
+    <a href="histoire.html">Notre histoire</a>
+    <a href="services.html">Nos expertises</a>
+    <a href="marques.html">Nos marques</a>
+    <a href="equipe.html">L'équipe</a>
+    <a href="magasins.html">Magasins</a>
+  </nav>
+  <button class="nav-cta" onclick="location.href='magasins.html#rdv'">Prendre rendez-vous</button>
+  <button class="burger" aria-label="Ouvrir le menu">☰</button>
+</header>
+<div class="mobile-menu"><button class="close" aria-label="Fermer">✕</button>
+  <a href="histoire.html">Notre histoire</a><a href="services.html">Nos expertises</a><a href="marques.html">Nos marques</a><a href="equipe.html">L'équipe</a><a href="magasins.html">Magasins</a><a href="magasins.html#rdv">Prendre rendez-vous</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero" id="top">
+  <div class="eng-hero-bg">
+    <div class="blob v" style="width:40vw;height:40vw;top:-8%;right:-4%;opacity:.35"></div>
+    <div class="blob c" style="width:28vw;height:28vw;bottom:-10%;left:-5%;opacity:.25"></div>
+  </div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <span class="eyebrow reveal">Depuis 1863</span>
+    <h1 class="reveal" id="heroH1">Nos engagements</h1>
+    <p class="lede reveal">Qualité, service, garanties : ce que vous pouvez attendre de Pigeard, depuis 1863.</p>
+  </div>
+</section>
+
+<!-- BANDEAU ATOUTS -->
+<section class="sec wrap" id="atouts">
+  <div class="atouts-grid">
+    <div class="atout reveal">
+      <span class="ico">🏅</span>
+      <strong>Certifié AFNOR<br>« Qualité Optique »</strong>
+      <span>La seule certification qualité reconnue dans l'optique française.</span>
+    </div>
+    <div class="atout reveal">
+      <span class="ico">🇫🇷</span>
+      <strong>Verres 100% français</strong>
+      <span>Verres Nikon fabriqués à Provins (77) — précision et légèreté Made in France.</span>
+    </div>
+    <div class="atout reveal">
+      <span class="ico">💳</span>
+      <strong>Paiement 3×/4×</strong>
+      <span>Sans frais, pour équiper toute la famille sans contrainte.</span>
+    </div>
+    <div class="atout reveal">
+      <span class="ico">🤝</span>
+      <strong>Tiers payant<br>toutes mutuelles</strong>
+      <span>Nous gérons directement vos remboursements avec plus de 60 mutuelles.</span>
+    </div>
+  </div>
+</section>
+
+<!-- TROIS PILIERS -->
+<section class="sec wrap" id="piliers">
+  <div class="sec-head reveal">
+    <h2>Trois piliers,<br>une promesse.</h2>
+    <p>Depuis six générations, les engagements Pigeard se déclinent autour du service, de la qualité et de la garantie.</p>
+  </div>
+  <div class="piliers-grid">
+
+    <!-- Service -->
+    <div class="pilier reveal">
+      <span class="pill-num">01</span>
+      <h3>Service</h3>
+      <ul>
+        <li>Contrôle de vue en magasin</li>
+        <li>Conseil style et morphologie</li>
+        <li>Tiers-payant avec toutes les mutuelles</li>
+        <li>Lentilles &amp; livraison à domicile</li>
+        <li>Réparations immédiates en boutique</li>
+        <li>Entretien et ajustements gratuits à vie</li>
+        <li>Essai à domicile</li>
+        <li>Opticien à domicile dans un rayon de 20 km</li>
+        <li>Paiement 3×/4× sans frais</li>
+        <li>Prise en charge basse vision</li>
+        <li>Programme Optikid (enfants)</li>
+      </ul>
+    </div>
+
+    <!-- Qualité -->
+    <div class="pilier reveal">
+      <span class="pill-num">02</span>
+      <h3>Qualité</h3>
+      <ul>
+        <li>Verres haute technologie Made in France</li>
+        <li>Certification AFNOR « Qualité Optique »</li>
+        <li>Équipements de dernière génération</li>
+        <li>Marques sélectionnées, priorité au français</li>
+        <li>Création sur mesure — acétate du Jura</li>
+        <li>Verres Optikid adaptés à la morphologie enfant</li>
+      </ul>
+    </div>
+
+    <!-- Garantie -->
+    <div class="pilier reveal">
+      <span class="pill-num">03</span>
+      <h3>Garantie</h3>
+      <ul>
+        <li>Casse monture : 2 ans, sans franchise</li>
+        <li>Casse verres : 2 ans (franchise 30%)</li>
+        <li>Adaptation verres : 60 jours pour changer</li>
+        <li>Antireflet : jusqu'à 3 ans de garantie</li>
+        <li>Ajustement, entretien &amp; réparation à vie</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- NOS OFFRES (section claire) -->
+<section class="sec sec--cream" id="offres">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Nos offres</h2>
+      <p>Des formules pensées pour vous équiper mieux, au meilleur prix.</p>
+    </div>
+    <div class="offres-grid">
+
+      <div class="offre-card reveal">
+        <span class="tag">Pack 2ᵉ paire</span>
+        <h3>Votre deuxième paire à partir de 1&nbsp;€</h3>
+        <p>Jusqu'à un an après votre premier achat, commandez votre deuxième paire optique ou solaire à prix réduit. Une façon simple de varier les styles ou d'avoir une paire de secours sans effort.</p>
+        <div class="prix">Dès 1 €</div>
+      </div>
+
+      <div class="offre-card reveal">
+        <span class="tag">Forfaits Optique &amp; Solaire</span>
+        <h3>Paires de secours et solaire, dès 49&nbsp;€</h3>
+        <p>Des forfaits accessibles pour compléter votre équipement : une paire de solaire de qualité ou une paire de secours, avec verres et monture inclus. Idéal pour partir serein en vacances ou au quotidien.</p>
+        <div class="prix">Dès 49 €</div>
+      </div>
+
+    </div>
+    <div class="reveal" style="margin-top:36px;text-align:center">
+      <span class="sante-badge">Dispositif 100% Santé disponible — reste à charge nul possible</span>
+    </div>
+  </div>
+</section>
+
+<!-- NOS MUTUELLES -->
+<section class="sec wrap" id="mutuelles">
+  <div class="sec-head reveal">
+    <h2>Vos mutuelles</h2>
+    <p>Tiers-payant avec <strong style="color:var(--blanc-chaud)">toutes</strong> les mutuelles — liste non exhaustive. Pas d'avance de frais, on s'occupe de tout.</p>
+  </div>
+
+  <div class="mutu-wrap reveal">
+    <div class="mutu-track" id="mutuMarquee">
+      <!-- liste × 2 pour la boucle infinie -->
+      <span><b>Harmonie Mutuelle</b></span><span>·</span>
+      <span><b>APICIL</b></span><span>·</span>
+      <span><b>AG2R La Mondiale</b></span><span>·</span>
+      <span><b>Malakoff Humanis</b></span><span>·</span>
+      <span><b>MGEFI</b></span><span>·</span>
+      <span><b>Matmut</b></span><span>·</span>
+      <span><b>Almerys</b></span><span>·</span>
+      <span><b>Apivia</b></span><span>·</span>
+      <span><b>Axa</b></span><span>·</span>
+      <span><b>Mercer</b></span><span>·</span>
+      <span><b>MMA</b></span><span>·</span>
+      <span><b>MNH</b></span><span>·</span>
+      <span><b>Mutuelle Générale</b></span><span>·</span>
+      <span><b>Santéclair</b></span><span>·</span>
+      <span><b>Swiss Life</b></span><span>·</span>
+      <span><b>Carte Blanche</b></span><span>·</span>
+      <span><b>Viamedis</b></span><span>·</span>
+      <span><b>Séveane</b></span><span>·</span>
+      <span><b>SP Santé</b></span><span>·</span>
+      <span><b>Verspieren</b></span><span>·</span>
+      <span><b>Itelis</b></span><span>·</span>
+      <!-- doublon pour boucle -->
+      <span><b>Harmonie Mutuelle</b></span><span>·</span>
+      <span><b>APICIL</b></span><span>·</span>
+      <span><b>AG2R La Mondiale</b></span><span>·</span>
+      <span><b>Malakoff Humanis</b></span><span>·</span>
+      <span><b>MGEFI</b></span><span>·</span>
+      <span><b>Matmut</b></span><span>·</span>
+      <span><b>Almerys</b></span><span>·</span>
+      <span><b>Apivia</b></span><span>·</span>
+      <span><b>Axa</b></span><span>·</span>
+      <span><b>Mercer</b></span><span>·</span>
+      <span><b>MMA</b></span><span>·</span>
+      <span><b>MNH</b></span><span>·</span>
+      <span><b>Mutuelle Générale</b></span><span>·</span>
+      <span><b>Santéclair</b></span><span>·</span>
+      <span><b>Swiss Life</b></span><span>·</span>
+      <span><b>Carte Blanche</b></span><span>·</span>
+      <span><b>Viamedis</b></span><span>·</span>
+      <span><b>Séveane</b></span><span>·</span>
+      <span><b>SP Santé</b></span><span>·</span>
+      <span><b>Verspieren</b></span><span>·</span>
+      <span><b>Itelis</b></span><span>·</span>
+    </div>
+  </div>
+
+  <p class="reveal" style="margin-top:24px;font-size:.86rem;color:var(--muted);text-align:center">Plus de 60 mutuelles partenaires · liste mise à jour régulièrement</p>
+</section>
+
+<!-- CTA FINAL -->
+<section class="sec-sm sec--cream">
+  <div class="wrap cta-final">
+    <img src="assets/brand/macaron-cream.svg" alt="" style="height:88px;opacity:.6;margin:0 auto 22px;filter:brightness(.3) sepia(.4)" class="reveal">
+    <h2 class="reveal" style="font-family:var(--serif);font-weight:700;font-size:clamp(2rem,5.5vw,3.8rem);line-height:1.04;max-width:20ch;margin:0 auto;color:var(--encre)">Venez vivre l'expérience Pigeard.</h2>
+    <span class="hand reveal" style="font-size:1.9rem;display:inline-block;margin-top:12px;color:var(--bois)">on vous attend en boutique</span>
+    <div class="reveal" style="margin-top:30px">
+      <a class="btn btn--primary" href="magasins.html#rdv">Prendre rendez-vous <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site"><div class="wrap">
+  <div class="foot-top">
+    <div class="foot-brand">
+      <img class="mac" src="assets/brand/macaron-cream.svg" alt="Pigeard depuis 1863">
+      <h3>Créateur de regards depuis 1863.</h3>
+      <span class="hand">à très vite chez Pigeard</span>
+      <div><span class="foot-soon">◷ Pigeard Audition — bientôt, 2027</span></div>
+    </div>
+    <div class="foot-links">
+      <div class="foot-col"><h4>La maison</h4><a href="histoire.html">Notre histoire</a><a href="equipe.html">L'équipe</a><a href="engagements.html">Nos engagements</a><a href="engagements.html#mutuelles">Nos mutuelles</a></div>
+      <div class="foot-col"><h4>Expertises</h4><a href="services.html#sur-mesure">Sur mesure</a><a href="services.html#optikid">Optikid</a><a href="services.html#basse-vision">Basse vision</a><a href="services.html#nuance-audio">Nuance Audio</a><a href="marques.html">Nos marques</a></div>
+      <div class="foot-col"><h4>Magasins</h4><a href="magasins.html">Nos 3 magasins</a><a href="contact.html">Contact</a><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a><a href="https://facebook.com/pigeard.opticiens" target="_blank" rel="noopener">Facebook</a></div>
+    </div>
+  </div>
+  <div class="foot-bottom"><span>© 2026 Pigeard — Créateur de regards depuis 1863.</span><span>Nogent-le-Rotrou · Brou · La Loupe</span></div>
+</div></footer>
+
+<!-- LIBS + MOTEUR + SCRIPT PAGE -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
+  /* Entrée hero */
+  gsap.from('#heroH1',{y:60,autoAlpha:0,filter:'blur(14px)',duration:1.6,ease:'expo.out',delay:.15});
+  gsap.from('.page-hero .lede,.page-hero .eyebrow',{y:24,autoAlpha:0,duration:1,ease:'power3.out',stagger:.12,delay:.45});
+
+  /* Marquee mutuelles */
+  gsap.to('#mutuMarquee',{xPercent:-50,duration:38,ease:'none',repeat:-1});
+
+  /* Reveals via ScrollTrigger (fallback au moteur site.js si déjà câblé) */
+  gsap.utils.toArray('.pilier').forEach(function(el,i){
+    gsap.from(el,{autoAlpha:0,y:40,duration:.85,ease:'power3.out',delay:i*.08,
+      scrollTrigger:{trigger:el,start:'top 88%',once:true}});
+  });
+  gsap.utils.toArray('.atout').forEach(function(el,i){
+    gsap.from(el,{autoAlpha:0,y:30,duration:.75,ease:'power3.out',delay:i*.07,
+      scrollTrigger:{trigger:el,start:'top 90%',once:true}});
+  });
+}
+</script>
+</body>
+</html>

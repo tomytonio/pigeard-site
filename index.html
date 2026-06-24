@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pigeard — Créateur de regards depuis 1863 · Opticien à Nogent-le-Rotrou, Brou & La Loupe</title>
+<meta name="description" content="Maison familiale d'opticiens depuis 1863, six générations de savoir-faire. Lunettes sur mesure, Optikid, basse vision, Nuance Audio, verres Nikon. Brou · Nogent-le-Rotrou · La Loupe." />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300..700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<div class="grain"></div><div class="progress" id="progress"></div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="index.html"><img class="nav-logo" src="assets/brand/pigeard-logo-white.svg" alt="Pigeard — créateur de regards depuis 1863"></a>
+  <nav class="nav-links">
+    <a href="histoire.html">Notre histoire</a>
+    <a href="services.html">Nos expertises</a>
+    <a href="marques.html">Nos marques</a>
+    <a href="equipe.html">L'équipe</a>
+    <a href="magasins.html">Magasins</a>
+  </nav>
+  <button class="nav-cta" onclick="location.href='magasins.html#rdv'">Prendre rendez-vous</button>
+  <button class="burger" aria-label="Ouvrir le menu">☰</button>
+</header>
+<div class="mobile-menu"><button class="close" aria-label="Fermer">✕</button>
+  <a href="histoire.html">Notre histoire</a><a href="services.html">Nos expertises</a><a href="marques.html">Nos marques</a><a href="equipe.html">L'équipe</a><a href="magasins.html">Magasins</a><a href="magasins.html#rdv">Prendre rendez-vous</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg">
+    <div class="blob v" style="width:46vw;height:46vw;top:-12%;right:-4%"></div>
+    <div class="blob c" style="width:34vw;height:34vw;bottom:-14%;left:-6%"></div>
+    <div class="blob m" style="width:28vw;height:28vw;top:40%;left:40%"></div>
+    <div class="streaks" id="streaks"></div>
+  </div>
+  <img class="hero-watermark" src="assets/brand/lunette-white.svg" alt="" aria-hidden="true">
+  <div class="hero-inner wrap">
+    <img class="hero-logo" id="heroLogo" src="assets/brand/pigeard-logo-white.svg" alt="Pigeard — créateur de regards depuis 1863">
+    <p class="hero-lead">Créateur de regards depuis 1863.</p>
+    <span class="hero-note">six générations, un même métier</span>
+    <div class="hero-cities" style="margin-top:38px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)">
+      <b style="color:var(--blanc-chaud)">Nogent-le-Rotrou</b><span style="color:var(--vert)">·</span><b style="color:var(--blanc-chaud)">Brou</b><span style="color:var(--vert)">·</span><b style="color:var(--blanc-chaud)">La Loupe</b>
+    </div>
+  </div>
+  <div class="scrollcue"><span>Découvrir</span><span class="line"></span></div>
+</section>
+
+<!-- INTRO / HISTOIRE TEASER -->
+<section class="sec wrap" id="intro">
+  <div style="display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(30px,6vw,80px);align-items:center" class="intro-grid">
+    <div class="reveal">
+      <span class="eyebrow">Depuis 1863</span>
+      <p class="lede" style="margin:26px 0 18px;max-width:24ch;font-size:clamp(1.6rem,3.6vw,2.6rem);line-height:1.18">Une histoire de famille, transmise de père en fils depuis <span style="color:var(--vert)">six générations</span>.</p>
+      <p style="color:var(--muted);max-width:50ch">Tout commence à Nogent-le-Rotrou en 1863, dans l'échoppe d'Auguste Pigeard, maître coutelier devenu opticien. Une guerre, un bombardement, un siècle et demi plus tard : la maison Pigeard est toujours là, fidèle à son métier.</p>
+      <div style="margin-top:34px"><a class="btn btn--vert" href="histoire.html">Lire notre histoire <span class="arr">→</span></a></div>
+    </div>
+    <div class="reveal" style="position:relative">
+      <div class="frame" style="aspect-ratio:4/5"><span class="tape" style="top:-16px;left:24px;transform:rotate(-4deg)"></span>
+        <img src="assets/photos/ambiance-1.jpg" alt="L'atelier Pigeard">
+      </div>
+      <span class="hand" style="position:absolute;bottom:-26px;right:6%;font-size:1.9rem;transform:rotate(-4deg)">l'esprit maison</span>
+    </div>
+  </div>
+</section>
+
+<!-- FIL DU TEMPS horizontal : défile vers la droite avant de continuer le scroll -->
+<section class="fil-h" id="filAccueil">
+  <div class="fil-head"><div class="wrap"><h2>1863 → aujourd'hui</h2><span class="hand" style="font-size:1.6rem">faites défiler →</span></div></div>
+  <div class="fil-track" id="filTrackHome">
+    <article class="fil-card"><div class="yy">1863</div><h3>La fondation</h3><p>Auguste Pigeard, coutelier, ouvre son échoppe à Nogent.</p><div class="dot"></div></article>
+    <article class="fil-card"><div class="yy">1944</div><h3>Le bombardement</h3><p>Le magasin détruit — 80 ans effacés en une nuit.</p><div class="dot"></div></article>
+    <article class="fil-card"><div class="yy">1963</div><h3>Le centenaire</h3><p>Cent ans, l'ouverture de Brou, la modernité.</p><div class="dot"></div></article>
+    <article class="fil-card"><div class="yy">1980</div><h3>L'aventure humaine</h3><p>Le Rotary Aphaque System, des lunettes pour le monde.</p><div class="dot"></div></article>
+    <article class="fil-card"><div class="yy">2004</div><h3>Christophe</h3><p>La 5ᵉ génération ouvre La Loupe.</p><div class="dot"></div></article>
+    <article class="fil-card"><div class="yy">2013</div><h3>Antoine</h3><p>La 6ᵉ génération écrit la suite.</p><div class="dot"></div></article>
+    <article class="fil-card"><div class="yy">2027</div><h3>Demain</h3><p>Pigeard Audition — un nouveau regard sur l'écoute.</p><div class="dot"></div></article>
+  </div>
+  <div class="fil-prog"><i id="filProgHome"></i></div>
+  <a href="histoire.html" style="position:absolute;bottom:34px;right:clamp(20px,5vw,64px);z-index:6" class="btn btn--vert">Lire notre histoire <span class="arr">→</span></a>
+</section>
+
+<!-- NOS EXPERTISES -->
+<section class="sec wrap" id="expertises">
+  <div class="sec-head reveal"><h2>Nos expertises</h2><p>Bien plus que des lunettes : un accompagnement pour chaque regard, à chaque âge de la vie.</p></div>
+  <div class="grid-3">
+    <a class="svc-card reveal" href="services.html#sur-mesure"><span class="plus">+</span><span class="num">01</span><h3>Lunettes sur mesure</h3><p>Conçues de A à Z dans notre atelier de Nogent, faites main.</p></a>
+    <a class="svc-card reveal" href="services.html#optikid"><span class="plus">+</span><span class="num">02</span><h3>Optikid</h3><p>Les enfants, notre spécialité : un suivi adapté et rassurant.</p></a>
+    <a class="svc-card reveal" href="services.html#basse-vision"><span class="plus">+</span><span class="num">03</span><h3>Basse vision</h3><p>Spécialistes des aides visuelles, DMLA et pathologies rétiniennes.</p></a>
+    <a class="svc-card reveal" href="services.html#nuance-audio"><span class="plus">+</span><span class="num">04</span><h3>Nuance Audio</h3><p>Des lunettes à assistance auditive invisible, discrètes et élégantes.</p></a>
+    <a class="svc-card reveal" href="services.html#verres"><span class="plus">+</span><span class="num">05</span><h3>Verres Nikon</h3><p>La technologie japonaise fabriquée en France. 100% français.</p></a>
+    <a class="svc-card reveal" href="services.html#sante-visuelle"><span class="plus">+</span><span class="num">06</span><h3>Votre santé visuelle</h3><p>De l'examen à l'ajustage : un vrai parcours d'opticien.</p></a>
+  </div>
+</section>
+
+<!-- SAVOIR-FAIRE (section claire / beige) -->
+<section class="sec sec--cream">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>Un savoir-faire<br>qui se transmet.</h2><p>Verres français, créations maison, garanties à vie : l'exigence Pigeard, génération après génération.</p></div>
+    <div class="stats-grid">
+      <div class="stat reveal"><div class="n" data-count="163">0</div><div class="l"><b>ans</b>de métier (depuis 1863)</div></div>
+      <div class="stat reveal"><div class="n" data-count="6">0</div><div class="l"><b>générations</b>de père en fils</div></div>
+      <div class="stat reveal"><div class="n" data-count="3">0</div><div class="l"><b>magasins</b>dans le Perche</div></div>
+      <div class="stat reveal"><div class="n" data-count="100" data-suffix="%">0</div><div class="l"><b>verres français</b>certifiés AFNOR</div></div>
+    </div>
+    <div class="reveal" style="margin-top:46px"><a class="btn btn--ghost" href="engagements.html">Nos engagements &amp; garanties <span class="arr">→</span></a></div>
+  </div>
+</section>
+
+<!-- MUTUELLES — toutes les mutuelles prises en charge -->
+<section class="sec wrap" id="mutuelles">
+  <div class="reveal" style="border:1px solid var(--ligne);border-radius:20px;background:linear-gradient(160deg,rgba(126,140,90,.10),rgba(255,255,255,.012));padding:clamp(32px,5vw,56px);overflow:hidden">
+    <div class="sec-head" style="margin-bottom:24px;align-items:flex-end"><h2 style="font-size:clamp(1.9rem,5vw,3.2rem)">Toutes les mutuelles,<br>on s'occupe de tout.</h2><p>Tiers payant et prise en charge possible avec <b style="color:var(--blanc-chaud)">tous les organismes</b>, ainsi que le 100% Santé. Vous repartez l'esprit tranquille — on gère la paperasse.</p></div>
+    <div class="marquee-wrap" style="border:none;padding:12px 0;-webkit-mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)">
+      <div class="marquee" id="marqueeMutuelles" style="gap:40px">
+        <span>Harmonie Mutuelle</span><span>APICIL</span><span>AG2R La Mondiale</span><span>Malakoff Humanis</span><span>MGEN</span><span>MATMUT</span><span>MACIF</span><span>Swiss Life</span><span>Santéclair</span><span>Carte Blanche</span><span>Itelis</span><span>Viamedis</span><span>AXA</span><span>MMA</span><span>Apivia</span><span>Eovi MCD</span><span>Mutualia</span><span>Almerys</span><span>Mercer</span>
+        <span>Harmonie Mutuelle</span><span>APICIL</span><span>AG2R La Mondiale</span><span>Malakoff Humanis</span><span>MGEN</span><span>MATMUT</span><span>MACIF</span><span>Swiss Life</span><span>Santéclair</span><span>Carte Blanche</span><span>Itelis</span><span>Viamedis</span><span>AXA</span><span>MMA</span><span>Apivia</span><span>Eovi MCD</span><span>Mutualia</span><span>Almerys</span><span>Mercer</span>
+      </div>
+    </div>
+    <div style="margin-top:22px;display:flex;gap:22px;align-items:center;flex-wrap:wrap"><span style="display:inline-flex;align-items:center;gap:10px;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--vert);border:1px solid rgba(126,140,90,.4);padding:9px 16px;border-radius:100px">◆ Tiers payant · 100% Santé</span><a class="link-arrow" href="engagements.html#mutuelles">Voir nos accords mutuelles <span class="arr">→</span></a></div>
+  </div>
+</section>
+
+<!-- MARQUES — invitation à découvrir (on n'affiche pas la grille ici) -->
+<section class="sec wrap" id="marques">
+  <div style="text-align:center;max-width:860px;margin:0 auto">
+    <span class="eyebrow reveal" style="justify-content:center">Nos marques</span>
+    <h2 class="reveal" style="font-family:var(--serif);font-weight:700;font-size:clamp(2.3rem,6vw,4.4rem);line-height:1;letter-spacing:-.02em;margin:22px 0 18px">Une sélection<br>à découvrir.</h2>
+    <p class="reveal" style="color:var(--muted);max-width:54ch;margin:0 auto">Des grandes maisons aux créateurs indépendants français : plus de trente marques choisies une à une. À chacune son histoire — venez les explorer.</p>
+    <div class="reveal" style="margin-top:32px"><a class="btn btn--ghost" href="marques.html">Découvrir nos marques <span class="arr">→</span></a></div>
+  </div>
+</section>
+<!-- teaser : noms qui défilent (invitation, pas une grille cliquable) -->
+<section class="marquee-wrap" aria-hidden="true">
+  <div class="marquee" id="marqueeBrands">
+    <span><b>Saint Laurent</b></span><span style="color:var(--vert)">·</span><span><b>Lafont</b></span><span style="color:var(--vert)">·</span><span><b>Ray-Ban</b></span><span style="color:var(--vert)">·</span><span><b>Persol</b></span><span style="color:var(--vert)">·</span><span><b>Caroline Abram</b></span><span style="color:var(--vert)">·</span><span><b>Oakley</b></span><span style="color:var(--vert)">·</span><span><b>Maui Jim</b></span><span style="color:var(--vert)">·</span><span><b>In'Bô</b></span><span style="color:var(--vert)">·</span><span><b>Lacoste</b></span><span style="color:var(--vert)">·</span>
+    <span><b>Saint Laurent</b></span><span style="color:var(--vert)">·</span><span><b>Lafont</b></span><span style="color:var(--vert)">·</span><span><b>Ray-Ban</b></span><span style="color:var(--vert)">·</span><span><b>Persol</b></span><span style="color:var(--vert)">·</span><span><b>Caroline Abram</b></span><span style="color:var(--vert)">·</span><span><b>Oakley</b></span><span style="color:var(--vert)">·</span><span><b>Maui Jim</b></span><span style="color:var(--vert)">·</span><span><b>In'Bô</b></span><span style="color:var(--vert)">·</span><span><b>Lacoste</b></span><span style="color:var(--vert)">·</span>
+  </div>
+</section>
+
+<!-- ÉQUIPE (teaser) -->
+<section class="sec wrap" id="equipe-teaser">
+  <div class="sec-head reveal"><h2>Les visages<br>de la maison</h2><p>Derrière chaque conseil, une équipe qui aime son métier — à Nogent, Brou et La Loupe.</p></div>
+  <div class="reveal" style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px" id="teamRow">
+    <div class="frame" style="aspect-ratio:3/4"><img src="assets/equipe/nogent/christophe.jpg" alt="Christophe Pigeard"></div>
+    <div class="frame" style="aspect-ratio:3/4"><img src="assets/equipe/nogent/antoine.jpg" alt="Antoine Pigeard"></div>
+    <div class="frame" style="aspect-ratio:3/4"><img src="assets/equipe/brou/magali.jpg" alt="Magali"></div>
+    <div class="frame" style="aspect-ratio:3/4"><img src="assets/equipe/la-loupe/helene.jpg" alt="Hélène"></div>
+    <div class="frame" style="aspect-ratio:3/4"><img src="assets/equipe/nogent/vincent.jpg" alt="Vincent"></div>
+    <div class="frame" style="aspect-ratio:3/4"><img src="assets/equipe/la-loupe/clemence.jpg" alt="Clémence"></div>
+  </div>
+  <div class="reveal" style="margin-top:34px"><a class="link-arrow" href="equipe.html">Rencontrer l'équipe <span class="arr">→</span></a></div>
+</section>
+
+<!-- MARQUEE -->
+<section class="marquee-wrap" aria-hidden="true">
+  <div class="marquee" id="marquee">
+    <span><b>Sur mesure</b></span><span>·</span><span><b>Optikid</b></span><span>·</span><span><b>Basse vision</b></span><span>·</span><span><b>Nuance Audio</b></span><span>·</span><span><b>Verres Nikon</b></span><span>·</span><span><b>Tiers payant</b></span><span>·</span>
+    <span><b>Sur mesure</b></span><span>·</span><span><b>Optikid</b></span><span>·</span><span><b>Basse vision</b></span><span>·</span><span><b>Nuance Audio</b></span><span>·</span><span><b>Verres Nikon</b></span><span>·</span><span><b>Tiers payant</b></span><span>·</span>
+  </div>
+</section>
+
+<!-- CTA + NOS MAGASINS — fusionnés sur le même fond beige -->
+<section class="sec-sm sec--cream" style="padding-bottom:clamp(34px,6vh,60px)"><div class="wrap" style="text-align:center">
+  <img src="assets/brand/macaron-cream.svg" alt="" style="height:96px;opacity:.6;margin:0 auto 24px;filter:brightness(.3) sepia(.4)" class="reveal">
+  <h2 class="reveal" style="font-family:var(--serif);font-weight:700;font-size:clamp(2.2rem,6vw,4.2rem);line-height:1.02;max-width:18ch;margin:0 auto;color:var(--encre)">Venez choisir votre regard.</h2>
+  <span class="hand reveal" style="font-size:2rem;display:inline-block;margin-top:14px;color:var(--bois)">on vous attend en boutique</span>
+  <div class="reveal" style="margin-top:30px"><a class="btn btn--primary" href="magasins.html#rdv">Prendre rendez-vous <span class="arr">→</span></a></div>
+</div></section>
+
+<section class="sec--cream" id="magasins-sec" style="padding-top:clamp(18px,3vh,36px);padding-bottom:clamp(90px,14vh,180px)"><div class="wrap">
+  <div class="sec-head reveal" style="justify-content:center;text-align:center;flex-direction:column;align-items:center;margin-bottom:46px"><h2>Nos magasins</h2><p>Trois adresses, une même famille. Poussez la porte — ou prenez rendez-vous en ligne.</p></div>
+  <div class="grid-shops">
+    <article class="shop reveal"><div class="city">Nogent-le-Rotrou</div><div class="addr">4 Rue Gouverneur<br>28400 Nogent-le-Rotrou</div><div class="hours">Lun · 9h30–12h30 / 14h–18h<br>Mar–Ven · 9h–12h30 / 14h–19h<br>Sam · 9h–12h30 / 14h–18h</div><div class="tel">02 37 52 03 39</div><div class="rdv"><a class="link-arrow" href="https://optique-pigeard.zerosix.com/rendez-vous/" target="_blank" rel="noopener">Prendre rendez-vous <span class="arr">→</span></a></div></article>
+    <article class="shop reveal"><div class="city">Brou</div><div class="addr">1 Place d'Armes<br>28160 Brou</div><div class="hours">Mar–Ven · 9h–12h / 14h–19h<br>Sam · 9h–12h30 / 14h–18h</div><div class="tel">02 37 47 05 29</div><div class="rdv"><a class="link-arrow" href="https://optique-pigeard-brou.zerosix.com/rendez-vous/" target="_blank" rel="noopener">Prendre rendez-vous <span class="arr">→</span></a></div></article>
+    <article class="shop reveal"><div class="city">La Loupe</div><div class="addr">10 Place de l'Hôtel de Ville<br>28240 La Loupe</div><div class="hours">Mar–Ven · 9h–12h / 14h–19h<br>Sam · 9h–12h30 / 14h–18h</div><div class="tel">02 37 81 07 12</div><div class="rdv"><a class="link-arrow" href="https://optique-pigeard-la-loupe.zerosix.com/rendez-vous/" target="_blank" rel="noopener">Prendre rendez-vous <span class="arr">→</span></a></div></article>
+  </div>
+</div></section>
+
+<!-- FOOTER -->
+<footer class="site"><div class="wrap">
+  <div class="foot-top">
+    <div class="foot-brand">
+      <img class="mac" src="assets/brand/macaron-cream.svg" alt="Pigeard depuis 1863">
+      <h3>Créateur de regards depuis 1863.</h3>
+      <span class="hand">à très vite chez Pigeard</span>
+      <div><span class="foot-soon">◷ Pigeard Audition — bientôt, 2027</span></div>
+    </div>
+    <div class="foot-links">
+      <div class="foot-col"><h4>La maison</h4><a href="histoire.html">Notre histoire</a><a href="equipe.html">L'équipe</a><a href="engagements.html">Nos engagements</a><a href="engagements.html#mutuelles">Nos mutuelles</a></div>
+      <div class="foot-col"><h4>Expertises</h4><a href="services.html#sur-mesure">Sur mesure</a><a href="services.html#optikid">Optikid</a><a href="services.html#basse-vision">Basse vision</a><a href="services.html#nuance-audio">Nuance Audio</a><a href="marques.html">Nos marques</a></div>
+      <div class="foot-col"><h4>Magasins</h4><a href="magasins.html">Nos 3 magasins</a><a href="contact.html">Contact</a><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a><a href="https://facebook.com/pigeard.opticiens" target="_blank" rel="noopener">Facebook</a></div>
+    </div>
+  </div>
+  <div class="foot-bottom"><span>© 2026 Pigeard — Créateur de regards depuis 1863.</span><span>Nogent-le-Rotrou · Brou · La Loupe</span></div>
+</div></footer>
+
+<!-- LIBS + MOTEUR + SCRIPT PAGE -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+/* stries lumineuses */
+(function(){var s=document.getElementById('streaks');if(!s)return;var h='';for(var i=0;i<6;i++){var l=10+i*14+Math.random()*4;h+='<span class="streak" style="left:'+l+'%;animation:drift '+(14+i*2.5)+'s linear '+(i*-3)+'s infinite"></span>';}s.innerHTML=h;var st=document.createElement('style');st.textContent='@keyframes drift{0%{transform:translateY(-6%) rotate(14deg)}100%{transform:translateY(6%) rotate(14deg)}}';document.head.appendChild(st);})();
+
+if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
+  /* Hero entrée + parallaxe */
+  gsap.from('#heroLogo',{y:50,scale:.86,autoAlpha:0,filter:'blur(16px)',duration:1.7,ease:'expo.out',delay:.1});
+  gsap.from('.hero-lead,.hero-note,.hero-cities',{y:24,autoAlpha:0,duration:1,ease:'power3.out',stagger:.14,delay:.5});
+  gsap.to('.hero-inner',{yPercent:22,autoAlpha:.25,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.hero-logo',{scale:1.06,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.blob.v',{yPercent:32,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.blob.c',{yPercent:-22,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+  /* FIL DU TEMPS horizontal épinglé : commence/finit au centre, UNE SEULE date active (celle au centre) */
+  if(window.innerWidth>980){
+    var ftH=document.getElementById('filTrackHome'), fpH=document.getElementById('filProgHome');
+    var cardsH=gsap.utils.toArray('#filAccueil .fil-card');
+    var distH=function(){return ftH.scrollWidth-window.innerWidth;};
+    function centerHighlightH(){
+      var cx=window.innerWidth/2, best=null, bd=1e9;
+      cardsH.forEach(function(c){var r=c.getBoundingClientRect();var d=Math.abs((r.left+r.width/2)-cx);if(d<bd){bd=d;best=c;}});
+      cardsH.forEach(function(c){c.classList.toggle('on',c===best);});
+    }
+    var DWELL=0.35;
+    gsap.timeline({scrollTrigger:{trigger:'#filAccueil',start:'top top',end:function(){return '+='+(distH()*(1+DWELL));},scrub:1.1,pin:true,invalidateOnRefresh:true,onRefresh:centerHighlightH,onUpdate:function(s){if(fpH)fpH.style.width=(s.progress*100)+'%';centerHighlightH();}}})
+      .to(ftH,{x:function(){return -distH();},ease:'none',duration:1})
+      .to(ftH,{x:function(){return -distH();},duration:DWELL});
+    centerHighlightH();
+  } else { document.querySelectorAll('#filAccueil .fil-card').forEach(function(c){c.classList.add('on');}); }
+  /* marquees défilants */
+  gsap.to('#marquee',{xPercent:-50,duration:32,ease:'none',repeat:-1});
+  gsap.fromTo('#marqueeBrands',{xPercent:-50},{xPercent:0,duration:42,ease:'none',repeat:-1});
+  if(document.getElementById('marqueeMutuelles')) gsap.to('#marqueeMutuelles',{xPercent:-50,duration:46,ease:'none',repeat:-1});
+  /* team row stagger */
+  gsap.from('#teamRow .frame',{autoAlpha:0,y:30,stagger:.08,duration:.8,ease:'power3.out',scrollTrigger:{trigger:'#teamRow',start:'top 85%'}});
+}
+</script>
+</body>
+</html>

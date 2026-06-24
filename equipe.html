@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>L'équipe — Pigeard, opticien depuis 1863</title>
+<meta name="description" content="Les visages de la maison Pigeard : 14 collaborateurs passionnés répartis sur nos trois magasins — Nogent-le-Rotrou, Brou et La Loupe." />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300..700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<style>
+/* ---- Page équipe : minimaliste, séparateurs de magasin marqués ---- */
+.eq-hero{padding:clamp(150px,24vh,260px) 0 clamp(50px,8vh,90px);text-align:center;position:relative;overflow:hidden}
+.eq-hero h1{font-family:var(--serif);font-weight:800;font-size:clamp(3rem,9vw,7.5rem);line-height:.92;letter-spacing:-.03em}
+.eq-hero .lede{max-width:46ch;margin:22px auto 0}
+
+/* Séparateur de magasin (le « passage » d'une équipe à l'autre) */
+.mag-cover{padding:clamp(70px,11vh,130px) 0 clamp(36px,5vh,60px);position:relative;overflow:hidden}
+.mag-cover .ghost{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--serif);font-weight:900;font-size:clamp(7rem,26vw,24rem);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(231,221,203,.06);white-space:nowrap;z-index:0;pointer-events:none}
+.mag-cover .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,6vw,80px);align-items:center;position:relative;z-index:2}
+.mag-cover.flip .mc-media{order:2}
+.mc-media .frame{aspect-ratio:4/3}
+.mc-num{font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;font-weight:600;display:inline-flex;align-items:center;gap:12px}
+.mc-num::before{content:"";width:34px;height:1px;background:currentColor;display:inline-block}
+.mag-cover h2{font-family:var(--serif);font-weight:800;font-size:clamp(2.6rem,7vw,5.4rem);line-height:.95;letter-spacing:-.02em;margin:14px 0 6px}
+.mc-sub{color:var(--muted);font-size:1.05rem}
+.mc-count{margin-top:20px;display:inline-flex;align-items:center;gap:10px;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--ligne);padding:9px 16px;border-radius:100px}
+.mc-hand{font-family:var(--hand);font-size:1.7rem;color:var(--camel);margin-top:18px;display:block;transform:rotate(-2deg)}
+
+/* Grille de membres (réutilise .member de site.css, légèrement affinée) */
+.team-grid{padding:0 0 clamp(60px,9vh,110px)}
+.member .acc{min-height:0}
+@media(max-width:980px){.mag-cover .wrap{grid-template-columns:1fr;gap:26px}.mag-cover.flip .mc-media{order:0}}
+</style>
+</head>
+<body>
+<div class="grain"></div><div class="progress" id="progress"></div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="index.html"><img class="nav-logo" src="assets/brand/pigeard-logo-white.svg" alt="Pigeard"></a>
+  <nav class="nav-links"><a href="histoire.html">Notre histoire</a><a href="services.html">Nos expertises</a><a href="marques.html">Nos marques</a><a href="equipe.html" class="active">L'équipe</a><a href="magasins.html">Magasins</a></nav>
+  <button class="nav-cta" onclick="location.href='magasins.html#rdv'">Prendre rendez-vous</button>
+  <button class="burger" aria-label="Menu">☰</button>
+</header>
+<div class="mobile-menu"><button class="close">✕</button><a href="index.html">Accueil</a><a href="histoire.html">Notre histoire</a><a href="services.html">Nos expertises</a><a href="marques.html">Nos marques</a><a href="equipe.html">L'équipe</a><a href="magasins.html">Magasins</a></div>
+
+<!-- HERO -->
+<section class="eq-hero wrap">
+  <div class="hero-bg"><div class="blob v" style="width:40vw;height:40vw;top:-12%;right:-2%"></div><div class="blob m" style="width:24vw;height:24vw;bottom:-10%;left:4%"></div></div>
+  <div style="position:relative;z-index:2">
+    <span class="kicker">depuis 1863, de main en main</span>
+    <h1>Les visages<br>de la maison.</h1>
+    <p class="lede">Quatorze passionnés, trois magasins, un même soin porté à chaque regard. Faites connaissance.</p>
+  </div>
+</section>
+
+<!-- ════ MAGASIN 01 — NOGENT-LE-ROTROU ════ -->
+<section class="mag-cover" style="color:var(--vert)">
+  <span class="ghost">Nogent</span>
+  <div class="wrap">
+    <div class="mc-media reveal"><div class="frame"><span class="tape" style="top:-16px;left:24px;transform:rotate(-3deg)"></span><img src="assets/photos/mag-nogent.jpg" alt="Magasin Pigeard Nogent-le-Rotrou"></div></div>
+    <div class="reveal" style="color:var(--blanc-chaud)">
+      <span class="mc-num" style="color:var(--vert)">Magasin 01 — le siège</span>
+      <h2>Nogent-le-Rotrou</h2>
+      <p class="mc-sub">4 Rue Gouverneur · là où tout a commencé.</p>
+      <span class="mc-count" style="color:var(--vert);border-color:rgba(126,140,90,.4)">8 visages</span>
+      <span class="mc-hand">le cœur de la maison</span>
+    </div>
+  </div>
+</section>
+<section class="team-grid wrap">
+  <div class="grid-members">
+    <article class="member reveal"><div class="pf"><img src="assets/equipe/nogent/christophe.jpg" alt="Christophe Pigeard"></div><div class="info"><div class="nm">Christophe Pigeard</div><div class="role">Directeur · Opticien diplômé</div><div class="acc">5ᵉ génération</div></div></article>
+    <article class="member reveal"><div class="pf"><img src="assets/equipe/nogent/antoine.jpg" alt="Antoine Pigeard"></div><div class="info"><div class="nm">Antoine Pigeard</div><div class="role">Technicien lunetier</div><div class="acc">6ᵉ génération</div></div></article>
+    <article class="member reveal"><div class="pf"><img src="assets/equipe/nogent/vincent.jpg" alt="Vincent"></div><div class="info"><div class="nm">Vincent</div><div class="role">Opticien diplômé</div></div></article>
+    <article class="member reveal"><div class="pf"><img src="assets/equipe/nogent/ludo.jpg" alt="Ludovic"></div><div class="info"><div class="nm">Ludovic</div><div class="role">Technicien lunetier</div></div></article>
+    <article class="member reveal"><div class="pf"><img src="assets/equipe/nogent/isabelle.jpg" alt="Isabelle Pigeard"></div><div class="info"><div class="nm">Isabelle Pigeard</div><div class="role">Responsable administratif</div></div></article>
+    <article class="member reveal"><div class="pf"><img src="assets/equipe/nogent/christelle.jpg" alt="Christelle"></div><div class="info"><div class="nm">Christelle</div><div class="role">Secrétaire</div></div></article>
+    <article class="member reveal"><div class="pf"><img src="assets/equipe/nogent/caroline.jpg" alt="Caroline"></div><div class="info"><div class="nm">Caroline</div><div class="role">Apprentie</div></div></article>
+    <article class="member reveal"><div class="pf"><img src="assets/equipe/nogent/karim.jpg" alt="Karim"></div><div class="info"><div class="nm">Karim</div><div class="role">Opticien</div></div></article>
+  </div>
+</section>
+
+<!-- ════ MAGASIN 02 — BROU ════ -->
+<section class="mag-cover flip" style="color:var(--camel)">
+  <span class="ghost">Brou</span>
+  <div class="wrap">
+    <div class="mc-media reveal"><div class="frame"><span class="tape" style="top:-16px;left:30px;transform:rotate(3deg)"></span><img src="assets/photos/mag-brou.jpg" alt="Magasin Pigeard Brou"></div></div>
+    <div class="reveal" style="color:var(--blanc-chaud)">
+      <span class="mc-num" style="color:var(--camel)">Magasin 02</span>
+      <h2>Brou</h2>
+      <p class="mc-sub">1 Place d'Armes · ouvert dès la fin des années 50.</p>
+      <span class="mc-count" style="color:var(--camel);border-color:rgba(209,163,121,.4)">3 visages</span>
+      <span class="mc-hand">l'esprit de proximité</span>
+    </div>
+  </div>
+</section>
+<section class="team-grid wrap">
+  <div class="grid-members" style="grid-template-columns:repeat(3,1fr)">
+    <article class="member reveal"><div class="pf"><img src="assets/equipe/brou/magali.jpg" alt="Magali"></div><div class="info"><div class="nm">Magali</div><div class="role">Technicien lunetier</div><div class="acc">le sourire de Brou</div></div></article>
+    <article class="member reveal"><div class="pf"><img src="assets/equipe/brou/edouard.jpg" alt="Edouard"></div><div class="info"><div class="nm">Edouard</div><div class="role">Opticien diplômé</div></div></article>
+    <article class="member reveal"><div class="pf"><img src="assets/equipe/brou/ana.jpg" alt="Ana"></div><div class="info"><div class="nm">Ana</div><div class="role">Apprentie</div></div></article>
+  </div>
+</section>
+
+<!-- ════ MAGASIN 03 — LA LOUPE ════ -->
+<section class="mag-cover" style="color:var(--moutarde)">
+  <span class="ghost">La Loupe</span>
+  <div class="wrap">
+    <div class="mc-media reveal"><div class="frame"><span class="tape" style="top:-16px;left:24px;transform:rotate(-3deg)"></span><img src="assets/photos/mag-laloupe.jpg" alt="Magasin Pigeard La Loupe"></div></div>
+    <div class="reveal" style="color:var(--blanc-chaud)">
+      <span class="mc-num" style="color:var(--moutarde)">Magasin 03</span>
+      <h2>La Loupe</h2>
+      <p class="mc-sub">10 Place de l'Hôtel de Ville · ouvert en 2004.</p>
+      <span class="mc-count" style="color:var(--moutarde);border-color:rgba(209,160,75,.4)">3 visages</span>
+      <span class="mc-hand">toujours plus près de vous</span>
+    </div>
+  </div>
+</section>
+<section class="team-grid wrap">
+  <div class="grid-members" style="grid-template-columns:repeat(3,1fr)">
+    <article class="member reveal"><div class="pf"><img src="assets/equipe/la-loupe/helene.jpg" alt="Hélène"></div><div class="info"><div class="nm">Hélène</div><div class="role">Opticienne diplômée</div></div></article>
+    <article class="member reveal"><div class="pf"><img src="assets/equipe/la-loupe/christel.jpg" alt="Christel"></div><div class="info"><div class="nm">Christel</div><div class="role">Opticienne diplômée</div></div></article>
+    <article class="member reveal"><div class="pf"><img src="assets/equipe/la-loupe/clemence.jpg" alt="Clémence"></div><div class="info"><div class="nm">Clémence</div><div class="role">Opticienne diplômée</div></div></article>
+  </div>
+</section>
+
+<!-- OUTRO (clair) -->
+<section class="sec-sm sec--cream"><div class="wrap" style="text-align:center">
+  <span class="eyebrow reveal" style="justify-content:center">Une famille d'opticiens</span>
+  <h2 class="reveal" style="font-family:var(--serif);font-weight:700;font-size:clamp(2.2rem,6vw,3.8rem);line-height:1.04;max-width:20ch;margin:18px auto 0">Votre regard mérite<br><em style="font-style:italic;color:var(--vert)">la meilleure vue.</em></h2>
+  <span class="hand reveal" style="font-size:2rem;display:inline-block;margin-top:14px;color:var(--bois)">on vous attend en boutique</span>
+  <div class="reveal" style="margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap"><a class="btn btn--primary" href="magasins.html#rdv">Prendre rendez-vous <span class="arr">→</span></a><a class="btn btn--ghost" href="histoire.html">Notre histoire</a></div>
+</div></section>
+
+<!-- FOOTER -->
+<footer class="site"><div class="wrap">
+  <div class="foot-top">
+    <div class="foot-brand"><img class="mac" src="assets/brand/macaron-cream.svg" alt="Pigeard depuis 1863"><h3>Créateur de regards depuis 1863.</h3><span class="hand">à très vite chez Pigeard</span></div>
+    <div class="foot-links">
+      <div class="foot-col"><h4>La maison</h4><a href="histoire.html">Notre histoire</a><a href="equipe.html">L'équipe</a><a href="engagements.html">Nos engagements</a></div>
+      <div class="foot-col"><h4>Expertises</h4><a href="services.html">Nos expertises</a><a href="marques.html">Nos marques</a></div>
+      <div class="foot-col"><h4>Magasins</h4><a href="magasins.html">Nos 3 magasins</a><a href="contact.html">Contact</a><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a></div>
+    </div>
+  </div>
+  <div class="foot-bottom"><span>© 2026 Pigeard — Créateur de regards depuis 1863.</span><span>Nogent-le-Rotrou · Brou · La Loupe</span></div>
+</div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
+  /* Hero */
+  gsap.from('.eq-hero .kicker',{y:18,autoAlpha:0,duration:1,ease:'power3.out',delay:.1});
+  gsap.from('.eq-hero h1',{y:46,scale:.96,autoAlpha:0,filter:'blur(10px)',duration:1.4,ease:'expo.out',delay:.2});
+  gsap.from('.eq-hero .lede',{y:18,autoAlpha:0,duration:1,ease:'power3.out',delay:.5});
+  /* Séparateurs de magasin : nom géant en parallaxe + photo qui se dévoile */
+  gsap.utils.toArray('.mag-cover').forEach(function(mc){
+    gsap.to(mc.querySelector('.ghost'),{yPercent:-18,ease:'none',scrollTrigger:{trigger:mc,start:'top bottom',end:'bottom top',scrub:true}});
+    var img=mc.querySelector('.frame img');
+    if(img) gsap.fromTo(img,{clipPath:'inset(0 0 100% 0)',scale:1.18},{clipPath:'inset(0 0 0% 0)',scale:1,duration:1.2,ease:'power3.out',scrollTrigger:{trigger:mc,start:'top 72%'}});
+  });
+}
+</script>
+</body>
+</html>
