@@ -1,0 +1,61 @@
+# ────────────────────────────────────────────────────────────────
+#  Éditeur de contenu Pigeard — Pages CMS (https://pagescms.org)
+#  Permet de modifier les textes & photos du site sans toucher au code.
+#  Pour l'activer : voir GUIDE-EDITION.md
+# ────────────────────────────────────────────────────────────────
+
+# Emplacements où sont rangées les photos uploadées depuis l'éditeur
+media:
+  - name: creations
+    label: Photos des créations
+    input: assets/creations
+    output: assets/creations
+    extensions: [jpg, jpeg, png, webp]
+
+# Contenus modifiables dans l'éditeur
+content:
+  # ---- LES CRÉATIONS SUR-MESURE ----
+  - name: creations
+    label: Créations sur-mesure
+    type: file
+    path: assets/data/creations.json
+    fields:
+      - name: creations
+        label: Montures
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{name}"
+        fields:
+          - { name: name, label: Nom, type: string }
+          - { name: tagline, label: "Accroche (texte manuscrit)", type: string }
+          - { name: description, label: Descriptif, type: text }
+          - { name: cats, label: "Catégories (femme, homme, solaire)", type: string, list: true }
+          - { name: image, label: Photo de la monture, type: image, options: { media: creations } }
+          - { name: slug, label: "Identifiant — NE PAS MODIFIER", type: string, readonly: true }
+
+  # ---- NOS MARQUES ----
+  - name: marques
+    label: Nos marques
+    type: file
+    path: assets/data/marques.json
+    fields:
+      - name: brands
+        label: Marques
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{name}"
+        fields:
+          - { name: name, label: Nom de la marque, type: string }
+          - { name: tagline, label: Accroche, type: string }
+          - { name: paragraphs, label: "Paragraphes de présentation", type: text, list: true }
+          - { name: category, label: "Catégories (solaire, optique, femme…)", type: string, list: true }
+          - { name: origin, label: Origine, type: string }
+          - { name: founded, label: Année de création, type: number }
+          - { name: style, label: "Style (mots-clés)", type: string }
+          - { name: madeInFrance, label: Fabriqué en France, type: boolean }
+          - { name: url, label: Site officiel de la marque, type: string }
+          - { name: slug, label: "Identifiant — NE PAS MODIFIER", type: string, readonly: true }
