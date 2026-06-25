@@ -245,17 +245,25 @@ if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
   (function(){
     var ftH=document.getElementById('filTrackHome'), fpH=document.getElementById('filProgHome');
     var cardsH=gsap.utils.toArray('#filAccueil .fil-card');
-    var distH=function(){var L=cardsH[cardsH.length-1];return L?(L.offsetLeft+L.offsetWidth/2-window.innerWidth/2):0;};
-    function centerHighlightH(){
-      var cx=window.innerWidth/2, best=0, bd=1e9;
-      cardsH.forEach(function(c,i){var r=c.getBoundingClientRect();var d=Math.abs((r.left+r.width/2)-cx);if(d<bd){bd=d;best=i;}});
-      cardsH.forEach(function(c,i){c.classList.toggle('on',i===best);c.classList.toggle('passed',i<=best);});
+    if(window.innerWidth>980){
+      /* PC : défilement horizontal épinglé */
+      var distH=function(){var L=cardsH[cardsH.length-1];return L?(L.offsetLeft+L.offsetWidth/2-window.innerWidth/2):0;};
+      var centerHighlightH=function(){
+        var cx=window.innerWidth/2, best=0, bd=1e9;
+        cardsH.forEach(function(c,i){var r=c.getBoundingClientRect();var d=Math.abs((r.left+r.width/2)-cx);if(d<bd){bd=d;best=i;}});
+        cardsH.forEach(function(c,i){c.classList.toggle('on',i===best);c.classList.toggle('passed',i<=best);});
+      };
+      var DWELL=0.35;
+      gsap.timeline({scrollTrigger:{trigger:'#filAccueil',start:'top top',end:function(){return '+='+(distH()*(1+DWELL));},scrub:1.1,pin:true,invalidateOnRefresh:true,onRefresh:centerHighlightH,onUpdate:function(s){if(fpH)fpH.style.width=(s.progress*100)+'%';centerHighlightH();}}})
+        .to(ftH,{x:function(){return -distH();},ease:'none',duration:1})
+        .to(ftH,{x:function(){return -distH();},duration:DWELL});
+      centerHighlightH();
+    } else {
+      /* Mobile : frise VERTICALE façon parcours santé visuelle — barre verte qui se remplit + billes qui s'allument */
+      var fill=document.createElement('i'); fill.className='fil-fill'; ftH.insertBefore(fill, ftH.firstChild);
+      gsap.to(fill,{height:'100%',ease:'none',scrollTrigger:{trigger:ftH,start:'top 80%',end:'bottom 60%',scrub:.6}});
+      cardsH.forEach(function(c){ ScrollTrigger.create({trigger:c,start:'top 80%',onEnter:function(){c.classList.add('on');},onLeaveBack:function(){c.classList.remove('on');}}); });
     }
-    var DWELL=0.35;
-    gsap.timeline({scrollTrigger:{trigger:'#filAccueil',start:'top top',end:function(){return '+='+(distH()*(1+DWELL));},scrub:1.1,pin:true,invalidateOnRefresh:true,onRefresh:centerHighlightH,onUpdate:function(s){if(fpH)fpH.style.width=(s.progress*100)+'%';centerHighlightH();}}})
-      .to(ftH,{x:function(){return -distH();},ease:'none',duration:1})
-      .to(ftH,{x:function(){return -distH();},duration:DWELL});
-    centerHighlightH();
   })();
   /* marquees défilants */
   gsap.to('#marquee',{xPercent:-50,duration:32,ease:'none',repeat:-1});
