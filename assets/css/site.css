@@ -69,7 +69,7 @@ button{font-family:inherit;cursor:pointer}
 /* ---------- NAV ---------- */
 header.nav{position:fixed;top:0;left:0;width:100%;z-index:9000;display:flex;align-items:center;justify-content:space-between;padding:18px clamp(20px,5vw,64px);transition:background .5s var(--ease),padding .5s var(--ease),border-color .5s;border-bottom:1px solid transparent}
 header.nav.scrolled{background:rgba(14,13,11,.74);backdrop-filter:blur(14px);border-bottom:1px solid var(--ligne);padding-top:12px;padding-bottom:12px}
-.nav-logo{height:34px;width:auto}
+.nav-logo{height:42px;width:auto}
 .nav-links{display:flex;align-items:center;gap:30px}
 .nav-links a{font-size:.82rem;letter-spacing:.05em;color:var(--muted);transition:color .3s;position:relative}
 .nav-links a:hover,.nav-links a.active{color:var(--blanc-chaud)}
@@ -288,7 +288,7 @@ footer.site{padding:clamp(80px,11vh,140px) 0 46px;border-top:1px solid var(--lig
   footer.site{padding:clamp(60px,9vh,90px) 0 38px}
   header.nav{padding-top:14px;padding-bottom:14px}
   header.nav.scrolled{padding-top:10px;padding-bottom:10px}
-  .nav-logo{height:30px}
+  .nav-logo{height:36px}
   .btn{padding:14px 22px}
 }
 
