@@ -257,7 +257,7 @@ if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
         cardsH.forEach(function(c,i){var r=c.getBoundingClientRect();var d=Math.abs((r.left+r.width/2)-cx);if(d<bd){bd=d;best=i;}});
         cardsH.forEach(function(c,i){c.classList.toggle('on',i===best);c.classList.toggle('passed',i<=best);});
       };
-      var DWELL=0.35;
+      var DWELL=(0.22*window.innerHeight)/Math.max(distH(),1);  /* petit maintien constant (~0,2 écran) au lieu de 35% de la distance -> évite le long scroll dans le vide après la dernière date */
       gsap.timeline({scrollTrigger:{trigger:'#filAccueil',start:'top top',end:function(){return '+='+(distH()*(1+DWELL));},scrub:1.1,pin:true,invalidateOnRefresh:true,onRefresh:centerHighlightH,onUpdate:function(s){if(fpH)fpH.style.width=(s.progress*100)+'%';centerHighlightH();}}})
         .to(ftH,{x:function(){return -distH();},ease:'none',duration:1})
         .to(ftH,{x:function(){return -distH();},duration:DWELL});
