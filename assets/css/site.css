@@ -77,8 +77,10 @@ header.nav.scrolled{background:rgba(14,13,11,.74);backdrop-filter:blur(14px);bor
 .nav-cta{font-size:.8rem;letter-spacing:.08em;font-weight:600;text-transform:uppercase;color:#0E0D0B;background:var(--corail);padding:11px 20px;border-radius:100px;border:none;transition:transform .35s var(--ease),box-shadow .35s,background .35s}
 .nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 30px -8px rgba(255,98,91,.6);background:#FF7A72}
 .burger{display:none;background:none;border:none;color:var(--blanc-chaud);font-size:1.5rem}
-.mobile-menu{position:fixed;inset:0;z-index:8999;background:rgba(14,13,11,.97);backdrop-filter:blur(8px);display:none;flex-direction:column;align-items:center;justify-content:center;gap:26px}
-.mobile-menu.open{display:flex}
+.mobile-menu{position:fixed;inset:0;z-index:9500;background:rgba(14,13,11,.97);backdrop-filter:blur(8px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;opacity:0;visibility:hidden;transform:translateY(-14px);transition:opacity .42s ease,transform .5s cubic-bezier(.22,1,.36,1),visibility .42s}
+.mobile-menu.open{opacity:1;visibility:visible;transform:translateY(0)}
+.mobile-menu a{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+.mobile-menu.open a{opacity:1;transform:translateY(0);transition-delay:.12s}
 .mobile-menu a{font-family:var(--serif);font-size:1.8rem;color:var(--blanc-chaud)}
 .mobile-menu .close{position:absolute;top:24px;right:28px;font-size:2rem;background:none;border:none;color:var(--blanc-chaud)}
 
@@ -86,7 +88,7 @@ header.nav.scrolled{background:rgba(14,13,11,.74);backdrop-filter:blur(14px);bor
 .hero{min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;position:relative}
 .hero--page{min-height:78svh}
 .hero-bg{position:absolute;inset:0;z-index:0}
-.hero-photo-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;z-index:0;opacity:.28}
+.hero-photo-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;z-index:0;opacity:.35}
 .hero-photo-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(10,10,10,.55) 0%,rgba(10,10,10,.3) 50%,rgba(10,10,10,.75) 100%)}
 .blob{position:absolute;border-radius:50%;filter:blur(105px);opacity:.42;will-change:transform}
 .blob.v{background:radial-gradient(circle,rgba(126,140,90,.55),transparent 65%)}
