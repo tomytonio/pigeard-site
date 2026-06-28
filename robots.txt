@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Pages à ne pas indexer (templates dynamiques sans contenu propre)
+Disallow: /marque.html
+
+# Sitemap
+Sitemap: https://www.pigeard-opticiens.fr/sitemap.xml
