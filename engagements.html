@@ -43,12 +43,6 @@
 .sante-badge{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--bois);border:1px solid rgba(134,101,73,.4);padding:8px 18px;border-radius:100px;margin-top:32px}
 .sante-badge::before{content:"✓";font-weight:700;color:var(--vert)}
 
-/* ── mutuelles marquee ── */
-.mutu-wrap{overflow:hidden;padding:38px 0;border-top:1px solid var(--ligne);border-bottom:1px solid var(--ligne)}
-.mutu-track{display:flex;gap:56px;width:max-content;will-change:transform}
-.mutu-track span{font-family:var(--serif);font-size:clamp(1.2rem,2.4vw,1.9rem);color:var(--muted);font-style:italic;white-space:nowrap}
-.mutu-track span b{color:var(--blanc-chaud);font-style:normal;font-weight:700}
-
 /* ── CTA final ── */
 .cta-final{text-align:center}
 
@@ -246,53 +240,28 @@
     <p>Tiers-payant avec <strong style="color:var(--blanc-chaud)">toutes</strong> les mutuelles — liste non exhaustive. Pas d'avance de frais, on s'occupe de tout.</p>
   </div>
 
-  <div class="mutu-wrap reveal">
-    <div class="mutu-track" id="mutuMarquee">
-      <!-- liste × 2 pour la boucle infinie -->
-      <span><b>Harmonie Mutuelle</b></span><span>·</span>
-      <span><b>APICIL</b></span><span>·</span>
-      <span><b>AG2R La Mondiale</b></span><span>·</span>
-      <span><b>Malakoff Humanis</b></span><span>·</span>
-      <span><b>MGEFI</b></span><span>·</span>
-      <span><b>Matmut</b></span><span>·</span>
-      <span><b>Almerys</b></span><span>·</span>
-      <span><b>Apivia</b></span><span>·</span>
-      <span><b>Axa</b></span><span>·</span>
-      <span><b>Mercer</b></span><span>·</span>
-      <span><b>MMA</b></span><span>·</span>
-      <span><b>MNH</b></span><span>·</span>
-      <span><b>Mutuelle Générale</b></span><span>·</span>
-      <span><b>Santéclair</b></span><span>·</span>
-      <span><b>Swiss Life</b></span><span>·</span>
-      <span><b>Carte Blanche</b></span><span>·</span>
-      <span><b>Viamedis</b></span><span>·</span>
-      <span><b>Séveane</b></span><span>·</span>
-      <span><b>SP Santé</b></span><span>·</span>
-      <span><b>Verspieren</b></span><span>·</span>
-      <span><b>Itelis</b></span><span>·</span>
-      <!-- doublon pour boucle -->
-      <span><b>Harmonie Mutuelle</b></span><span>·</span>
-      <span><b>APICIL</b></span><span>·</span>
-      <span><b>AG2R La Mondiale</b></span><span>·</span>
-      <span><b>Malakoff Humanis</b></span><span>·</span>
-      <span><b>MGEFI</b></span><span>·</span>
-      <span><b>Matmut</b></span><span>·</span>
-      <span><b>Almerys</b></span><span>·</span>
-      <span><b>Apivia</b></span><span>·</span>
-      <span><b>Axa</b></span><span>·</span>
-      <span><b>Mercer</b></span><span>·</span>
-      <span><b>MMA</b></span><span>·</span>
-      <span><b>MNH</b></span><span>·</span>
-      <span><b>Mutuelle Générale</b></span><span>·</span>
-      <span><b>Santéclair</b></span><span>·</span>
-      <span><b>Swiss Life</b></span><span>·</span>
-      <span><b>Carte Blanche</b></span><span>·</span>
-      <span><b>Viamedis</b></span><span>·</span>
-      <span><b>Séveane</b></span><span>·</span>
-      <span><b>SP Santé</b></span><span>·</span>
-      <span><b>Verspieren</b></span><span>·</span>
-      <span><b>Itelis</b></span><span>·</span>
-    </div>
+  <div class="mutu-grid reveal">
+    <span class="mutu-chip">Harmonie Mutuelle</span>
+    <span class="mutu-chip">APICIL</span>
+    <span class="mutu-chip">AG2R La Mondiale</span>
+    <span class="mutu-chip">Malakoff Humanis</span>
+    <span class="mutu-chip">MGEFI</span>
+    <span class="mutu-chip">Matmut</span>
+    <span class="mutu-chip">Almerys</span>
+    <span class="mutu-chip">Apivia</span>
+    <span class="mutu-chip">AXA</span>
+    <span class="mutu-chip">Mercer</span>
+    <span class="mutu-chip">MMA</span>
+    <span class="mutu-chip">MNH</span>
+    <span class="mutu-chip">Mutuelle Générale</span>
+    <span class="mutu-chip">Santéclair</span>
+    <span class="mutu-chip">Swiss Life</span>
+    <span class="mutu-chip">Carte Blanche</span>
+    <span class="mutu-chip">Viamedis</span>
+    <span class="mutu-chip">Séveane</span>
+    <span class="mutu-chip">SP Santé</span>
+    <span class="mutu-chip">Verspieren</span>
+    <span class="mutu-chip">Itelis</span>
   </div>
 
   <p class="reveal" style="margin-top:24px;font-size:.86rem;color:var(--muted);text-align:center">Plus de 60 mutuelles partenaires · liste mise à jour régulièrement</p>
@@ -339,8 +308,6 @@ if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
   gsap.from('#heroH1',{y:60,autoAlpha:0,filter:'blur(14px)',duration:1.6,ease:'expo.out',delay:.15});
   gsap.from('.page-hero .lede,.page-hero .eyebrow',{y:24,autoAlpha:0,duration:1,ease:'power3.out',stagger:.12,delay:.45});
 
-  /* Marquee mutuelles */
-  gsap.to('#mutuMarquee',{xPercent:-50,duration:38,ease:'none',repeat:-1});
 
   /* Reveals via ScrollTrigger (fallback au moteur site.js si déjà câblé) */
   gsap.utils.toArray('.pilier').forEach(function(el,i){

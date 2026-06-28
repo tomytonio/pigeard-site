@@ -183,6 +183,11 @@ header.nav.scrolled{background:rgba(14,13,11,.74);backdrop-filter:blur(14px);bor
 .marquee span b{color:var(--blanc-chaud);font-style:normal;font-weight:700}
 #marqueeMutuelles span{font-family:var(--sans);font-style:normal;font-size:clamp(.95rem,1.6vw,1.2rem);color:var(--creme);font-weight:500;white-space:nowrap}
 
+/* Mutuelles : liste en pastilles, lisible (au lieu du défilement) */
+.mutu-grid{display:flex;flex-wrap:wrap;gap:10px 12px}
+.mutu-chip{font-size:.92rem;color:var(--creme);background:rgba(126,140,90,.10);border:1px solid var(--ligne);padding:9px 16px;border-radius:100px;font-weight:500;white-space:nowrap;transition:border-color .35s,background .35s,color .35s}
+.mutu-chip:hover{border-color:var(--vert);background:rgba(126,140,90,.18);color:var(--blanc-chaud)}
+
 /* Instagram — grille de visuels */
 .ig-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
 .ig-tile{position:relative;aspect-ratio:1/1;border-radius:12px;overflow:hidden;display:block;border:1px solid var(--ligne)}

@@ -118,11 +118,26 @@
 <section class="sec wrap" id="mutuelles">
   <div class="reveal" style="border:1px solid var(--ligne);border-radius:20px;background:linear-gradient(160deg,rgba(126,140,90,.10),rgba(255,255,255,.012));padding:clamp(32px,5vw,56px);overflow:hidden">
     <div class="sec-head" style="margin-bottom:24px;align-items:flex-end"><h2 style="font-size:clamp(1.9rem,5vw,3.2rem)" data-bind="textes.accueil.mutuellesTitre" data-bind-multiline>Toutes les mutuelles,<br>on s'occupe de tout.</h2><p>Tiers payant et prise en charge possible avec <b style="color:var(--blanc-chaud)">tous les organismes</b>, ainsi que le 100% Santé. Vous repartez l'esprit tranquille — on gère la paperasse.</p></div>
-    <div class="marquee-wrap" style="border:none;padding:12px 0;-webkit-mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)">
-      <div class="marquee" id="marqueeMutuelles" style="gap:40px">
-        <span>Harmonie Mutuelle</span><span>APICIL</span><span>AG2R La Mondiale</span><span>Malakoff Humanis</span><span>MGEN</span><span>MATMUT</span><span>MACIF</span><span>Swiss Life</span><span>Santéclair</span><span>Carte Blanche</span><span>Itelis</span><span>Viamedis</span><span>AXA</span><span>MMA</span><span>Apivia</span><span>Eovi MCD</span><span>Mutualia</span><span>Almerys</span><span>Mercer</span>
-        <span>Harmonie Mutuelle</span><span>APICIL</span><span>AG2R La Mondiale</span><span>Malakoff Humanis</span><span>MGEN</span><span>MATMUT</span><span>MACIF</span><span>Swiss Life</span><span>Santéclair</span><span>Carte Blanche</span><span>Itelis</span><span>Viamedis</span><span>AXA</span><span>MMA</span><span>Apivia</span><span>Eovi MCD</span><span>Mutualia</span><span>Almerys</span><span>Mercer</span>
-      </div>
+    <div class="mutu-grid reveal">
+      <span class="mutu-chip">Harmonie Mutuelle</span>
+      <span class="mutu-chip">APICIL</span>
+      <span class="mutu-chip">AG2R La Mondiale</span>
+      <span class="mutu-chip">Malakoff Humanis</span>
+      <span class="mutu-chip">MGEN</span>
+      <span class="mutu-chip">Matmut</span>
+      <span class="mutu-chip">MACIF</span>
+      <span class="mutu-chip">Swiss Life</span>
+      <span class="mutu-chip">Santéclair</span>
+      <span class="mutu-chip">Carte Blanche</span>
+      <span class="mutu-chip">Itelis</span>
+      <span class="mutu-chip">Viamedis</span>
+      <span class="mutu-chip">AXA</span>
+      <span class="mutu-chip">MMA</span>
+      <span class="mutu-chip">Apivia</span>
+      <span class="mutu-chip">Eovi MCD</span>
+      <span class="mutu-chip">Mutualia</span>
+      <span class="mutu-chip">Almerys</span>
+      <span class="mutu-chip">Mercer</span>
     </div>
     <div style="margin-top:22px;display:flex;gap:22px;align-items:center;flex-wrap:wrap"><span style="display:inline-flex;align-items:center;gap:10px;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--vert);border:1px solid rgba(126,140,90,.4);padding:9px 16px;border-radius:100px">◆ Tiers payant · 100% Santé</span><a class="link-arrow" href="engagements.html#mutuelles">Voir nos accords mutuelles <span class="arr">→</span></a></div>
   </div>
@@ -272,7 +287,6 @@ if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
   /* marquees défilants */
   gsap.to('#marquee',{xPercent:-50,duration:32,ease:'none',repeat:-1});
   gsap.fromTo('#marqueeBrands',{xPercent:-50},{xPercent:0,duration:42,ease:'none',repeat:-1});
-  if(document.getElementById('marqueeMutuelles')) gsap.to('#marqueeMutuelles',{xPercent:-50,duration:46,ease:'none',repeat:-1});
   /* team row stagger */
   gsap.from('#teamRow .frame',{autoAlpha:0,y:30,stagger:.08,duration:.8,ease:'power3.out',scrollTrigger:{trigger:'#teamRow',start:'top 85%'}});
 }
