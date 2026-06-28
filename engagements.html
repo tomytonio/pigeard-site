@@ -340,15 +340,10 @@ if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
   gsap.from('.page-hero .lede,.page-hero .eyebrow',{y:24,autoAlpha:0,duration:1,ease:'power3.out',stagger:.12,delay:.45});
 
 
-  /* Reveals via ScrollTrigger (fallback au moteur site.js si déjà câblé) */
-  gsap.utils.toArray('.pilier').forEach(function(el,i){
-    gsap.from(el,{autoAlpha:0,y:40,duration:.85,ease:'power3.out',delay:i*.08,
-      scrollTrigger:{trigger:el,start:'top 88%',once:true}});
-  });
-  gsap.utils.toArray('.atout').forEach(function(el,i){
-    gsap.from(el,{autoAlpha:0,y:30,duration:.75,ease:'power3.out',delay:i*.07,
-      scrollTrigger:{trigger:el,start:'top 90%',once:true}});
-  });
+  /* Les reveals (.atout, .pilier, etc.) sont animés par site.js, qui gère
+     correctement les éléments déjà visibles au chargement (above-the-fold
+     sur mobile). On évite ici un second tween qui entrait en conflit et
+     bloquait les premières cartes à opacity:0 sur téléphone. */
 }
 </script>
 </body>
