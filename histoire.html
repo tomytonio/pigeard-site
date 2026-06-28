@@ -18,42 +18,6 @@
 .year-rail .yr.active{color:var(--vert);opacity:1;font-size:1.9rem;transform:translateX(4px)}
 .year-rail .yr.active::before{box-shadow:0 0 12px rgba(126,140,90,.7)}
 
-/* Fil horizontal épinglé (le rythme « vers la droite ») */
-.fil-h{height:100svh;overflow:hidden;position:relative}
-.fil-h .head{position:absolute;top:clamp(86px,12vh,110px);left:0;width:100%;z-index:5;pointer-events:none}
-.fil-h .head .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
-.fil-h .head h2{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.8rem);font-weight:700;line-height:1}
-.fil-track{display:flex;align-items:center;height:100%;will-change:transform;padding:0 12vw;gap:5vw}
-.fil-card{flex:0 0 auto;width:min(60vw,360px);position:relative;display:flex;flex-direction:column}
-.fil-card .yy{font-family:var(--serif);font-weight:900;font-size:clamp(3.2rem,8vw,6rem);line-height:.9;color:var(--creme);-webkit-text-stroke:0;transition:color .35s var(--ease)}
-.fil-card.on .yy{color:var(--vert)}
-.fil-card h3{font-family:var(--serif);font-size:1.5rem;font-weight:700;margin-top:14px}
-.fil-card p{color:var(--muted);margin-top:8px;font-size:.95rem;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.9em}
-/* le trait qui relie les dates + la bille corail qui suit l'évolution */
-.fil-card .dot{position:relative;width:15px;height:15px;border-radius:50%;background:var(--noir-3);border:2px solid var(--muted);margin:26px 0 0;z-index:2;transition:background .4s,border-color .4s,box-shadow .4s}
-.fil-card .dot::after{content:"";position:absolute;left:6px;top:50%;transform:translateY(-50%);height:2px;width:calc(min(60vw,360px) + 5vw);background:var(--ligne);z-index:-1;transition:background .4s}
-.fil-card:last-child .dot::after{display:none}
-.fil-card.passed .dot{background:var(--corail);border-color:var(--corail);box-shadow:0 0 14px rgba(255,98,91,.6)}
-.fil-card.passed .dot::after{background:var(--corail)}
-.fil-prog{position:absolute;left:0;bottom:54px;height:2px;width:100%;background:var(--ligne);z-index:5}
-.fil-prog i{position:absolute;left:0;top:0;height:100%;width:0;background:linear-gradient(90deg,var(--corail),var(--moutarde))}
-/* MOBILE (≤980) : frise VERTICALE façon « parcours santé visuelle » — barre verte + billes qui s'allument (horizontal conservé sur PC) */
-@media(max-width:980px){
-  .fil-h{height:auto;overflow:visible}
-  .fil-h .head{position:static;margin-bottom:18px;padding:0 clamp(20px,5vw,64px)}
-  .fil-h .head .hand{display:none}
-  .fil-prog{display:none}
-  .fil-track{flex-direction:column;align-items:stretch;height:auto;will-change:auto;position:relative;gap:0;padding:6px 0 6px 34px;transform:none!important}
-  .fil-track::before{content:"";position:absolute;left:6px;top:0;bottom:0;width:2px;background:var(--ligne)}
-  .fil-fill{position:absolute;left:6px;top:0;width:2px;height:0;background:linear-gradient(var(--vert),var(--moutarde));z-index:1}
-  .fil-card{width:100%;display:block;padding:0 0 clamp(34px,6vh,52px) 30px}
-  .fil-card .yy{font-size:clamp(2.8rem,13vw,4.2rem)}
-  .fil-card.on .yy{color:var(--creme)}
-  .fil-card .dot{position:absolute;left:-34px;top:12px;margin:0;width:15px;height:15px}
-  .fil-card .dot::after{display:none}
-  .fil-card.on .dot{background:var(--vert);border-color:var(--vert);box-shadow:0 0 16px rgba(126,140,90,.7)}
-}
-
 /* Chapitres verticaux */
 .chapter{padding:clamp(80px,14vh,150px) 0;position:relative}
 .chapter .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,90px);align-items:center}
@@ -76,10 +40,6 @@
   .chapter .wrap{grid-template-columns:1fr;gap:26px}.chapter.flip .media{order:0}
 }
 /* ===== Affinage TÉLÉPHONE (≤768 / ≤600 / ≤400) — n'affecte jamais le bureau ===== */
-@media(max-width:768px){
-  /* en-tête du fil empilé : titre plus contenu */
-  .fil-h .head h2{font-size:clamp(1.6rem,7vw,2.2rem)}
-}
 @media(max-width:600px){
   /* HERO : titre légèrement réduit pour respirer */
   .hero h1{font-size:clamp(2.9rem,12vw,4.4rem)!important}
@@ -109,7 +69,7 @@
   .media .cap{font-size:1.3rem}
   .interlude h2{font-size:clamp(1.6rem,8vw,2.2rem)}
 }
-@media(prefers-reduced-motion:reduce){html:not(.force-motion) .interlude .word{opacity:1;transform:none}html:not(.force-motion) .fil-h{height:auto;overflow:visible}html:not(.force-motion) .fil-track{flex-direction:column;height:auto;padding:24px 0;gap:30px}html:not(.force-motion) .fil-card{width:100%}html:not(.force-motion) .fil-card .dot::after{display:none}}
+@media(prefers-reduced-motion:reduce){html:not(.force-motion) .interlude .word{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -138,21 +98,6 @@
     <div class="span-years" style="display:flex;gap:18px;justify-content:center;align-items:center;font-size:clamp(.9rem,2vw,1.1rem);letter-spacing:.3em;color:var(--muted)"><span>1863</span><span style="width:60px;height:1px;background:var(--ligne)"></span><span>aujourd'hui</span></div>
   </div>
   <div class="scrollcue"><span>Dérouler le fil</span><span class="line"></span></div>
-</section>
-
-<!-- FIL HORIZONTAL (rythme vers la droite) -->
-<section class="fil-h" id="fil">
-  <div class="head"><div class="wrap"><h2>Le fil du temps</h2><span class="hand" style="font-size:1.6rem">de 1863 à demain →</span></div></div>
-  <div class="fil-track" id="filTrack">
-    <article class="fil-card"><div class="yy">1863</div><h3>La fondation</h3><p>Auguste Pigeard, coutelier, ouvre son échoppe à Nogent.</p><div class="dot"></div></article>
-    <article class="fil-card"><div class="yy">1944</div><h3>Le bombardement</h3><p>Le magasin détruit — 80 ans effacés en une nuit.</p><div class="dot"></div></article>
-    <article class="fil-card"><div class="yy">1963</div><h3>Le centenaire</h3><p>Cent ans, l'ouverture de Brou, la modernité.</p><div class="dot"></div></article>
-    <article class="fil-card"><div class="yy">1980</div><h3>L'aventure humaine</h3><p>Le Rotary Aphaque System, des lunettes pour le monde.</p><div class="dot"></div></article>
-    <article class="fil-card"><div class="yy">2004</div><h3>Christophe</h3><p>La 5ᵉ génération ouvre La Loupe.</p><div class="dot"></div></article>
-    <article class="fil-card"><div class="yy">2013</div><h3>Antoine</h3><p>La 6ᵉ génération écrit la suite.</p><div class="dot"></div></article>
-    <article class="fil-card"><div class="yy">2027</div><h3>Demain</h3><p>Pigeard Audition — un nouveau regard sur l'écoute.</p><div class="dot"></div></article>
-  </div>
-  <div class="fil-prog"><i id="filProg"></i></div>
 </section>
 
 <!-- CHAPITRES -->
@@ -268,31 +213,6 @@ if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
   gsap.from('.span-years',{y:20,autoAlpha:0,duration:1,ease:'power3.out',delay:.6});
   gsap.to('.hero-inner',{yPercent:24,autoAlpha:.2,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
 
-  /* FIL HORIZONTAL épinglé : défilement vers la droite (le contenu glisse à gauche) */
-  (function(){
-    var ft=document.getElementById('filTrack'), fp=document.getElementById('filProg');
-    var fcards=gsap.utils.toArray('.fil-card');
-    if(window.innerWidth>980){
-      /* PC : défilement horizontal épinglé */
-      var dist=function(){var L=fcards[fcards.length-1];return L?(L.offsetLeft+L.offsetWidth/2-window.innerWidth/2):0;};
-      var centerHl=function(){
-        var cx=window.innerWidth/2, best=0, bd=1e9;
-        fcards.forEach(function(c,i){var r=c.getBoundingClientRect();var d=Math.abs((r.left+r.width/2)-cx);if(d<bd){bd=d;best=i;}});
-        fcards.forEach(function(c,i){c.classList.toggle('on',i===best);c.classList.toggle('passed',i<=best);});
-      };
-      var DWELL=0.35;
-      gsap.timeline({scrollTrigger:{trigger:'.fil-h',start:'top top',end:function(){return '+='+(dist()*(1+DWELL));},scrub:1.1,pin:true,invalidateOnRefresh:true,onRefresh:centerHl,onUpdate:function(s){if(fp)fp.style.width=(s.progress*100)+'%';centerHl();}}})
-        .to(ft,{x:function(){return -dist();},ease:'none',duration:1})
-        .to(ft,{x:function(){return -dist();},duration:DWELL});
-      centerHl();
-    } else {
-      /* Mobile : frise VERTICALE façon parcours santé visuelle — barre verte qui se remplit + billes qui s'allument */
-      var fill=document.createElement('i'); fill.className='fil-fill'; ft.insertBefore(fill, ft.firstChild);
-      gsap.to(fill,{height:'100%',ease:'none',scrollTrigger:{trigger:ft,start:'top 80%',end:'bottom 60%',scrub:.6}});
-      fcards.forEach(function(c){ ScrollTrigger.create({trigger:c,start:'top 80%',onEnter:function(){c.classList.add('on');},onLeaveBack:function(){c.classList.remove('on');}}); });
-    }
-  })();
-
   /* Chapitres : photo (clip + zoom), textes, ghost parallax + activation de l'année (gauche) */
   gsap.utils.toArray('.chapter').forEach(function(ch){
     var img=ch.querySelector('.frame img');
@@ -317,7 +237,7 @@ if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
 }else{
   activateYear('1863');
   document.querySelectorAll('.frame img').forEach(function(e){e.style.clipPath='none';});
-  document.querySelectorAll('.interlude .word,.fil-card').forEach(function(e){e.style.opacity=1;e.classList&&e.classList.add('on');});
+  document.querySelectorAll('.interlude .word').forEach(function(e){e.style.opacity=1;e.classList&&e.classList.add('on');});
 }
 </script>
 </body>
