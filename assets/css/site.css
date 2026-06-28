@@ -86,6 +86,8 @@ header.nav.scrolled{background:rgba(14,13,11,.74);backdrop-filter:blur(14px);bor
 .hero{min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;position:relative}
 .hero--page{min-height:78svh}
 .hero-bg{position:absolute;inset:0;z-index:0}
+.hero-photo-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;z-index:0;opacity:.28}
+.hero-photo-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(10,10,10,.55) 0%,rgba(10,10,10,.3) 50%,rgba(10,10,10,.75) 100%)}
 .blob{position:absolute;border-radius:50%;filter:blur(105px);opacity:.42;will-change:transform}
 .blob.v{background:radial-gradient(circle,rgba(126,140,90,.55),transparent 65%)}
 .blob.c{background:radial-gradient(circle,rgba(255,98,91,.42),transparent 65%)}
