@@ -204,7 +204,7 @@ header.nav.scrolled{background:rgba(14,13,11,.74);backdrop-filter:blur(14px);bor
 .fil-card{flex:0 0 auto;width:min(60vw,360px);position:relative;display:flex;flex-direction:column}
 .fil-card .yy{font-family:var(--serif);font-weight:900;font-size:clamp(3.2rem,8vw,6rem);line-height:.9;color:var(--creme);-webkit-text-stroke:0;transition:color .35s var(--ease)}
 .fil-card.on .yy{color:var(--vert)}
-.fil-card h3{font-family:var(--serif);font-size:1.5rem;font-weight:700;margin-top:14px}
+.fil-card h3{font-family:var(--serif);font-size:1.3rem;font-weight:700;margin-top:14px;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.4em}
 .fil-card p{color:var(--muted);margin-top:8px;font-size:.95rem;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.9em}
 /* le trait qui relie les dates + la bille corail qui suit l'évolution */
 .fil-card .dot{position:relative;width:15px;height:15px;border-radius:50%;background:var(--noir-3);border:2px solid var(--muted);margin:26px 0 0;z-index:2;transition:background .4s,border-color .4s,box-shadow .4s}
