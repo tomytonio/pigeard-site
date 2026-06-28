@@ -128,8 +128,8 @@
     if(i<0){ location.replace('marques.html'); return; }
     var b=B[i], prev=B[(i-1+B.length)%B.length], next=B[(i+1)%B.length];
     document.title=b.name+' — Nos marques · Pigeard';
-    var slug=b.slug||s;
-    var pgUrl='https://www.pigeard-opticiens.fr/marque.html?b='+slug;
+    var pgSlug=b.slug||slug;
+    var pgUrl='https://www.pigeard-opticiens.fr/marque.html?b='+pgSlug;
     var pgDesc=(b.paragraphs&&b.paragraphs[0]?b.paragraphs[0].substring(0,155)+'…':'Découvrez '+b.name+' chez Pigeard Opticiens.');
     var canon=document.getElementById('canonicalTag');if(canon)canon.href=pgUrl;
     var ogU=document.getElementById('ogUrl');if(ogU)ogU.content=pgUrl;
