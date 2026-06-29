@@ -31,7 +31,7 @@
       "image": "https://www.pigeard-opticiens.fr/assets/photos/mag-nogent.jpg",
       "telephone": "+33237520339",
       "email": "nogent@pigeard-opticiens.fr",
-      "sameAs": ["https://tourmkr.com/F1lMW7PJyl"],
+      "sameAs": ["https://tourmkr.com/F1lMW7PJyl", "https://www.google.com/maps?cid=2370635629431281441"],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "4 Rue Gouverneur",
@@ -40,7 +40,7 @@
         "addressRegion": "Eure-et-Loir",
         "addressCountry": "FR"
       },
-      "geo": {"@type": "GeoCoordinates", "latitude": 48.3219, "longitude": 0.8218},
+      "geo": {"@type": "GeoCoordinates", "latitude": 48.3212047, "longitude": 0.8216245},
       "hasMap": "https://www.google.com/maps/search/?api=1&query=4+Rue+Gouverneur+28400+Nogent-le-Rotrou",
       "virtualTourUrl": "https://tourmkr.com/F1lMW7PJyl",
       "openingHoursSpecification": [
@@ -63,6 +63,7 @@
       "image": "https://www.pigeard-opticiens.fr/assets/photos/mag-brou.jpg",
       "telephone": "+33237470529",
       "email": "brou@pigeard-opticiens.fr",
+      "sameAs": ["https://tourmkr.com/F1pfGP3jmg", "https://www.google.com/maps?cid=13123065232035373380"],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "1 Place d'Armes",
@@ -71,6 +72,7 @@
         "addressRegion": "Eure-et-Loir",
         "addressCountry": "FR"
       },
+      "geo": {"@type": "GeoCoordinates", "latitude": 48.209894, "longitude": 1.168812},
       "hasMap": "https://www.google.com/maps/search/?api=1&query=1+Place+d%27Armes+28160+Brou",
       "virtualTourUrl": "https://tourmkr.com/F1pfGP3jmg",
       "openingHoursSpecification": [
@@ -91,6 +93,7 @@
       "image": "https://www.pigeard-opticiens.fr/assets/photos/mag-laloupe.jpg",
       "telephone": "+33237810712",
       "email": "laloupe@pigeard-opticiens.fr",
+      "sameAs": ["https://tourmkr.com/F1cUhCkhYQ", "https://www.google.com/maps?cid=17029706582348079859"],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "10 Place de l'Hôtel de Ville",
@@ -99,6 +102,7 @@
         "addressRegion": "Eure-et-Loir",
         "addressCountry": "FR"
       },
+      "geo": {"@type": "GeoCoordinates", "latitude": 48.4718913, "longitude": 1.0139337},
       "hasMap": "https://www.google.com/maps/search/?api=1&query=10+Place+de+l%27H%C3%B4tel+de+Ville+28240+La+Loupe",
       "openingHoursSpecification": [
         {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "12:00"},
@@ -128,6 +132,9 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300..700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/brand/macaron-cream.svg">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="assets/css/site.css">
 <style>
 /* ---- Blocs magasin 2 colonnes ---- */
@@ -157,6 +164,14 @@
 .pmr-tag{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px solid var(--ligne);padding:5px 11px;border-radius:100px;margin-top:8px}
 .map-link{font-size:.82rem;font-weight:600;letter-spacing:.04em;color:var(--muted);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--ligne);transition:color .3s}
 .map-link:hover{color:var(--vert)}
+/* ── Avis Google (sobre, cohérent charte) ── */
+.g-reviews{display:inline-flex;align-items:center;gap:10px;margin:14px 0 2px;text-decoration:none;width:fit-content}
+.g-stars{position:relative;display:inline-block;font-size:1.02rem;line-height:1;letter-spacing:1.5px;font-family:Arial,Helvetica,sans-serif}
+.g-stars::before{content:"★★★★★";color:rgba(231,221,203,.20)}
+.g-stars::after{content:"★★★★★";color:var(--moutarde);position:absolute;left:0;top:0;width:calc(var(--rate,5)/5*100%);overflow:hidden;white-space:nowrap}
+.g-rate{font-weight:700;color:var(--creme);font-size:.96rem}
+.g-count{color:var(--muted);font-size:.82rem;letter-spacing:.02em;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
+.g-reviews:hover .g-count{color:var(--vert);border-color:var(--vert)}
 /* section RDV ancre */
 .rdv-section{background:var(--creme);color:var(--encre);padding:clamp(90px,14vh,160px) 0}
 .rdv-section .sec-head h2{color:var(--encre)}
@@ -285,6 +300,11 @@
     </div>
     <div class="mag-info">
       <h2 class="city-name">Nogent-le-Rotrou<span class="siege-badge">Siège</span></h2>
+      <a class="g-reviews" href="https://www.google.com/maps?cid=2370635629431281441" target="_blank" rel="noopener" aria-label="Avis Google du magasin de Nogent-le-Rotrou : 4,8 sur 5, 45 avis. Ouvre la fiche Google Maps.">
+        <span class="g-stars" style="--rate:4.8" aria-hidden="true"></span>
+        <span class="g-rate">4,8</span>
+        <span class="g-count">45 avis Google</span>
+      </a>
       <p class="addr-block">
         <strong>4 Rue Gouverneur</strong><br>
         28400 Nogent-le-Rotrou
@@ -323,6 +343,11 @@
     </div>
     <div class="mag-info">
       <h2 class="city-name">Brou</h2>
+      <a class="g-reviews" href="https://www.google.com/maps?cid=13123065232035373380" target="_blank" rel="noopener" aria-label="Avis Google du magasin de Brou : 4,9 sur 5, 52 avis. Ouvre la fiche Google Maps.">
+        <span class="g-stars" style="--rate:4.9" aria-hidden="true"></span>
+        <span class="g-rate">4,9</span>
+        <span class="g-count">52 avis Google</span>
+      </a>
       <p class="addr-block">
         <strong>1 Place d'Armes</strong><br>
         28160 Brou
@@ -361,6 +386,11 @@
     </div>
     <div class="mag-info">
       <h2 class="city-name">La Loupe</h2>
+      <a class="g-reviews" href="https://www.google.com/maps?cid=17029706582348079859" target="_blank" rel="noopener" aria-label="Avis Google du magasin de La Loupe : 4,7 sur 5, 46 avis. Ouvre la fiche Google Maps.">
+        <span class="g-stars" style="--rate:4.7" aria-hidden="true"></span>
+        <span class="g-rate">4,7</span>
+        <span class="g-count">46 avis Google</span>
+      </a>
       <p class="addr-block">
         <strong>10 Place de l'Hôtel de Ville</strong><br>
         28240 La Loupe
@@ -428,7 +458,7 @@
     </div>
     <div class="foot-links">
       <div class="foot-col"><h4>La maison</h4><a href="histoire.html">Notre histoire</a><a href="equipe.html">L'équipe</a><a href="engagements.html">Nos engagements</a><a href="engagements.html#mutuelles">Nos mutuelles</a></div>
-      <div class="foot-col"><h4>Expertises</h4><a href="services.html#sur-mesure">Sur mesure</a><a href="services.html#optikid">Optikid</a><a href="services.html#basse-vision">Basse vision</a><a href="services.html#nuance-audio">Nuance Audio</a><a href="marques.html">Nos marques</a></div>
+      <div class="foot-col"><h4>Expertises</h4><a href="services.html#sur-mesure">Sur mesure</a><a href="services.html#optikid">Optikid</a><a href="services.html#basse-vision">Basse vision</a><a href="services.html#nuance-audio">Nuance Audio</a><a href="marques.html">Nos marques</a><a href="creations.html">Nos créations</a></div>
       <div class="foot-col"><h4>Magasins</h4><a href="magasins.html">Nos 3 magasins</a><a href="contact.html">Contact</a><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a><a href="https://facebook.com/pigeard.opticiens" target="_blank" rel="noopener">Facebook</a></div>
     </div>
   </div>

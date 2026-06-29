@@ -38,6 +38,9 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300..700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/brand/macaron-cream.svg">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="assets/css/site.css">
 <style>
 /* ── page-hero décoratif ── */
@@ -298,6 +301,49 @@
   <p class="reveal" style="margin-top:24px;font-size:.86rem;color:var(--muted);text-align:center">Plus de 60 mutuelles partenaires · liste mise à jour régulièrement</p>
 </section>
 
+<!-- FAQ — questions fréquentes (GEO / recherches IA) -->
+<style>
+.faq{max-width:840px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--ligne)}
+.faq-item summary{cursor:pointer;list-style:none;padding:22px 4px;display:flex;justify-content:space-between;align-items:center;gap:20px;font-family:var(--serif);font-size:clamp(1.05rem,2.2vw,1.35rem);color:var(--creme);font-weight:600;transition:color .3s}
+.faq-item summary:hover{color:var(--vert-clair)}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"+";font-family:var(--sans);font-size:1.6rem;line-height:1;color:var(--vert);transition:transform .35s var(--ease);flex-shrink:0}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item p{color:var(--muted);line-height:1.75;padding:0 4px 24px;margin:0;max-width:74ch}
+.faq-item p a{color:var(--vert-clair);text-decoration:underline;text-underline-offset:3px}
+</style>
+<section class="sec wrap" id="faq">
+  <div class="sec-head reveal">
+    <h2>Questions fréquentes</h2>
+    <p>Mutuelles, garanties, paiement : l'essentiel en un coup d'œil.</p>
+  </div>
+  <div class="faq">
+    <details class="faq-item reveal"><summary>Pigeard prend-il en charge ma mutuelle (tiers payant) ?</summary><p>Oui. Nous pratiquons le tiers payant avec plus de 60 mutuelles : vous n'avez aucune avance de frais à faire, nous nous occupons des démarches de remboursement directement avec votre complémentaire santé.</p></details>
+    <details class="faq-item reveal"><summary>Proposez-vous le dispositif 100 % Santé ?</summary><p>Oui, le dispositif 100 % Santé est disponible dans nos trois magasins, avec un reste à charge nul possible sur les équipements concernés. Nous vous présentons toujours un devis clair avant toute commande.</p></details>
+    <details class="faq-item reveal"><summary>Puis-je régler mon équipement en plusieurs fois ?</summary><p>Oui, le paiement en 3 ou 4 fois sans frais est possible, pour équiper toute la famille sans contrainte. La commande est validée avec un acompte minimum de 50 % du reste à charge (ou le règlement total).</p></details>
+    <details class="faq-item reveal"><summary>Quelles sont les garanties sur mes lunettes ?</summary><p>Vous disposez de 30 jours pour changer d'avis sur la monture, d'un remplacement des verres possible en cas d'adaptation non satisfaisante (sous 3 mois), d'une garantie casse de 2 ans (franchise de 30 %) et d'une garantie de 2 ans contre les défauts de fabrication. L'entretien — ajustage, nettoyage, petites réparations — est gratuit à vie en magasin.</p></details>
+    <details class="faq-item reveal"><summary>Vos verres sont-ils fabriqués en France ?</summary><p>Oui. Nous travaillons les verres Nikon, fabriqués à Provins, en France. La Maison Pigeard est par ailleurs certifiée AFNOR « Qualité Optique », la seule certification qualité reconnue dans l'optique française.</p></details>
+    <details class="faq-item reveal"><summary>Équipez-vous les enfants et la basse vision ?</summary><p>Oui. Notre espace Optikid est dédié à l'optique de l'enfant, et nous proposons un accompagnement spécialisé en basse vision (aides visuelles pour les personnes malvoyantes). Tout le détail sur la page <a href="services.html">Nos expertises</a>.</p></details>
+    <details class="faq-item reveal"><summary>Où se trouvent vos magasins et faut-il prendre rendez-vous ?</summary><p>Nous sommes présents à Nogent-le-Rotrou (siège), Brou et La Loupe, au cœur du Perche (Eure-et-Loir). Pour votre confort, la <a href="magasins.html#rdv">prise de rendez-vous en ligne</a> est recommandée afin d'éviter toute attente.</p></details>
+  </div>
+</section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Pigeard prend-il en charge ma mutuelle (tiers payant) ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Nous pratiquons le tiers payant avec plus de 60 mutuelles : vous n'avez aucune avance de frais à faire, nous nous occupons des démarches de remboursement directement avec votre complémentaire santé."}},
+    {"@type": "Question", "name": "Proposez-vous le dispositif 100 % Santé ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, le dispositif 100 % Santé est disponible dans nos trois magasins, avec un reste à charge nul possible sur les équipements concernés. Nous vous présentons toujours un devis clair avant toute commande."}},
+    {"@type": "Question", "name": "Puis-je régler mon équipement en plusieurs fois ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui, le paiement en 3 ou 4 fois sans frais est possible, pour équiper toute la famille sans contrainte. La commande est validée avec un acompte minimum de 50 % du reste à charge (ou le règlement total)."}},
+    {"@type": "Question", "name": "Quelles sont les garanties sur mes lunettes ?", "acceptedAnswer": {"@type": "Answer", "text": "Vous disposez de 30 jours pour changer d'avis sur la monture, d'un remplacement des verres possible en cas d'adaptation non satisfaisante (sous 3 mois), d'une garantie casse de 2 ans (franchise de 30 %) et d'une garantie de 2 ans contre les défauts de fabrication. L'entretien — ajustage, nettoyage, petites réparations — est gratuit à vie en magasin."}},
+    {"@type": "Question", "name": "Vos verres sont-ils fabriqués en France ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Nous travaillons les verres Nikon, fabriqués à Provins, en France. La Maison Pigeard est par ailleurs certifiée AFNOR « Qualité Optique », la seule certification qualité reconnue dans l'optique française."}},
+    {"@type": "Question", "name": "Équipez-vous les enfants et la basse vision ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Notre espace Optikid est dédié à l'optique de l'enfant, et nous proposons un accompagnement spécialisé en basse vision (aides visuelles pour les personnes malvoyantes)."}},
+    {"@type": "Question", "name": "Où se trouvent vos magasins et faut-il prendre rendez-vous ?", "acceptedAnswer": {"@type": "Answer", "text": "Nous sommes présents à Nogent-le-Rotrou (siège), Brou et La Loupe, au cœur du Perche (Eure-et-Loir). Pour votre confort, la prise de rendez-vous en ligne est recommandée afin d'éviter toute attente."}}
+  ]
+}
+</script>
+
 <!-- CTA FINAL -->
 <section class="sec-sm sec--cream">
   <div class="wrap cta-final">
@@ -321,7 +367,7 @@
     </div>
     <div class="foot-links">
       <div class="foot-col"><h4>La maison</h4><a href="histoire.html">Notre histoire</a><a href="equipe.html">L'équipe</a><a href="engagements.html">Nos engagements</a><a href="engagements.html#mutuelles">Nos mutuelles</a></div>
-      <div class="foot-col"><h4>Expertises</h4><a href="services.html#sur-mesure">Sur mesure</a><a href="services.html#optikid">Optikid</a><a href="services.html#basse-vision">Basse vision</a><a href="services.html#nuance-audio">Nuance Audio</a><a href="marques.html">Nos marques</a></div>
+      <div class="foot-col"><h4>Expertises</h4><a href="services.html#sur-mesure">Sur mesure</a><a href="services.html#optikid">Optikid</a><a href="services.html#basse-vision">Basse vision</a><a href="services.html#nuance-audio">Nuance Audio</a><a href="marques.html">Nos marques</a><a href="creations.html">Nos créations</a></div>
       <div class="foot-col"><h4>Magasins</h4><a href="magasins.html">Nos 3 magasins</a><a href="contact.html">Contact</a><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a><a href="https://facebook.com/pigeard.opticiens" target="_blank" rel="noopener">Facebook</a></div>
     </div>
   </div>
