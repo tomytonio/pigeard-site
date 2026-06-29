@@ -1,0 +1,43 @@
+name: Build static pages
+
+# Régénère les pages marques (marque-*.html), les blocs crawlables des grilles
+# et le sitemap à partir des fichiers JSON édités via PagesCMS.
+# Se déclenche quand le contenu (JSON) ou le générateur change.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'assets/data/marques.json'
+      - 'assets/data/creations.json'
+      - 'tools/build_static.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-static
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Générer les pages statiques
+        run: python tools/build_static.py
+      - name: Committer les pages régénérées
+        run: |
+          git config user.name "pigeard-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Aucun changement à committer."
+          else
+            git commit -m "build: régénère les pages marques/créations + sitemap [skip ci]"
+            git push
+          fi

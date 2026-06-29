@@ -279,6 +279,45 @@ footer.site{padding:clamp(80px,11vh,140px) 0 46px;border-top:1px solid var(--lig
 .foot-bottom a{color:var(--creme);transition:color .3s}
 .foot-bottom a:hover{color:var(--vert)}
 
+/* ---------- pages marque (fiches statiques) ---------- */
+.brand-hero{padding:clamp(150px,24vh,260px) 0 clamp(40px,6vh,70px);position:relative;overflow:hidden}
+.brand-hero .watermark{position:absolute;right:-2%;top:30%;font-family:var(--serif);font-weight:900;font-size:clamp(8rem,28vw,26rem);line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(231,221,203,.07);z-index:0;pointer-events:none;white-space:nowrap}
+.brand-hero .back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:26px}
+.brand-hero .back:hover{color:var(--vert)}
+.brand-name{font-family:var(--serif);font-weight:800;font-size:clamp(3rem,9vw,8rem);line-height:.92;letter-spacing:-.02em}
+.brand-tagline{font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,3vw,2rem);color:var(--creme);margin-top:16px}
+.brand-meta{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+.brand-meta span{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border:1px solid var(--ligne);padding:7px 14px;border-radius:100px}
+.brand-meta span.mif{color:var(--vert);border-color:rgba(126,140,90,.5)}
+.brand-body{padding:clamp(20px,4vh,40px) 0 clamp(90px,14vh,170px)}
+.brand-body .wrap{display:grid;grid-template-columns:1.4fr .6fr;gap:clamp(30px,6vw,80px);align-items:start}
+.brand-body p{color:var(--creme);font-size:1.06rem;margin-bottom:20px;max-width:60ch}
+.brand-aside{position:sticky;top:120px;border:1px solid var(--ligne);border-radius:16px;padding:28px;background:var(--noir-2)}
+.brand-aside h4{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.brand-aside .v{font-family:var(--serif);font-size:1.3rem;margin-bottom:18px}
+.brand-aside .btn{width:100%;justify-content:center;margin-top:6px}
+.brand-aside a.site{display:inline-flex;align-items:center;gap:8px;color:var(--vert);font-size:.85rem;margin-top:16px}
+.brand-nav{display:flex;justify-content:space-between;border-top:1px solid var(--ligne);padding-top:30px;margin-top:30px;gap:20px;flex-wrap:wrap}
+.brand-nav a{color:var(--muted);transition:color .3s}.brand-nav a:hover{color:var(--blanc-chaud)}
+.brand-nav .nm{font-family:var(--serif);font-size:1.4rem;color:var(--blanc-chaud);display:block;margin-top:4px}
+.brands-fallback{display:block;columns:2;gap:24px;margin-top:20px}
+.brands-fallback a{display:block;color:var(--creme);padding:6px 0}
+@media(max-width:900px){.brand-body .wrap{grid-template-columns:1fr}.brand-aside{position:static}}
+@media(max-width:600px){
+  .brand-hero{padding-top:clamp(100px,18vh,150px);padding-bottom:clamp(28px,4vh,50px)}
+  .brand-name{font-size:clamp(2.2rem,11vw,4rem)}
+  .brand-tagline{font-size:clamp(1.1rem,4.5vw,1.5rem);margin-top:10px}
+  .brand-hero .watermark{display:none}
+  .brand-meta span{padding:6px 10px;font-size:.68rem}
+  .brand-aside{padding:20px 18px}
+  .brand-nav{flex-direction:column;gap:16px;padding-top:24px}
+  .brand-nav a{display:block}
+  .brand-nav a:last-child{text-align:left}
+  .brand-nav .nm{font-size:1.2rem}
+  .brands-fallback{columns:1}
+}
+@media(max-width:400px){.brand-name{font-size:clamp(2rem,10vw,3rem)}}
+
 /* ---------- responsive ---------- */
 @media(max-width:980px){
   .nav-links{display:none}.burger{display:block}
