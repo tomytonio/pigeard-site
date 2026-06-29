@@ -69,16 +69,17 @@
 @media(max-width:980px){
   .year-rail{display:none}
   .chapter .wrap{grid-template-columns:1fr;gap:26px}.chapter.flip .media{order:0}
+  /* DATE de chapitre : sortie de derrière la photo, affichée lisiblement au-dessus du contenu */
+  .chapter .year-ghost{position:static;display:block;top:auto;color:var(--vert);opacity:1;font-size:clamp(3.4rem,15vw,5rem);line-height:1;margin:0 0 8px;text-align:left}
+  .chapter:not(.flip) .year-ghost,.chapter.flip .year-ghost{right:auto;left:auto}
 }
 /* ===== Affinage TÉLÉPHONE (≤768 / ≤600 / ≤400) — n'affecte jamais le bureau ===== */
 @media(max-width:600px){
   /* HERO : titre légèrement réduit pour respirer */
   .hero h1{font-size:clamp(2.9rem,12vw,4.4rem)!important}
   .span-years{gap:12px}
-  /* ANNÉES FANTÔMES en filigrane : plus petites, rentrées dans le cadre, sans déborder */
-  .chapter .year-ghost{font-size:clamp(4.6rem,21vw,6.4rem);top:2%}
-  .chapter:not(.flip) .year-ghost{right:2%}
-  .chapter.flip .year-ghost{left:2%}
+  /* DATE de chapitre (mobile) : taille adaptée, reste lisible au-dessus de la photo */
+  .chapter .year-ghost{font-size:clamp(3rem,14vw,4.4rem)}
   /* CHAPITRES : rythme vertical resserré, proportions images/textes */
   .chapter{padding:clamp(46px,9vh,72px) 0}
   .chapter .wrap{gap:20px}
@@ -96,7 +97,7 @@
 }
 @media(max-width:400px){
   .hero h1{font-size:clamp(2.6rem,12vw,3.4rem)!important}
-  .chapter .year-ghost{font-size:clamp(4rem,20vw,5.4rem)}
+  .chapter .year-ghost{font-size:clamp(2.7rem,13vw,3.8rem)}
   .media .cap{font-size:1.3rem}
   .interlude h2{font-size:clamp(1.6rem,8vw,2.2rem)}
 }
