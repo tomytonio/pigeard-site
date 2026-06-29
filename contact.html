@@ -137,9 +137,11 @@
       <span class="eyebrow" style="margin-bottom:32px;display:inline-flex">Nous écrire</span>
 
       <!--
-        Formulaire mailto — aucun backend requis.
-        Pour connecter un vrai service (Formspree, EmailJS, Shopify Contact Form, Make/n8n…),
-        remplacer l'attribut action et la logique JS ci-dessous par l'endpoint approprié.
+        Formulaire connecté au n8n Pigeard (envoi réel des emails).
+        Le message part vers la boîte du magasin choisi (Nogent / Brou / La Loupe),
+        avec l'email du visiteur en Reply-To.
+        Endpoint : webhook n8n « contact-site » (voir ENDPOINT dans le script en bas de page).
+        ⚙️ Côté n8n : workflow « Pigeard IA — Formulaire Contact (site vitrine) » à ACTIVER.
       -->
       <form id="contactForm" novalidate>
         <div class="form-row">
@@ -160,7 +162,7 @@
           </div>
           <div class="form-group">
             <label for="magasin">Magasin concerné</label>
-            <select id="magasin" name="magasin">
+            <select id="magasin" name="magasin" required>
               <option value="">— Choisir un magasin —</option>
               <option value="Nogent-le-Rotrou">Nogent-le-Rotrou</option>
               <option value="Brou">Brou</option>
@@ -179,10 +181,14 @@
           <textarea id="message" name="message" placeholder="Votre message…" required></textarea>
         </div>
 
+        <!-- Anti-spam (honeypot) : invisible pour les humains, piège à robots -->
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+
         <div class="form-submit-row" style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:8px">
           <button type="submit" class="btn btn--primary">Envoyer <span class="arr">→</span></button>
           <span class="form-notice">Nous vous répondons sous 24 h (jours ouvrés).</span>
         </div>
+        <p id="formStatus" class="form-notice" role="status" aria-live="polite" style="display:none;margin-top:14px"></p>
       </form>
     </div>
 
@@ -293,14 +299,37 @@ if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
   gsap.from('.page-hero .eyebrow',{y:16,autoAlpha:0,duration:.9,ease:'power3.out',delay:.05});
 }
 
-/* ── Logique mailto formulaire ──
-   Fonctionne sans GSAP et sans backend.
-   Pour brancher un vrai service (Formspree : action="https://formspree.io/f/XXXXX" method="POST",
-   ou n8n webhook, Make, etc.), supprimer ce listener et configurer l'attribut action du <form>.
+/* ── Envoi réel du formulaire via le n8n Pigeard ──
+   Le webhook route le message vers la boîte du magasin choisi (Nogent / Brou / La Loupe),
+   avec l'email du visiteur en Reply-To. Réponse attendue : { success: true }.
+   ⚙️ Le workflow n8n « Pigeard IA — Formulaire Contact (site vitrine) » doit être ACTIVÉ.
 */
 (function(){
   var form = document.getElementById('contactForm');
   if(!form) return;
+
+  var ENDPOINT = 'https://n8n-1zv1.srv1641932.hstgr.cloud/webhook/contact-site';
+
+  var btn      = form.querySelector('button[type="submit"]');
+  var statusEl = document.getElementById('formStatus');
+
+  function setStatus(msg, kind){
+    if(!statusEl) return;
+    statusEl.textContent = msg;
+    statusEl.style.display = 'block';
+    statusEl.style.color = (kind === 'error') ? 'var(--corail)'
+                         : (kind === 'ok')    ? 'var(--vert-clair, var(--vert))'
+                         :                       'var(--muted)';
+  }
+  function flashBtn(label, color){
+    btn.textContent = label;
+    if(color){ btn.style.background = color; btn.style.borderColor = color; }
+  }
+  function resetBtn(){
+    btn.disabled = false;
+    btn.innerHTML = 'Envoyer <span class="arr">→</span>';
+    btn.style.background = ''; btn.style.borderColor = '';
+  }
 
   form.addEventListener('submit', function(e){
     e.preventDefault();
@@ -312,36 +341,57 @@ if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
     var objet   = (document.getElementById('objet').value   || '').trim();
     var message = (document.getElementById('message').value || '').trim();
 
-    /* Validation minimale */
-    if(!nom || !email || !objet || !message){
-      var btn = form.querySelector('button[type="submit"]');
-      btn.textContent = 'Remplissez les champs requis';
-      btn.style.background = 'var(--corail)';
-      btn.style.borderColor = 'var(--corail)';
-      setTimeout(function(){
-        btn.innerHTML = 'Envoyer <span class="arr">→</span>';
-        btn.style.background = '';
-        btn.style.borderColor = '';
-      }, 2500);
+    /* Anti-spam : honeypot rempli (robot) → on ignore silencieusement */
+    var hp = form.querySelector('input[name="botcheck"]');
+    var botcheck = (hp && hp.checked) ? '1' : '';
+    if(botcheck){ return; }
+
+    /* Validation */
+    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if(!nom || !emailOk || !magasin || !objet || !message){
+      flashBtn('Vérifiez les champs requis', 'var(--corail)');
+      setStatus(!magasin
+        ? 'Merci de choisir un magasin.'
+        : 'Merci de remplir les champs requis (nom, email valide, objet, message).', 'error');
+      setTimeout(resetBtn, 2600);
       return;
     }
 
-    /* Construction de l'objet et du corps du mail */
-    var sujet = objet + (magasin ? ' [' + magasin + ']' : '');
+    var payload = {
+      nom: nom,
+      email: email,
+      tel: tel,
+      magasin: magasin,
+      objet: objet,
+      message: message,
+      botcheck: botcheck
+    };
 
-    var corps = 'Bonjour,\n\n'
-      + 'Message envoyé depuis le formulaire de contact pigeard-opticiens.fr\n\n'
-      + 'Nom : ' + nom + '\n'
-      + 'Email : ' + email + '\n'
-      + (tel ? 'Téléphone : ' + tel + '\n' : '')
-      + (magasin ? 'Magasin : ' + magasin + '\n' : '')
-      + '\nMessage :\n' + message + '\n';
+    btn.disabled = true;
+    flashBtn('Envoi en cours…');
+    setStatus('Envoi en cours…', 'info');
 
-    var mailto = 'mailto:nogent@pigeard-opticiens.fr'
-      + '?subject=' + encodeURIComponent(sujet)
-      + '&body='    + encodeURIComponent(corps);
-
-    window.location.href = mailto;
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function(r){ return r.json().catch(function(){ return {}; }); })
+    .then(function(data){
+      if(data && data.success){
+        form.reset();
+        flashBtn('Message envoyé ✓', 'var(--vert)');
+        setStatus('Merci ! Votre message a bien été envoyé à notre magasin de ' + magasin + '. Nous vous répondons sous 24 h (jours ouvrés).', 'ok');
+        setTimeout(resetBtn, 4500);
+      } else {
+        throw new Error((data && data.message) || 'Échec');
+      }
+    })
+    .catch(function(){
+      flashBtn('Échec de l’envoi', 'var(--corail)');
+      setStatus('Une erreur est survenue lors de l’envoi. Merci de réessayer dans un instant, ou de nous écrire directement à l’adresse du magasin de ' + magasin + '.', 'error');
+      setTimeout(resetBtn, 3800);
+    });
   });
 })();
 </script>
