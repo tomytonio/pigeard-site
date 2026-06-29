@@ -161,7 +161,8 @@
       var a=document.createElement('article');
       a.className='crea-card';a.setAttribute('data-cat',(c.cats||[]).join(' '));
       a.style.setProperty('--ac', PAL[i%PAL.length]);
-      a.innerHTML='<div class="img"><img src="'+c.image+'" alt="Monture sur mesure '+c.name+' — Pigeard" loading="lazy"></div>'+
+      var cwebp=(c.image||'').replace(/\.(jpe?g|png)$/i,'.webp');
+      a.innerHTML='<div class="img"><picture><source srcset="'+cwebp+'" type="image/webp"><img src="'+c.image+'" alt="Monture sur mesure '+c.name+' — Pigeard" loading="lazy"></picture></div>'+
                   '<div class="info"><div class="nm">'+c.name+'</div><div class="tl">'+(c.tagline||'')+'</div><div class="desc">'+(c.description||'')+'</div></div>';
       grid.appendChild(a);
     });
