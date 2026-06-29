@@ -276,6 +276,8 @@ footer.site{padding:clamp(80px,11vh,140px) 0 46px;border-top:1px solid var(--lig
 .foot-col a{display:block;color:var(--creme);font-size:.95rem;padding:5px 0;transition:color .3s}
 .foot-col a:hover{color:var(--vert)}
 .foot-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:64px;padding-top:24px;border-top:1px solid var(--ligne);color:var(--muted);font-size:.78rem;flex-wrap:wrap;gap:12px}
+.foot-bottom a{color:var(--creme);transition:color .3s}
+.foot-bottom a:hover{color:var(--vert)}
 
 /* ---------- responsive ---------- */
 @media(max-width:980px){
