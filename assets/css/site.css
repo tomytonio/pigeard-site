@@ -96,6 +96,12 @@ header.nav.scrolled{background:rgba(14,13,11,.74);backdrop-filter:blur(14px);bor
 .blob.c{background:radial-gradient(circle,rgba(255,98,91,.42),transparent 65%)}
 .blob.m{background:radial-gradient(circle,rgba(209,160,75,.4),transparent 65%)}
 .streaks{position:absolute;inset:0;opacity:.4;mix-blend-mode:screen}
+/* — Section "Lunettes sur mesure" avec vidéo d'atelier en fond (services.html) — */
+.sur-mesure-vid{position:relative;overflow:hidden;background:#0E0D0B}
+.sur-mesure-vid .sm-poster{position:absolute;inset:0;z-index:0;background:url("../video/hero-atelier-poster.jpg") center/cover no-repeat;opacity:.4}
+.sur-mesure-vid .sm-bgvid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;transition:opacity 1.4s var(--ease);pointer-events:none}
+.sur-mesure-vid .sm-bgvid.is-playing{opacity:.4}
+.sur-mesure-vid .sm-bgvid-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(10,10,10,.95) 0%,rgba(10,10,10,.8) 40%,rgba(10,10,10,.5) 72%,rgba(10,10,10,.32) 100%)}
 .streak{position:absolute;top:-20%;height:140%;width:1px;background:linear-gradient(to bottom,transparent,rgba(239,233,223,.55),transparent);transform:rotate(14deg);filter:blur(.5px)}
 .hero-inner{position:relative;z-index:2;width:100%}
 .hero-logo{width:min(620px,86vw);height:auto;margin:0 auto;display:block;filter:drop-shadow(0 20px 50px rgba(0,0,0,.5))}

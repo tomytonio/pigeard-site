@@ -214,32 +214,27 @@
 <!-- ══════════════════════════════════════════
      01 — LUNETTES SUR MESURE
      ══════════════════════════════════════════ -->
-<section class="sec wrap" id="sur-mesure">
-  <div class="expert-grid">
-    <!-- Texte -->
-    <div class="reveal">
+<section class="sec sur-mesure-vid" id="sur-mesure">
+  <div class="sm-poster"></div>
+  <video class="sm-bgvid" muted loop playsinline preload="none" aria-hidden="true"></video>
+  <div class="sm-bgvid-overlay"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="reveal" style="max-width:640px">
       <div class="svc-num">01 — Lunettes sur mesure</div>
       <h2 style="font-family:var(--serif);font-weight:700;font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.03;letter-spacing:-.02em">Faites main,<br>rien que pour <em style="font-style:italic;color:var(--vert)">vous</em>.</h2>
       <p class="lede" style="margin-top:24px">Conçues de A à Z dans notre atelier de Nogent-le-Rotrou.</p>
-      <p style="color:var(--muted);margin-top:16px;max-width:50ch">Notre machine numérique <strong style="color:var(--blanc-chaud)">Opti3</strong> et le logiciel <strong style="color:var(--blanc-chaud)">Logic Side Carve</strong> permettent de pré-visualiser votre monture sur votre visage avant même qu'elle soit fabriquée.</p>
-      <p style="color:var(--muted);margin-top:14px;max-width:50ch">Choix du style, de la forme, des couleurs. Prise de mesures précise (visage, nez, longueur des branches). Maquette, puis fabrication de votre paire unique, faite main dans des plaques d'acétate du Jura.</p>
-      <p style="color:var(--muted);margin-top:14px;max-width:50ch">Modèles maison : <em style="color:var(--creme)">Véronique, Maryse, Francesca, Bruno, Hugues, Mini ronde, Delphine, Citronnelle, Snake, Gulf…</em></p>
-      <div style="margin-top:14px;display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(126,140,90,.35);border-radius:100px;padding:9px 18px;background:rgba(126,140,90,.07)">
-        <span style="font-size:.8rem;color:var(--vert);letter-spacing:.06em;text-transform:uppercase">À partir de</span>
+      <p style="color:var(--creme);margin-top:16px;max-width:50ch">Notre machine numérique <strong style="color:var(--blanc-chaud)">Opti3</strong> et le logiciel <strong style="color:var(--blanc-chaud)">Logic Side Carve</strong> permettent de pré-visualiser votre monture sur votre visage avant même qu'elle soit fabriquée.</p>
+      <p style="color:var(--creme);margin-top:14px;max-width:50ch">Choix du style, de la forme, des couleurs. Prise de mesures précise (visage, nez, longueur des branches). Maquette, puis fabrication de votre paire unique, faite main dans des plaques d'acétate du Jura.</p>
+      <p style="color:var(--creme);margin-top:14px;max-width:50ch">Modèles maison : <em style="color:var(--blanc-chaud)">Véronique, Maryse, Francesca, Bruno, Hugues, Mini ronde, Delphine, Citronnelle, Snake, Gulf…</em></p>
+      <div style="margin-top:18px;display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(126,140,90,.45);border-radius:100px;padding:9px 18px;background:rgba(126,140,90,.12)">
+        <span style="font-size:.8rem;color:var(--vert-clair);letter-spacing:.06em;text-transform:uppercase">À partir de</span>
         <strong style="font-family:var(--serif);font-size:1.4rem;color:var(--blanc-chaud)">~300 €</strong>
       </div>
-      <div style="margin-top:32px;display:flex;gap:14px;flex-wrap:wrap">
+      <div style="margin-top:30px;display:flex;gap:14px;flex-wrap:wrap;align-items:center">
         <a class="btn btn--primary" href="magasins.html#rdv">Prendre rendez-vous <span class="arr">→</span></a>
         <a class="btn btn--vert" href="creations.html">Voir nos créations <span class="arr">→</span></a>
+        <span class="hand" style="font-size:1.7rem;transform:rotate(-3deg);color:var(--camel);margin-left:4px">fait main, avec soin</span>
       </div>
-    </div>
-    <!-- Photo -->
-    <div class="expert-media reveal">
-      <div class="frame">
-        <span class="tape" style="top:-16px;left:24px;transform:rotate(-4deg)"></span>
-        <picture><source srcset="assets/photos/gen-atelier.webp" type="image/webp"><img src="assets/photos/gen-atelier.jpg" alt="L'atelier lunettes sur mesure Pigeard — fabrication à la main"></picture>
-      </div>
-      <span class="hand" style="position:absolute;bottom:-28px;right:6%;font-size:1.8rem;transform:rotate(-3deg);color:var(--camel)">fait main, avec soin</span>
     </div>
   </div>
 </section>
@@ -551,6 +546,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 <script src="assets/js/site.js"></script>
+<script src="assets/js/section-video.js"></script>
 <script>
 /* ---- Fallback no-JS : tout visible ---- */
 document.querySelectorAll('.step').forEach(function(s){ s.classList.add('on'); });
