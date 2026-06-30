@@ -7,8 +7,12 @@
   /* Animations ACTIVES par défaut (le site se veut très animé) — plus besoin de ?motion=force.
      Pour réduire les animations (accessibilité), ouvrir la page avec ?reduce=1. */
   var REDUCE_OPT = location.search.indexOf('reduce=1') > -1;
-  if(!REDUCE_OPT) document.documentElement.classList.add('force-motion');
-  var reduce = REDUCE_OPT;
+  /* Respecte aussi le réglage SYSTÈME "réduire les animations" (Windows/macOS/iOS/Android).
+     Échappatoire : ouvrir la page avec ?motion=force pour forcer les animations malgré le réglage. */
+  var REDUCE_OS = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var FORCE_OPT = location.search.indexOf('motion=force') > -1;
+  var reduce = (REDUCE_OPT || REDUCE_OS) && !FORCE_OPT;
+  if(!reduce) document.documentElement.classList.add('force-motion');
 
   /* --- Nav : état scrollé + barre de progression --- */
   var nav = document.getElementById('nav');
@@ -33,7 +37,7 @@
     c.addEventListener('mousemove', function(e){ var r=c.getBoundingClientRect(); c.style.setProperty('--mx',(e.clientX-r.left)+'px'); c.style.setProperty('--my',(e.clientY-r.top)+'px'); });
   });
 
-  var PIG = window.PIGEARD = { reduce: reduce, force: !REDUCE_OPT, gsap: window.gsap || null, lenis: null };
+  var PIG = window.PIGEARD = { reduce: reduce, force: !reduce, gsap: window.gsap || null, lenis: null };
 
   if(!reduce && window.gsap && window.ScrollTrigger){
     gsap.registerPlugin(ScrollTrigger);
@@ -71,6 +75,28 @@
     gsap.utils.toArray('.blob').forEach(function(b,i){
       gsap.to(b,{ x:(i%2?'+=40':'-=40'), y:(i%2?'-=30':'+=30'), scale:1.14, duration:9+i*2, ease:'sine.inOut', yoyo:true, repeat:-1, delay:i*0.5 });
     });
+    /* Notes manuscrites : "écriture qui se trace" (révélation gauche→droite à l'arrivée) */
+    gsap.utils.toArray('.foot-brand .hand, .kicker').forEach(function(el){
+      gsap.fromTo(el,
+        { clipPath:'inset(0 100% -12% 0)', webkitClipPath:'inset(0 100% -12% 0)' },
+        { clipPath:'inset(0 0% -12% 0)', webkitClipPath:'inset(0 0% -12% 0)', duration:1.25, ease:'power1.inOut',
+          scrollTrigger:{ trigger:el, start:'top 90%', once:true } });
+    });
+    /* Soulignés de titres qui se dessinent (largeur pilotée via la variable CSS --uw) */
+    gsap.utils.toArray('.sec-head h2').forEach(function(el){
+      gsap.fromTo(el, { '--uw':'0%' }, { '--uw':'58%', duration:1.1, ease:'power2.out',
+        scrollTrigger:{ trigger:el, start:'top 84%', once:true } });
+    });
+    /* Boutons magnétiques : suivent légèrement la souris (souris précise uniquement, jamais au toucher) */
+    if(window.matchMedia && window.matchMedia('(pointer:fine)').matches){
+      document.querySelectorAll('.btn, .nav-cta').forEach(function(b){
+        b.addEventListener('mousemove', function(e){
+          var r=b.getBoundingClientRect();
+          gsap.to(b,{ x:(e.clientX-(r.left+r.width/2))*0.32, y:(e.clientY-(r.top+r.height/2))*0.42, duration:0.4, ease:'power3.out' });
+        });
+        b.addEventListener('mouseleave', function(){ gsap.to(b,{ x:0, y:0, duration:0.55, ease:'elastic.out(1,0.45)' }); });
+      });
+    }
     PIG.ScrollTrigger = ScrollTrigger;
   } else {
     document.querySelectorAll('.reveal').forEach(function(e){ e.style.opacity=1; e.style.transform='none'; });

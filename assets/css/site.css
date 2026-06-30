@@ -399,6 +399,13 @@ footer.site{padding:clamp(80px,11vh,140px) 0 46px;border-top:1px solid var(--lig
   .hero-lead{font-size:1.05rem}
   .foot-links{gap:22px 30px}
 }
+/* — Ken Burns : la photo du hero "respire" très lentement (uniquement si animations actives) — */
+.force-motion .hero-photo-bg{animation:kenburns 28s ease-in-out infinite alternate;transform-origin:60% 35%;will-change:transform}
+@keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.08)}}
+/* — Souligné manuscrit des titres de section : largeur animée par GSAP via --uw — */
+.force-motion .sec-head h2{position:relative}
+.force-motion .sec-head h2::after{content:"";position:absolute;left:0;bottom:-.14em;height:2px;width:var(--uw,0%);background:linear-gradient(90deg,var(--vert),transparent);border-radius:2px;pointer-events:none}
+
 @media(prefers-reduced-motion:reduce){
   html:not(.force-motion) *{animation:none!important;transition:none!important}
   html:not(.force-motion) .reveal{opacity:1;transform:none}
