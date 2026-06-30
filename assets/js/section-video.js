@@ -1,22 +1,17 @@
 /* ============================================================
    PIGEARD — vidéo(s) de fond de section (ex : "Lunettes sur mesure", "Verres Nikon")
    Pour CHAQUE <video class="sm-bgvid" data-src="..."> de la page :
-   ne charge la vidéo QUE si c'est pertinent :
-   - pas en mouvement réduit (accessibilité)
-   - pas sur mobile (économie de data / batterie)
-   - pas en mode "économie de données"
-   Sinon, la section garde son image fixe (.sm-poster).
+   charge et joue la vidéo (ordinateur ET mobile), SAUF si le visiteur est en
+   mode "économie de données" → dans ce cas la section garde son image fixe (.sm-poster).
    À charger APRÈS site.js.
    ============================================================ */
 (function(){
   var vids = document.querySelectorAll('.sm-bgvid');
   if(!vids.length) return;
 
-  var reduce = (window.PIGEARD && window.PIGEARD.reduce) ||
-               !document.documentElement.classList.contains('force-motion');
-  if(reduce) return;                                                   /* image fixe */
-  if(window.matchMedia && window.matchMedia('(max-width: 767px)').matches) return; /* mobile : image fixe */
-  if(navigator.connection && navigator.connection.saveData) return;    /* mode éco data */
+  /* Vidéos actives partout (ordinateur ET mobile). On respecte seulement le mode
+     "économie de données" explicite du visiteur (les fichiers sont légers : ~260–450 Ko). */
+  if(navigator.connection && navigator.connection.saveData) return;
 
   vids.forEach(function(v){
     var src = v.getAttribute('data-src');

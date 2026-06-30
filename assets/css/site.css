@@ -105,6 +105,10 @@ header.nav.scrolled{background:rgba(14,13,11,.74);backdrop-filter:blur(14px);bor
 .bgvid-sec .sm-bgvid.is-playing{opacity:.5}
 .bgvid-sec .sm-bgvid-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(10,10,10,.95) 0%,rgba(10,10,10,.8) 40%,rgba(10,10,10,.5) 72%,rgba(10,10,10,.32) 100%)}
 .bgvid-sec .verres-item p{color:var(--creme)}
+/* mobile : la vidéo passe en plein écran derrière le texte → dégradé vertical plus couvrant pour la lisibilité */
+@media(max-width:767px){
+  .bgvid-sec .sm-bgvid-overlay{background:linear-gradient(180deg,rgba(10,10,10,.74) 0%,rgba(10,10,10,.88) 100%)}
+}
 .streak{position:absolute;top:-20%;height:140%;width:1px;background:linear-gradient(to bottom,transparent,rgba(239,233,223,.55),transparent);transform:rotate(14deg);filter:blur(.5px)}
 .hero-inner{position:relative;z-index:2;width:100%}
 .hero-logo{width:min(620px,86vw);height:auto;margin:0 auto;display:block;filter:drop-shadow(0 20px 50px rgba(0,0,0,.5))}
