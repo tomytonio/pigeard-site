@@ -6,13 +6,10 @@
 (function(){
   /* Animations ACTIVES par défaut (le site se veut très animé) — plus besoin de ?motion=force.
      Pour réduire les animations (accessibilité), ouvrir la page avec ?reduce=1. */
-  var REDUCE_OPT = location.search.indexOf('reduce=1') > -1;
-  /* Respecte aussi le réglage SYSTÈME "réduire les animations" (Windows/macOS/iOS/Android).
-     Échappatoire : ouvrir la page avec ?motion=force pour forcer les animations malgré le réglage. */
-  var REDUCE_OS = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-  var FORCE_OPT = location.search.indexOf('motion=force') > -1;
-  var reduce = (REDUCE_OPT || REDUCE_OS) && !FORCE_OPT;
-  if(!reduce) document.documentElement.classList.add('force-motion');
+  /* Animations TOUJOURS actives — l'option « réduire les animations » a été retirée à la
+     demande du client : le site n'écoute plus le réglage système prefers-reduced-motion. */
+  var reduce = false;
+  document.documentElement.classList.add('force-motion');
 
   /* --- Nav : état scrollé + barre de progression --- */
   var nav = document.getElementById('nav');

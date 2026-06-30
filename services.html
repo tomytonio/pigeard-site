@@ -214,9 +214,9 @@
 <!-- ══════════════════════════════════════════
      01 — LUNETTES SUR MESURE
      ══════════════════════════════════════════ -->
-<section class="sec sur-mesure-vid" id="sur-mesure">
-  <div class="sm-poster"></div>
-  <video class="sm-bgvid" muted loop playsinline preload="none" aria-hidden="true"></video>
+<section class="sec bgvid-sec" id="sur-mesure">
+  <div class="sm-poster" style="background-image:url('assets/video/hero-atelier-poster.jpg')"></div>
+  <video class="sm-bgvid" data-src="assets/video/hero-atelier.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
   <div class="sm-bgvid-overlay"></div>
   <div class="wrap" style="position:relative;z-index:2">
     <div class="reveal" style="max-width:640px">
@@ -394,19 +394,16 @@
 <!-- ══════════════════════════════════════════
      05 — NOS VERRES NIKON
      ══════════════════════════════════════════ -->
-<section class="sec wrap" id="verres">
-  <div class="sec-head reveal">
-    <h2>Nos verres</h2>
-    <p>La technologie japonaise, fabriquée en France.</p>
-  </div>
-
-  <div class="expert-grid">
-    <!-- Texte -->
-    <div class="reveal">
+<section class="sec bgvid-sec" id="verres">
+  <div class="sm-poster" style="background-image:url('assets/video/verres-nikon-poster.jpg')"></div>
+  <video class="sm-bgvid" data-src="assets/video/verres-nikon.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
+  <div class="sm-bgvid-overlay"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="reveal" style="max-width:640px">
       <picture><source srcset="assets/brand/nikon-logo.webp" type="image/webp"><img src="assets/brand/nikon-logo.png" alt="Nikon" style="height:36px;width:auto;display:block;margin-bottom:16px"></picture>
       <div class="svc-num">05 — Verres</div>
-      <h2 style="font-family:var(--serif);font-weight:700;font-size:clamp(2rem,4.5vw,3.2rem);line-height:1.04;letter-spacing:-.02em">La précision japonaise,<br>fabriquée à <em style="font-style:italic;color:var(--vert)">Provins</em>.</h2>
-      <p style="color:var(--muted);margin-top:20px;max-width:50ch">Pigeard propose exclusivement des verres Nikon, fabriqués en France à Provins (77). Précision, finesse, légèreté : la techno japonaise au service de chaque correction.</p>
+      <h2 style="font-family:var(--serif);font-weight:700;font-size:clamp(2rem,4.5vw,3.2rem);line-height:1.04;letter-spacing:-.02em">La précision japonaise,<br>fabriquée à <em style="font-style:italic;color:var(--vert-clair)">Provins</em>.</h2>
+      <p style="color:var(--creme);margin-top:20px;max-width:50ch">Pigeard propose exclusivement des verres Nikon, fabriqués en France à Provins (77). Précision, finesse, légèreté : la techno japonaise au service de chaque correction.</p>
 
       <div class="verres-list">
         <div class="verres-item">
@@ -427,18 +424,11 @@
         </div>
       </div>
 
-      <div style="margin-top:34px;display:flex;gap:12px;flex-wrap:wrap">
+      <div style="margin-top:34px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
         <a class="btn btn--primary" href="magasins.html#rdv">Prendre rendez-vous <span class="arr">→</span></a>
         <a class="btn btn--ghost" href="marques.html">Voir toutes nos marques <span class="arr">→</span></a>
+        <span class="hand" style="font-size:1.7rem;transform:rotate(-2deg);color:var(--camel);margin-left:4px">la précision au millième</span>
       </div>
-    </div>
-    <!-- Visuel déco -->
-    <div class="expert-media reveal">
-      <div class="frame">
-        <span class="tape" style="top:-16px;left:24px;transform:rotate(-3deg)"></span>
-        <picture><source srcset="assets/photos/gen-lens-macro.webp" type="image/webp"><img src="assets/photos/gen-lens-macro.jpg" alt="Verre optique Nikon — précision, finesse et légèreté"></picture>
-      </div>
-      <span class="hand" style="position:absolute;bottom:-28px;right:6%;font-size:1.7rem;transform:rotate(-2deg);color:var(--camel)">la précision au millième</span>
     </div>
   </div>
 </section>
