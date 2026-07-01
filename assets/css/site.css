@@ -89,7 +89,7 @@ header.nav.scrolled{background:rgba(14,13,11,.74);backdrop-filter:blur(14px);bor
 .hero{min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;position:relative}
 .hero--page{min-height:78svh}
 .hero-bg{position:absolute;inset:0;z-index:0}
-.hero-photo-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;z-index:0;opacity:.35}
+.hero-photo-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;z-index:0;opacity:.35;filter:brightness(1.1)}
 .hero-photo-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(10,10,10,.55) 0%,rgba(10,10,10,.3) 50%,rgba(10,10,10,.75) 100%)}
 .blob{position:absolute;border-radius:50%;filter:blur(105px);opacity:.42;will-change:transform}
 .blob.v{background:radial-gradient(circle,rgba(126,140,90,.55),transparent 65%)}
@@ -101,7 +101,7 @@ header.nav.scrolled{background:rgba(14,13,11,.74);backdrop-filter:blur(14px);bor
 .bgvid-sec{position:relative;overflow:hidden;background:#0E0D0B}
 .bgvid-sec .sm-poster{position:absolute;inset:0;z-index:0;background-position:center;background-size:cover;background-repeat:no-repeat;opacity:.4;transition:opacity 1.2s ease}
 .bgvid-sec.has-video .sm-poster{opacity:0}            /* la vidéo remplace le poster (corrige le "double" image) */
-.bgvid-sec .sm-bgvid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;transition:opacity 1.4s var(--ease);pointer-events:none}
+.bgvid-sec .sm-bgvid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0;transition:opacity 1.4s var(--ease);pointer-events:none;filter:brightness(1.1)}
 .bgvid-sec .sm-bgvid.is-playing{opacity:.5}
 .bgvid-sec .sm-bgvid-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(10,10,10,.95) 0%,rgba(10,10,10,.8) 40%,rgba(10,10,10,.5) 72%,rgba(10,10,10,.32) 100%)}
 .bgvid-sec .verres-item p{color:var(--creme)}
@@ -112,7 +112,7 @@ header.nav.scrolled{background:rgba(14,13,11,.74);backdrop-filter:blur(14px);bor
 .streak{position:absolute;top:-20%;height:140%;width:1px;background:linear-gradient(to bottom,transparent,rgba(239,233,223,.55),transparent);transform:rotate(14deg);filter:blur(.5px)}
 .hero-inner{position:relative;z-index:2;width:100%}
 .hero-logo{width:min(620px,86vw);height:auto;margin:0 auto;display:block;filter:drop-shadow(0 20px 50px rgba(0,0,0,.5))}
-.hero-watermark{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);width:min(74vw,900px);z-index:0;opacity:.05}
+.hero-watermark{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);width:min(74vw,900px);z-index:0;opacity:.08}
 .hero h1{font-family:var(--serif);font-weight:800;letter-spacing:-.03em;line-height:.92}
 .hero-lead{font-family:var(--serif);font-style:italic;font-size:clamp(1.2rem,3vw,2rem);color:var(--creme);margin-top:24px}
 .hero-note{font-family:var(--hand);font-size:clamp(1.5rem,3.6vw,2.3rem);color:var(--camel);margin-top:6px;display:inline-block;transform:rotate(-3deg)}
@@ -276,6 +276,7 @@ header.nav.scrolled{background:rgba(14,13,11,.74);backdrop-filter:blur(14px);bor
 /* photo découpage / scotch */
 .frame{position:relative;border-radius:6px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.9)}
 .frame img{width:100%;height:100%;object-fit:cover;display:block}
+.frame video{width:100%;height:100%;object-fit:cover;display:block;background:var(--creme)}
 .tape{position:absolute;width:112px;height:34px;background:rgba(231,221,203,.22);backdrop-filter:blur(2px);border:1px solid rgba(231,221,203,.12);z-index:3}
 
 /* ---------- FOOTER ---------- */
@@ -384,7 +385,7 @@ footer.site{padding:clamp(80px,11vh,140px) 0 46px;border-top:1px solid var(--lig
   .member .nm{font-size:1.2rem}
   .member .info{padding:14px 15px 18px}
   /* lunette en filigrane derrière le logo : visible aussi sur mobile */
-  .hero-watermark{width:min(98vw,440px);opacity:.08}
+  .hero-watermark{width:min(98vw,440px);opacity:.12}
   /* marquees plus discrets */
   .marquee-wrap{padding:30px 0}
   .marquee{gap:36px}
