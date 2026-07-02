@@ -21,6 +21,19 @@
   }
   window.addEventListener('scroll', onScroll); onScroll();
 
+
+  /* --- Bouton « Prendre RDV » flottant sur mobile --- */
+  (function(){
+    var isMag = /magasins\.html$/.test(location.pathname);
+    var b = document.createElement('a');
+    b.className = 'rdv-float';
+    b.href = isMag ? '#rdv' : 'magasins.html#rdv';
+    b.textContent = 'Prendre rendez-vous';
+    document.body.appendChild(b);
+    var upd = function(){ b.classList.toggle('on', (window.scrollY||0) > 420); };
+    window.addEventListener('scroll', upd, {passive:true}); upd();
+  })();
+
   /* --- Menu mobile --- */
   var burger = document.querySelector('.burger');
   var mobile = document.querySelector('.mobile-menu');
@@ -151,6 +164,7 @@
      page vue + temps passé (aucune donnée personnelle, ni cookie)
    ============================================================ */
 (function(){
+  function lancerStats(){
   var N8N = 'https://n8n-1zv1.srv1641932.hstgr.cloud/webhook/';
   var sid = null, nouvelle = false;
   try{
@@ -201,4 +215,8 @@
       bar.appendChild(el);
     })
     .catch(function(){});
+  }
+  /* prerender (speculation rules) : ne compter qu'à l'affichage réel */
+  if(document.prerendering) document.addEventListener('prerenderingchange', lancerStats, {once:true});
+  else lancerStats();
 })();

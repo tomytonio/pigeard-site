@@ -37,13 +37,13 @@
   }
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300..700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/karla-normal-300-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/playfair-display-italic-400-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/playfair-display-normal-400-900-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/brand/favicon-180.png">
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="assets/css/site.css">
 <style>
 .crea-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
@@ -65,6 +65,9 @@
   .crea-cta-box .cta-btns .btn{width:100%;justify-content:center;text-align:center}
 }
 </style>
+<script type="speculationrules">
+{"prerender":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}
+</script>
 </head>
 <body>
 <div class="grain"></div><div class="progress" id="progress"></div>
@@ -140,19 +143,19 @@
 
 <footer class="site"><div class="wrap">
   <div class="foot-top">
-    <div class="foot-brand"><img class="mac" src="assets/brand/macaron-cream.svg" alt="Pigeard depuis 1863"><h3>Créateur de regards depuis 1863.</h3><span class="hand">à très vite chez Pigeard</span></div>
+    <div class="foot-brand"><img class="mac" src="assets/brand/macaron-cream.svg" alt="Pigeard depuis 1863" loading="lazy" decoding="async"><h3>Créateur de regards depuis 1863.</h3><span class="hand">à très vite chez Pigeard</span></div>
     <div class="foot-links">
       <div class="foot-col"><h4>La maison</h4><a href="histoire.html">Notre histoire</a><a href="equipe.html">L'équipe</a><a href="engagements.html">Nos engagements</a></div>
       <div class="foot-col"><h4>Expertises</h4><a href="services.html">Nos expertises</a><a href="creations.html">Nos créations</a><a href="marques.html">Nos marques</a></div>
-      <div class="foot-col"><h4>Magasins</h4><a href="magasins.html">Nos 3 magasins</a><a href="contact.html">Contact</a><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a></div>
+      <div class="foot-col"><h4>Magasins</h4><a href="magasins.html">Nos 3 magasins</a><a href="opticien-nogent-le-rotrou.html">Opticien Nogent-le-Rotrou</a><a href="opticien-brou.html">Opticien Brou</a><a href="opticien-la-loupe.html">Opticien La Loupe</a><a href="contact.html">Contact</a><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a></div>
     </div>
   </div>
   <div class="foot-bottom"><span>© 2026 Pigeard — Créateur de regards depuis 1863.</span><span><a href="mentions-legales.html">Mentions légales</a> · Nogent-le-Rotrou · Brou · La Loupe</span></div>
 </div></footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="assets/js/vendor/gsap.min.js"></script>
+<script src="assets/js/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/js/vendor/lenis.min.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
 (function(){
@@ -183,6 +186,35 @@
       if(window.ScrollTrigger)ScrollTrigger.refresh();
     }
   });
+})();
+</script>
+
+<script>
+/* Lightbox galerie : cliquer une création pour la voir en grand */
+(function(){
+  var grid=document.getElementById('creaGrid'); if(!grid) return;
+  var lb=document.createElement('div'); lb.className='lb'; lb.setAttribute('role','dialog'); lb.setAttribute('aria-modal','true'); lb.setAttribute('aria-label','Création en grand format');
+  lb.innerHTML='<img alt=""><div class="lb-cap"><div class="n"></div><div class="t"></div></div><button class="lb-close" aria-label="Fermer">\u2715</button><button class="lb-prev" aria-label="Pr\u00e9c\u00e9dente">\u2190</button><button class="lb-next" aria-label="Suivante">\u2192</button>';
+  document.body.appendChild(lb);
+  var img=lb.querySelector('img'), nm=lb.querySelector('.n'), tl=lb.querySelector('.t'), idx=-1, cards=[];
+  function collect(){ cards=[].slice.call(grid.querySelectorAll('.crea-card')); }
+  function show(i){ collect(); if(!cards.length) return; idx=(i+cards.length)%cards.length; var c=cards[idx]; var im=c.querySelector('img'); if(!im) return;
+    img.src=im.currentSrc||im.src; img.alt=im.alt||'';
+    nm.textContent=(c.querySelector('.nm')||{textContent:''}).textContent; tl.textContent=(c.querySelector('.tl')||{textContent:''}).textContent;
+    lb.classList.add('open'); document.body.style.overflow='hidden'; }
+  function close(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+  grid.addEventListener('click', function(e){ var card=e.target.closest('.crea-card'); if(!card) return; collect(); show(cards.indexOf(card)); });
+  lb.querySelector('.lb-close').addEventListener('click', close);
+  lb.querySelector('.lb-prev').addEventListener('click', function(e){ e.stopPropagation(); show(idx-1); });
+  lb.querySelector('.lb-next').addEventListener('click', function(e){ e.stopPropagation(); show(idx+1); });
+  lb.addEventListener('click', function(e){ if(e.target===lb) close(); });
+  document.addEventListener('keydown', function(e){ if(!lb.classList.contains('open')) return;
+    if(e.key==='Escape') close(); if(e.key==='ArrowLeft') show(idx-1); if(e.key==='ArrowRight') show(idx+1); });
+  /* balayage tactile gauche/droite */
+  var x0=null;
+  lb.addEventListener('touchstart', function(e){ x0=e.touches[0].clientX; }, {passive:true});
+  lb.addEventListener('touchend', function(e){ if(x0===null) return; var dx=e.changedTouches[0].clientX-x0; x0=null;
+    if(Math.abs(dx)>50) show(dx>0? idx-1 : idx+1); }, {passive:true});
 })();
 </script>
 </body>
