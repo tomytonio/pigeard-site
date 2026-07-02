@@ -145,19 +145,52 @@
 })();
 
 /* ============================================================
-   COMPTEUR DE VISITES — affichage discret en bas de page.
-   1 visite = 1 session de navigation (sessionStorage) ; le total
-   est stocké côté n8n (data table « Compteur visites site »).
+   VISITES & STATISTIQUES — anonyme, hébergé sur le n8n Pigeard.
+   - compteur discret en bas de page (1 visite = 1 session)
+   - événements pour le menu « Site internet » de l'application :
+     page vue + temps passé (aucune donnée personnelle, ni cookie)
    ============================================================ */
 (function(){
+  var N8N = 'https://n8n-1zv1.srv1641932.hstgr.cloud/webhook/';
+  var sid = null, nouvelle = false;
+  try{
+    sid = sessionStorage.getItem('pigeardSession');
+    if(!sid){
+      sid = 'S' + Date.now().toString(36) + Math.random().toString(36).slice(2, 12);
+      sessionStorage.setItem('pigeardSession', sid);
+      nouvelle = true;
+    }
+  }catch(e){}
+
+  /* — collecte anonyme : page vue + temps passé — */
+  if(sid){
+    var page = location.pathname.replace(/\/index\.html$/, '/') || '/';
+    var appareil = window.innerWidth < 768 ? 'mobile' : (window.innerWidth < 1080 ? 'tablette' : 'ordinateur');
+    var envoyer = function(donnees){
+      try{
+        var corps = JSON.stringify(donnees);
+        if(navigator.sendBeacon) navigator.sendBeacon(N8N + 'stats-site', new Blob([corps], {type:'text/plain'}));
+        else if(window.fetch) fetch(N8N + 'stats-site', {method:'POST', headers:{'Content-Type':'text/plain'}, body:corps, keepalive:true});
+      }catch(e){}
+    };
+    envoyer({type:'pageview', session:sid, page:page, referrer:document.referrer || '', appareil:appareil});
+    var debut = Date.now();
+    var finDePage = function(){
+      var duree = Math.round((Date.now() - debut) / 1000);
+      debut = Date.now();
+      if(duree >= 1 && duree <= 86400) envoyer({type:'duration', session:sid, page:page, duree:duree, appareil:appareil});
+    };
+    window.addEventListener('pagehide', finDePage);
+    document.addEventListener('visibilitychange', function(){
+      if(document.visibilityState === 'hidden') finDePage();
+      else debut = Date.now();
+    });
+  }
+
+  /* — compteur discret dans le pied de page — */
   var bar = document.querySelector('.foot-bottom');
   if(!bar || !window.fetch) return;
-  var URL_VISITES = 'https://n8n-1zv1.srv1641932.hstgr.cloud/webhook/visites-site';
-  var add = '';
-  try{
-    if(!sessionStorage.getItem('pigeardVisite')){ add = '?add=1'; sessionStorage.setItem('pigeardVisite','1'); }
-  }catch(e){}
-  fetch(URL_VISITES + add)
+  fetch(N8N + 'visites-site' + (nouvelle ? '?add=1' : ''))
     .then(function(r){ return r.ok ? r.json() : null; })
     .then(function(j){
       if(!j || j.count == null) return;
