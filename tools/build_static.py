@@ -54,12 +54,17 @@ BRAND_TMPL = """<!DOCTYPE html>
 <script type="application/ld+json">
 @@JSONLD@@
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300..700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..700&family=Reenie+Beanie&display=swap" rel="stylesheet">
-<link rel="icon" type="image/svg+xml" href="assets/brand/macaron-cream.svg">
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preload" href="assets/fonts/karla-normal-300-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/playfair-display-italic-400-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/playfair-display-normal-400-900-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/brand/favicon-180.png">
 <link rel="stylesheet" href="assets/css/site.css">
+<script type="speculationrules">
+{"prerender":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}
+</script>
 </head>
 <body>
 <div class="grain"></div><div class="progress" id="progress"></div>
@@ -109,15 +114,15 @@ BRAND_TMPL = """<!DOCTYPE html>
     <div class="foot-links">
       <div class="foot-col"><h4>La maison</h4><a href="histoire.html">Notre histoire</a><a href="equipe.html">L'équipe</a><a href="engagements.html">Nos engagements</a><a href="engagements.html#mutuelles">Nos mutuelles</a></div>
       <div class="foot-col"><h4>Expertises</h4><a href="services.html#sur-mesure">Sur mesure</a><a href="services.html#optikid">Optikid</a><a href="services.html#basse-vision">Basse vision</a><a href="services.html#nuance-audio">Nuance Audio</a><a href="marques.html">Nos marques</a><a href="creations.html">Nos créations</a></div>
-      <div class="foot-col"><h4>Magasins</h4><a href="magasins.html">Nos 3 magasins</a><a href="contact.html">Contact</a><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a><a href="https://facebook.com/pigeard.opticiens" target="_blank" rel="noopener">Facebook</a></div>
+      <div class="foot-col"><h4>Magasins</h4><a href="magasins.html">Nos 3 magasins</a><a href="opticien-nogent-le-rotrou.html">Opticien Nogent-le-Rotrou</a><a href="opticien-brou.html">Opticien Brou</a><a href="opticien-la-loupe.html">Opticien La Loupe</a><a href="contact.html">Contact</a><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a><a href="https://facebook.com/pigeard.opticiens" target="_blank" rel="noopener">Facebook</a></div>
     </div>
   </div>
   <div class="foot-bottom"><span>© 2026 Pigeard — Créateur de regards depuis 1863.</span><span><a href="mentions-legales.html">Mentions légales</a> · Nogent-le-Rotrou · Brou · La Loupe</span></div>
 </div></footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="assets/js/vendor/gsap.min.js"></script>
+<script src="assets/js/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/js/vendor/lenis.min.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
 if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
@@ -240,6 +245,9 @@ def main():
         ("/creations.html", "0.8", "monthly"), ("/equipe.html", "0.6", "yearly"),
         ("/magasins.html", "0.9", "monthly"), ("/engagements.html", "0.7", "yearly"),
         ("/contact.html", "0.7", "yearly"), ("/mentions-legales.html", "0.3", "yearly"),
+        ("/opticien-nogent-le-rotrou.html", "0.9", "monthly"),
+        ("/opticien-brou.html", "0.9", "monthly"),
+        ("/opticien-la-loupe.html", "0.9", "monthly"),
     ]
     urls = []
     for loc, pr, cf in main_pages:

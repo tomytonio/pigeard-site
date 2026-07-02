@@ -61,13 +61,13 @@
   ]
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300..700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/karla-normal-300-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/playfair-display-italic-400-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/playfair-display-normal-400-900-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/brand/favicon-180.png">
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="assets/css/site.css">
 <style>
 /* ---- Page équipe : minimaliste, séparateurs de magasin marqués ---- */
@@ -142,6 +142,9 @@
   .eq-hero h1{font-size:clamp(2rem,12vw,2.8rem)}
 }
 </style>
+<script type="speculationrules">
+{"prerender":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}
+</script>
 </head>
 <body>
 <div class="grain"></div><div class="progress" id="progress"></div>
@@ -169,7 +172,7 @@
 <section class="mag-cover" style="color:var(--vert)">
   <span class="ghost">Nogent</span>
   <div class="wrap">
-    <div class="mc-media reveal"><div class="frame"><span class="tape" style="top:-16px;left:24px;transform:rotate(-3deg)"></span><picture><source srcset="assets/photos/mag-nogent.webp" type="image/webp"><img src="assets/photos/mag-nogent.jpg" alt="Magasin Pigeard Nogent-le-Rotrou"></picture></div></div>
+    <div class="mc-media reveal"><div class="frame"><span class="tape" style="top:-16px;left:24px;transform:rotate(-3deg)"></span><picture><source srcset="assets/photos/mag-nogent.webp" type="image/webp"><img src="assets/photos/mag-nogent.jpg" alt="Magasin Pigeard Nogent-le-Rotrou" width="1200" height="800" loading="lazy" decoding="async"></picture></div></div>
     <div class="reveal" style="color:var(--blanc-chaud)">
       <span class="mc-num" style="color:var(--vert)">Magasin 01 — le siège</span>
       <h2>Nogent-le-Rotrou</h2>
@@ -181,14 +184,14 @@
 </section>
 <section class="team-grid wrap">
   <div class="grid-members">
-    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/nogent/christophe.webp" type="image/webp"><img src="assets/equipe/nogent/christophe.jpg" alt="Christophe Pigeard"></picture></div><div class="info"><div class="nm">Christophe Pigeard</div><div class="role">Directeur · Opticien diplômé</div><div class="acc">5ᵉ génération</div></div></article>
-    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/nogent/antoine.webp" type="image/webp"><img src="assets/equipe/nogent/antoine.jpg" alt="Antoine Pigeard"></picture></div><div class="info"><div class="nm">Antoine Pigeard</div><div class="role">Technicien lunetier</div><div class="acc">6ᵉ génération</div></div></article>
-    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/nogent/vincent.webp" type="image/webp"><img src="assets/equipe/nogent/vincent.jpg" alt="Vincent"></picture></div><div class="info"><div class="nm">Vincent</div><div class="role">Opticien diplômé</div></div></article>
-    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/nogent/ludo.webp" type="image/webp"><img src="assets/equipe/nogent/ludo.jpg" alt="Ludovic"></picture></div><div class="info"><div class="nm">Ludovic</div><div class="role">Technicien lunetier</div></div></article>
-    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/nogent/isabelle.webp" type="image/webp"><img src="assets/equipe/nogent/isabelle.jpg" alt="Isabelle Pigeard"></picture></div><div class="info"><div class="nm">Isabelle Pigeard</div><div class="role">Responsable administratif</div></div></article>
-    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/nogent/christelle.webp" type="image/webp"><img src="assets/equipe/nogent/christelle.jpg" alt="Christelle"></picture></div><div class="info"><div class="nm">Christelle</div><div class="role">Secrétaire</div></div></article>
-    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/nogent/caroline.webp" type="image/webp"><img src="assets/equipe/nogent/caroline.jpg" alt="Caroline"></picture></div><div class="info"><div class="nm">Caroline</div><div class="role">Apprentie</div></div></article>
-    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/nogent/karim.webp" type="image/webp"><img src="assets/equipe/nogent/karim.jpg" alt="Karim"></picture></div><div class="info"><div class="nm">Karim</div><div class="role">Opticien</div></div></article>
+    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/nogent/christophe.webp" type="image/webp"><img src="assets/equipe/nogent/christophe.jpg" alt="Christophe Pigeard" width="851" height="1200" loading="lazy" decoding="async"></picture></div><div class="info"><div class="nm">Christophe Pigeard</div><div class="role">Directeur · Opticien diplômé</div><div class="acc">5ᵉ génération</div></div></article>
+    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/nogent/antoine.webp" type="image/webp"><img src="assets/equipe/nogent/antoine.jpg" alt="Antoine Pigeard" width="800" height="1200" loading="lazy" decoding="async"></picture></div><div class="info"><div class="nm">Antoine Pigeard</div><div class="role">Technicien lunetier</div><div class="acc">6ᵉ génération</div></div></article>
+    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/nogent/vincent.webp" type="image/webp"><img src="assets/equipe/nogent/vincent.jpg" alt="Vincent" width="800" height="1200" loading="lazy" decoding="async"></picture></div><div class="info"><div class="nm">Vincent</div><div class="role">Opticien diplômé</div></div></article>
+    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/nogent/ludo.webp" type="image/webp"><img src="assets/equipe/nogent/ludo.jpg" alt="Ludovic" width="800" height="1200" loading="lazy" decoding="async"></picture></div><div class="info"><div class="nm">Ludovic</div><div class="role">Technicien lunetier</div></div></article>
+    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/nogent/isabelle.webp" type="image/webp"><img src="assets/equipe/nogent/isabelle.jpg" alt="Isabelle Pigeard" width="800" height="1200" loading="lazy" decoding="async"></picture></div><div class="info"><div class="nm">Isabelle Pigeard</div><div class="role">Responsable administratif</div></div></article>
+    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/nogent/christelle.webp" type="image/webp"><img src="assets/equipe/nogent/christelle.jpg" alt="Christelle" width="800" height="1200" loading="lazy" decoding="async"></picture></div><div class="info"><div class="nm">Christelle</div><div class="role">Secrétaire</div></div></article>
+    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/nogent/caroline.webp" type="image/webp"><img src="assets/equipe/nogent/caroline.jpg" alt="Caroline" width="800" height="1200" loading="lazy" decoding="async"></picture></div><div class="info"><div class="nm">Caroline</div><div class="role">Apprentie</div></div></article>
+    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/nogent/karim.webp" type="image/webp"><img src="assets/equipe/nogent/karim.jpg" alt="Karim" width="800" height="1200" loading="lazy" decoding="async"></picture></div><div class="info"><div class="nm">Karim</div><div class="role">Opticien</div></div></article>
   </div>
 </section>
 
@@ -196,7 +199,7 @@
 <section class="mag-cover flip" style="color:var(--camel)">
   <span class="ghost">Brou</span>
   <div class="wrap">
-    <div class="mc-media reveal"><div class="frame"><span class="tape" style="top:-16px;left:30px;transform:rotate(3deg)"></span><picture><source srcset="assets/photos/mag-brou.webp" type="image/webp"><img src="assets/photos/mag-brou.jpg" alt="Magasin Pigeard Brou"></picture></div></div>
+    <div class="mc-media reveal"><div class="frame"><span class="tape" style="top:-16px;left:30px;transform:rotate(3deg)"></span><picture><source srcset="assets/photos/mag-brou.webp" type="image/webp"><img src="assets/photos/mag-brou.jpg" alt="Magasin Pigeard Brou" width="1200" height="800" loading="lazy" decoding="async"></picture></div></div>
     <div class="reveal" style="color:var(--blanc-chaud)">
       <span class="mc-num" style="color:var(--camel)">Magasin 02</span>
       <h2>Brou</h2>
@@ -208,9 +211,9 @@
 </section>
 <section class="team-grid wrap">
   <div class="grid-members" style="grid-template-columns:repeat(3,1fr)">
-    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/brou/magali.webp" type="image/webp"><img src="assets/equipe/brou/magali.jpg" alt="Magali"></picture></div><div class="info"><div class="nm">Magali</div><div class="role">Technicien lunetier</div><div class="acc">le sourire de Brou</div></div></article>
-    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/brou/edouard.webp" type="image/webp"><img src="assets/equipe/brou/edouard.jpg" alt="Edouard"></picture></div><div class="info"><div class="nm">Edouard</div><div class="role">Opticien diplômé</div></div></article>
-    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/brou/ana.webp" type="image/webp"><img src="assets/equipe/brou/ana.jpg" alt="Ana"></picture></div><div class="info"><div class="nm">Ana</div><div class="role">Apprentie</div></div></article>
+    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/brou/magali.webp" type="image/webp"><img src="assets/equipe/brou/magali.jpg" alt="Magali" width="890" height="1200" loading="lazy" decoding="async"></picture></div><div class="info"><div class="nm">Magali</div><div class="role">Technicien lunetier</div><div class="acc">le sourire de Brou</div></div></article>
+    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/brou/edouard.webp" type="image/webp"><img src="assets/equipe/brou/edouard.jpg" alt="Edouard" width="800" height="1200" loading="lazy" decoding="async"></picture></div><div class="info"><div class="nm">Edouard</div><div class="role">Opticien diplômé</div></div></article>
+    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/brou/ana.webp" type="image/webp"><img src="assets/equipe/brou/ana.jpg" alt="Ana" width="800" height="1200" loading="lazy" decoding="async"></picture></div><div class="info"><div class="nm">Ana</div><div class="role">Apprentie</div></div></article>
   </div>
 </section>
 
@@ -218,7 +221,7 @@
 <section class="mag-cover" style="color:var(--moutarde)">
   <span class="ghost">La Loupe</span>
   <div class="wrap">
-    <div class="mc-media reveal"><div class="frame"><span class="tape" style="top:-16px;left:24px;transform:rotate(-3deg)"></span><picture><source srcset="assets/photos/mag-laloupe.webp" type="image/webp"><img src="assets/photos/mag-laloupe.jpg" alt="Magasin Pigeard La Loupe"></picture></div></div>
+    <div class="mc-media reveal"><div class="frame"><span class="tape" style="top:-16px;left:24px;transform:rotate(-3deg)"></span><picture><source srcset="assets/photos/mag-laloupe.webp" type="image/webp"><img src="assets/photos/mag-laloupe.jpg" alt="Magasin Pigeard La Loupe" width="1200" height="900" loading="lazy" decoding="async"></picture></div></div>
     <div class="reveal" style="color:var(--blanc-chaud)">
       <span class="mc-num" style="color:var(--moutarde)">Magasin 03</span>
       <h2>La Loupe</h2>
@@ -230,9 +233,9 @@
 </section>
 <section class="team-grid wrap">
   <div class="grid-members" style="grid-template-columns:repeat(3,1fr)">
-    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/la-loupe/helene.webp" type="image/webp"><img src="assets/equipe/la-loupe/helene.jpg" alt="Hélène"></picture></div><div class="info"><div class="nm">Hélène</div><div class="role">Opticienne diplômée</div></div></article>
-    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/la-loupe/christel.webp" type="image/webp"><img src="assets/equipe/la-loupe/christel.jpg" alt="Christel"></picture></div><div class="info"><div class="nm">Christel</div><div class="role">Opticienne diplômée</div></div></article>
-    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/la-loupe/clemence.webp" type="image/webp"><img src="assets/equipe/la-loupe/clemence.jpg" alt="Clémence"></picture></div><div class="info"><div class="nm">Clémence</div><div class="role">Opticienne diplômée</div></div></article>
+    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/la-loupe/helene.webp" type="image/webp"><img src="assets/equipe/la-loupe/helene.jpg" alt="Hélène" width="800" height="1200" loading="lazy" decoding="async"></picture></div><div class="info"><div class="nm">Hélène</div><div class="role">Opticienne diplômée</div></div></article>
+    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/la-loupe/christel.webp" type="image/webp"><img src="assets/equipe/la-loupe/christel.jpg" alt="Christel" width="880" height="1200" loading="lazy" decoding="async"></picture></div><div class="info"><div class="nm">Christel</div><div class="role">Opticienne diplômée</div></div></article>
+    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/la-loupe/clemence.webp" type="image/webp"><img src="assets/equipe/la-loupe/clemence.jpg" alt="Clémence" width="960" height="1200" loading="lazy" decoding="async"></picture></div><div class="info"><div class="nm">Clémence</div><div class="role">Opticienne diplômée</div></div></article>
   </div>
 </section>
 
@@ -247,19 +250,19 @@
 <!-- FOOTER -->
 <footer class="site"><div class="wrap">
   <div class="foot-top">
-    <div class="foot-brand"><img class="mac" src="assets/brand/macaron-cream.svg" alt="Pigeard depuis 1863"><h3>Créateur de regards depuis 1863.</h3><span class="hand">à très vite chez Pigeard</span></div>
+    <div class="foot-brand"><img class="mac" src="assets/brand/macaron-cream.svg" alt="Pigeard depuis 1863" loading="lazy" decoding="async"><h3>Créateur de regards depuis 1863.</h3><span class="hand">à très vite chez Pigeard</span></div>
     <div class="foot-links">
       <div class="foot-col"><h4>La maison</h4><a href="histoire.html">Notre histoire</a><a href="equipe.html">L'équipe</a><a href="engagements.html">Nos engagements</a></div>
       <div class="foot-col"><h4>Expertises</h4><a href="services.html">Nos expertises</a><a href="marques.html">Nos marques</a><a href="creations.html">Nos créations</a></div>
-      <div class="foot-col"><h4>Magasins</h4><a href="magasins.html">Nos 3 magasins</a><a href="contact.html">Contact</a><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a></div>
+      <div class="foot-col"><h4>Magasins</h4><a href="magasins.html">Nos 3 magasins</a><a href="opticien-nogent-le-rotrou.html">Opticien Nogent-le-Rotrou</a><a href="opticien-brou.html">Opticien Brou</a><a href="opticien-la-loupe.html">Opticien La Loupe</a><a href="contact.html">Contact</a><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a></div>
     </div>
   </div>
   <div class="foot-bottom"><span>© 2026 Pigeard — Créateur de regards depuis 1863.</span><span><a href="mentions-legales.html">Mentions légales</a> · Nogent-le-Rotrou · Brou · La Loupe</span></div>
 </div></footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="assets/js/vendor/gsap.min.js"></script>
+<script src="assets/js/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/js/vendor/lenis.min.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
 if(window.PIGEARD && !PIGEARD.reduce && window.gsap){

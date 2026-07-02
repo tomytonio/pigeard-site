@@ -36,13 +36,13 @@
   }
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300..700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/karla-normal-300-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/playfair-display-italic-400-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/playfair-display-normal-400-900-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/brand/favicon-180.png">
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="assets/css/site.css">
 <style>
 /* ===== Page Histoire : échelle de dates (gauche) qui défile + fil horizontal ===== */
@@ -110,6 +110,9 @@
 }
 @media(prefers-reduced-motion:reduce){html:not(.force-motion) .interlude .word{opacity:1;transform:none}}
 </style>
+<script type="speculationrules">
+{"prerender":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}
+</script>
 </head>
 <body>
 <div class="grain"></div><div class="progress" id="progress"></div>
@@ -143,56 +146,56 @@
 <section class="chapter" data-year="1863">
   <span class="year-ghost">1863</span>
   <div class="wrap">
-    <div class="media"><div class="frame"><span class="tape" style="top:-16px;left:24px;transform:rotate(-4deg)"></span><picture><source srcset="assets/histoire/aieux.webp" type="image/webp"><img src="assets/histoire/aieux.jpg" width="200" height="148" alt="Les aïeux Pigeard"></picture><span class="cap">la famille Pigeard,<br>aux origines</span></div></div>
+    <div class="media"><div class="frame"><span class="tape" style="top:-16px;left:24px;transform:rotate(-4deg)"></span><picture><source srcset="assets/histoire/aieux.webp" type="image/webp"><img src="assets/histoire/aieux.jpg" width="200" height="148" alt="Les aïeux Pigeard" loading="lazy" decoding="async"></picture><span class="cap">la famille Pigeard,<br>aux origines</span></div></div>
     <div class="txt"><span class="chip" style="background:var(--creme)">1863 — Auguste</span><h2>Le coutelier<br>devenu <em style="font-style:italic;color:var(--vert)">opticien</em>.<span class="sub">rue Giroust, à Nogent-le-Rotrou</span></h2><p class="lede2">Tout commence en 1863, sous Napoléon III, dans l'échoppe d'Auguste Pigeard.</p><p>Maître coutelier originaire d'Authon-du-Perche, Auguste aiguise les lames… et façonne déjà les verres de lunettes sur ses meules. L'optique est née de la coutellerie. Héros de la guerre de 1870, il échappe de justesse au peloton — sauvé par un général allemand dont il avait soigné le fils.</p><span class="note">le tout début de l'aventure</span></div>
   </div>
 </section>
 <section class="chapter flip" data-year="1900">
   <span class="year-ghost">1900</span>
   <div class="wrap">
-    <div class="media"><div class="frame"><span class="tape" style="top:-16px;left:30px;transform:rotate(4deg)"></span><picture><source srcset="assets/histoire/centenaire.webp" type="image/webp"><img src="assets/histoire/centenaire.jpg" width="640" height="1024" alt="Article de presse — La Maison Pigeard a fêté son centenaire, retraçant la lignée familiale"></picture><span class="cap">la presse raconte<br>la dynastie Pigeard</span></div></div>
+    <div class="media"><div class="frame"><span class="tape" style="top:-16px;left:30px;transform:rotate(4deg)"></span><picture><source srcset="assets/histoire/centenaire.webp" type="image/webp"><img src="assets/histoire/centenaire.jpg" width="640" height="1024" alt="Article de presse — La Maison Pigeard a fêté son centenaire, retraçant la lignée familiale" loading="lazy" decoding="async"></picture><span class="cap">la presse raconte<br>la dynastie Pigeard</span></div></div>
     <div class="txt"><span class="chip" style="background:var(--moutarde)">1900 → 1939 — Georges</span><h2>Quand <em style="font-style:italic;color:var(--vert)">l'optique</em><br>prend le dessus.</h2><p>Georges Pigeard, formé à l'optique à Paris et maître coutelier de Thiers, fait la réputation des couteaux Pigeard — primés dans toute la région. Mais l'industrie bouscule la coutellerie : à la fin des années 30, l'optique devient le cœur de la maison.</p><span class="note">l'artisan se réinvente</span></div>
   </div>
 </section>
 <section class="chapter" data-year="1944">
   <span class="year-ghost">1944</span>
   <div class="wrap">
-    <div class="media"><div class="frame"><span class="tape" style="top:-16px;left:24px;transform:rotate(-3deg)"></span><picture><source srcset="assets/histoire/bombardement.webp" type="image/webp"><img src="assets/histoire/bombardement.jpg" width="1371" height="1370" alt="Le magasin détruit par le bombardement de 1944"></picture><span class="cap">juin 1944 —<br>tout est détruit</span></div></div>
+    <div class="media"><div class="frame"><span class="tape" style="top:-16px;left:24px;transform:rotate(-3deg)"></span><picture><source srcset="assets/histoire/bombardement.webp" type="image/webp"><img src="assets/histoire/bombardement.jpg" width="1100" height="1099" alt="Le magasin détruit par le bombardement de 1944" loading="lazy" decoding="async"></picture><span class="cap">juin 1944 —<br>tout est détruit</span></div></div>
     <div class="txt"><span class="chip" style="background:var(--corail)">1944 — l'épreuve</span><h2>Près de 80 ans<br>effacés en <em style="font-style:italic;color:var(--vert)">une nuit</em>.</h2><p>En juin 1944, le bombardement de Nogent-le-Rotrou rase le magasin. Quatre-vingts ans d'histoire familiale partent en fumée. L'aventure aurait pu s'arrêter là… mais la famille Pigeard n'avait pas dit son dernier mot.</p><span class="note">on ne lâche rien</span></div>
   </div>
 </section>
 <section class="chapter flip" data-year="1945">
   <span class="year-ghost">1945</span>
   <div class="wrap">
-    <div class="media"><div class="frame wide"><span class="tape" style="top:-16px;left:30px;transform:rotate(3deg)"></span><picture><source srcset="assets/histoire/boutique-1945.webp" type="image/webp"><img src="assets/histoire/boutique-1945.jpg" width="1009" height="676" alt="La nouvelle boutique après la Libération, 1945"></picture><span class="cap">la nouvelle boutique,<br>après la Libération</span></div></div>
+    <div class="media"><div class="frame wide"><span class="tape" style="top:-16px;left:30px;transform:rotate(3deg)"></span><picture><source srcset="assets/histoire/boutique-1945.webp" type="image/webp"><img src="assets/histoire/boutique-1945.jpg" width="1009" height="676" alt="La nouvelle boutique après la Libération, 1945" loading="lazy" decoding="async"></picture><span class="cap">la nouvelle boutique,<br>après la Libération</span></div></div>
     <div class="txt"><span class="chip" style="background:var(--vert);color:#fff">L'après-guerre — Georges &amp; Fernande</span><h2>Repartir de zéro,<br>sur les routes <em style="font-style:italic;color:var(--vert)">du Perche</em>.</h2><p>Georges et son épouse Fernande, opticiens tous les deux, relancent la maison au 6 rue de Sully. Chaque semaine, ils sillonnent les marchés ; les examens de vue se font dans les halls d'hôtels, l'équipement livré la semaine suivante. La renommée Pigeard gagne tout le Perche.</p><span class="note">le métier dans les jambes</span></div>
   </div>
 </section>
 <section class="chapter" data-year="1963">
   <span class="year-ghost">1963</span>
   <div class="wrap">
-    <div class="media"><div class="frame"><span class="tape" style="top:-16px;left:24px;transform:rotate(-4deg)"></span><picture><source srcset="assets/histoire/presse-centenaire.webp" type="image/webp"><img src="assets/histoire/presse-centenaire.jpg" width="582" height="1400" alt="Article de presse pour le centenaire"></picture><span class="cap">100 ans —<br>la presse en parle</span></div></div>
+    <div class="media"><div class="frame"><span class="tape" style="top:-16px;left:24px;transform:rotate(-4deg)"></span><picture><source srcset="assets/histoire/presse-centenaire.webp" type="image/webp"><img src="assets/histoire/presse-centenaire.jpg" width="582" height="1400" alt="Article de presse pour le centenaire" loading="lazy" decoding="async"></picture><span class="cap">100 ans —<br>la presse en parle</span></div></div>
     <div class="txt"><span class="chip" style="background:var(--creme)">1963 — le centenaire</span><h2>Cent ans,<br>et déjà <em style="font-style:italic;color:var(--vert)">en avance</em>.</h2><p>En 1963, la maison fête ses cent ans. Georges Pigeard, sorti de l'école d'optique de Morez, ouvre la première succursale à <b style="color:var(--blanc-chaud)">Brou</b> et révolutionne la boutique : les montures sont présentées en libre accès, « à l'américaine » — une idée alors inédite en France.</p><span class="note">toujours un temps d'avance</span></div>
   </div>
 </section>
 <section class="chapter flip" data-year="1980">
   <span class="year-ghost">1980</span>
   <div class="wrap">
-    <div class="media"><div class="frame"><span class="tape" style="top:-16px;left:30px;transform:rotate(4deg)"></span><picture><source srcset="assets/histoire/afrique.webp" type="image/webp"><img src="assets/histoire/afrique.jpg" width="773" height="1024" alt="Actions humanitaires en Afrique"></picture><span class="cap">des lunettes<br>pour le plus grand nombre</span></div></div>
+    <div class="media"><div class="frame"><span class="tape" style="top:-16px;left:30px;transform:rotate(4deg)"></span><picture><source srcset="assets/histoire/afrique.webp" type="image/webp"><img src="assets/histoire/afrique.jpg" width="773" height="1024" alt="Actions humanitaires en Afrique" loading="lazy" decoding="async"></picture><span class="cap">des lunettes<br>pour le plus grand nombre</span></div></div>
     <div class="txt"><span class="chip" style="background:var(--bois);color:#fff">Années 80 — l'engagement</span><h2>Rendre <em style="font-style:italic;color:var(--vert)">la vue</em>,<br>partout dans le monde.</h2><p>Au début des années 80, Georges Pigeard invente le « Rotary Aphaque System » et devient l'un des fondateurs d'« Ophtalmos Sans Frontières ». Ses lunettes ingénieuses pour les opérés de la cataracte — un verre standardisé monté au tournevis, sans machine ni électricité — seront fabriquées par centaines de milliers pendant plus de 15 ans.</p><span class="note">l'optique au service des autres</span></div>
   </div>
 </section>
 <section class="chapter" data-year="2004">
   <span class="year-ghost">2004</span>
   <div class="wrap">
-    <div class="media"><div class="frame wide"><span class="tape" style="top:-16px;left:24px;transform:rotate(-3deg)"></span><picture><source srcset="assets/photos/mag-laloupe.webp" type="image/webp"><img src="assets/photos/mag-laloupe.jpg" width="1600" height="1200" alt="Le magasin de La Loupe"></picture><span class="cap">un troisième<br>magasin : La Loupe</span></div></div>
+    <div class="media"><div class="frame wide"><span class="tape" style="top:-16px;left:24px;transform:rotate(-3deg)"></span><picture><source srcset="assets/photos/mag-laloupe.webp" type="image/webp"><img src="assets/photos/mag-laloupe.jpg" width="1200" height="900" alt="Le magasin de La Loupe" loading="lazy" decoding="async"></picture><span class="cap">un troisième<br>magasin : La Loupe</span></div></div>
     <div class="txt"><span class="chip" style="background:var(--vert);color:#fff">2004 — Christophe</span><h2>La <em style="font-style:italic;color:var(--vert)">cinquième</em><br>génération.</h2><p>Au décès de son père, Christophe Pigeard reprend la maison et ouvre en 2004 un troisième point de vente à <b style="color:var(--blanc-chaud)">La Loupe</b>, là où son grand-père tenait jadis le marché. La famille veille, toujours, sur le regard de ses clients.</p><span class="note">trois villes, une famille</span></div>
   </div>
 </section>
 <section class="chapter flip" data-year="2013">
   <span class="year-ghost">2013</span>
   <div class="wrap">
-    <div class="media"><div class="frame wide"><span class="tape" style="top:-16px;left:30px;transform:rotate(3deg)"></span><picture><source srcset="assets/photos/mag-nogent.webp" type="image/webp"><img src="assets/photos/mag-nogent.jpg" width="1600" height="1066" alt="Le magasin de Nogent-le-Rotrou aujourd'hui"></picture><span class="cap">le magasin de Nogent,<br>aujourd'hui</span></div></div>
+    <div class="media"><div class="frame wide"><span class="tape" style="top:-16px;left:30px;transform:rotate(3deg)"></span><picture><source srcset="assets/photos/mag-nogent.webp" type="image/webp"><img src="assets/photos/mag-nogent.jpg" width="1200" height="800" alt="Le magasin de Nogent-le-Rotrou aujourd'hui" loading="lazy" decoding="async"></picture><span class="cap">le magasin de Nogent,<br>aujourd'hui</span></div></div>
     <div class="txt"><span class="chip" style="background:var(--moutarde)">2013 → aujourd'hui — Antoine</span><h2>La <em style="font-style:italic;color:var(--vert)">sixième</em><br>génération écrit la suite.</h2><p class="lede2">En 2013, c'est à mon tour de faire de l'optique mon métier.</p><p>Formé à l'AEPO de Paris, je travaille aujourd'hui aux côtés de mon père. Trois magasins agrandis (Brou en 2014, Nogent en 2021), une équipe passionnée, et toujours la même idée : prendre soin de chaque regard comme s'il était unique. Parce qu'il l'est.</p><span class="note">à mon tour de transmettre</span></div>
   </div>
 </section>
@@ -209,19 +212,19 @@
 <!-- FOOTER -->
 <footer class="site"><div class="wrap">
   <div class="foot-top">
-    <div class="foot-brand"><img class="mac" src="assets/brand/macaron-cream.svg" alt="Pigeard depuis 1863"><h3>Créateur de regards depuis 1863.</h3><span class="hand">à très vite chez Pigeard</span></div>
+    <div class="foot-brand"><img class="mac" src="assets/brand/macaron-cream.svg" alt="Pigeard depuis 1863" loading="lazy" decoding="async"><h3>Créateur de regards depuis 1863.</h3><span class="hand">à très vite chez Pigeard</span></div>
     <div class="foot-links">
       <div class="foot-col"><h4>La maison</h4><a href="histoire.html">Notre histoire</a><a href="equipe.html">L'équipe</a><a href="engagements.html">Nos engagements</a></div>
       <div class="foot-col"><h4>Expertises</h4><a href="services.html">Nos expertises</a><a href="marques.html">Nos marques</a><a href="creations.html">Nos créations</a></div>
-      <div class="foot-col"><h4>Magasins</h4><a href="magasins.html">Nos 3 magasins</a><a href="contact.html">Contact</a><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a></div>
+      <div class="foot-col"><h4>Magasins</h4><a href="magasins.html">Nos 3 magasins</a><a href="opticien-nogent-le-rotrou.html">Opticien Nogent-le-Rotrou</a><a href="opticien-brou.html">Opticien Brou</a><a href="opticien-la-loupe.html">Opticien La Loupe</a><a href="contact.html">Contact</a><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a></div>
     </div>
   </div>
   <div class="foot-bottom"><span>© 2026 Pigeard — Créateur de regards depuis 1863.</span><span><a href="mentions-legales.html">Mentions légales</a> · Nogent-le-Rotrou · Brou · La Loupe</span></div>
 </div></footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="assets/js/vendor/gsap.min.js"></script>
+<script src="assets/js/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/js/vendor/lenis.min.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
 /* Échelle de dates à gauche : centrer + activer l'année du chapitre courant */

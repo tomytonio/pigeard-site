@@ -31,6 +31,7 @@
       "image": "https://www.pigeard-opticiens.fr/assets/photos/mag-nogent.jpg",
       "telephone": "+33237520339",
       "email": "nogent@pigeard-opticiens.fr",
+      "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "45", "bestRating": "5"},
       "sameAs": ["https://tourmkr.com/F1lMW7PJyl", "https://www.google.com/maps?cid=2370635629431281441"],
       "address": {
         "@type": "PostalAddress",
@@ -63,6 +64,7 @@
       "image": "https://www.pigeard-opticiens.fr/assets/photos/mag-brou.jpg",
       "telephone": "+33237470529",
       "email": "brou@pigeard-opticiens.fr",
+      "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "52", "bestRating": "5"},
       "sameAs": ["https://tourmkr.com/F1pfGP3jmg", "https://www.google.com/maps?cid=13123065232035373380"],
       "address": {
         "@type": "PostalAddress",
@@ -93,6 +95,7 @@
       "image": "https://www.pigeard-opticiens.fr/assets/photos/mag-laloupe.jpg",
       "telephone": "+33237810712",
       "email": "laloupe@pigeard-opticiens.fr",
+      "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.7", "reviewCount": "46", "bestRating": "5"},
       "sameAs": ["https://tourmkr.com/F1cUhCkhYQ", "https://www.google.com/maps?cid=17029706582348079859"],
       "address": {
         "@type": "PostalAddress",
@@ -130,13 +133,13 @@
   ]
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300..700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/karla-normal-300-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/playfair-display-italic-400-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/playfair-display-normal-400-900-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/brand/favicon-180.png">
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="assets/css/site.css">
 <style>
 /* ---- Blocs magasin 2 colonnes ---- */
@@ -253,6 +256,9 @@
   .hours-row .time{font-size:.78rem}
 }
 </style>
+<script type="speculationrules">
+{"prerender":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}
+</script>
 </head>
 <body>
 <div class="grain"></div><div class="progress" id="progress"></div>
@@ -296,7 +302,7 @@
     <div class="mag-photo">
       <div class="frame">
         <span class="tape"></span>
-        <picture><source srcset="assets/photos/mag-nogent.webp" type="image/webp"><img src="assets/photos/mag-nogent.jpg" alt="Magasin Pigeard Nogent-le-Rotrou — 4 Rue Gouverneur" loading="lazy"></picture>
+        <picture><source srcset="assets/photos/mag-nogent.webp" type="image/webp"><img src="assets/photos/mag-nogent.jpg" alt="Magasin Pigeard Nogent-le-Rotrou — 4 Rue Gouverneur" loading="lazy" width="1200" height="800"></picture>
       </div>
       <span class="hand" style="position:absolute;bottom:-22px;right:5%;font-size:1.7rem;transform:rotate(-4deg)">notre maison-mère</span>
     </div>
@@ -329,6 +335,7 @@
         </div>
         <div>
           <a class="link-arrow" href="https://tourmkr.com/F1lMW7PJyl" target="_blank" rel="noopener">Visite virtuelle 360° <span class="arr">→</span></a>
+          <a class="link-arrow" href="opticien-nogent-le-rotrou.html" style="margin-left:22px">Tout sur le magasin <span class="arr">→</span></a>
         </div>
       </div>
     </div>
@@ -339,7 +346,7 @@
     <div class="mag-photo">
       <div class="frame">
         <span class="tape"></span>
-        <picture><source srcset="assets/photos/mag-brou.webp" type="image/webp"><img src="assets/photos/mag-brou.jpg" alt="Magasin Pigeard Brou — 1 Place d'Armes" loading="lazy"></picture>
+        <picture><source srcset="assets/photos/mag-brou.webp" type="image/webp"><img src="assets/photos/mag-brou.jpg" alt="Magasin Pigeard Brou — 1 Place d'Armes" loading="lazy" width="1200" height="800"></picture>
       </div>
       <span class="hand" style="position:absolute;bottom:-22px;left:5%;font-size:1.7rem;transform:rotate(3deg)">depuis les années 60</span>
     </div>
@@ -372,6 +379,7 @@
         </div>
         <div>
           <a class="link-arrow" href="https://tourmkr.com/F1pfGP3jmg" target="_blank" rel="noopener">Visite virtuelle 360° <span class="arr">→</span></a>
+          <a class="link-arrow" href="opticien-brou.html" style="margin-left:22px">Tout sur le magasin <span class="arr">→</span></a>
         </div>
       </div>
     </div>
@@ -382,7 +390,7 @@
     <div class="mag-photo">
       <div class="frame">
         <span class="tape"></span>
-        <picture><source srcset="assets/photos/mag-laloupe.webp" type="image/webp"><img src="assets/photos/mag-laloupe.jpg" alt="Magasin Pigeard La Loupe — 10 Place de l'Hôtel de Ville" loading="lazy"></picture>
+        <picture><source srcset="assets/photos/mag-laloupe.webp" type="image/webp"><img src="assets/photos/mag-laloupe.jpg" alt="Magasin Pigeard La Loupe — 10 Place de l'Hôtel de Ville" loading="lazy" width="1200" height="900"></picture>
       </div>
       <span class="hand" style="position:absolute;bottom:-22px;right:5%;font-size:1.7rem;transform:rotate(-3deg)">ouvert en 2004</span>
     </div>
@@ -415,6 +423,7 @@
         </div>
         <div>
           <a class="link-arrow" href="https://tourmkr.com/F1cUhCkhYQ" target="_blank" rel="noopener">Visite virtuelle 360° <span class="arr">→</span></a>
+          <a class="link-arrow" href="opticien-la-loupe.html" style="margin-left:22px">Tout sur le magasin <span class="arr">→</span></a>
         </div>
       </div>
     </div>
@@ -453,23 +462,23 @@
 <footer class="site"><div class="wrap">
   <div class="foot-top">
     <div class="foot-brand">
-      <img class="mac" src="assets/brand/macaron-cream.svg" alt="Pigeard depuis 1863">
+      <img class="mac" src="assets/brand/macaron-cream.svg" alt="Pigeard depuis 1863" loading="lazy" decoding="async">
       <h3>Créateur de regards depuis 1863.</h3>
       <span class="hand">à très vite chez Pigeard</span>
     </div>
     <div class="foot-links">
       <div class="foot-col"><h4>La maison</h4><a href="histoire.html">Notre histoire</a><a href="equipe.html">L'équipe</a><a href="engagements.html">Nos engagements</a><a href="engagements.html#mutuelles">Nos mutuelles</a></div>
       <div class="foot-col"><h4>Expertises</h4><a href="services.html#sur-mesure">Sur mesure</a><a href="services.html#optikid">Optikid</a><a href="services.html#basse-vision">Basse vision</a><a href="services.html#nuance-audio">Nuance Audio</a><a href="marques.html">Nos marques</a><a href="creations.html">Nos créations</a></div>
-      <div class="foot-col"><h4>Magasins</h4><a href="magasins.html">Nos 3 magasins</a><a href="contact.html">Contact</a><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a><a href="https://facebook.com/pigeard.opticiens" target="_blank" rel="noopener">Facebook</a></div>
+      <div class="foot-col"><h4>Magasins</h4><a href="magasins.html">Nos 3 magasins</a><a href="opticien-nogent-le-rotrou.html">Opticien Nogent-le-Rotrou</a><a href="opticien-brou.html">Opticien Brou</a><a href="opticien-la-loupe.html">Opticien La Loupe</a><a href="contact.html">Contact</a><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a><a href="https://facebook.com/pigeard.opticiens" target="_blank" rel="noopener">Facebook</a></div>
     </div>
   </div>
   <div class="foot-bottom"><span>© 2026 Pigeard — Créateur de regards depuis 1863.</span><span><a href="mentions-legales.html">Mentions légales</a> · Nogent-le-Rotrou · Brou · La Loupe</span></div>
 </div></footer>
 
 <!-- LIBS + MOTEUR + SCRIPT PAGE -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="assets/js/vendor/gsap.min.js"></script>
+<script src="assets/js/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/js/vendor/lenis.min.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
 /* Entrée du hero + blobs */
