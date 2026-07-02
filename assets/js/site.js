@@ -49,6 +49,25 @@
 
   var PIG = window.PIGEARD = { reduce: reduce, force: !reduce, gsap: window.gsap || null, lenis: null };
 
+
+  /* --- Inclinaison 3D au survol : la carte suit la souris (souris précise uniquement) --- */
+  PIG.tilt = function(el, opts){
+    if(!(window.matchMedia && window.matchMedia('(pointer:fine)').matches)) return;
+    opts = opts || {}; var amp = opts.amp || 9, sc = opts.scale || 1.04;
+    el.addEventListener('mouseenter', function(){ window.__tiltHover = el; el.style.transition = 'transform .18s ease-out, box-shadow .4s'; });
+    el.addEventListener('mousemove', function(e){
+      var r = el.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      el.style.transform = 'perspective(700px) rotateX(' + (-y * amp) + 'deg) rotateY(' + (x * amp * 1.2) + 'deg) translateY(-8px) scale(' + sc + ')';
+    });
+    el.addEventListener('mouseleave', function(){
+      window.__tiltHover = null;
+      el.style.transform = '';
+      if(opts.retomber) opts.retomber(el);
+    });
+  };
+  document.querySelectorAll('#teamRow .frame').forEach(function(fr){ PIG.tilt(fr, {amp:9, scale:1.04}); });
+
   if(!reduce && window.gsap && window.ScrollTrigger){
     gsap.registerPlugin(ScrollTrigger);
     var lenis = null;

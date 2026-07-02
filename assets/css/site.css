@@ -463,3 +463,45 @@ footer.site{padding:clamp(80px,11vh,140px) 0 46px;border-top:1px solid var(--lig
 .lb .lb-close{top:20px;right:20px}
 .lb .lb-prev{left:14px;top:50%;transform:translateY(-50%)}
 .lb .lb-next{right:14px;top:50%;transform:translateY(-50%)}
+
+/* ============================================================
+   VISAGES DE LA MAISON — polaroids scotchés (accueil)
+   ============================================================ */
+#teamRow .frame{overflow:visible;border-radius:10px;background:#FBF6EC;padding:8px 8px 34px;box-shadow:0 16px 36px -16px rgba(0,0,0,.55);transform:rotate(var(--trot,0deg));transition:transform .5s var(--ease),box-shadow .5s;position:relative}
+#teamRow .frame::before{content:"";position:absolute;top:-11px;left:50%;transform:translateX(-50%) rotate(-2deg);width:64px;height:20px;background:rgba(231,221,203,.65);box-shadow:0 2px 5px rgba(0,0,0,.2);z-index:3}
+#teamRow .frame img{border-radius:6px;filter:saturate(.88) brightness(.94);transition:filter .5s}
+#teamRow .frame .prenom{position:absolute;left:0;right:0;bottom:6px;text-align:center;font-family:var(--hand);font-size:1.35rem;color:var(--bois);line-height:1;transform:rotate(-2deg)}
+#teamRow .frame:hover{box-shadow:0 26px 50px -18px rgba(126,140,90,.35);z-index:4}
+#teamRow .frame:hover img{filter:saturate(1.05) brightness(1.04)}
+
+/* ============================================================
+   AVIS GOOGLE — carrousel (accueil)
+   ============================================================ */
+.avis-sec{position:relative;overflow:hidden}
+.avis-sec[hidden]{display:none}
+.avis-sec .g-stars{position:relative;display:inline-block;font-size:1.02rem;line-height:1;letter-spacing:1.5px;font-family:Arial,Helvetica,sans-serif}
+.avis-sec .g-stars::before{content:"★★★★★";color:rgba(231,221,203,.20)}
+.avis-sec .g-stars::after{content:"★★★★★";color:var(--moutarde);position:absolute;left:0;top:0;width:calc(var(--rate,5)/5*100%);overflow:hidden;white-space:nowrap}
+.avis-card .g-stars{font-size:1.05rem}
+.avis-card .g-stars::before{color:rgba(38,35,28,.15)}
+.avis-head{display:flex;align-items:flex-end;justify-content:space-between;gap:26px;flex-wrap:wrap}
+.avis-resume{display:flex;align-items:center;gap:16px;margin-top:8px}
+.avis-resume .note-globale{font-family:var(--serif);font-weight:800;font-size:clamp(2.6rem,6vw,4rem);line-height:1;color:var(--blanc-chaud)}
+.avis-resume .det{display:flex;flex-direction:column;gap:6px}
+.avis-resume .g-stars{font-size:1.25rem}
+.avis-resume .sous{color:var(--muted);font-size:.85rem}
+.avis-track-wrap{margin-top:44px;position:relative}
+.avis-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x proximity;padding:20px 4px 26px;scrollbar-width:none}
+.avis-track::-webkit-scrollbar{display:none}
+.avis-card{flex:0 0 min(340px,82vw);scroll-snap-align:start;background:#FBF6EC;color:var(--encre);border-radius:16px;padding:26px 24px 22px;position:relative;box-shadow:0 18px 40px -18px rgba(0,0,0,.55);transform:rotate(var(--rot,0deg));transition:transform .22s ease-out,opacity .22s ease-out,box-shadow .3s;will-change:transform,opacity}
+.avis-card .tape{position:absolute;top:-12px;left:50%;transform:translateX(-50%) rotate(-2deg);width:74px;height:24px;background:rgba(231,221,203,.75);box-shadow:0 2px 6px rgba(0,0,0,.18)}
+.avis-card .txt{font-size:.92rem;line-height:1.6;color:#4A443A;margin:12px 0 18px;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.avis-card .qui{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px dashed rgba(38,35,28,.18);padding-top:14px}
+.avis-card .nom-a{font-weight:700;font-size:.9rem;color:var(--encre)}
+.avis-card .mag-a{font-family:var(--hand);font-size:1.25rem;color:var(--bois);line-height:1}
+.avis-card .gg{width:22px;height:22px;flex:0 0 22px}
+.avis-nav{display:flex;gap:10px}
+.avis-nav button{width:46px;height:46px;border-radius:50%;border:1px solid var(--ligne);background:none;color:var(--creme);font-size:1.05rem;cursor:pointer;transition:border-color .3s,background .3s}
+.avis-nav button:hover{border-color:var(--vert);background:rgba(126,140,90,.18)}
+.avis-cta{margin-top:8px;display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+@media(max-width:600px){.avis-head{flex-direction:column;align-items:flex-start}.avis-nav{align-self:flex-end;margin-top:-40px}}

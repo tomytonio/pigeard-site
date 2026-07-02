@@ -302,14 +302,42 @@
 <section class="sec wrap" id="equipe-teaser">
   <div class="sec-head reveal"><h2 data-bind="textes.accueil.equipeTitre" data-bind-multiline>Les visages<br>de la maison</h2><p data-bind="textes.accueil.equipeTexte">Derrière chaque conseil, une équipe qui aime son métier — à Nogent, Brou et La Loupe.</p></div>
   <div class="reveal" style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px" id="teamRow">
-    <div class="frame" style="aspect-ratio:3/4"><picture><source srcset="assets/equipe/nogent/christophe.webp" type="image/webp"><img src="assets/equipe/nogent/christophe.jpg" alt="Christophe Pigeard" width="851" height="1200" loading="lazy" decoding="async"></picture></div>
-    <div class="frame" style="aspect-ratio:3/4"><picture><source srcset="assets/equipe/nogent/antoine.webp" type="image/webp"><img src="assets/equipe/nogent/antoine.jpg" alt="Antoine Pigeard" width="800" height="1200" loading="lazy" decoding="async"></picture></div>
-    <div class="frame" style="aspect-ratio:3/4"><picture><source srcset="assets/equipe/brou/magali.webp" type="image/webp"><img src="assets/equipe/brou/magali.jpg" alt="Magali" width="890" height="1200" loading="lazy" decoding="async"></picture></div>
-    <div class="frame" style="aspect-ratio:3/4"><picture><source srcset="assets/equipe/la-loupe/helene.webp" type="image/webp"><img src="assets/equipe/la-loupe/helene.jpg" alt="Hélène" width="800" height="1200" loading="lazy" decoding="async"></picture></div>
-    <div class="frame" style="aspect-ratio:3/4"><picture><source srcset="assets/equipe/nogent/vincent.webp" type="image/webp"><img src="assets/equipe/nogent/vincent.jpg" alt="Vincent" width="800" height="1200" loading="lazy" decoding="async"></picture></div>
-    <div class="frame" style="aspect-ratio:3/4"><picture><source srcset="assets/equipe/la-loupe/clemence.webp" type="image/webp"><img src="assets/equipe/la-loupe/clemence.jpg" alt="Clémence" width="960" height="1200" loading="lazy" decoding="async"></picture></div>
+    <div class="frame" style="aspect-ratio:3/4;--trot:-2deg"><picture><source srcset="assets/equipe/nogent/christophe.webp" type="image/webp"><img src="assets/equipe/nogent/christophe.jpg" alt="Christophe Pigeard" width="851" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Christophe</span></div>
+    <div class="frame" style="aspect-ratio:3/4;--trot:1.6deg"><picture><source srcset="assets/equipe/nogent/antoine.webp" type="image/webp"><img src="assets/equipe/nogent/antoine.jpg" alt="Antoine Pigeard" width="800" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Antoine</span></div>
+    <div class="frame" style="aspect-ratio:3/4;--trot:-1.2deg"><picture><source srcset="assets/equipe/brou/magali.webp" type="image/webp"><img src="assets/equipe/brou/magali.jpg" alt="Magali" width="890" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Magali</span></div>
+    <div class="frame" style="aspect-ratio:3/4;--trot:2deg"><picture><source srcset="assets/equipe/la-loupe/helene.webp" type="image/webp"><img src="assets/equipe/la-loupe/helene.jpg" alt="Hélène" width="800" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Hélène</span></div>
+    <div class="frame" style="aspect-ratio:3/4;--trot:-1.8deg"><picture><source srcset="assets/equipe/nogent/vincent.webp" type="image/webp"><img src="assets/equipe/nogent/vincent.jpg" alt="Vincent" width="800" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Vincent</span></div>
+    <div class="frame" style="aspect-ratio:3/4;--trot:1.3deg"><picture><source srcset="assets/equipe/la-loupe/clemence.webp" type="image/webp"><img src="assets/equipe/la-loupe/clemence.jpg" alt="Clémence" width="960" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Clémence</span></div>
   </div>
-  <div class="reveal" style="margin-top:34px"><a class="link-arrow" href="equipe.html">Rencontrer l'équipe <span class="arr">→</span></a></div>
+  <div class="reveal" style="margin-top:34px"><a class="btn btn--vert" href="equipe.html">Rencontrer l'équipe <span class="arr">→</span></a></div>
+</section>
+
+
+<!-- AVIS GOOGLE — carrousel alimenté par n8n (webhook avis-site) -->
+<section class="sec wrap avis-sec" id="avis" hidden>
+  <div class="avis-head">
+    <div>
+      <div class="sec-head" style="margin-bottom:0"><h2>Vos avis,<br>notre fierté</h2></div>
+      <div class="avis-resume">
+        <span class="note-globale" id="avisNote">4,8</span>
+        <span class="det">
+          <span class="g-stars" id="avisEtoiles" style="--rate:4.8" aria-hidden="true"></span>
+          <span class="sous" id="avisSous"><b style="color:var(--blanc-chaud)">143 avis Google</b> · Nogent-le-Rotrou, Brou &amp; La Loupe</span>
+        </span>
+      </div>
+    </div>
+    <div class="avis-nav">
+      <button id="avisPrev" aria-label="Avis précédents">←</button>
+      <button id="avisNext" aria-label="Avis suivants">→</button>
+    </div>
+  </div>
+  <div class="avis-track-wrap">
+    <div class="avis-track" id="avisTrack"></div>
+  </div>
+  <div class="avis-cta">
+    <span class="hand" style="font-size:1.7rem;transform:rotate(-2deg);display:inline-block">merci pour votre confiance</span>
+    <a class="btn btn--vert" href="https://www.google.com/maps?cid=2370635629431281441" target="_blank" rel="noopener">Laisser un avis Google <span class="arr">→</span></a>
+  </div>
 </section>
 
 <!-- MARQUEE -->
@@ -373,6 +401,7 @@
 <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
 <script src="assets/js/vendor/lenis.min.js"></script>
 <script src="assets/js/site.js"></script>
+<script src="assets/js/avis.js" defer></script>
 <script>
 /* stries lumineuses */
 (function(){var s=document.getElementById('streaks');if(!s)return;var h='';for(var i=0;i<6;i++){var l=10+i*14+Math.random()*4;h+='<span class="streak" style="left:'+l+'%;animation:drift '+(14+i*2.5)+'s linear '+(i*-3)+'s infinite"></span>';}s.innerHTML=h;var st=document.createElement('style');st.textContent='@keyframes drift{0%{transform:translateY(-6%) rotate(14deg)}100%{transform:translateY(6%) rotate(14deg)}}';document.head.appendChild(st);})();
