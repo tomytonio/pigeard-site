@@ -22,18 +22,6 @@
   window.addEventListener('scroll', onScroll); onScroll();
 
 
-  /* --- Bouton « Prendre RDV » flottant sur mobile --- */
-  (function(){
-    var isMag = /magasins\.html$/.test(location.pathname);
-    var b = document.createElement('a');
-    b.className = 'rdv-float';
-    b.href = isMag ? '#rdv' : 'magasins.html#rdv';
-    b.textContent = 'Prendre rendez-vous';
-    document.body.appendChild(b);
-    var upd = function(){ b.classList.toggle('on', (window.scrollY||0) > 420); };
-    window.addEventListener('scroll', upd, {passive:true}); upd();
-  })();
-
   /* --- Menu mobile --- */
   var burger = document.querySelector('.burger');
   var mobile = document.querySelector('.mobile-menu');
