@@ -500,3 +500,13 @@ footer.site{padding:clamp(80px,11vh,140px) 0 46px;border-top:1px solid var(--lig
 .avis-nav button:hover{border-color:var(--vert);background:rgba(126,140,90,.18)}
 .avis-cta{margin-top:8px;display:flex;gap:22px;align-items:center;flex-wrap:wrap}
 @media(max-width:600px){.avis-head{flex-direction:column;align-items:flex-start}.avis-nav{align-self:flex-end;margin-top:-40px}}
+
+/* ── Cartes magasins de l'accueil : toute la carte est cliquable ── */
+.shop{position:relative}
+.shop .shop-link{position:absolute;inset:0;z-index:1;border-radius:16px}
+.shop .rdv{position:relative;z-index:2}
+.shop:hover{transform:translateY(-5px);border-color:var(--vert)}
+.shop .shop-more{margin-top:12px;font-size:.82rem;font-weight:600;letter-spacing:.04em;color:var(--muted);transition:color .3s}
+.shop .shop-more .arr{display:inline-block;transition:transform .3s}
+.shop:hover .shop-more{color:var(--vert)}
+.shop:hover .shop-more .arr{transform:translateX(4px)}
