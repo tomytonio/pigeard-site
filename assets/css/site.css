@@ -285,7 +285,6 @@ footer.site{padding:clamp(80px,11vh,140px) 0 46px;border-top:1px solid var(--lig
 .foot-brand img.mac{height:88px;opacity:.92;margin-bottom:22px}
 .foot-brand h3{font-family:var(--serif);font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;line-height:1.05;max-width:14ch}
 .foot-brand .hand{font-size:1.8rem;margin-top:14px;display:inline-block;transform:rotate(-3deg)}
-.foot-soon{margin-top:24px;display:inline-flex;align-items:center;gap:10px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--moutarde);border:1px solid rgba(209,160,75,.4);padding:8px 16px;border-radius:100px}
 .foot-links{display:flex;gap:54px;flex-wrap:wrap}
 .foot-col h4{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
 .foot-col a{display:block;color:var(--creme);font-size:.95rem;padding:5px 0;transition:color .3s}

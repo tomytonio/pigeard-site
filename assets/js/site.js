@@ -143,3 +143,29 @@
     if(window.ScrollTrigger){ try{ ScrollTrigger.refresh(); }catch(e){} }
   });
 })();
+
+/* ============================================================
+   COMPTEUR DE VISITES — affichage discret en bas de page.
+   1 visite = 1 session de navigation (sessionStorage) ; le total
+   est stocké côté n8n (data table « Compteur visites site »).
+   ============================================================ */
+(function(){
+  var bar = document.querySelector('.foot-bottom');
+  if(!bar || !window.fetch) return;
+  var URL_VISITES = 'https://n8n-1zv1.srv1641932.hstgr.cloud/webhook/visites-site';
+  var add = '';
+  try{
+    if(!sessionStorage.getItem('pigeardVisite')){ add = '?add=1'; sessionStorage.setItem('pigeardVisite','1'); }
+  }catch(e){}
+  fetch(URL_VISITES + add)
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(j){
+      if(!j || j.count == null) return;
+      var el = document.createElement('span');
+      el.className = 'foot-visites';
+      el.style.cssText = 'opacity:.35;font-size:.72rem;letter-spacing:.04em';
+      el.textContent = Number(j.count).toLocaleString('fr-FR') + ' visites';
+      bar.appendChild(el);
+    })
+    .catch(function(){});
+})();
