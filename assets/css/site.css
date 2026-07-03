@@ -26,6 +26,10 @@ img{max-width:100%;display:block}
 picture{display:contents}
 button{font-family:inherit;cursor:pointer}
 
+/* ---------- accessibilité : lien d'évitement (masqué jusqu'au focus clavier) ---------- */
+.skip-link{position:absolute;left:8px;top:-64px;z-index:10001;background:var(--blanc-chaud);color:var(--noir);padding:11px 18px;border-radius:10px;font-family:var(--sans);font-weight:700;font-size:.95rem;text-decoration:none;transition:top .2s var(--ease)}
+.skip-link:focus{top:8px;outline:3px solid var(--corail);outline-offset:2px}
+
 /* ---------- utilitaires ---------- */
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,64px)}
 .grain{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.045;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
