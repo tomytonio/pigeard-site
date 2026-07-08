@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Nos engagements, offres &amp; mutuelles — Pigeard Opticien depuis 1863</title>
-<meta name="description" content="Qualité, service, garanties : ce que vous pouvez attendre de Pigeard depuis 1863. AFNOR Qualité Optique, verres 100% français, tiers-payant toutes mutuelles." />
+<meta name="description" content="Qualité, service, garanties : ce que vous pouvez attendre de Pigeard depuis 1863. AFNOR Qualité Optique, verres 100% français, tiers-payant toutes mutuelles, recyclage solidaire de vos anciennes lunettes avec le Lions Club." />
 <link rel="canonical" href="https://www.pigeard-opticiens.fr/engagements.html" />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="fr_FR" />
@@ -79,6 +79,17 @@
 .sante-badge{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--bois);border:1px solid rgba(134,101,73,.4);padding:8px 18px;border-radius:100px;margin-top:32px}
 .sante-badge::before{content:"✓";font-weight:700;color:var(--vert)}
 
+/* ── recyclage solidaire ── */
+.recy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.recy-step{border:1px solid var(--ligne);border-radius:14px;padding:34px 26px;background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.012));transition:transform .55s var(--ease),border-color .55s;position:relative}
+.recy-step:hover{transform:translateY(-6px);border-color:rgba(126,140,90,.5)}
+.recy-step .ico{font-size:2rem;display:block;margin-bottom:14px}
+.recy-step .step-num{position:absolute;top:24px;right:24px;font-family:var(--serif);font-size:2.4rem;font-weight:700;color:rgba(126,140,90,.28);line-height:1}
+.recy-step h3{font-family:var(--serif);font-size:1.45rem;font-weight:700;margin-bottom:12px;line-height:1.15;color:var(--blanc-chaud)}
+.recy-step p{font-size:.92rem;color:var(--muted);line-height:1.65}
+.recy-note{text-align:center;margin-top:34px}
+.recy-note .hand{font-size:1.9rem;color:var(--vert-clair)}
+
 /* ── CTA final ── */
 .cta-final{text-align:center}
 
@@ -87,6 +98,7 @@
   .atouts-grid{grid-template-columns:repeat(2,1fr)}
   .piliers-grid{grid-template-columns:1fr}
   .offres-grid{grid-template-columns:1fr}
+  .recy-grid{grid-template-columns:1fr}
 }
 @media(max-width:600px){
   /* atouts → 1 col sooner (was 560px, slightly expand) */
@@ -101,6 +113,11 @@
 
   /* offres: reduce generous card padding on mobile */
   .offre-card{padding:26px 22px}
+
+  /* recyclage: reduce padding + note size */
+  .recy-step{padding:24px 20px}
+  .recy-step h3{font-size:1.3rem}
+  .recy-note .hand{font-size:1.5rem}
   .offre-card h3{font-size:1.4rem}
   .offre-card .prix{font-size:1.2rem;margin-top:14px}
 
@@ -211,6 +228,7 @@
         <li>Paiement 3×/4× sans frais</li>
         <li>Prise en charge basse vision</li>
         <li>Programme Optikid (enfants)</li>
+        <li>Collecte de vos anciennes lunettes — recyclées avec le Lions&nbsp;Club</li>
       </ul>
     </div>
 
@@ -274,6 +292,44 @@
   </div>
 </section>
 
+<!-- RECYCLAGE SOLIDAIRE — Lions Club -->
+<section class="sec wrap" id="recyclage">
+  <div class="sec-head reveal">
+    <div>
+      <span class="eyebrow">Engagement solidaire</span>
+      <h2 style="margin-top:14px">Vos anciennes lunettes<br>ont encore de beaux jours.</h2>
+    </div>
+    <p>Dans nos trois magasins, nous collectons vos anciennes lunettes. En partenariat avec le Lions&nbsp;Club, elles sont recyclées et retrouvent une seconde vie auprès de ceux qui en ont besoin.</p>
+  </div>
+  <div class="recy-grid">
+
+    <div class="recy-step reveal">
+      <span class="step-num">1</span>
+      <span class="ico">👓</span>
+      <h3>Déposez-les en magasin</h3>
+      <p>Lunettes de vue ou solaires, adulte ou enfant : apportez vos anciennes paires dans nos magasins de Nogent-le-Rotrou, Brou ou La&nbsp;Loupe. Même rayées ou démodées, elles peuvent servir.</p>
+    </div>
+
+    <div class="recy-step reveal">
+      <span class="step-num">2</span>
+      <span class="ico">🤝</span>
+      <h3>Le Lions Club les recycle</h3>
+      <p>Nous les confions au Lions&nbsp;Club, qui les achemine vers l'atelier de Médico Lions Clubs de France, au Havre. Elles y sont triées, nettoyées, et chaque verre est mesuré et classé par correction.</p>
+    </div>
+
+    <div class="recy-step reveal">
+      <span class="step-num">3</span>
+      <span class="ico">🌍</span>
+      <h3>Elles repartent en mission</h3>
+      <p>Les paires reconditionnées sont distribuées lors de missions humanitaires, notamment en Afrique, en Amérique latine et en Asie du Sud-Est. Les montures inutilisables sont recyclées pour financer ces actions.</p>
+    </div>
+
+  </div>
+  <div class="recy-note reveal">
+    <span class="hand">un petit geste pour vous, une vue retrouvée pour un autre</span>
+  </div>
+</section>
+
 <!-- NOS MUTUELLES -->
 <section class="sec wrap" id="mutuelles">
   <div class="sec-head reveal">
@@ -332,6 +388,7 @@
     <details class="faq-item reveal"><summary>Quelles sont les garanties sur mes lunettes ?</summary><p>Vous disposez de 30 jours pour changer d'avis sur la monture, d'un remplacement des verres possible en cas d'adaptation non satisfaisante (sous 3 mois), d'une garantie casse de 2 ans (franchise de 30 %) et d'une garantie de 2 ans contre les défauts de fabrication. L'entretien — ajustage, nettoyage, petites réparations — est gratuit à vie en magasin.</p></details>
     <details class="faq-item reveal"><summary>Vos verres sont-ils fabriqués en France ?</summary><p>Oui. Nous travaillons les verres Nikon, fabriqués à Provins, en France. La Maison Pigeard est par ailleurs certifiée AFNOR « Qualité Optique », la seule certification qualité reconnue dans l'optique française.</p></details>
     <details class="faq-item reveal"><summary>Équipez-vous les enfants et la basse vision ?</summary><p>Oui. Notre espace Optikid est dédié à l'optique de l'enfant, et nous proposons un accompagnement spécialisé en basse vision (aides visuelles pour les personnes malvoyantes). Tout le détail sur la page <a href="services.html">Nos expertises</a>.</p></details>
+    <details class="faq-item reveal"><summary>Que faire de mes anciennes lunettes ?</summary><p>Apportez-les-nous ! Nous collectons vos anciennes lunettes (de vue ou solaires) dans nos trois magasins. En partenariat avec le Lions Club, elles sont recyclées par Médico Lions Clubs de France : triées, nettoyées puis redistribuées lors de missions humanitaires. Les montures inutilisables sont recyclées pour financer ces actions. Tout le détail dans la section <a href="#recyclage">Engagement solidaire</a>.</p></details>
     <details class="faq-item reveal"><summary>Où se trouvent vos magasins et faut-il prendre rendez-vous ?</summary><p>Nous sommes présents à Nogent-le-Rotrou (siège), Brou et La Loupe, au cœur du Perche (Eure-et-Loir). Pour votre confort, la <a href="magasins.html#rdv">prise de rendez-vous en ligne</a> est recommandée afin d'éviter toute attente.</p></details>
   </div>
 </section>
@@ -346,6 +403,7 @@
     {"@type": "Question", "name": "Quelles sont les garanties sur mes lunettes ?", "acceptedAnswer": {"@type": "Answer", "text": "Vous disposez de 30 jours pour changer d'avis sur la monture, d'un remplacement des verres possible en cas d'adaptation non satisfaisante (sous 3 mois), d'une garantie casse de 2 ans (franchise de 30 %) et d'une garantie de 2 ans contre les défauts de fabrication. L'entretien — ajustage, nettoyage, petites réparations — est gratuit à vie en magasin."}},
     {"@type": "Question", "name": "Vos verres sont-ils fabriqués en France ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Nous travaillons les verres Nikon, fabriqués à Provins, en France. La Maison Pigeard est par ailleurs certifiée AFNOR « Qualité Optique », la seule certification qualité reconnue dans l'optique française."}},
     {"@type": "Question", "name": "Équipez-vous les enfants et la basse vision ?", "acceptedAnswer": {"@type": "Answer", "text": "Oui. Notre espace Optikid est dédié à l'optique de l'enfant, et nous proposons un accompagnement spécialisé en basse vision (aides visuelles pour les personnes malvoyantes)."}},
+    {"@type": "Question", "name": "Que faire de mes anciennes lunettes ?", "acceptedAnswer": {"@type": "Answer", "text": "Apportez-les dans l'un de nos trois magasins : nous collectons les anciennes lunettes en partenariat avec le Lions Club. Elles sont recyclées par Médico Lions Clubs de France — triées, nettoyées puis redistribuées lors de missions humanitaires ; les montures inutilisables sont recyclées pour financer ces actions."}},
     {"@type": "Question", "name": "Où se trouvent vos magasins et faut-il prendre rendez-vous ?", "acceptedAnswer": {"@type": "Answer", "text": "Nous sommes présents à Nogent-le-Rotrou (siège), Brou et La Loupe, au cœur du Perche (Eure-et-Loir). Pour votre confort, la prise de rendez-vous en ligne est recommandée afin d'éviter toute attente."}}
   ]
 }
