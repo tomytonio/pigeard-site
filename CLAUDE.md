@@ -39,6 +39,20 @@ commentaires de code, échanges avec le propriétaire.
   précaution, bumper le paramètre `?v=` des `<link>`/`<script>` lors d'une
   modification de `site.css`/`site.js` (convention existante).
 
+## Postes de travail & synchronisation
+
+- Le site est géré depuis **plusieurs endroits** : le(s) PC d'Antoine (Claude
+  Code local), les sessions Claude sur le web/mobile, Pages CMS et le robot
+  GitHub Actions. **Le dépôt GitHub est le seul lien entre eux** — les sessions
+  ne communiquent jamais directement ; tout ce qui doit être partagé doit être
+  commité et poussé.
+- Règles pour chaque session, locale ou en ligne : **toujours `git pull` avant
+  de travailler** ; **jamais de fin de session avec du travail non poussé** ;
+  jamais de `push --force` sur `main`.
+- Pour installer un nouveau poste : suivre `CONFIGURATION-NOUVEAU-PC.md` (à la
+  racine). Ce document ne sert qu'au premier démarrage ; ensuite, c'est le
+  présent fichier qui fait foi.
+
 ## Structure & design system
 
 - `assets/css/site.css` : design system partagé (thème sombre chaud). Variables
