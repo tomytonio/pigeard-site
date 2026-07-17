@@ -26,8 +26,7 @@
     '.pg-loader-logo svg{position:absolute;left:0;bottom:0;width:100%;height:auto;aspect-ratio:276/165.5;display:block}' +
     '.pg-loader-ghost svg{opacity:.15}' +
     '.pg-loader-fill{position:absolute;left:0;bottom:0;width:100%;height:0%;overflow:hidden}' +
-    '.pg-loader-msg{font-family:var(--hand,cursive);font-size:clamp(1.7rem,4.5vw,2.2rem);line-height:1;color:var(--camel,#D1A379);margin-top:26px;transform:rotate(-2deg)}' +
-    'html.pg-net::before{opacity:0;transition:opacity .55s ease}';
+    '.pg-loader-msg{font-family:var(--hand,cursive);font-size:clamp(1.7rem,4.5vw,2.2rem);line-height:1;color:var(--camel,#D1A379);margin-top:26px;transform:rotate(-2deg)}';
   document.head.appendChild(style);
 
   var overlay = document.createElement('div');
@@ -51,6 +50,17 @@
   var finished = false;
   window.addEventListener('load', function () { loaded = true; });
 
+  /* Page prête à être montrée = DOM chargé + images prioritaires (photo du
+     hero) disponibles. Attendre l'événement « load » (toutes les photos de
+     la page) gardait la jauge à 90 % jusqu'au plafond de 3,2 s sur mobile,
+     d'où une longue attente avant de pouvoir défiler. */
+  function pagePrete() {
+    if (document.readyState === 'loading') return false;
+    var imgs = document.querySelectorAll('img[fetchpriority="high"]');
+    for (var i = 0; i < imgs.length; i++) { if (!imgs[i].complete) return false; }
+    return true;
+  }
+
   function paint() {
     fill.style.height = progress + '%';
     /* clin d'œil au message : le texte se « met au point » avec le chargement */
@@ -62,19 +72,22 @@
     finished = true;
     progress = 100;
     paint();
-    root.classList.add('pg-net');
+    /* Rendre la main tout de suite : retirer « pg-loading » (et son
+       overflow:hidden) dès le début du fondu pour que le défilement
+       reparte immédiatement — avant, il restait bloqué encore ~1,2 s
+       (fondu 0,55 s + délai 600 ms), très sensible sur mobile. Le voile
+       inline disparaît en même temps, masqué par l'overlay encore opaque. */
+    root.classList.remove('pg-loading');
     overlay.classList.add('pg-loader-out');
-    setTimeout(function () {
-      overlay.remove();
-      root.classList.remove('pg-loading', 'pg-net');
-    }, 600);
+    setTimeout(function () { overlay.remove(); }, 600);
   }
 
   function frame(now) {
     if (finished) return;
     var t = now - start;
+    if (!loaded && pagePrete()) loaded = true;
     /* la jauge suit le temps (pleine à MIN) mais plafonne à 90 % tant
-       que la page n'a pas réellement fini de charger */
+       que la page n'est pas prête à être montrée */
     var target = Math.min((t / MIN) * 100, loaded ? 100 : 90);
     progress += (target - progress) * 0.14;
     if (progress > 99.4) progress = 100;
@@ -89,7 +102,7 @@
   window.addEventListener('pageshow', function (e) {
     if (e.persisted) {
       overlay.remove();
-      root.classList.remove('pg-loading', 'pg-net');
+      root.classList.remove('pg-loading');
     }
   });
 })();
