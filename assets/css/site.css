@@ -242,21 +242,27 @@ header.nav.scrolled{background:rgba(14,13,11,.74);backdrop-filter:blur(14px);bor
 .fil-card.passed .dot::after{background:var(--corail)}
 .fil-prog{position:absolute;left:0;bottom:46px;height:2px;width:100%;background:var(--ligne);z-index:5}
 .fil-prog i{position:absolute;left:0;top:0;height:100%;width:0;background:linear-gradient(90deg,var(--corail),var(--moutarde))}
-/* ----- MOBILE (≤980) : la frise devient VERTICALE, façon « parcours santé visuelle » — ligne + barre verte qui se remplit + billes qui s'allument. (Horizontal conservé sur PC.) ----- */
+/* ----- MOBILE (≤980) : la frise devient VERTICALE et CENTRÉE — pastille au-dessus de chaque
+   date, segment de liaison entre les étapes qui se colore en vert au fil du défilement,
+   apparition en fondu gérée dans le script de la page. (Horizontal conservé sur PC.) ----- */
 @media(max-width:980px){
   .fil-h{height:auto;overflow:visible}
-  .fil-h .fil-head{position:static;margin-bottom:18px;padding:0 clamp(20px,5vw,64px)}
+  .fil-h .fil-head{position:static;margin-bottom:34px;padding:0 clamp(20px,5vw,64px)}
+  .fil-h .fil-head .wrap{justify-content:center}
+  .fil-h .fil-head h2{text-align:center}
   .fil-h .fil-head .hand{display:none}
-  .fil-h>a.btn{position:static!important;display:inline-flex;margin:14px 0 0 clamp(20px,5vw,64px)}
+  .fil-h>a.btn{position:static!important;display:flex;width:fit-content;margin:30px auto 0}
   .fil-prog{display:none}
-  .fil-track{flex-direction:column;align-items:stretch;height:auto;will-change:auto;position:relative;gap:0;padding:6px 0 6px 34px;transform:none!important}
-  .fil-track::before{content:"";position:absolute;left:6px;top:0;bottom:0;width:2px;background:var(--ligne)}
-  .fil-fill{position:absolute;left:6px;top:0;width:2px;height:0;background:linear-gradient(var(--vert),var(--moutarde));z-index:1}
-  .fil-card{width:100%;height:auto;display:block;padding:0 0 clamp(34px,6vh,52px) 30px}
+  .fil-track{flex-direction:column;align-items:center;height:auto;will-change:auto;position:relative;gap:0;padding:0 24px;transform:none!important}
+  .fil-card{width:100%;max-width:420px;height:auto;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0}
   .fil-card .yy{font-size:clamp(2.8rem,13vw,4.2rem)}
-  .fil-card .dot{position:absolute;left:-34px;top:12px;margin:0;width:15px;height:15px}
+  .fil-card .dot{position:static;order:-1;margin:0 0 18px;width:15px;height:15px}
   .fil-card .dot::after{display:none}
-  .fil-card.on .dot{background:var(--vert);border-color:var(--vert);box-shadow:0 0 16px rgba(126,140,90,.7)}
+  .fil-card::after{content:"";width:2px;height:clamp(38px,6vh,56px);margin:24px 0;background:var(--ligne);border-radius:1px;transition:background .5s ease}
+  .fil-card:last-child::after{display:none}
+  .fil-card.passed .dot{background:var(--vert);border-color:var(--vert)}
+  .fil-card.on .dot{box-shadow:0 0 16px rgba(126,140,90,.7)}
+  .fil-card.passed:not(.on)::after{background:linear-gradient(var(--vert),var(--moutarde))}
 }
 
 /* magasins */
