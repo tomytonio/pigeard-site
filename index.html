@@ -128,7 +128,7 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/brand/favicon-180.png">
-<link rel="stylesheet" href="assets/css/site.css?v=20260702c">
+<link rel="stylesheet" href="assets/css/site.css?v=20260717">
 <!-- Écran de chargement (une fois par visite) : voile immédiat + logique dans loader.js -->
 <style>html.pg-loading{overflow:hidden}html.pg-loading::before{content:"";position:fixed;inset:0;z-index:11000;background:#26231C;pointer-events:none;animation:pg-voile .5s ease 3.8s forwards}@keyframes pg-voile{to{opacity:0;visibility:hidden}}</style>
 <script>try{if(!document.prerendering&&!sessionStorage.getItem('pg-loader-vu')&&!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('pg-loading')}catch(e){}</script>
@@ -440,22 +440,19 @@ if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
         .to(ftH,{x:function(){return -distH();},duration:DWELL});
       centerHighlightH();
     } else {
-      /* Mobile : frise VERTICALE façon parcours santé visuelle — barre verte qui se remplit + billes qui s'allument */
-      var fill=document.createElement('i'); fill.className='fil-fill'; ftH.insertBefore(fill, ftH.firstChild);
-      fill.style.transition='height .45s cubic-bezier(.22,.61,.36,1)';
-      /* UNE SEULE date active à la fois (carte la plus proche du centre) + la barre verte s'arrête sur la pastille de cette date */
+      /* Mobile : frise VERTICALE centrée — la date la plus proche du centre est active,
+         les pastilles et segments déjà parcourus se colorent en vert */
       var hlV=function(){
         var ref=window.innerHeight*0.5, best=-1, bd=1e9;
         cardsH.forEach(function(c,i){var r=c.getBoundingClientRect();var cy=r.top+r.height/2;var d=Math.abs(cy-ref);if(d<bd){bd=d;best=i;}});
-        cardsH.forEach(function(c,i){c.classList.toggle('on',i===best);});
-        if(best>=0){
-          var tr=ftH.getBoundingClientRect();
-          var dot=cardsH[best].querySelector('.dot');
-          if(dot){ var dr=dot.getBoundingClientRect(); fill.style.height=Math.max(0,(dr.top+dr.height/2)-tr.top)+'px'; }
-        }
+        cardsH.forEach(function(c,i){c.classList.toggle('on',i===best);c.classList.toggle('passed',i<=best);});
       };
       ScrollTrigger.create({trigger:ftH,start:'top bottom',end:'bottom top',onUpdate:hlV,onRefresh:hlV});
       hlV();
+      /* chaque date apparaît en fondu à son entrée dans l'écran */
+      cardsH.forEach(function(c){
+        gsap.from(c,{autoAlpha:0,y:26,duration:.9,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 92%',once:true}});
+      });
     }
   })();
   /* marquees défilants */
