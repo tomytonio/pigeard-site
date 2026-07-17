@@ -74,10 +74,18 @@ commentaires de code, échanges avec le propriétaire.
   bas vers le haut, message manuscrit « Réglage de la netteté… » qui se
   défloute.
 - Une fois **par visite** (`sessionStorage['pg-loader-vu']`), durée mini 1,6 s /
-  maxi 3,2 s, jauge plafonnée à 90 % tant que la page charge. Désactivé si
+  maxi 3,2 s, jauge plafonnée à 90 % tant que la page n'est pas prête (DOM
+  chargé + images `fetchpriority="high"` disponibles — on n'attend pas
+  l'événement `load`, trop tardif sur mobile). Désactivé si
   `prefers-reduced-motion`, sans JS, en pré-rendu et au retour bfcache.
+- **Le défilement est libéré dès le début du fondu de sortie** (retrait de
+  `pg-loading` au premier instant de `finish()`) : ne pas réintroduire de
+  blocage du scroll pendant ou après le fondu, c'était la cause d'une latence
+  ressentie sur mobile.
 - **Toute nouvelle page HTML doit reprendre l'extrait inline** (copier le bloc
   « Écran de chargement » depuis `index.html`). La 404 n'en a pas, c'est voulu.
+  Le gabarit de `tools/build_static.py` inclut le même bloc pour les pages
+  `marque-*`.
 
 ## Vérification
 

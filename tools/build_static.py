@@ -62,11 +62,17 @@ BRAND_TMPL = """<!DOCTYPE html>
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/brand/favicon-180.png">
 <link rel="stylesheet" href="assets/css/site.css?v=20260702c">
+<!-- Écran de chargement (une fois par visite) : voile immédiat + logique dans loader.js -->
+<style>html.pg-loading{overflow:hidden}html.pg-loading::before{content:"";position:fixed;inset:0;z-index:11000;background:#26231C;pointer-events:none;animation:pg-voile .5s ease 3.8s forwards}@keyframes pg-voile{to{opacity:0;visibility:hidden}}</style>
+<script>try{if(!document.prerendering&&!sessionStorage.getItem('pg-loader-vu')&&!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('pg-loading')}catch(e){}</script>
+<script src="assets/js/loader.js" defer></script>
 <script type="speculationrules">
 {"prerender":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}
 </script>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
+<a class="skip-link" href="#top">Aller au contenu</a>
 <div class="grain"></div><div class="progress" id="progress"></div>
 <header class="nav" id="nav">
   <a href="index.html"><img class="nav-logo" src="assets/brand/pigeard-logo-white.svg" alt="Pigeard — créateur de regards depuis 1863"></a>
@@ -113,7 +119,7 @@ BRAND_TMPL = """<!DOCTYPE html>
     </div>
     <div class="foot-links">
       <div class="foot-col"><h4>La maison</h4><a href="histoire.html">Notre histoire</a><a href="equipe.html">L'équipe</a><a href="engagements.html">Nos engagements</a><a href="engagements.html#mutuelles">Nos mutuelles</a></div>
-      <div class="foot-col"><h4>Expertises</h4><a href="services.html#sur-mesure">Sur mesure</a><a href="services.html#optikid">Optikid</a><a href="services.html#basse-vision">Basse vision</a><a href="services.html#nuance-audio">Nuance Audio</a><a href="marques.html">Nos marques</a><a href="creations.html">Nos créations</a></div>
+      <div class="foot-col"><h4>Expertises</h4><a href="services.html#sur-mesure">Sur mesure</a><a href="services.html#optikid">Optikid</a><a href="services.html#basse-vision">Basse vision</a><a href="services.html#nuance-audio">Nuance Audio</a><a href="lentilles.html">Lentilles en ligne</a><a href="marques.html">Nos marques</a><a href="creations.html">Nos créations</a></div>
       <div class="foot-col"><h4>Magasins</h4><a href="magasins.html">Nos 3 magasins</a><a href="opticien-nogent-le-rotrou.html">Opticien Nogent-le-Rotrou</a><a href="opticien-brou.html">Opticien Brou</a><a href="opticien-la-loupe.html">Opticien La Loupe</a><a href="contact.html">Contact</a><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a><a href="https://facebook.com/pigeard.opticiens" target="_blank" rel="noopener">Facebook</a></div>
     </div>
   </div>
@@ -241,7 +247,8 @@ def main():
     # 4) sitemap
     main_pages = [
         ("/", "1.0", "monthly"), ("/histoire.html", "0.8", "yearly"),
-        ("/services.html", "0.9", "monthly"), ("/marques.html", "0.8", "monthly"),
+        ("/services.html", "0.9", "monthly"), ("/lentilles.html", "0.8", "monthly"),
+        ("/marques.html", "0.8", "monthly"),
         ("/creations.html", "0.8", "monthly"), ("/equipe.html", "0.6", "yearly"),
         ("/magasins.html", "0.9", "monthly"), ("/engagements.html", "0.7", "yearly"),
         ("/contact.html", "0.7", "yearly"), ("/mentions-legales.html", "0.3", "yearly"),
