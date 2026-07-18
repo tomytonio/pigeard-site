@@ -248,6 +248,7 @@ def main():
     main_pages = [
         ("/", "1.0", "monthly"), ("/histoire.html", "0.8", "yearly"),
         ("/services.html", "0.9", "monthly"), ("/lentilles.html", "0.8", "monthly"),
+        ("/verres-nikon.html", "0.8", "monthly"),
         ("/marques.html", "0.8", "monthly"),
         ("/creations.html", "0.8", "monthly"), ("/equipe.html", "0.6", "yearly"),
         ("/magasins.html", "0.9", "monthly"), ("/engagements.html", "0.7", "yearly"),
