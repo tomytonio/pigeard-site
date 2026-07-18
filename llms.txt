@@ -25,7 +25,7 @@ Site officiel : https://www.pigeard-opticiens.fr/
 - **Optikid** : espace et accompagnement dédiés à l'optique de l'enfant.
 - **Basse vision** : aides visuelles et accompagnement spécialisé pour les déficiences visuelles.
 - **Audition — Nuance Audio** : solutions auditives.
-- **Verres Nikon** : verres haut de gamme fabriqués en France.
+- **Verres Nikon** : verres haut de gamme fabriqués en France. Nos conseils : SeeMax AP en unifocal, Presio Master YourLife Z FP en progressif (gamme Z Suite, technologie Z-Contrast).
 - **Lentilles de contact** : commande en ligne parmi les moins chères d'Internet, livraison offerte en magasin ou à domicile (un site de commande dédié par magasin).
 
 ## Pages principales
@@ -34,6 +34,7 @@ Site officiel : https://www.pigeard-opticiens.fr/
 - Notre histoire (depuis 1863) : https://www.pigeard-opticiens.fr/histoire.html
 - Nos expertises : https://www.pigeard-opticiens.fr/services.html
 - Lentilles en ligne (commande par magasin) : https://www.pigeard-opticiens.fr/lentilles.html
+- Verres Nikon (unifocaux & progressifs) : https://www.pigeard-opticiens.fr/verres-nikon.html
 - Nos marques : https://www.pigeard-opticiens.fr/marques.html
 - L'équipe : https://www.pigeard-opticiens.fr/equipe.html
 - Nos magasins & prise de rendez-vous : https://www.pigeard-opticiens.fr/magasins.html
