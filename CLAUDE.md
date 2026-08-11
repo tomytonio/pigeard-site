@@ -66,6 +66,9 @@ commentaires de code, échanges avec le propriétaire.
 - Les pages utilisent les **speculation rules** (pré-rendu) et un repli
   `<noscript>` : toute fonctionnalité JS doit rester inoffensive sans JS et en
   pré-rendu.
+- `tools/affiches/` : visuels pour les réseaux sociaux (stories, posts),
+  composés en HTML avec la charte du site puis rendus en PNG via
+  `rendu-story.mjs` (Playwright). Non servis au public (comme tout `/tools/`).
 
 ## Écran de chargement (loader)
 
