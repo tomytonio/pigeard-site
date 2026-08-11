@@ -227,3 +227,85 @@
   if(document.prerendering) document.addEventListener('prerenderingchange', lancerStats, {once:true});
   else lancerStats();
 })();
+
+/* ============================================================
+   AVIS ÉCLIPSE (TEMPORAIRE) — rupture de stock des lunettes
+   d'éclipse. Petite fenêtre à fermer, affichée sur toutes les
+   pages tant qu'elle n'a pas été fermée (localStorage), puis
+   plus jamais après la soirée du 12 août 2026 : passé le
+   13/08/2026 à 0 h (heure de Paris), ce bloc ne fait plus rien.
+   → Après l'éclipse, supprimer tout ce bloc (et bumper ?v=).
+   ============================================================ */
+(function(){
+  if(Date.now() > new Date('2026-08-13T00:00:00+02:00').getTime()) return;
+  try{ if(localStorage.getItem('pgEclipseFerme')) return; }catch(e){}
+
+  function montrer(){
+    var style = document.createElement('style');
+    style.textContent =
+      '.pg-avis-fond{position:fixed;inset:0;z-index:9500;display:flex;align-items:center;justify-content:center;padding:22px;background:rgba(14,13,11,.58);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);opacity:0;transition:opacity .4s ease}' +
+      '.pg-avis-fond.visible{opacity:1}' +
+      '.pg-avis{position:relative;width:100%;max-width:420px;background:var(--encre,#26231C);border:1px solid rgba(231,221,203,.16);border-radius:20px;padding:36px 30px 30px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.55);transform:translateY(14px);transition:transform .4s cubic-bezier(.16,1,.3,1);outline:none}' +
+      '.pg-avis-fond.visible .pg-avis{transform:none}' +
+      '.pg-avis-fermer{position:absolute;top:8px;right:8px;width:42px;height:42px;background:none;border:none;color:rgba(231,221,203,.65);font-size:26px;line-height:1;border-radius:50%}' +
+      '.pg-avis-fermer:hover{color:#E7DDCB}' +
+      '.pg-avis-astre{width:84px;height:84px;margin:0 auto 6px;display:block}' +
+      '.pg-avis-kicker{font-size:.72rem;font-weight:700;letter-spacing:.32em;text-indent:.32em;text-transform:uppercase;color:var(--camel,#D1A379);margin-bottom:10px}' +
+      '.pg-avis h2{font-family:var(--serif,Georgia,serif);font-weight:500;font-size:1.6rem;line-height:1.2;color:var(--creme,#E7DDCB);margin-bottom:12px}' +
+      '.pg-avis-texte{font-size:.95rem;line-height:1.6;color:rgba(231,221,203,.82);margin-bottom:6px}' +
+      '.pg-avis-main{font-family:var(--hand,cursive);font-size:1.5rem;line-height:1;color:var(--vert-clair,#9DAA78);transform:rotate(-1.8deg);margin-bottom:16px}' +
+      '.pg-avis-prudence{font-size:.78rem;line-height:1.55;color:var(--muted,#938B7C);margin-bottom:20px}' +
+      '.pg-avis-ok{display:inline-block;background:var(--vert,#7E8C5A);color:#0E0D0B;border:none;border-radius:999px;padding:12px 30px;font-weight:700;font-size:.95rem;letter-spacing:.02em}' +
+      '@media (max-width:480px){.pg-avis{padding:30px 22px 24px}.pg-avis h2{font-size:1.4rem}}';
+    document.head.appendChild(style);
+
+    var fond = document.createElement('div');
+    fond.className = 'pg-avis-fond';
+    fond.innerHTML =
+      '<div class="pg-avis" role="dialog" aria-modal="true" aria-labelledby="pgAvisTitre" tabindex="-1">' +
+        '<button type="button" class="pg-avis-fermer" aria-label="Fermer">&times;</button>' +
+        '<svg class="pg-avis-astre" viewBox="0 0 96 96" aria-hidden="true">' +
+          '<defs>' +
+            '<radialGradient id="pgAvisSol" cx="38%" cy="36%" r="75%"><stop offset="0%" stop-color="#F0E4CE"/><stop offset="55%" stop-color="#E3C9A4"/><stop offset="100%" stop-color="#D1A379"/></radialGradient>' +
+            '<radialGradient id="pgAvisHalo" cx="50%" cy="50%" r="50%"><stop offset="52%" stop-color="#D1A379" stop-opacity="0"/><stop offset="70%" stop-color="#E7DDCB" stop-opacity=".32"/><stop offset="100%" stop-color="#D1A379" stop-opacity="0"/></radialGradient>' +
+          '</defs>' +
+          '<circle cx="48" cy="48" r="47" fill="url(#pgAvisHalo)"/>' +
+          '<circle cx="48" cy="48" r="30" fill="url(#pgAvisSol)"/>' +
+          '<circle cx="45.8" cy="45.8" r="29.4" fill="#26231C"/>' +
+        '</svg>' +
+        '<p class="pg-avis-kicker">Éclipse du 12 août</p>' +
+        '<h2 id="pgAvisTitre">Plus de lunettes d’éclipse</h2>' +
+        '<p class="pg-avis-texte">Victimes de leur succès, elles sont épuisées dans nos trois magasins.</p>' +
+        '<p class="pg-avis-main">merci pour votre enthousiasme&nbsp;!</p>' +
+        '<p class="pg-avis-prudence">Ne regardez jamais le soleil sans protection certifiée, même partiellement éclipsé.</p>' +
+        '<button type="button" class="pg-avis-ok">J’ai compris</button>' +
+      '</div>';
+    document.body.appendChild(fond);
+
+    var carte = fond.querySelector('.pg-avis');
+    function fermer(){
+      try{ localStorage.setItem('pgEclipseFerme','1'); }catch(e){}
+      document.removeEventListener('keydown', surTouche);
+      fond.classList.remove('visible');
+      setTimeout(function(){ if(fond.parentNode) fond.parentNode.removeChild(fond); }, 420);
+    }
+    function surTouche(e){ if(e.key === 'Escape') fermer(); }
+    fond.querySelector('.pg-avis-fermer').addEventListener('click', fermer);
+    fond.querySelector('.pg-avis-ok').addEventListener('click', fermer);
+    fond.addEventListener('click', function(e){ if(e.target === fond) fermer(); });
+    document.addEventListener('keydown', surTouche);
+
+    requestAnimationFrame(function(){
+      fond.classList.add('visible');
+      try{ carte.focus({preventScroll:true}); }catch(e){}
+    });
+  }
+
+  /* prerender (speculation rules) : n'afficher qu'à l'affichage réel */
+  function initAvis(){
+    if(document.prerendering) document.addEventListener('prerenderingchange', montrer, {once:true});
+    else montrer();
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initAvis, {once:true});
+  else initAvis();
+})();

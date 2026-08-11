@@ -129,7 +129,7 @@ BRAND_TMPL = """<!DOCTYPE html>
 <script src="assets/js/vendor/gsap.min.js"></script>
 <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
 <script src="assets/js/vendor/lenis.min.js"></script>
-<script src="assets/js/site.js?v=20260702c"></script>
+<script src="assets/js/site.js?v=20260811"></script>
 <script>
 if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
   gsap.from('.brand-name',{y:40,autoAlpha:0,duration:1.1,ease:'expo.out'});
