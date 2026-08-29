@@ -119,6 +119,30 @@
         <stop offset="60%" stop-color="#E48CA6" stop-opacity=".07"/>
         <stop offset="100%" stop-color="#E48CA6" stop-opacity="0"/>
       </radialGradient>
+      <!-- balle de golf géante, en filigrane dans le cadran -->
+      <radialGradient id="balle-sphere" cx="38%" cy="30%" r="75%">
+        <stop offset="0%" stop-color="#E7DDCB" stop-opacity=".15"/>
+        <stop offset="45%" stop-color="#E7DDCB" stop-opacity=".08"/>
+        <stop offset="85%" stop-color="#E7DDCB" stop-opacity=".025"/>
+        <stop offset="100%" stop-color="#E7DDCB" stop-opacity="0"/>
+      </radialGradient>
+      <pattern id="alveoles" width="52" height="45" patternUnits="userSpaceOnUse">
+        <circle cx="13" cy="11" r="8.5" fill="#E7DDCB"/>
+        <circle cx="39" cy="33.5" r="8.5" fill="#E7DDCB"/>
+      </pattern>
+      <radialGradient id="fondu-alveoles" cx="42%" cy="34%" r="64%">
+        <stop offset="0%" stop-color="#fff" stop-opacity=".95"/>
+        <stop offset="55%" stop-color="#fff" stop-opacity=".5"/>
+        <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+      </radialGradient>
+      <mask id="masque-balle">
+        <circle cx="450" cy="450" r="380" fill="url(#fondu-alveoles)"/>
+      </mask>
+      <!-- gazon du green : vert de la charte, éclairé du haut -->
+      <linearGradient id="gazon" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#66783F"/>
+        <stop offset="100%" stop-color="#3D4A2A"/>
+      </linearGradient>
     </defs>
 
     <!-- croix de relevé -->
@@ -143,14 +167,27 @@
             stroke-dasharray="2.4 204.4" transform="rotate(-.2 450 450)"/>
     <path d="M585 79 A 395 395 0 0 1 839 381" stroke="#D96A8B" stroke-width="3" opacity=".75"/>
 
+    <!-- la balle de golf géante, par transparence dans le cadran -->
+    <g>
+      <circle cx="450" cy="450" r="380" fill="url(#balle-sphere)"/>
+      <g mask="url(#masque-balle)" opacity=".11">
+        <rect x="60" y="60" width="780" height="780" fill="url(#alveoles)"/>
+      </g>
+      <path d="M 208 225 A 328 328 0 0 1 428 108" stroke="#E7DDCB" stroke-width="28"
+            opacity=".05" stroke-linecap="round"/>
+    </g>
+
     <!-- halo derrière le ruban -->
     <circle cx="640" cy="300" r="220" fill="url(#halo-ruban)"/>
 
-    <!-- le green : courbes de niveau, teintées du vert de la charte -->
-    <g stroke="rgba(157,170,120,.6)" stroke-width="1.8">
-      <path d="M130 706 C 176 592, 320 548, 462 570 C 636 596, 748 646, 764 716 C 706 786, 520 816, 378 806 C 240 796, 152 764, 130 706 Z" fill="rgba(126,140,90,.16)"/>
-      <path d="M212 700 C 250 622, 360 590, 478 608 C 606 628, 690 664, 702 714 C 656 764, 512 786, 402 776 C 300 768, 232 744, 212 700 Z" opacity=".7"/>
-      <path d="M300 694 C 330 644, 420 624, 506 640 C 592 656, 644 682, 652 712 C 618 744, 512 758, 428 750 C 352 742, 316 726, 300 694 Z" opacity=".45"/>
+    <!-- le green : un vrai green vert, tondu en anneaux -->
+    <g stroke-width="1.8">
+      <path d="M130 706 C 176 592, 320 548, 462 570 C 636 596, 748 646, 764 716 C 706 786, 520 816, 378 806 C 240 796, 152 764, 130 706 Z"
+            fill="url(#gazon)" stroke="rgba(231,221,203,.4)"/>
+      <path d="M212 700 C 250 622, 360 590, 478 608 C 606 628, 690 664, 702 714 C 656 764, 512 786, 402 776 C 300 768, 232 744, 212 700 Z"
+            fill="rgba(157,170,120,.16)" stroke="rgba(231,221,203,.32)"/>
+      <path d="M300 694 C 330 644, 420 624, 506 640 C 592 656, 644 682, 652 712 C 618 744, 512 758, 428 750 C 352 742, 316 726, 300 694 Z"
+            fill="rgba(157,170,120,.2)" stroke="rgba(231,221,203,.26)"/>
     </g>
 
     <!-- trou et drapeau-ruban -->
@@ -171,7 +208,7 @@
     <!-- la balle et sa trajectoire vers le trou -->
     <circle cx="252" cy="692" r="15" fill="#E7DDCB"/>
     <ellipse cx="252" cy="712" rx="24" ry="5" fill="rgba(14,13,11,.4)"/>
-    <path d="M252 672 C 330 470, 486 434, 580 652" stroke="rgba(231,221,203,.4)"
+    <path d="M252 672 C 330 470, 486 434, 580 652" stroke="rgba(231,221,203,.55)"
           stroke-width="2.4" stroke-dasharray="1.5 15" stroke-linecap="round"/>
 
     <!-- annotations de planche -->
