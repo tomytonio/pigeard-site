@@ -22,9 +22,10 @@
   body{
     position:relative;
     background:
-      radial-gradient(1100px 1100px at 877px 1075px, rgba(217,106,139,.085), transparent 70%),
-      radial-gradient(1900px 1500px at 877px 0px, #14120E, transparent 75%),
-      var(--noir);
+      radial-gradient(1100px 1100px at 877px 1075px, rgba(217,106,139,.10), transparent 70%),
+      radial-gradient(1700px 1300px at 877px 2400px, rgba(126,140,90,.17), transparent 72%),
+      radial-gradient(1900px 1500px at 877px 0px, #221E17, transparent 75%),
+      #17150F;
     color:var(--creme);
     font-family:var(--sans);
     -webkit-font-smoothing:antialiased;
@@ -34,12 +35,12 @@
   .grain{position:absolute;inset:0;z-index:9;pointer-events:none;opacity:.055;mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
   /* liseré intérieur, façon planche encadrée */
-  .cadre{position:absolute;inset:56px;border:1px solid rgba(231,221,203,.15);z-index:8;pointer-events:none}
+  .cadre{position:absolute;inset:56px;border:1px solid rgba(231,221,203,.18);z-index:8;pointer-events:none}
   .cadre::after{content:"";position:absolute;inset:12px;border:1px solid rgba(231,221,203,.06)}
 
   /* annotations verticales le long du cadre */
-  .marge{position:absolute;top:50%;z-index:7;font-size:20px;letter-spacing:.4em;
-    text-transform:uppercase;color:rgba(231,221,203,.26);white-space:nowrap}
+  .marge{position:absolute;top:50%;z-index:7;font-size:21px;letter-spacing:.4em;
+    text-transform:uppercase;color:rgba(231,221,203,.34);white-space:nowrap}
   .marge.g{left:86px;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl}
   .marge.d{right:86px;transform:translateY(-50%);writing-mode:vertical-rl}
 
@@ -61,26 +62,26 @@
 
   .date{font-family:var(--serif);font-weight:500;font-size:96px;color:var(--creme);margin-top:-12px}
   .date em{font-style:italic;color:var(--rose)}
-  .lieu{margin-top:26px;font-size:29px;font-weight:600;letter-spacing:.34em;text-indent:.34em;
+  .lieu{margin-top:26px;font-size:31px;font-weight:600;letter-spacing:.34em;text-indent:.34em;
     text-transform:uppercase;color:var(--camel)}
 
   .programme{margin-top:62px;display:flex;align-items:stretch;width:1470px}
   .prog-col{flex:1 1 0;padding:6px 34px;display:flex;flex-direction:column;align-items:center;gap:0}
-  .prog-col + .prog-col{border-left:1px solid rgba(231,221,203,.16)}
-  .prog-titre{font-size:26px;font-weight:600;letter-spacing:.3em;text-indent:.3em;
+  .prog-col + .prog-col{border-left:1px solid rgba(231,221,203,.2)}
+  .prog-titre{font-size:28px;font-weight:600;letter-spacing:.3em;text-indent:.3em;
     text-transform:uppercase;color:var(--camel)}
-  .prog-quand{margin-top:14px;font-style:italic;font-size:25px;color:var(--muted)}
+  .prog-quand{margin-top:14px;font-style:italic;font-size:28px;color:var(--vert-clair)}
   .prog-fort{margin-top:22px;font-family:var(--serif);font-size:46px;font-weight:500;color:var(--creme);line-height:1.15}
   .prog-fort.italique{font-style:italic}
-  .prog-detail{margin-top:14px;font-size:27px;line-height:1.5;color:rgba(231,221,203,.78);max-width:400px}
+  .prog-detail{margin-top:14px;font-size:30px;line-height:1.5;color:rgba(231,221,203,.92);max-width:420px}
   .prog-detail b{color:var(--rose);font-weight:600}
 
-  .dons{margin-top:44px;display:flex;align-items:center;gap:24px;font-size:31px;color:var(--creme)}
+  .dons{margin-top:44px;display:flex;align-items:center;gap:24px;font-size:33px;color:var(--creme)}
   .dons svg{width:40px;height:52px;flex:none}
   .dons b{color:var(--rose);font-weight:600}
 
-  .inscriptions{margin-top:18px;font-size:26px;color:var(--muted);letter-spacing:.02em}
-  .inscriptions b{font-weight:600;color:rgba(231,221,203,.85)}
+  .inscriptions{margin-top:18px;font-size:29px;color:rgba(231,221,203,.82);letter-spacing:.02em}
+  .inscriptions b{font-weight:600;color:var(--creme)}
 
   .colophon{position:absolute;left:0;right:0;bottom:86px;display:flex;flex-direction:column;align-items:center}
   .colophon .filet{width:64px;height:1px;background:var(--camel);opacity:.55;margin-bottom:38px}
@@ -88,15 +89,15 @@
   .maison{display:flex;flex-direction:column;align-items:center;gap:20px;width:470px}
   .maison .cale{display:flex;align-items:center;height:164px}
   .maison img{display:block}
-  .maison p{font-size:19px;letter-spacing:.24em;text-indent:.24em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
-  .maison p b{font-weight:600;color:rgba(231,221,203,.78)}
+  .maison p{font-size:21px;letter-spacing:.24em;text-indent:.24em;text-transform:uppercase;color:rgba(231,221,203,.62);white-space:nowrap}
+  .maison p b{font-weight:600;color:rgba(231,221,203,.88)}
   .croix{font-family:var(--serif);font-size:44px;color:rgba(231,221,203,.35);font-style:italic;align-self:center;margin-top:60px}
 </style>
 </head>
 <body>
 
 <p class="marge g">Compétition caritative · Octobre Rose · MMXXVI</p>
-<p class="marge d">Golf du Perche · La Vallée des Aulnes · Souancé-au-Perche</p>
+<p class="marge d">Golf du Perche · Souancé-au-Perche · Formule scramble</p>
 
 <div class="colonne">
   <p class="kicker">Octobre Rose <span class="filet-mot">·</span> Compétition caritative</p>
@@ -146,9 +147,9 @@
     <!-- halo derrière le ruban -->
     <circle cx="640" cy="300" r="220" fill="url(#halo-ruban)"/>
 
-    <!-- le green : courbes de niveau -->
-    <g stroke="rgba(231,221,203,.32)" stroke-width="1.8">
-      <path d="M130 706 C 176 592, 320 548, 462 570 C 636 596, 748 646, 764 716 C 706 786, 520 816, 378 806 C 240 796, 152 764, 130 706 Z" fill="rgba(217,106,139,.085)"/>
+    <!-- le green : courbes de niveau, teintées du vert de la charte -->
+    <g stroke="rgba(157,170,120,.6)" stroke-width="1.8">
+      <path d="M130 706 C 176 592, 320 548, 462 570 C 636 596, 748 646, 764 716 C 706 786, 520 816, 378 806 C 240 796, 152 764, 130 706 Z" fill="rgba(126,140,90,.16)"/>
       <path d="M212 700 C 250 622, 360 590, 478 608 C 606 628, 690 664, 702 714 C 656 764, 512 786, 402 776 C 300 768, 232 744, 212 700 Z" opacity=".7"/>
       <path d="M300 694 C 330 644, 420 624, 506 640 C 592 656, 644 682, 652 712 C 618 744, 512 758, 428 750 C 352 742, 316 726, 300 694 Z" opacity=".45"/>
     </g>
@@ -175,9 +176,9 @@
           stroke-width="2.4" stroke-dasharray="1.5 15" stroke-linecap="round"/>
 
     <!-- annotations de planche -->
-    <g font-family="Karla, sans-serif" font-size="16" letter-spacing="3.5" fill="rgba(231,221,203,.42)">
-      <text x="34" y="454" transform="rotate(-90 34 454)" text-anchor="middle">10 · 10 · 2026</text>
-      <text x="866" y="446" transform="rotate(90 866 446)" text-anchor="middle">TROU Nº 10 · PAR 1863</text>
+    <g font-family="Karla, sans-serif" font-size="18" letter-spacing="3.5" fill="rgba(231,221,203,.55)">
+      <text x="32" y="454" transform="rotate(-90 32 454)" text-anchor="middle">10 · 10 · 2026</text>
+      <text x="868" y="446" transform="rotate(90 868 446)" text-anchor="middle">TROU Nº 10 · PAR 1863</text>
     </g>
   </svg>
 
@@ -189,7 +190,7 @@
       <p class="prog-titre">La compétition</p>
       <p class="prog-quand">la journée</p>
       <p class="prog-fort">18 trous</p>
-      <p class="prog-detail">le parcours de la Vallée des&nbsp;Aulnes</p>
+      <p class="prog-detail">formule scramble,<br>au Golf du Perche</p>
     </div>
     <div class="prog-col">
       <p class="prog-titre">La musique</p>
@@ -228,7 +229,7 @@
     <p class="croix">&amp;</p>
     <div class="maison">
       <div class="cale"><img src="logo-golf-du-perche.svg" alt="Golf du Perche" style="height:170px"></div>
-      <p><b>Golf du Perche</b> · La Vallée des Aulnes</p>
+      <p><b>Golf du Perche</b> · Souancé-au-Perche</p>
     </div>
   </div>
 </div>
