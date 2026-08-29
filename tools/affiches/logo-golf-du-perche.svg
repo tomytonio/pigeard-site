@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1035" role="img" aria-label="Golf du Perche">
+  <!-- Blason du Golf du Perche, redessiné en vectoriel d'après le logo officiel
+       (l'original n'existe qu'en 180×207 px : trop petit pour l'impression).
+       Géométrie relevée par échantillonnage de l'original (échelle ×5). -->
+  <defs>
+    <!-- Écu : coins hauts arrondis, flancs quasi droits, base en ogive pointée -->
+    <path id="ecu" d="M450 978
+      C 430 950 345 923 260 892
+      C 200 875 130 850 88 802
+      C 64 775 49 730 49 640
+      L 48 80 Q 48 30 100 30
+      L 800 30 Q 852 30 852 80
+      L 851 640
+      C 851 730 836 775 812 802
+      C 770 850 700 875 640 892
+      C 555 923 470 950 450 978 Z"/>
+    <clipPath id="clip-ecu"><use href="#ecu"/></clipPath>
+  </defs>
+
+  <!-- champ blanc -->
+  <use href="#ecu" fill="#FFFFFF"/>
+
+  <!-- chevrons rouges (pente 0,513 relevée sur l'original), taillés par l'écu -->
+  <g clip-path="url(#clip-ecu)" fill="#F04B3B">
+    <path d="M450 37 L1450 550 L1450 678 L450 165 L-550 678 L-550 550 Z"/>
+    <path d="M450 282 L1450 795 L1450 923 L450 410 L-550 923 L-550 795 Z"/>
+    <path d="M450 527 L1450 1040 L1450 1168 L450 655 L-550 1168 L-550 1040 Z"/>
+  </g>
+
+  <!-- clubs croisés : fers fins, manches noirs à âme claire -->
+  <g clip-path="url(#clip-ecu)">
+    <!-- club du grip haut-gauche vers la tête bas-droite -->
+    <g>
+      <line x1="112" y1="122" x2="668" y2="745" stroke="#181818" stroke-width="12" stroke-linecap="round"/>
+      <line x1="120" y1="128" x2="640" y2="712" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round"/>
+      <line x1="108" y1="118" x2="200" y2="221" stroke="#181818" stroke-width="23" stroke-linecap="round"/>
+      <!-- tête de fer : lame compacte, pointe vers l'extérieur droit -->
+      <g transform="rotate(-10 668 748)">
+        <path d="M656 720 Q646 744 664 758 L748 772 Q780 775 790 760 Q798 747 784 735 Q768 722 738 717 L672 708 Q660 710 656 720 Z" fill="#181818"/>
+        <path d="M670 722 L742 732 Q766 736 776 746 Q770 734 748 728 L678 716 Q670 716 670 722 Z" fill="#FFFFFF" opacity=".85"/>
+      </g>
+    </g>
+    <!-- club du grip haut-droit vers la tête bas-gauche -->
+    <g>
+      <line x1="788" y1="122" x2="232" y2="745" stroke="#181818" stroke-width="12" stroke-linecap="round"/>
+      <line x1="780" y1="128" x2="260" y2="712" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round"/>
+      <line x1="792" y1="118" x2="700" y2="221" stroke="#181818" stroke-width="23" stroke-linecap="round"/>
+      <g transform="rotate(10 232 748)">
+        <path d="M244 720 Q254 744 236 758 L152 772 Q120 775 110 760 Q102 747 116 735 Q132 722 162 717 L228 708 Q240 710 244 720 Z" fill="#181818"/>
+        <path d="M230 722 L158 732 Q134 736 124 746 Q130 734 152 728 L222 716 Q230 716 230 722 Z" fill="#FFFFFF" opacity=".85"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- balle sur tee -->
+  <g>
+    <path d="M410 806 Q450 822 490 806 Q486 834 466 862 Q454 878 450 890 Q446 878 434 862 Q414 834 410 806 Z"
+          fill="#181818"/>
+    <circle cx="450" cy="776" r="44" fill="#FFFFFF" stroke="#181818" stroke-width="6"/>
+  </g>
+
+  <!-- bordure de l'écu -->
+  <use href="#ecu" fill="none" stroke="#181818" stroke-width="8"/>
+</svg>

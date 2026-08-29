@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Affiche — Trophée Brigitte Pigeard · Octobre Rose (10 octobre 2026)</title>
+<!-- Affiche A3 (1754×2480 @150 dpi) rendue en PNG 300 dpi + PDF via
+     tools/affiches/rendu-affiche.mjs (Playwright).
+     Direction artistique : direction-artistique-trophee-brigitte-pigeard.md
+     Charte : couleurs et polices de assets/css/site.css / fonts.css. -->
+<link rel="stylesheet" href="../../assets/css/fonts.css">
+<style>
+  :root{
+    --noir:#0E0D0B; --encre:#26231C; --vert:#7E8C5A; --vert-clair:#9DAA78;
+    --creme:#E7DDCB; --camel:#D1A379; --muted:#938B7C;
+    --rose:#E48CA6; --rose-vif:#D96A8B; --rose-pale:#F3B4C7; --rose-fonce:#C2536F;
+    --serif:'Playfair Display',Georgia,serif;
+    --sans:'Karla',system-ui,sans-serif;
+    --hand:'Reenie Beanie',cursive;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1754px;height:2480px;overflow:hidden}
+  body{
+    position:relative;
+    background:
+      radial-gradient(1100px 1100px at 877px 1075px, rgba(217,106,139,.085), transparent 70%),
+      radial-gradient(1900px 1500px at 877px 0px, #14120E, transparent 75%),
+      var(--noir);
+    color:var(--creme);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  /* grain papier, identique à l'esprit du site */
+  .grain{position:absolute;inset:0;z-index:9;pointer-events:none;opacity:.055;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  /* liseré intérieur, façon planche encadrée */
+  .cadre{position:absolute;inset:56px;border:1px solid rgba(231,221,203,.15);z-index:8;pointer-events:none}
+  .cadre::after{content:"";position:absolute;inset:12px;border:1px solid rgba(231,221,203,.06)}
+
+  /* annotations verticales le long du cadre */
+  .marge{position:absolute;top:50%;z-index:7;font-size:20px;letter-spacing:.4em;
+    text-transform:uppercase;color:rgba(231,221,203,.26);white-space:nowrap}
+  .marge.g{left:86px;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl}
+  .marge.d{right:86px;transform:translateY(-50%);writing-mode:vertical-rl}
+
+  .colonne{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;text-align:center}
+
+  .kicker{margin-top:126px;font-size:30px;font-weight:600;letter-spacing:.46em;text-indent:.46em;
+    text-transform:uppercase;color:var(--rose)}
+  .kicker .filet-mot{color:rgba(231,221,203,.4)}
+
+  .surtitre{margin-top:42px;font-family:var(--serif);font-style:italic;font-weight:400;
+    font-size:74px;color:var(--camel)}
+  .titre{margin-top:6px;font-family:var(--serif);font-weight:500;font-size:150px;line-height:1.04;
+    color:var(--creme);letter-spacing:.005em}
+
+  .note{margin-top:30px;font-family:var(--hand);font-size:56px;line-height:1;color:var(--rose-pale);
+    transform:rotate(-2.2deg)}
+
+  .planche{margin-top:0;width:880px;height:880px;flex:none}
+
+  .date{font-family:var(--serif);font-weight:500;font-size:96px;color:var(--creme);margin-top:-12px}
+  .date em{font-style:italic;color:var(--rose)}
+  .lieu{margin-top:26px;font-size:29px;font-weight:600;letter-spacing:.34em;text-indent:.34em;
+    text-transform:uppercase;color:var(--camel)}
+
+  .programme{margin-top:62px;display:flex;align-items:stretch;width:1470px}
+  .prog-col{flex:1 1 0;padding:6px 34px;display:flex;flex-direction:column;align-items:center;gap:0}
+  .prog-col + .prog-col{border-left:1px solid rgba(231,221,203,.16)}
+  .prog-titre{font-size:26px;font-weight:600;letter-spacing:.3em;text-indent:.3em;
+    text-transform:uppercase;color:var(--camel)}
+  .prog-quand{margin-top:14px;font-style:italic;font-size:25px;color:var(--muted)}
+  .prog-fort{margin-top:22px;font-family:var(--serif);font-size:46px;font-weight:500;color:var(--creme);line-height:1.15}
+  .prog-fort.italique{font-style:italic}
+  .prog-detail{margin-top:14px;font-size:27px;line-height:1.5;color:rgba(231,221,203,.78);max-width:400px}
+  .prog-detail b{color:var(--rose);font-weight:600}
+
+  .dons{margin-top:44px;display:flex;align-items:center;gap:24px;font-size:31px;color:var(--creme)}
+  .dons svg{width:40px;height:52px;flex:none}
+  .dons b{color:var(--rose);font-weight:600}
+
+  .inscriptions{margin-top:18px;font-size:26px;color:var(--muted);letter-spacing:.02em}
+  .inscriptions b{font-weight:600;color:rgba(231,221,203,.85)}
+
+  .colophon{position:absolute;left:0;right:0;bottom:86px;display:flex;flex-direction:column;align-items:center}
+  .colophon .filet{width:64px;height:1px;background:var(--camel);opacity:.55;margin-bottom:38px}
+  .maisons{display:flex;align-items:flex-start;justify-content:center;gap:96px}
+  .maison{display:flex;flex-direction:column;align-items:center;gap:20px;width:470px}
+  .maison .cale{display:flex;align-items:center;height:164px}
+  .maison img{display:block}
+  .maison p{font-size:19px;letter-spacing:.24em;text-indent:.24em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+  .maison p b{font-weight:600;color:rgba(231,221,203,.78)}
+  .croix{font-family:var(--serif);font-size:44px;color:rgba(231,221,203,.35);font-style:italic;align-self:center;margin-top:60px}
+</style>
+</head>
+<body>
+
+<p class="marge g">Compétition caritative · Octobre Rose · MMXXVI</p>
+<p class="marge d">Golf du Perche · La Vallée des Aulnes · Souancé-au-Perche</p>
+
+<div class="colonne">
+  <p class="kicker">Octobre Rose <span class="filet-mot">·</span> Compétition caritative</p>
+
+  <p class="surtitre">Trophée</p>
+  <h1 class="titre">Brigitte Pigeard</h1>
+
+  <p class="note">ensemble, contre le cancer du sein</p>
+
+  <!-- La planche : le trou n°10, drapeau ruban rose, trajectoire de balle -->
+  <svg class="planche" viewBox="0 0 900 900" fill="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="ruban" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#F3B4C7"/>
+        <stop offset="55%" stop-color="#E48CA6"/>
+        <stop offset="100%" stop-color="#C2536F"/>
+      </linearGradient>
+      <radialGradient id="halo-ruban" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#E48CA6" stop-opacity=".22"/>
+        <stop offset="60%" stop-color="#E48CA6" stop-opacity=".07"/>
+        <stop offset="100%" stop-color="#E48CA6" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+
+    <!-- croix de relevé -->
+    <g stroke="#E7DDCB" stroke-width="1.4" opacity=".5">
+      <path d="M150 156v18M141 165h18"/>
+      <path d="M726 220v14M719 227h14"/>
+      <path d="M140 620v14M133 627h14"/>
+      <path d="M700 700v18M691 709h18"/>
+    </g>
+    <g fill="#E7DDCB" opacity=".36">
+      <circle cx="262" cy="112" r="2.2"/>
+      <circle cx="608" cy="96" r="1.8"/>
+      <circle cx="98" cy="420" r="1.8"/>
+      <circle cx="796" cy="500" r="2.2"/>
+    </g>
+
+    <!-- cadran gradué : traits fins + traits majeurs, arc rose -->
+    <circle cx="450" cy="450" r="395" stroke="rgba(231,221,203,.13)" stroke-width="1"/>
+    <circle cx="450" cy="450" r="395" stroke="rgba(231,221,203,.20)" stroke-width="12"
+            stroke-dasharray="1.8 39.55" transform="rotate(-.15 450 450)"/>
+    <circle cx="450" cy="450" r="395" stroke="rgba(231,221,203,.34)" stroke-width="20"
+            stroke-dasharray="2.4 204.4" transform="rotate(-.2 450 450)"/>
+    <path d="M585 79 A 395 395 0 0 1 839 381" stroke="#D96A8B" stroke-width="3" opacity=".75"/>
+
+    <!-- halo derrière le ruban -->
+    <circle cx="640" cy="300" r="220" fill="url(#halo-ruban)"/>
+
+    <!-- le green : courbes de niveau -->
+    <g stroke="rgba(231,221,203,.32)" stroke-width="1.8">
+      <path d="M130 706 C 176 592, 320 548, 462 570 C 636 596, 748 646, 764 716 C 706 786, 520 816, 378 806 C 240 796, 152 764, 130 706 Z" fill="rgba(217,106,139,.085)"/>
+      <path d="M212 700 C 250 622, 360 590, 478 608 C 606 628, 690 664, 702 714 C 656 764, 512 786, 402 776 C 300 768, 232 744, 212 700 Z" opacity=".7"/>
+      <path d="M300 694 C 330 644, 420 624, 506 640 C 592 656, 644 682, 652 712 C 618 744, 512 758, 428 750 C 352 742, 316 726, 300 694 Z" opacity=".45"/>
+    </g>
+
+    <!-- trou et drapeau-ruban -->
+    <ellipse cx="588" cy="678" rx="26" ry="9.5" fill="#0E0D0B" stroke="rgba(231,221,203,.5)" stroke-width="2"/>
+    <line x1="588" y1="676" x2="612" y2="200" stroke="#D1A379" stroke-width="5" stroke-linecap="round"/>
+    <ellipse cx="588" cy="678" rx="40" ry="6" fill="rgba(14,13,11,.35)"/>
+
+    <!-- le ruban rose, hissé comme un drapeau -->
+    <g transform="translate(652,298) scale(.64) rotate(14)">
+      <path d="M0 -190 C 85 -175, 85 -60, 30 -5 C 12 12, -34 128, -76 210"
+            stroke="url(#ruban)" stroke-width="42" stroke-linecap="round"/>
+      <path d="M-30 -5 C -12 12, 34 128, 76 210" stroke="rgba(14,13,11,.45)"
+            stroke-width="52" stroke-linecap="round"/>
+      <path d="M0 -190 C -85 -175, -85 -60, -30 -5 C -12 12, 34 128, 76 210"
+            stroke="url(#ruban)" stroke-width="42" stroke-linecap="round"/>
+    </g>
+
+    <!-- la balle et sa trajectoire vers le trou -->
+    <circle cx="252" cy="692" r="15" fill="#E7DDCB"/>
+    <ellipse cx="252" cy="712" rx="24" ry="5" fill="rgba(14,13,11,.4)"/>
+    <path d="M252 672 C 330 470, 486 434, 580 652" stroke="rgba(231,221,203,.4)"
+          stroke-width="2.4" stroke-dasharray="1.5 15" stroke-linecap="round"/>
+
+    <!-- annotations de planche -->
+    <g font-family="Karla, sans-serif" font-size="16" letter-spacing="3.5" fill="rgba(231,221,203,.42)">
+      <text x="34" y="454" transform="rotate(-90 34 454)" text-anchor="middle">10 · 10 · 2026</text>
+      <text x="866" y="446" transform="rotate(90 866 446)" text-anchor="middle">TROU Nº 10 · PAR 1863</text>
+    </g>
+  </svg>
+
+  <p class="date">Samedi <em>10 octobre</em> 2026</p>
+  <p class="lieu">Golf du Perche · Souancé-au-Perche</p>
+
+  <div class="programme">
+    <div class="prog-col">
+      <p class="prog-titre">La compétition</p>
+      <p class="prog-quand">la journée</p>
+      <p class="prog-fort">18 trous</p>
+      <p class="prog-detail">le parcours de la Vallée des&nbsp;Aulnes</p>
+    </div>
+    <div class="prog-col">
+      <p class="prog-titre">La musique</p>
+      <p class="prog-quand">l’après-midi &amp; le soir</p>
+      <p class="prog-fort italique">Humani</p>
+      <p class="prog-detail">en concert pop-rock, et DJ jusqu’au bout de la soirée</p>
+    </div>
+    <div class="prog-col">
+      <p class="prog-titre">Le dîner</p>
+      <p class="prog-quand">le soir, sur inscription</p>
+      <p class="prog-fort">25 €</p>
+      <p class="prog-detail">blanquette de veau, tarte fine aux pommes</p>
+    </div>
+  </div>
+
+  <div class="dons">
+    <svg viewBox="0 0 40 52" aria-hidden="true">
+      <path d="M20 4 C 29 5.5, 29 17, 23 23 C 21.2 24.8, 17 35, 13.5 44"
+            stroke="url(#ruban)" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+      <path d="M20 4 C 11 5.5, 11 17, 17 23 C 18.8 24.8, 23 35, 26.5 44"
+            stroke="url(#ruban)" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+    </svg>
+    <p>Les dons seront reversés à l’association <b>Octobre Rose</b></p>
+  </div>
+
+  <p class="inscriptions">Inscriptions &amp; réservations à l’accueil du Golf du Perche · <b>02&nbsp;37&nbsp;29&nbsp;17&nbsp;33</b> · golfduperche@wanadoo.fr</p>
+</div>
+
+<div class="colophon">
+  <div class="filet"></div>
+  <div class="maisons">
+    <div class="maison">
+      <div class="cale"><img src="../../assets/brand/pigeard-logo-white.svg" alt="Pigeard Opticiens" style="width:330px"></div>
+      <p><b>Pigeard Opticiens</b> · depuis 1863</p>
+    </div>
+    <p class="croix">&amp;</p>
+    <div class="maison">
+      <div class="cale"><img src="logo-golf-du-perche.svg" alt="Golf du Perche" style="height:170px"></div>
+      <p><b>Golf du Perche</b> · La Vallée des Aulnes</p>
+    </div>
+  </div>
+</div>
+
+<div class="cadre"></div>
+<div class="grain"></div>
+
+</body>
+</html>
