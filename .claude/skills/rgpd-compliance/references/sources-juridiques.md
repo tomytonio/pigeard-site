@@ -69,7 +69,7 @@ Texte intégral officiel : https://eur-lex.europa.eu/eli/reg/2016/679/oj/fra (EU
 
 ## G. Ce que le skill n'a pas pu vérifier (à compléter par le propriétaire)
 
-- Numéro de téléphone de l'hébergeur (Hostinger International Ltd, Larnaca, Chypre) : à relever sur les mentions légales de hostinger.fr — **je ne sais pas**.
-- Capital social et greffe du RCS d'Optique Pigeard SAS : à relever sur l'extrait Kbis — **je ne sais pas**.
-- Autorité et modalités d'enregistrement du diplôme d'opticien-lunetier (Code de la santé publique, art. L.4362-1 et suivants — numérotation **[non revérifiée]**) : à confirmer.
+- Numéro de téléphone de l'hébergeur : Hostinger ne le publie ni dans ses conditions d'utilisation (révisées le 2026-07-15), ni sur sa page contact, ni dans sa politique de confidentialité (vérifié le 2026-09-08). Le numéro **+357 24 030 182** figure dans les mentions légales de nombreux sites clients (source secondaire) ; il a été retenu, à confirmer depuis l'espace client Hostinger.
+- Capital social 40 000 € et RCS Chartres : societe.com, fiche mise à jour le 06/09/2026 (source secondaire reprenant le RNE ; l'API officielle recherche-entreprises.api.gouv.fr confirme SAS, siège, SIRET, TVA et dirigeants mais ne publie pas le capital). À confronter au Kbis.
+- Profession d'opticien-lunetier : Code de la santé publique, chapitre II « Opticien-lunetier », art. L.4362-1 à L.4362-12 (enregistrement préalable des diplômes auprès du service désigné par le ministre chargé de la santé ; diplômes : BTS et BP opticien-lunetier) — https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006072665/LEGISCTA000006171330/ — vérifié le 2026-09-08 (résumé du moteur de recherche).
 - Ce que les workflows n8n conservent (contenu, adresse IP, referrer, identifiant de session) et pendant combien de temps : **je ne sais pas**, seul le propriétaire peut le voir dans n8n.

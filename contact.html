@@ -74,6 +74,8 @@
 .form-group textarea::placeholder{color:var(--muted);opacity:.7}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .form-notice{font-size:.78rem;color:var(--muted);margin-top:6px;line-height:1.55}
+.form-rgpd a{color:var(--vert-clair);text-decoration:underline;text-underline-offset:3px}
+.form-rgpd a:hover{color:var(--vert)}
 .coords-block{background:var(--noir-2);border:1px solid var(--ligne);border-radius:16px;padding:clamp(24px,4vw,40px)}
 .shop-entry{padding:22px 0;border-bottom:1px solid var(--ligne)}
 .shop-entry:last-of-type{border-bottom:none;padding-bottom:0}
@@ -198,6 +200,10 @@
         <!-- Anti-spam (honeypot) : invisible pour les humains, piège à robots -->
         <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
 
+        <!-- Information RGPD au moment de la collecte (art. 13) + Bloctel (C. conso L.223-2) -->
+        <p class="form-notice form-rgpd" style="margin:0 0 18px">
+          Vos coordonnées et votre message sont transmis à Optique Pigeard SAS (responsable du traitement) et au magasin choisi, uniquement pour vous répondre. Ils transitent par notre outil d'envoi automatisé hébergé chez Hostinger et sont conservés au plus 3 ans après notre dernier échange. Merci de ne pas indiquer d'ordonnance ni d'information sur votre santé : nous les recueillons en magasin. Le téléphone, facultatif, ne sert qu'à vous rappeler ; vous pouvez vous inscrire sur la liste d'opposition au démarchage téléphonique <a href="https://www.bloctel.gouv.fr" target="_blank" rel="noopener">Bloctel</a>. Droits d'accès, de rectification, d'effacement, de limitation, d'opposition et de portabilité : <a href="mailto:nogent@pigeard-opticiens.fr">nogent@pigeard-opticiens.fr</a> — réclamation possible auprès de la <a href="https://www.cnil.fr" target="_blank" rel="noopener">CNIL</a>. <a href="mentions-legales.html#donnees-personnelles">En savoir plus</a>.
+        </p>
         <div class="form-submit-row" style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:8px">
           <button type="submit" class="btn btn--primary">Envoyer <span class="arr">→</span></button>
           <span class="form-notice">Nous vous répondons sous 24 h (jours ouvrés).</span>
@@ -303,7 +309,7 @@
 <script src="assets/js/vendor/gsap.min.js"></script>
 <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
 <script src="assets/js/vendor/lenis.min.js"></script>
-<script src="assets/js/site.js?v=20260811"></script>
+<script src="assets/js/site.js?v=20260908"></script>
 <script>
 /* ── Animations hero entrée ── */
 if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
