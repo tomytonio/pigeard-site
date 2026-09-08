@@ -98,6 +98,9 @@ commentaires de code, échanges avec le propriétaire.
   avis) ou un nouveau flux de données**, et mettre à jour son
   `etat-des-lieux.md` dans le même commit que le changement.
 - Le dossier `.claude/` n'est pas servi au public (règle nginx ci-dessus).
+- L'information des visiteurs vit dans `mentions-legales.html` (section
+  « Données personnelles & traceurs », ancre `#donnees-personnelles`) et sous
+  le formulaire de `contact.html` : **tout nouveau flux doit y être décrit**.
 
 ## Écran de chargement (loader)
 
