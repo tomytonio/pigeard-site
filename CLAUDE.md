@@ -34,7 +34,15 @@ commentaires de code, échanges avec le propriétaire.
   les assets, ~10 min après la fusion).
 - nginx : redirection domaine nu → www, 404 personnalisée, gzip, redirections
   301 des anciennes URLs Shopify (QR codes imprimés !), fichiers de travail
-  (`.md`, `.py`, `/tools/`, `/deploy/`…) non servis au public.
+  (`.md`, `.py`, `/tools/`, `/deploy/`…) non servis au public, et depuis le
+  2026-09-08 refus de tout chemin commençant par un point (`/.git/`,
+  `/.claude/`, `/.gitignore`…, sauf `/.well-known/`).
+- **Une modification de `deploy/nginx-vitrine.conf` n'est active qu'après
+  rechargement de nginx sur le VPS** (le `git pull` automatique ne le fait pas,
+  sauf si le script de synchronisation du VPS a été complété depuis — rien ne
+  le documente dans le dépôt) : en SSH, `docker exec pigeard-vitrine nginx -t
+  && docker exec pigeard-vitrine nginx -s reload`. Contrôle : `curl -sI
+  https://www.pigeard-opticiens.fr/.git/HEAD` doit renvoyer 404.
 - Cache : HTML `no-cache`, CSS/JS 1 h, images/polices 30 j, JSON 5 min. Par
   précaution, bumper le paramètre `?v=` des `<link>`/`<script>` lors d'une
   modification de `site.css`/`site.js` (convention existante).
@@ -72,6 +80,24 @@ commentaires de code, échanges avec le propriétaire.
   portrait, PNG 300 dpi + PDF). Le blason du Golf du Perche y est redessiné en
   vectoriel (`logo-golf-du-perche.svg`). Non servis au public (comme tout
   `/tools/`).
+
+## Flux de données personnelles (RGPD) & skill dédié
+
+- Le site n'embarque **aucun script tiers ni cookie** ; polices, GSAP, Lenis
+  et images sont auto-hébergés. Les seuls flux sortants vont vers le **n8n
+  Pigeard** (`n8n-1zv1.srv1641932.hstgr.cloud`, VPS Hostinger) : formulaire
+  de contact (`contact-site`), statistiques de visite maison (`stats-site`,
+  `visites-site`, identifiant aléatoire en `sessionStorage`) et avis Google
+  affichés sur l'accueil (`avis-site`). Détail et état de conformité :
+  `.claude/skills/rgpd-compliance/references/etat-des-lieux.md`.
+- **Skill `rgpd-compliance`** (`.claude/skills/rgpd-compliance/`, chargé
+  automatiquement par Claude Code sur tous les postes) : procédure d'audit,
+  script d'inventaire `scripts/audit_rgpd.py` (stdlib, option `--prod`),
+  sources juridiques vérifiées et modèles de textes. **À utiliser avant
+  d'ajouter un script tiers, un formulaire, une intégration (carte, vidéo,
+  avis) ou un nouveau flux de données**, et mettre à jour son
+  `etat-des-lieux.md` dans le même commit que le changement.
+- Le dossier `.claude/` n'est pas servi au public (règle nginx ci-dessus).
 
 ## Écran de chargement (loader)
 
