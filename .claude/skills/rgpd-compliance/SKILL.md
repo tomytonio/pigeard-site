@@ -161,9 +161,10 @@ texte cité ; pas de correction qui élargit le périmètre demandé sans le dir
   `tools/build_static.py` (pages `marque-*` générées) — modifier les deux.
 - **`site.css` / `site.js`** : bumper le paramètre `?v=` des `<link>` /
   `<script>` de toutes les pages et du gabarit.
-- **nginx** (`deploy/nginx-vitrine.conf`) : la conf n'est relue qu'au
-  rechargement du conteneur sur le VPS — l'écrire dans le message final et
-  vérifier ensuite avec `--prod`.
+- **nginx** (`deploy/nginx-vitrine.conf`) : la conf n'est appliquée qu'après
+  recréation du conteneur sur le VPS (`deploy/recharger-nginx.sh`, un simple
+  reload ne suffit pas) — l'écrire dans le message final et vérifier ensuite
+  avec `--prod`.
 - **Ne jamais** ajouter un bandeau cookies « par précaution », un script tiers
   d'analytics, ni transmettre des données de santé par le formulaire.
 - Après correction : relancer le script, mettre à jour `etat-des-lieux.md`
