@@ -38,11 +38,14 @@ commentaires de code, échanges avec le propriétaire.
   2026-09-08 refus de tout chemin commençant par un point (`/.git/`,
   `/.claude/`, `/.gitignore`…, sauf `/.well-known/`).
 - **Une modification de `deploy/nginx-vitrine.conf` n'est active qu'après
-  rechargement de nginx sur le VPS** (le `git pull` automatique ne le fait pas,
-  sauf si le script de synchronisation du VPS a été complété depuis — rien ne
-  le documente dans le dépôt) : en SSH, `docker exec pigeard-vitrine nginx -t
-  && docker exec pigeard-vitrine nginx -s reload`. Contrôle : `curl -sI
-  https://www.pigeard-opticiens.fr/.git/HEAD` doit renvoyer 404.
+  recréation du conteneur sur le VPS** : en SSH root,
+  `sh /docker/pigeard-vitrine/repo/deploy/recharger-nginx.sh` (attendre que
+  le `git pull` automatique ait récupéré la fusion, ~5 min). Un simple
+  `nginx -s reload` **ne suffit pas** : la conf est montée fichier par fichier
+  dans le conteneur et git remplace ce fichier à chaque pull (nouvel inode),
+  donc le conteneur relit l'ancienne version — constaté le 2026-09-09.
+  Contrôle : `curl -sI https://www.pigeard-opticiens.fr/.git/HEAD` doit
+  renvoyer 404.
 - Cache : HTML `no-cache`, CSS/JS 1 h, images/polices 30 j, JSON 5 min. Par
   précaution, bumper le paramètre `?v=` des `<link>`/`<script>` lors d'une
   modification de `site.css`/`site.js` (convention existante).

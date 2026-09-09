@@ -54,9 +54,9 @@ Cookies HTTP : **aucun** (aucun `Set-Cookie` en production, aucun `document.cook
 |---|---|---|
 | HTTPS | oui ; `http://` → 308 vers `https://www.` (proxy amont) | 🟢 |
 | `X-Content-Type-Options`, `Referrer-Policy` | présents (`nosniff`, `strict-origin-when-cross-origin`) | 🟢 |
-| HSTS, `X-Frame-Options`, `Permissions-Policy` | ajoutés à `deploy/nginx-vitrine.conf` le 2026-09-08 (actifs après rechargement de nginx) ; CSP non traitée (chantier à part) | 🟠 en attente du rechargement |
+| HSTS, `X-Frame-Options`, `Permissions-Policy` | ajoutés à `deploy/nginx-vitrine.conf` le 2026-09-08 (actifs après recréation du conteneur, voir ligne précédente) ; CSP non traitée (chantier à part) | 🟠 en attente de la recréation du conteneur |
 | Fichiers de travail (`.md`, `.py`, `.yml`, `/tools/`, `/deploy/`) | 404 | 🟢 |
-| **`/.git/HEAD`, `/.git/config`, `/.gitignore`** | **200** : l'historique git est téléchargeable. Impact confidentialité faible (dépôt public, aucun identifiant dans `.git/config` — vérifié) mais à fermer. Règle nginx ajoutée le 2026-09-08 (`location ~ /\.(?!well-known/) { return 404; }`), **active seulement après rechargement de nginx sur le VPS** | 🟠 en attente du rechargement |
+| **`/.git/HEAD`, `/.git/config`, `/.gitignore`** | **200** : l'historique git est téléchargeable. Impact confidentialité faible (dépôt public, aucun identifiant dans `.git/config` — vérifié) mais à fermer. Règle nginx ajoutée le 2026-09-08 (`location ~ /\.(?!well-known/) { return 404; }`). Le 2026-09-09, un `nginx -s reload` fait par le propriétaire n'a rien changé (conf montée fichier par fichier, remplacée par git : le conteneur lit l'ancienne version) → il faut recréer le conteneur avec `deploy/recharger-nginx.sh` | 🟠 en attente de la recréation du conteneur |
 | Cookies / sessions | aucun | 🟢 |
 
 ## 5. Questions ouvertes (« je ne sais pas ») — à poser au propriétaire

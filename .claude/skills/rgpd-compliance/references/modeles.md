@@ -139,7 +139,9 @@ Une CSP (Content-Security-Policy) est envisageable — tout est auto-hébergé,
 seul `connect-src` doit autoriser `https://n8n-1zv1.srv1641932.hstgr.cloud` —
 mais elle exige des tests sur toutes les pages (styles et scripts inline,
 `data:` pour les SVG) : la traiter comme un chantier à part, jamais « en
-passant ». Après toute modification : rechargement de nginx sur le VPS, puis
+passant ». Après toute modification fusionnée : sur le VPS,
+`sh /docker/pigeard-vitrine/repo/deploy/recharger-nginx.sh` (recréation du
+conteneur ; un simple reload relit l'ancien fichier), puis
 `audit_rgpd.py --prod`.
 
 ## 5. Réponse à une demande d'exercice de droits (courriel)
