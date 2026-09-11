@@ -77,12 +77,21 @@ commentaires de code, échanges avec le propriétaire.
 - Les pages utilisent les **speculation rules** (pré-rendu) et un repli
   `<noscript>` : toute fonctionnalité JS doit rester inoffensive sans JS et en
   pré-rendu.
-- `tools/affiches/` : visuels pour les réseaux sociaux (stories, posts) et
-  affiches imprimables, composés en HTML avec la charte du site puis rendus via
-  Playwright — `rendu-story.mjs` (1080×1920) ou `rendu-affiche.mjs` (A3
-  portrait, PNG 300 dpi + PDF). Le blason du Golf du Perche y est redessiné en
-  vectoriel (`logo-golf-du-perche.svg`). Non servis au public (comme tout
-  `/tools/`).
+- `tools/affiches/` : visuels pour les réseaux sociaux (stories, posts),
+  affiches imprimables et annonces presse, composés en HTML avec la charte du
+  site puis rendus via Playwright — `rendu-story.mjs` (1080×1920),
+  `rendu-affiche.mjs` (A3 portrait, PNG 300 dpi + PDF) ou `rendu-annonce.mjs`
+  (JPEG à la taille exacte demandée en mm, 300 dpi inscrits dans l'en-tête
+  JFIF ; défaut 195 × 245 mm, le format pleine page des magazines locaux).
+  Le blason du Golf du Perche y est redessiné en vectoriel
+  (`logo-golf-du-perche.svg`). Non servis au public (comme tout `/tools/`).
+- **Codes des annonces presse Pigeard** (repris des publicités de l'agence, cf.
+  `annonce-optikid-195x245.html`) : papier crème #F3EEE8, encre #231F20, or
+  #CD9D56, Karla seul (titre en capitales grasses or, accroche « de génération
+  en génération » en regular), composition centrée, et en pied de page le
+  couple lunette + logo `pigeard-logo-black.svg` suivi des trois magasins.
+  Les horaires et téléphones se recopient depuis `magasins.html` (source à
+  jour), pas depuis les anciens PDF de l'agence.
 
 ## Flux de données personnelles (RGPD) & skill dédié
 
