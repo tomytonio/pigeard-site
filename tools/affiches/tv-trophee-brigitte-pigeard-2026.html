@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Écran TV 9:16 — Trophée Brigitte Pigeard · Octobre Rose (10 octobre 2026)</title>
+<!-- Déclinaison 1080×1920 (écran TV vertical / story) de l'affiche noire
+     validée. Rendue en PNG via tools/affiches/rendu-story.mjs (Playwright).
+     Charte : couleurs et polices de assets/css/site.css / fonts.css. -->
+<link rel="stylesheet" href="../../assets/css/fonts.css">
+<style>
+  :root{
+    --noir:#0E0D0B; --encre:#26231C; --vert:#7E8C5A; --vert-clair:#9DAA78;
+    --creme:#E7DDCB; --camel:#D1A379; --muted:#938B7C;
+    --rose:#E48CA6; --rose-vif:#D96A8B; --rose-pale:#F3B4C7; --rose-fonce:#C2536F;
+    --serif:'Playfair Display',Georgia,serif;
+    --sans:'Karla',system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1920px;overflow:hidden}
+  body{
+    position:relative;
+    background:
+      radial-gradient(700px 700px at 540px 780px, rgba(217,106,139,.085), transparent 70%),
+      radial-gradient(1200px 950px at 540px 0px, #14120E, transparent 75%),
+      var(--noir);
+    color:var(--creme);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  .grain{position:absolute;inset:0;z-index:9;pointer-events:none;opacity:.055;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .cadre{position:absolute;inset:36px;border:1px solid rgba(231,221,203,.18);z-index:8;pointer-events:none}
+  .cadre::after{content:"";position:absolute;inset:8px;border:1px solid rgba(231,221,203,.06)}
+
+
+  .colonne{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;text-align:center}
+
+  .kicker{margin-top:76px;font-size:25px;font-weight:700;letter-spacing:.28em;text-indent:.28em;
+    text-transform:uppercase;color:var(--rose)}
+  .kicker .filet-mot{color:rgba(231,221,203,.4)}
+
+  .surtitre{margin-top:24px;font-family:var(--serif);font-style:italic;font-weight:500;
+    font-size:52px;color:var(--camel)}
+  .titre{margin-top:4px;font-family:var(--serif);font-weight:500;font-size:108px;line-height:1.04;
+    color:var(--creme);letter-spacing:.005em}
+
+  .note{margin-top:20px;font-family:var(--serif);font-style:italic;font-weight:600;
+    font-size:35px;line-height:1.15;color:var(--rose-pale)}
+
+  .planche{margin-top:6px;width:520px;height:520px;flex:none}
+
+  .date{font-family:var(--serif);font-weight:600;font-size:74px;color:var(--creme);margin-top:0}
+  .date em{font-style:italic;color:var(--rose)}
+  .lieu{margin-top:16px;font-size:27px;font-weight:700;letter-spacing:.2em;text-indent:.2em;
+    text-transform:uppercase;color:var(--camel)}
+
+  .programme{margin-top:40px;display:flex;align-items:stretch;width:990px}
+  .prog-col{flex:1 1 0;padding:4px 18px;display:flex;flex-direction:column;align-items:center;gap:0}
+  .prog-col + .prog-col{border-left:1px solid rgba(231,221,203,.2)}
+  .prog-titre{font-size:26px;font-weight:700;letter-spacing:.14em;text-indent:.14em;
+    text-transform:uppercase;color:var(--camel)}
+  .prog-quand{margin-top:8px;font-style:italic;font-size:22px;font-weight:600;color:var(--vert-clair)}
+  .prog-fort{margin-top:14px;font-family:var(--serif);font-size:42px;font-weight:700;color:var(--creme);line-height:1.15}
+  .prog-fort.italique{font-style:italic}
+  .prog-detail{margin-top:8px;font-size:24px;font-weight:600;line-height:1.4;color:var(--creme);max-width:292px}
+
+  .badge-resa{margin-top:12px;font-size:18px;font-weight:700;letter-spacing:.16em;text-indent:.16em;
+    text-transform:uppercase;color:#FFF6EC;background:#C8402F;padding:10px 22px;border-radius:999px}
+
+  .dons{margin-top:26px;display:flex;align-items:center;gap:16px;font-size:28px;font-weight:600;color:var(--creme)}
+  .dons svg{width:34px;height:44px;flex:none}
+  .dons b{color:var(--rose);font-weight:600}
+
+  .inscriptions{margin-top:12px;display:flex;flex-direction:column;gap:6px;
+    font-size:20px;font-weight:600;color:rgba(231,221,203,.95);letter-spacing:.01em}
+  .inscriptions b{font-weight:700;color:#FFF6E4}
+
+  .colophon{position:absolute;left:0;right:0;bottom:52px;display:flex;flex-direction:column;align-items:center}
+  .colophon .filet{width:48px;height:1px;background:var(--camel);opacity:.55;margin-bottom:18px}
+  .maisons{display:flex;align-items:flex-start;justify-content:center;gap:64px}
+  .maison{display:flex;flex-direction:column;align-items:center;gap:14px;width:310px}
+  .maison .cale{display:flex;align-items:center;height:110px}
+  .maison img{display:block}
+  .maison p{font-size:17px;letter-spacing:.14em;text-indent:.14em;text-transform:uppercase;color:rgba(231,221,203,.78);white-space:nowrap}
+  .maison p b{font-weight:700;color:rgba(244,237,221,.96)}
+  .croix{font-family:var(--serif);font-size:30px;color:rgba(231,221,203,.35);font-style:italic;align-self:center;margin-top:38px}
+</style>
+</head>
+<body>
+
+<div class="colonne">
+  <p class="kicker">Octobre Rose <span class="filet-mot">·</span> Compétition caritative</p>
+
+  <p class="surtitre">Trophée</p>
+  <h1 class="titre">Brigitte Pigeard</h1>
+
+  <p class="note">ensemble, contre le cancer du sein</p>
+
+  <!-- La planche : le trou n°10, drapeau ruban rose, trajectoire de balle -->
+  <svg class="planche" viewBox="0 0 900 900" fill="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="ruban" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#F3B4C7"/>
+        <stop offset="55%" stop-color="#E48CA6"/>
+        <stop offset="100%" stop-color="#C2536F"/>
+      </linearGradient>
+      <radialGradient id="halo-ruban" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#E48CA6" stop-opacity=".22"/>
+        <stop offset="60%" stop-color="#E48CA6" stop-opacity=".07"/>
+        <stop offset="100%" stop-color="#E48CA6" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="balle-sphere" cx="38%" cy="30%" r="75%">
+        <stop offset="0%" stop-color="#F2EADB" stop-opacity=".27"/>
+        <stop offset="45%" stop-color="#EFE5D3" stop-opacity=".16"/>
+        <stop offset="85%" stop-color="#E7DDCB" stop-opacity=".05"/>
+        <stop offset="100%" stop-color="#E7DDCB" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="alveole-creux" cx="36%" cy="33%" r="72%">
+        <stop offset="0%" stop-color="#17150F" stop-opacity=".42"/>
+        <stop offset="52%" stop-color="#17150F" stop-opacity=".1"/>
+        <stop offset="74%" stop-color="#F6EEDF" stop-opacity=".3"/>
+        <stop offset="100%" stop-color="#F6EEDF" stop-opacity="0"/>
+      </radialGradient>
+      <pattern id="alveoles" width="58" height="50" patternUnits="userSpaceOnUse">
+        <circle cx="14.5" cy="12.5" r="11.5" fill="url(#alveole-creux)"/>
+        <circle cx="43.5" cy="37.5" r="11.5" fill="url(#alveole-creux)"/>
+      </pattern>
+      <radialGradient id="fondu-alveoles" cx="42%" cy="34%" r="64%">
+        <stop offset="0%" stop-color="#fff" stop-opacity=".95"/>
+        <stop offset="55%" stop-color="#fff" stop-opacity=".5"/>
+        <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+      </radialGradient>
+      <mask id="masque-balle">
+        <circle cx="450" cy="450" r="380" fill="url(#fondu-alveoles)"/>
+      </mask>
+      <linearGradient id="gazon" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#66783F"/>
+        <stop offset="100%" stop-color="#3D4A2A"/>
+      </linearGradient>
+    </defs>
+
+    <g stroke="#E7DDCB" stroke-width="1.4" opacity=".55">
+      <path d="M150 156v18M141 165h18"/>
+      <path d="M726 220v14M719 227h14"/>
+      <path d="M140 620v14M133 627h14"/>
+      <path d="M700 700v18M691 709h18"/>
+    </g>
+    <g fill="#E7DDCB" opacity=".4">
+      <circle cx="262" cy="112" r="2.2"/>
+      <circle cx="608" cy="96" r="1.8"/>
+      <circle cx="98" cy="420" r="1.8"/>
+      <circle cx="796" cy="500" r="2.2"/>
+    </g>
+
+    <circle cx="450" cy="450" r="395" stroke="rgba(231,221,203,.2)" stroke-width="1"/>
+    <circle cx="450" cy="450" r="395" stroke="rgba(231,221,203,.28)" stroke-width="12"
+            stroke-dasharray="1.8 39.55" transform="rotate(-.15 450 450)"/>
+    <circle cx="450" cy="450" r="395" stroke="rgba(231,221,203,.44)" stroke-width="20"
+            stroke-dasharray="2.4 204.4" transform="rotate(-.2 450 450)"/>
+    <path d="M585 79 A 395 395 0 0 1 839 381" stroke="#D96A8B" stroke-width="3" opacity=".75"/>
+
+    <g>
+      <circle cx="450" cy="450" r="380" fill="url(#balle-sphere)"/>
+      <g mask="url(#masque-balle)" opacity=".75">
+        <rect x="60" y="60" width="780" height="780" fill="url(#alveoles)"/>
+      </g>
+      <path d="M 208 225 A 328 328 0 0 1 428 108" stroke="#F2EADB" stroke-width="28"
+            opacity=".08" stroke-linecap="round"/>
+    </g>
+
+    <circle cx="640" cy="300" r="220" fill="url(#halo-ruban)"/>
+
+    <g stroke-width="1.8">
+      <path d="M130 706 C 176 592, 320 548, 462 570 C 636 596, 748 646, 764 716 C 706 786, 520 816, 378 806 C 240 796, 152 764, 130 706 Z"
+            fill="url(#gazon)" stroke="rgba(231,221,203,.4)"/>
+      <path d="M212 700 C 250 622, 360 590, 478 608 C 606 628, 690 664, 702 714 C 656 764, 512 786, 402 776 C 300 768, 232 744, 212 700 Z"
+            fill="rgba(157,170,120,.16)" stroke="rgba(231,221,203,.32)"/>
+      <path d="M300 694 C 330 644, 420 624, 506 640 C 592 656, 644 682, 652 712 C 618 744, 512 758, 428 750 C 352 742, 316 726, 300 694 Z"
+            fill="rgba(157,170,120,.2)" stroke="rgba(231,221,203,.26)"/>
+    </g>
+
+    <ellipse cx="588" cy="678" rx="26" ry="9.5" fill="#0E0D0B" stroke="rgba(231,221,203,.5)" stroke-width="2"/>
+    <line x1="588" y1="676" x2="612" y2="200" stroke="#D1A379" stroke-width="5" stroke-linecap="round"/>
+    <ellipse cx="588" cy="678" rx="40" ry="6" fill="rgba(14,13,11,.35)"/>
+
+    <g transform="translate(652,298) scale(.64) rotate(14)">
+      <path d="M0 -190 C 85 -175, 85 -60, 30 -5 C 12 12, -34 128, -76 210"
+            stroke="url(#ruban)" stroke-width="42" stroke-linecap="round"/>
+      <path d="M-30 -5 C -12 12, 34 128, 76 210" stroke="rgba(14,13,11,.45)"
+            stroke-width="52" stroke-linecap="round"/>
+      <path d="M0 -190 C -85 -175, -85 -60, -30 -5 C -12 12, 34 128, 76 210"
+            stroke="url(#ruban)" stroke-width="42" stroke-linecap="round"/>
+    </g>
+
+    <circle cx="252" cy="692" r="15" fill="#E7DDCB"/>
+    <ellipse cx="252" cy="712" rx="24" ry="5" fill="rgba(14,13,11,.4)"/>
+    <path d="M252 672 C 330 470, 486 434, 580 652" stroke="rgba(231,221,203,.55)"
+          stroke-width="2.4" stroke-dasharray="1.5 15" stroke-linecap="round"/>
+
+    <g font-family="Karla, sans-serif" font-size="26" font-weight="700" letter-spacing="3" fill="rgba(231,221,203,.75)">
+      <text x="32" y="454" transform="rotate(-90 32 454)" text-anchor="middle">10 · 10 · 2026</text>
+      <text x="868" y="446" transform="rotate(90 868 446)" text-anchor="middle">TROU Nº 10 · PAR 1863</text>
+    </g>
+  </svg>
+
+  <p class="date">Samedi <em>10 octobre</em> 2026</p>
+  <p class="lieu">Golf du Perche · Souancé-au-Perche</p>
+
+  <div class="programme">
+    <div class="prog-col">
+      <p class="prog-titre">La compétition</p>
+      <p class="prog-quand">la journée</p>
+      <p class="prog-fort">18 trous</p>
+      <p class="prog-detail">formule scramble à&nbsp;deux</p>
+    </div>
+    <div class="prog-col">
+      <p class="prog-titre">Le concert</p>
+      <p class="prog-quand">après la remise des prix</p>
+      <p class="prog-fort italique">Humani</p>
+      <p class="prog-detail">concert pop-rock à&nbsp;l’apéro</p>
+    </div>
+    <div class="prog-col">
+      <p class="prog-titre">Le dîner</p>
+      <p class="prog-quand">le soir · places limitées</p>
+      <p class="prog-fort">25 €</p>
+      <p class="prog-detail">blanquette de veau, tarte&nbsp;fine aux&nbsp;pommes<br>ambiance musicale, puis soirée&nbsp;DJ…</p>
+      <p class="badge-resa">Sur réservation</p>
+    </div>
+  </div>
+
+  <div class="dons">
+    <svg viewBox="0 0 40 52" aria-hidden="true">
+      <path d="M20 4 C 29 5.5, 29 17, 23 23 C 21.2 24.8, 17 35, 13.5 44"
+            stroke="url(#ruban)" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+      <path d="M20 4 C 11 5.5, 11 17, 17 23 C 18.8 24.8, 23 35, 26.5 44"
+            stroke="url(#ruban)" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+    </svg>
+    <p>Les dons seront reversés à l’association <b>Octobre Rose</b></p>
+  </div>
+
+  <div class="inscriptions">
+    <p><b>Compétition</b> — inscription à l’accueil du golf · <b>02&nbsp;37&nbsp;29&nbsp;17&nbsp;33</b> · golfduperche@wanadoo.fr</p>
+    <p><b>Dîner</b> — réservation <b>avant le 5 octobre</b> au restaurant <i>Le&nbsp;Green</i> · <b>02&nbsp;37&nbsp;29&nbsp;10&nbsp;29</b> · <b>06&nbsp;63&nbsp;41&nbsp;46&nbsp;88</b></p>
+  </div>
+</div>
+
+<div class="colophon">
+  <div class="filet"></div>
+  <div class="maisons">
+    <div class="maison">
+      <div class="cale"><img src="../../assets/brand/pigeard-logo-white.svg" alt="Pigeard Opticiens" style="width:220px"></div>
+      <p><b>Pigeard Opticiens</b> · depuis 1863</p>
+    </div>
+    <p class="croix">&amp;</p>
+    <div class="maison">
+      <div class="cale"><img src="logo-golf-du-perche.svg" alt="Golf du Perche" style="height:112px"></div>
+      <p><b>Golf du Perche</b> · Souancé-au-Perche</p>
+    </div>
+  </div>
+</div>
+
+<div class="cadre"></div>
+<div class="grain"></div>
+
+</body>
+</html>
