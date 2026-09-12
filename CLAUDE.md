@@ -14,8 +14,9 @@ Nogent-le-Rotrou, Brou et La Loupe. Tout est en **français** : contenu, commits
 commentaires de code, échanges avec le propriétaire.
 
 - ~76 pages HTML à la racine, très travaillées SEO (JSON-LD, sitemap, llms.txt).
-- Les pages `marque-*.html` + les grilles + `sitemap.xml` sont **générées** par
-  `tools/build_static.py` à partir de `assets/data/*.json` — ne pas les éditer à
+- Les pages `marque-*.html` + les grilles + `sitemap.xml` + le nombre de
+  marques françaises de l'accueil (`index.html`, marqueurs `GEN:stat-france`)
+  sont **générés** par `tools/build_static.py` à partir de `assets/data/*.json` — ne pas les éditer à
   la main pour le contenu ; le workflow GitHub `build-static.yml` les régénère
   automatiquement quand les JSON changent sur `main`.
 - Le propriétaire édite textes/photos via **Pages CMS** (config `.pages.yml`).

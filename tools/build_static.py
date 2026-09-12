@@ -9,6 +9,9 @@ via PagesCMS) et génère :
   - le contenu crawlable <noscript> injecté dans marques.html et creations.html
     (entre les marqueurs GEN:...-START / GEN:...-END)
   - sitemap.xml (pages principales + toutes les fiches marques)
+  - le nombre de marques françaises affiché sur index.html (marqueurs
+    GEN:stat-france-START / GEN:stat-france-END), même règle que le filtre
+    « France » de marques.html
 
 Le JSON reste la source de vérité : on régénère à chaque modif (cf. GitHub Action).
 Lancer depuis la racine du dépôt :  python tools/build_static.py
@@ -236,6 +239,11 @@ def main():
         for b in brands)
     inject("marques.html", "GEN:brands-START", "GEN:brands-END",
            '<h2 style="font-size:1rem">Toutes nos marques</h2>\n' + brands_ns)
+
+    # 2b) accueil : nombre de marques françaises = marques d'origine France
+    #     + la carte « Pigeard sur mesure » de la grille (comptée par le filtre France)
+    n_fr = sum(1 for b in brands if "france" in (b.get("origin") or "").lower()) + 1
+    inject("index.html", "GEN:stat-france-START", "GEN:stat-france-END", str(n_fr))
 
     # 3) fallback crawlable creations.html
     crea_ns = "\n".join(
