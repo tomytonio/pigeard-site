@@ -157,6 +157,10 @@ header.nav.scrolled{background:rgba(14,13,11,.74);backdrop-filter:blur(14px);bor
 .brand-card:hover::after{opacity:1}
 .brand-tag{position:absolute;top:10px;left:10px;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--vert);z-index:2;opacity:0;transition:opacity .4s}
 .brand-card:hover .brand-tag{opacity:1}
+/* logo officiel de la marque (assets/marques/) : rendu monochrome crème sur le fond sombre, blanc au survol */
+.brand-card img.logo{display:block;width:68%;height:38%;object-fit:contain;filter:brightness(0) invert(1) sepia(.18);opacity:.9;pointer-events:none;transition:transform .5s,opacity .4s,filter .4s}
+.brand-card:hover img.logo{transform:scale(1.06);opacity:1;filter:brightness(0) invert(1)}
+.brand-card.has-logo .nom{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;padding:0;margin:-1px;opacity:0}
 .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:34px}
 .filter{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border:1px solid var(--ligne);padding:9px 16px;border-radius:100px;background:none;transition:all .35s}
 .filter:hover{color:var(--blanc-chaud)}

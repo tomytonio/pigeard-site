@@ -14,8 +14,9 @@ Nogent-le-Rotrou, Brou et La Loupe. Tout est en **français** : contenu, commits
 commentaires de code, échanges avec le propriétaire.
 
 - ~76 pages HTML à la racine, très travaillées SEO (JSON-LD, sitemap, llms.txt).
-- Les pages `marque-*.html` + les grilles + `sitemap.xml` sont **générées** par
-  `tools/build_static.py` à partir de `assets/data/*.json` — ne pas les éditer à
+- Les pages `marque-*.html` + les grilles + `sitemap.xml` + le nombre de
+  marques françaises de l'accueil (`index.html`, marqueurs `GEN:stat-france`)
+  sont **générés** par `tools/build_static.py` à partir de `assets/data/*.json` — ne pas les éditer à
   la main pour le contenu ; le workflow GitHub `build-static.yml` les régénère
   automatiquement quand les JSON changent sur `main`.
 - Le propriétaire édite textes/photos via **Pages CMS** (config `.pages.yml`).
@@ -83,6 +84,24 @@ commentaires de code, échanges avec le propriétaire.
   portrait, PNG 300 dpi + PDF). Le blason du Golf du Perche y est redessiné en
   vectoriel (`logo-golf-du-perche.svg`). Non servis au public (comme tout
   `/tools/`).
+
+## Logos des marques (page « Nos marques »)
+
+- `assets/marques/<slug>.svg|png` : logo de chaque marque, référencé par le champ
+  `logo` de `assets/data/marques.json` (chemin depuis la racine). La grille de
+  `marques.html` affiche l'image quand le champ existe et retombe sur le nom en
+  toutes lettres sinon (champ absent, vide ou image qui ne charge pas).
+- Rendu **monochrome** par CSS (`.brand-card img.logo`, filtre
+  `brightness(0) invert(1)` : crème, puis blanc au survol) — les fichiers doivent
+  donc avoir un **fond transparent** (un fond blanc/coloré deviendrait un
+  rectangle blanc). PNG recadrés sur leur contenu, ≤ 600 px de large ; SVG
+  autonome (attribut `xmlns` présent).
+- Provenance de chaque fichier : `tools/marques-logos-sources.json` (site
+  officiel de la marque ; Wikimedia Commons « Public domain » quand le site
+  bloque les robots ; réseau Mes Nouvelles Lunettes à défaut — qualité moindre).
+  Les logos ne servent qu'à désigner les marques vendues en magasin.
+- Le propriétaire remplace un logo via Pages CMS (champ « Logo », média
+  `assets/marques`) — voir `GUIDE-EDITION.md`.
 
 ## Flux de données personnelles (RGPD) & skill dédié
 

@@ -9,6 +9,9 @@ via PagesCMS) et génère :
   - le contenu crawlable <noscript> injecté dans marques.html et creations.html
     (entre les marqueurs GEN:...-START / GEN:...-END)
   - sitemap.xml (pages principales + toutes les fiches marques)
+  - le nombre de marques françaises affiché sur index.html (marqueurs
+    GEN:stat-france-START / GEN:stat-france-END), même règle que le filtre
+    « France » de marques.html
 
 Le JSON reste la source de vérité : on régénère à chaque modif (cf. GitHub Action).
 Lancer depuis la racine du dépôt :  python tools/build_static.py
@@ -61,7 +64,7 @@ BRAND_TMPL = """<!DOCTYPE html>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/brand/favicon-180.png">
-<link rel="stylesheet" href="assets/css/site.css?v=20260717">
+<link rel="stylesheet" href="assets/css/site.css?v=20260912">
 <!-- Écran de chargement (une fois par visite) : voile immédiat + logique dans loader.js -->
 <style>html.pg-loading{overflow:hidden}html.pg-loading::before{content:"";position:fixed;inset:0;z-index:11000;background:#26231C;pointer-events:none;animation:pg-voile .5s ease 3.8s forwards}@keyframes pg-voile{to{opacity:0;visibility:hidden}}</style>
 <script>try{if(!document.prerendering&&!sessionStorage.getItem('pg-loader-vu')&&!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('pg-loading')}catch(e){}</script>
@@ -236,6 +239,11 @@ def main():
         for b in brands)
     inject("marques.html", "GEN:brands-START", "GEN:brands-END",
            '<h2 style="font-size:1rem">Toutes nos marques</h2>\n' + brands_ns)
+
+    # 2b) accueil : nombre de marques françaises = marques d'origine France
+    #     + la carte « Pigeard sur mesure » de la grille (comptée par le filtre France)
+    n_fr = sum(1 for b in brands if "france" in (b.get("origin") or "").lower()) + 1
+    inject("index.html", "GEN:stat-france-START", "GEN:stat-france-END", str(n_fr))
 
     # 3) fallback crawlable creations.html
     crea_ns = "\n".join(

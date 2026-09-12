@@ -1,0 +1,349 @@
+{
+ "saint-laurent": {
+  "fichier": "assets/marques/saint-laurent.png",
+  "source": "https://commons.wikimedia.org/wiki/File:Saint_Laurent_Paris_SVG_Logo.svg",
+  "licence_ou_base": "Wikimedia Commons — Public domain (logo textuel non protégeable)",
+  "dimensions": "600x128"
+ },
+ "caroline-abram": {
+  "fichier": "assets/marques/caroline-abram.svg",
+  "source": "https://www.carolineabram.com/img/header/CAROLINEABRAM-logo.svg",
+  "licence_ou_base": "site officiel de la marque"
+ },
+ "talla": {
+  "fichier": "assets/marques/talla.png",
+  "source": "https://tallaeyewear.com/cdn/shop/files/talla-eyewear-men-sunglasses-collection-by-gianluca-gualandi-logo-1621526606.png?v=1765898927&width=320",
+  "licence_ou_base": "site officiel de la marque",
+  "dimensions": "320x152"
+ },
+ "lafont": {
+  "fichier": "assets/marques/lafont.svg",
+  "source": "https://www.lafont.com/img/logo_header.svg",
+  "licence_ou_base": "site officiel de la marque"
+ },
+ "sabine-be": {
+  "fichier": "assets/marques/sabine-be.png",
+  "source": "https://sabinebe.b-cdn.net/wp-content/uploads/2024/10/logo-sabine-be.png",
+  "licence_ou_base": "site officiel de la marque",
+  "dimensions": "600x97"
+ },
+ "brett": {
+  "fichier": "assets/marques/brett.png",
+  "source": "https://brett-eyewear.com/cdn/shop/files/Logo_Brett_Neo_heroes_200x.png?v=1669827206",
+  "licence_ou_base": "site officiel de la marque",
+  "dimensions": "200x47"
+ },
+ "oakley": {
+  "fichier": "assets/marques/oakley.png",
+  "source": "https://commons.wikimedia.org/wiki/File:Oakley_logo.svg",
+  "licence_ou_base": "Wikimedia Commons — Public domain (logo textuel non protégeable)",
+  "dimensions": "600x226"
+ },
+ "ray-ban": {
+  "fichier": "assets/marques/ray-ban.png",
+  "source": "https://commons.wikimedia.org/wiki/File:Ray-Ban_logo.svg",
+  "licence_ou_base": "Wikimedia Commons — Public domain (logo textuel non protégeable)",
+  "dimensions": "600x295"
+ },
+ "tommy-hilfiger": {
+  "fichier": "assets/marques/tommy-hilfiger.png",
+  "source": "https://commons.wikimedia.org/wiki/File:Tommy_hilfig_vectorlogo.svg",
+  "licence_ou_base": "Wikimedia Commons — Public domain (logo textuel non protégeable)",
+  "dimensions": "600x34"
+ },
+ "persol": {
+  "fichier": "assets/marques/persol.svg",
+  "source": "https://www.persol.com/cdn/shop/files/Vector.svg?v=1764878184&width=600",
+  "licence_ou_base": "site officiel de la marque"
+ },
+ "inbo": {
+  "fichier": "assets/marques/inbo.png",
+  "source": "https://inbo.fr/wp-content/uploads/2025/03/Logo-Inbo-blanc-1024x532.webp",
+  "licence_ou_base": "site officiel de la marque",
+  "dimensions": "600x312"
+ },
+ "ralph-lauren": {
+  "fichier": "assets/marques/ralph-lauren.png",
+  "source": "https://commons.wikimedia.org/wiki/File:Ralph_Lauren_logo.svg",
+  "licence_ou_base": "Wikimedia Commons — Public domain (logo textuel non protégeable)",
+  "dimensions": "600x44"
+ },
+ "lacoste": {
+  "fichier": "assets/marques/lacoste.png",
+  "source": "https://commons.wikimedia.org/wiki/File:Logo_Lacoste_2026.svg",
+  "licence_ou_base": "Wikimedia Commons — Public domain (logo textuel non protégeable)",
+  "dimensions": "600x107"
+ },
+ "vogue": {
+  "fichier": "assets/marques/vogue.svg",
+  "source": "https://vogue-eyewear.com/en-us (SVG intégré à la page)",
+  "licence_ou_base": "site officiel de la marque"
+ },
+ "new-balance": {
+  "fichier": "assets/marques/new-balance.png",
+  "source": "https://commons.wikimedia.org/wiki/File:New_Balance_logo.svg",
+  "licence_ou_base": "Wikimedia Commons — Public domain (logo textuel non protégeable)",
+  "dimensions": "600x330"
+ },
+ "longchamp": {
+  "fichier": "assets/marques/longchamp.png",
+  "source": "https://commons.wikimedia.org/wiki/File:Longchamp_logo.svg",
+  "licence_ou_base": "Wikimedia Commons — Public domain (logo textuel non protégeable)",
+  "dimensions": "600x104"
+ },
+ "bensimon": {
+  "fichier": "assets/marques/bensimon.svg",
+  "source": "https://www.bensimon.com/svg/logo.svg",
+  "licence_ou_base": "site officiel de la marque"
+ },
+ "maui-jim": {
+  "fichier": "assets/marques/maui-jim.png",
+  "source": "https://commons.wikimedia.org/wiki/File:Maui_Jim_logo.svg",
+  "licence_ou_base": "Wikimedia Commons — Public domain (logo textuel non protégeable)",
+  "dimensions": "600x302"
+ },
+ "calvin-klein": {
+  "fichier": "assets/marques/calvin-klein.png",
+  "source": "https://commons.wikimedia.org/wiki/File:Calvin_Klein_logo.svg",
+  "licence_ou_base": "Wikimedia Commons — Public domain (logo textuel non protégeable)",
+  "dimensions": "600x107"
+ },
+ "emporio-armani": {
+  "fichier": "assets/marques/emporio-armani.svg",
+  "source": "https://www.armani.com/en-us/ (SVG intégré à la page)",
+  "licence_ou_base": "site officiel de la marque"
+ },
+ "liu-jo": {
+  "fichier": "assets/marques/liu-jo.svg",
+  "source": "https://www.liujo.com/on/demandware.static/Sites-liujo-row-Site/-/default/dw5c122f96/images/logo.svg",
+  "licence_ou_base": "site officiel de la marque"
+ },
+ "nike": {
+  "fichier": "assets/marques/nike.svg",
+  "source": "https://www.nikevision.com/ (SVG intégré à la page)",
+  "licence_ou_base": "site officiel de la marque"
+ },
+ "exalto": {
+  "fichier": "assets/marques/exalto.png",
+  "source": "https://www.exalto.fr/img/logo-1750063384.jpg",
+  "licence_ou_base": "site officiel de la marque",
+  "dimensions": "600x117"
+ },
+ "oxibis": {
+  "fichier": "assets/marques/oxibis.svg",
+  "source": "https://www.oxibis-group.com/images/logo-oxibis-blanc.svg",
+  "licence_ou_base": "site officiel de la marque"
+ },
+ "demetz": {
+  "fichier": "assets/marques/demetz.png",
+  "source": "https://demetz.fr/img/logo-1686727609.jpg",
+  "licence_ou_base": "site officiel de la marque",
+  "dimensions": "460x62"
+ },
+ "stepper": {
+  "fichier": "assets/marques/stepper.svg",
+  "source": "https://www.steppereyewear.com/themes/steppereyewear2020/img/logo.svg",
+  "licence_ou_base": "site officiel de la marque"
+ },
+ "morel": {
+  "fichier": "assets/marques/morel.png",
+  "source": "https://morel.com/cdn/shop/files/logo_corporate_morel_png_rouge_cmjn_28598af7-e659-4ec4-b4b5-4805cf9dcc6c.png?v=1764672282&width=1906",
+  "licence_ou_base": "site officiel de la marque",
+  "dimensions": "600x392"
+ },
+ "dutz": {
+  "fichier": "assets/marques/dutz.png",
+  "source": "https://dutzeyewear.com/wp-content/uploads/2020/01/logo-dutzeyewear.png (fond orange détouré)",
+  "licence_ou_base": "site officiel de la marque",
+  "dimensions": "365x101"
+ },
+ "cogan": {
+  "fichier": "assets/marques/cogan.png",
+  "source": "https://lunettes-opticien.fr/wp-content/uploads/sites/2/2018/09/LOGO-cogan-mnl-2019.png",
+  "licence_ou_base": "réseau d’opticiens Mes Nouvelles Lunettes (site officiel de la marque inaccessible)",
+  "dimensions": "226x46"
+ },
+ "plein-les-mirettes": {
+  "fichier": "assets/marques/plein-les-mirettes.png",
+  "source": "https://pleinlesmirettes-lunettes.com/wp-content/uploads/2021/04/logos-500.png",
+  "licence_ou_base": "site officiel de la marque",
+  "dimensions": "486x69"
+ },
+ "charmant": {
+  "fichier": "assets/marques/charmant.png",
+  "source": "https://static.wixstatic.com/media/2bb151_db158db5e1d24b1a9e82dc4f84d98294~mv2.png",
+  "licence_ou_base": "site officiel de la marque",
+  "dimensions": "600x69"
+ },
+ "adlib": {
+  "fichier": "assets/marques/adlib.png",
+  "source": "https://mesnouvelleslunettes.fr/wp-content/uploads/sites/46/2015/12/logo-ad-lib-400x400-2025.png",
+  "licence_ou_base": "réseau d’opticiens Mes Nouvelles Lunettes (site officiel de la marque inaccessible)",
+  "dimensions": "282x282"
+ },
+ "visionario": {
+  "fichier": "assets/marques/visionario.svg",
+  "source": "https://www.visionarioshop.com/gb/ (SVG intégré à la page)",
+  "licence_ou_base": "site officiel de la marque"
+ },
+ "french-retro": {
+  "fichier": "assets/marques/french-retro.png",
+  "source": "https://www.frenchretro.com/img/logo-17677099172.jpg (fond blanc détouré, 150 px)",
+  "licence_ou_base": "site officiel de la marque",
+  "dimensions": "150x123"
+ },
+ "esprit": {
+  "fichier": "assets/marques/esprit.png",
+  "source": "https://commons.wikimedia.org/wiki/File:Esprit_Logo_neu.svg",
+  "licence_ou_base": "Wikimedia Commons — Public domain (logo textuel non protégeable)",
+  "dimensions": "600x85"
+ },
+ "bovelo": {
+  "fichier": "assets/marques/bovelo.png",
+  "source": "https://www.variation-design.fr/ (Variation Design Group, éditeur de la marque) — bovelo logo HD BLANC.png",
+  "licence_ou_base": "site officiel de la marque",
+  "dimensions": "600x220"
+ },
+ "marie-claire": {
+  "fichier": "assets/marques/marie-claire.png",
+  "source": "https://www.look-vision.com/img/cms/Marie_Claire_Magazine_logo.png (Look Vision, licencié lunetterie)",
+  "licence_ou_base": "site officiel de la marque",
+  "dimensions": "442x64"
+ },
+ "banana-moon": {
+  "fichier": "assets/marques/banana-moon.svg",
+  "source": "https://www.bananamoon.com/static/version1789130456/frontend/Bananamoon/default/en_US/images/bm-desktop-logo.svg",
+  "licence_ou_base": "site officiel de la marque"
+ },
+ "clemence-margaux": {
+  "fichier": "assets/marques/clemence-margaux.png",
+  "source": "https://www.clemence-margaux.com/cdn/shop/files/logo-cl_petit.png?height=80&v=1698735949",
+  "licence_ou_base": "site officiel de la marque",
+  "dimensions": "80x53"
+ },
+ "ines-de-la-fressange": {
+  "fichier": "assets/marques/ines-de-la-fressange.png",
+  "source": "https://inesdelafressange.fr/cdn/shop/files/LOGO-LONG_2_noir.png?v=1756128887&width=1004",
+  "licence_ou_base": "site officiel de la marque",
+  "dimensions": "600x103"
+ },
+ "roberto-bacoli": {
+  "fichier": "assets/marques/roberto-bacoli.png",
+  "source": "https://lunettes-opticien.fr/wp-content/uploads/sites/2/2023/09/roberto-bacoli-logo-200x200-1.png",
+  "licence_ou_base": "réseau d’opticiens Mes Nouvelles Lunettes (site officiel de la marque inaccessible)",
+  "dimensions": "200x25"
+ },
+ "fila": {
+  "fichier": "assets/marques/fila.svg",
+  "source": "https://www.fila.com/on/demandware.static/Sites-FILA-Site/-/default/dw7527bec3/images/redesign/header/logo.svg",
+  "licence_ou_base": "site officiel de la marque"
+ },
+ "binocle-eyewear": {
+  "fichier": "assets/marques/binocle-eyewear.png",
+  "source": "https://lunettes-opticien.fr/wp-content/uploads/sites/2/2022/12/logo-binocle-eyewear-400x200-1.png",
+  "licence_ou_base": "réseau d’opticiens Mes Nouvelles Lunettes (site officiel de la marque inaccessible)",
+  "dimensions": "391x151"
+ },
+ "georges-rech": {
+  "fichier": "assets/marques/georges-rech.png",
+  "source": "https://www.georges-rech.fr/cdn/shop/files/Logo_GR_NOIR_c2ece529-5388-4a55-b4d3-c04287a903aa_560x.png?v=1743683821",
+  "licence_ou_base": "site officiel de la marque",
+  "dimensions": "554x111"
+ },
+ "aponem": {
+  "fichier": "assets/marques/aponem.png",
+  "source": "https://aponem-eyewear.com/wp-content/uploads/logo-aponem.png",
+  "licence_ou_base": "site officiel de la marque",
+  "dimensions": "592x266"
+ },
+ "eyelet": {
+  "fichier": "assets/marques/eyelet.svg",
+  "source": "https://eyeleteyewear.com/cdn/shop/files/logo.svg?height=48&v=1749643155",
+  "licence_ou_base": "site officiel de la marque"
+ },
+ "azelie": {
+  "fichier": "assets/marques/azelie.png",
+  "source": "https://lunettes-opticien.fr/wp-content/uploads/sites/2/2018/09/azelie-logo-200x200-1.png",
+  "licence_ou_base": "réseau d’opticiens Mes Nouvelles Lunettes (site officiel de la marque inaccessible)",
+  "dimensions": "200x45"
+ },
+ "swarovski": {
+  "fichier": "assets/marques/swarovski.png",
+  "source": "https://commons.wikimedia.org/wiki/File:Swarovski_Logo.svg",
+  "licence_ou_base": "Wikimedia Commons — Public domain (logo textuel non protégeable)",
+  "dimensions": "600x86"
+ },
+ "xenith": {
+  "fichier": "assets/marques/xenith.png",
+  "source": "https://www.look-vision.com/img/cms/XENITH-LOGO-BLANC.png (Look Vision, éditeur de la marque)",
+  "licence_ou_base": "site officiel de la marque",
+  "dimensions": "600x180"
+ },
+ "jooly": {
+  "fichier": "assets/marques/jooly.svg",
+  "source": "https://www.joo-ly.com/img/logo-1777011671.svg",
+  "licence_ou_base": "site officiel de la marque"
+ },
+ "atelier-vendome": {
+  "fichier": "assets/marques/atelier-vendome.png",
+  "source": "https://www.atelier-vendome-lunettes.fr/ — AV_LOGOMARK_V2 (static.wixstatic.com/media/3e17ab_5b0bbf68581840baa7dad33ebe89f5a7~mv2.png)",
+  "licence_ou_base": "site officiel de la marque",
+  "dimensions": "600x54"
+ },
+ "lozza": {
+  "fichier": "assets/marques/lozza.svg",
+  "source": "https://d2xpu9z3jrijry.cloudfront.net/main-logo.svg",
+  "licence_ou_base": "site officiel de la marque"
+ },
+ "zenka": {
+  "fichier": "assets/marques/zenka.png",
+  "source": "https://www.zenka.fr/assets/maquette_v3/images/Logo-Zenka.png",
+  "licence_ou_base": "site officiel de la marque",
+  "dimensions": "442x180"
+ },
+ "facel-vega": {
+  "fichier": "assets/marques/facel-vega.png",
+  "source": "https://lunettes-opticien.fr/wp-content/uploads/sites/2/2022/03/facel-vega-logo-200x200-1.png",
+  "licence_ou_base": "réseau d’opticiens Mes Nouvelles Lunettes (site officiel de la marque inaccessible)",
+  "dimensions": "176x33"
+ },
+ "maje": {
+  "fichier": "assets/marques/maje.svg",
+  "source": "https://fr.maje.com/on/demandware.static/-/Sites/default/dwef39e50b/Logo/Maje-logo-nofill-new-50.svg",
+  "licence_ou_base": "site officiel de la marque"
+ },
+ "blush": {
+  "fichier": "assets/marques/blush.png",
+  "source": "https://lunettes-opticien.fr/wp-content/uploads/sites/2/2022/12/logo-blush-original-200x200.png (fond bleu détouré)",
+  "licence_ou_base": "réseau d’opticiens Mes Nouvelles Lunettes (site officiel de la marque inaccessible)",
+  "dimensions": "139x42"
+ },
+ "minima": {
+  "fichier": "assets/marques/minima.svg",
+  "source": "https://minima.fr/wp-content/uploads/2024/08/logo-minima.svg",
+  "licence_ou_base": "site officiel de la marque"
+ },
+ "michael-kors": {
+  "fichier": "assets/marques/michael-kors.png",
+  "source": "https://commons.wikimedia.org/wiki/File:Michael_Kors_Logo.svg",
+  "licence_ou_base": "Wikimedia Commons — Public domain (logo textuel non protégeable)",
+  "dimensions": "600x60"
+ },
+ "la-eyeworks": {
+  "fichier": "assets/marques/la-eyeworks.png",
+  "source": "https://www.laeyeworks.com/images/_logo_retina_white_small.png",
+  "licence_ou_base": "site officiel de la marque",
+  "dimensions": "500x72"
+ },
+ "izipizi": {
+  "fichier": "assets/marques/izipizi.svg",
+  "source": "https://www.izipizi.com/fr-fr/ (SVG intégré à la page)",
+  "licence_ou_base": "site officiel de la marque"
+ },
+ "minamoto": {
+  "fichier": "assets/marques/minamoto.png",
+  "source": "https://minamoto-eyewear.com/wp-content/uploads/brizy/imgs/Minamoto_logo_Vector-536x69x0x0x536x69x1718180455.png",
+  "licence_ou_base": "site officiel de la marque",
+  "dimensions": "536x69"
+ }
+}
