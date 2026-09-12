@@ -43,7 +43,7 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/brand/favicon-180.png">
-<link rel="stylesheet" href="assets/css/site.css?v=20260717">
+<link rel="stylesheet" href="assets/css/site.css?v=20260912">
 <!-- Écran de chargement (une fois par visite) : voile immédiat + logique dans loader.js -->
 <style>html.pg-loading{overflow:hidden}html.pg-loading::before{content:"";position:fixed;inset:0;z-index:11000;background:#26231C;pointer-events:none;animation:pg-voile .5s ease 3.8s forwards}@keyframes pg-voile{to{opacity:0;visibility:hidden}}</style>
 <script>try{if(!document.prerendering&&!sessionStorage.getItem('pg-loader-vu')&&!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('pg-loading')}catch(e){}</script>
@@ -209,7 +209,15 @@
       var isFr=(b.origin||'').toLowerCase().indexOf('france')>-1;
       a.setAttribute('data-cat',(b.category||[]).join(' ')+(isFr?' france':''));
       var tag=(b.origin||'').split('(')[0].trim();
-      a.innerHTML='<span class="brand-tag">'+tag+'</span><span>'+b.name+'</span><span class="tl">'+(b.tagline||'')+'</span>';
+      var t=document.createElement('span');t.className='brand-tag';t.textContent=tag;a.appendChild(t);
+      // Logo officiel (champ "logo" du JSON) ; repli sur le nom en toutes lettres si absent ou si l'image ne charge pas
+      if(b.logo){
+        var img=document.createElement('img');img.className='logo';img.src=b.logo;img.alt=b.name;img.loading='lazy';img.decoding='async';
+        img.addEventListener('error',function(){a.classList.remove('has-logo');img.remove();});
+        a.classList.add('has-logo');a.appendChild(img);
+      }
+      var nom=document.createElement('span');nom.className='nom';nom.textContent=b.name;a.appendChild(nom);
+      var tl=document.createElement('span');tl.className='tl';tl.textContent=b.tagline||'';a.appendChild(tl);
       grid.appendChild(a);
     });
     var cards=[].slice.call(grid.querySelectorAll('.brand-card'));

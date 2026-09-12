@@ -39,11 +39,21 @@ Dès que tu cliques **Save**, la modification est envoyée sur GitHub et **ton s
 
 ---
 
+## 🏷️ Logos des marques
+
+Sur la page **« Nos marques »**, chaque carte affiche le **logo** de la marque à la place de son nom écrit.
+
+- Pour **changer un logo** : ouvre la marque dans **« Nos marques »**, clique sur le champ **Logo** → choisis un fichier existant ou téléverse-en un nouveau, puis **Save**.
+- Le fichier doit être un **SVG** ou un **PNG à fond transparent** (pas de fond blanc ni de couleur). Sur le site, le logo est affiché **en blanc cassé sur fond sombre** : sa couleur d'origine n'est pas conservée, c'est voulu pour que toutes les cartes soient harmonieuses.
+- Si une marque n'a **pas de logo** (champ vide), son **nom** s'affiche à la place, comme avant.
+
+---
+
 ## 📌 Ce qui est modifiable aujourd'hui
 
 - ✅ **Textes — Page d'accueil** (accroches, titres et paragraphes de la page d'accueil)
 - ✅ **Créations sur-mesure** (noms, accroches, descriptifs, photos)
-- ✅ **Nos marques** (noms, accroches, présentations…)
+- ✅ **Nos marques** (noms, accroches, présentations… et **logos**)
 
 > 💡 Pour les titres sur **2 lignes** (ex. « Un savoir-faire / qui se transmet »), appuie sur **Entrée** dans la case pour créer la 2ᵉ ligne.
 

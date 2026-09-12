@@ -11,6 +11,11 @@ media:
     input: assets/creations
     output: assets/creations
     extensions: [jpg, jpeg, png, webp]
+  - name: marques
+    label: Logos des marques
+    input: assets/marques
+    output: assets/marques
+    extensions: [svg, png, webp]
 
 # Contenus modifiables dans l'éditeur
 content:
@@ -85,4 +90,5 @@ content:
           - { name: style, label: "Style (mots-clés)", type: string }
           - { name: madeInFrance, label: Fabriqué en France, type: boolean }
           - { name: url, label: Site officiel de la marque, type: string }
+          - { name: logo, label: "Logo (SVG ou PNG à fond transparent — affiché en blanc sur fond sombre)", type: image, options: { media: marques } }
           - { name: slug, label: "Identifiant — NE PAS MODIFIER", type: string, readonly: true }
