@@ -82,8 +82,11 @@ commentaires de code, échanges avec le propriétaire.
   affiches imprimables, composés en HTML avec la charte du site puis rendus via
   Playwright — `rendu-story.mjs` (1080×1920) ou `rendu-affiche.mjs` (A3
   portrait, PNG 300 dpi + PDF). Le blason du Golf du Perche y est redessiné en
-  vectoriel (`logo-golf-du-perche.svg`). Non servis au public (comme tout
-  `/tools/`).
+  vectoriel (`logo-golf-du-perche.svg`). Visuels produits : la photo fournie
+  est détourée sur fond transparent (ex. `brett-le-mans-classic-2026-monture.png`)
+  et le logo de la marque vient de son site officiel (ex. `logo-brett.png`) ;
+  sources et informations non vérifiables notées en commentaire du HTML. Non
+  servis au public (comme tout `/tools/`).
 
 ## Logos des marques (page « Nos marques »)
 
