@@ -107,6 +107,10 @@ commentaires de code, échanges avec le propriétaire.
   Les logos ne servent qu'à désigner les marques vendues en magasin.
 - Le propriétaire remplace un logo via Pages CMS (champ « Logo », média
   `assets/marques`) — voir `GUIDE-EDITION.md`.
+- Marques françaises (origine contenant « France », même règle que le filtre
+  « France », + carte « Pigeard sur mesure ») : classe `fr` posée par le JS de
+  `marques.html` → liseré 1 px bleu-blanc-rouge en dégradé (`.brand-card.fr::before`,
+  masque CSS, demandé par le propriétaire le 2026-09-30).
 
 ## Nouveautés & visuels des fiches marques (depuis le 2026-09-30)
 

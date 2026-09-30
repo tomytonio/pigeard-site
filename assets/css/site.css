@@ -161,6 +161,10 @@ header.nav.scrolled{background:rgba(14,13,11,.74);backdrop-filter:blur(14px);bor
 .brand-card img.logo{display:block;width:68%;height:38%;object-fit:contain;filter:brightness(0) invert(1) sepia(.18);opacity:.9;pointer-events:none;transition:transform .5s,opacity .4s,filter .4s}
 .brand-card:hover img.logo{transform:scale(1.06);opacity:1;filter:brightness(0) invert(1)}
 .brand-card.has-logo .nom{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;padding:0;margin:-1px;opacity:0}
+/* marques françaises (origine « France », même règle que le filtre) : liseré très fin bleu-blanc-rouge en dégradé */
+.brand-card.fr{border-color:transparent}
+.brand-card.fr::before{content:"";position:absolute;inset:0;z-index:3;border-radius:inherit;padding:1px;pointer-events:none;background:linear-gradient(135deg,#1F5FD1 0%,#1F5FD1 28%,#F4F1EA 50%,#EF4135 72%,#EF4135 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);opacity:.85;transition:opacity .4s}
+.brand-card.fr:hover::before{opacity:1}
 /* pastille « Nouveau » : marque dont le champ « nouveaute » est rempli (marques.json) */
 .brand-card .pill-nouveau{position:absolute;top:10px;right:10px;z-index:2;font-size:.58rem;font-weight:700;letter-spacing:.14em;line-height:1.4;text-transform:uppercase;color:#0E0D0B;background:var(--corail);padding:4px 9px;border-radius:100px}
 .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:34px}

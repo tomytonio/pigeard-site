@@ -43,7 +43,7 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/brand/favicon-180.png">
-<link rel="stylesheet" href="assets/css/site.css?v=20260930">
+<link rel="stylesheet" href="assets/css/site.css?v=20260930b">
 <!-- Écran de chargement (une fois par visite) : voile immédiat + logique dans loader.js -->
 <style>html.pg-loading{overflow:hidden}html.pg-loading::before{content:"";position:fixed;inset:0;z-index:11000;background:#26231C;pointer-events:none;animation:pg-voile .5s ease 3.8s forwards}@keyframes pg-voile{to{opacity:0;visibility:hidden}}</style>
 <script>try{if(!document.prerendering&&!sessionStorage.getItem('pg-loader-vu')&&!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('pg-loading')}catch(e){}</script>
@@ -198,7 +198,7 @@
 (function(){
   var grid=document.getElementById('brandGrid');
   var pig=document.createElement('a');
-  pig.className='brand-card pigeard';pig.href='creations.html';
+  pig.className='brand-card pigeard fr';pig.href='creations.html';
   pig.setAttribute('data-cat','france femme homme createur');
   pig.innerHTML='<span class="brand-tag">la maison</span><span>Pigeard<br>sur mesure</span><span class="tl">Nos créations, faites main à Nogent →</span>';
   grid.appendChild(pig);
@@ -211,6 +211,7 @@
       a.className='brand-card';a.href='marque-'+b.slug+'.html';
       var isFr=(b.origin||'').toLowerCase().indexOf('france')>-1;
       a.setAttribute('data-cat',(b.category||[]).join(' ')+(isFr?' france':''));
+      if(isFr)a.classList.add('fr'); // liseré tricolore des marques françaises
       var tag=(b.origin||'').split('(')[0].trim();
       var t=document.createElement('span');t.className='brand-tag';t.textContent=tag;a.appendChild(t);
       // Logo officiel (champ "logo" du JSON) ; repli sur le nom en toutes lettres si absent ou si l'image ne charge pas
