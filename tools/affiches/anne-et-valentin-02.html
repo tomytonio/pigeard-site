@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Visuel — De la plaque à la monture (Anne &amp; Valentin)</title>
+<!-- Visuel 1 200 × 1 500 de la fiche marque Anne & Valentin (galerie de
+     marque-anne-et-valentin.html), rendu en JPEG + WebP :
+       node rendu-visuel.mjs anne-et-valentin-02.html ../../assets/marques/visuels/anne-et-valentin-02 1200 1500
+     Création originale Pigeard (aucune photo de la marque reproduite).
+     Illustration du principe de fabrication d'une face de lunettes en acétate,
+     découpée dans une plaque : la forme dessinée ici est inventée, ce n'est
+     pas un modèle Anne & Valentin.
+     Sources de la phrase manuscrite « l'acétate, façonné dans le Jura » :
+     - anneetvalentin.com/fr/a-propos (relevé le 30/09/2026) : « Nous
+       travaillons avec les mêmes usines, dans le Jura, depuis plus de 20 ans,
+       exception faite des quelques modèles en titane que nous fabriquons au
+       Japon » → les modèles en acétate sont fabriqués dans le Jura ;
+     - la marque classe ses collections optiques en « Acétate », « Métal » et
+       « Combiné » (menu du site officiel).
+     Couleurs : bleu #6170EE (charte de l'espace Pro Anne & Valentin),
+     corail, vert, bois, encre : charte Pigeard (assets/css/site.css). -->
+<link rel="stylesheet" href="../../assets/css/fonts.css">
+<style>
+  :root{
+    --papier:#EFE6D6; --encre:#26231C; --bois:#866549;
+    --serif:'Playfair Display',Georgia,serif;
+    --sans:'Karla',system-ui,sans-serif;
+    --hand:'Reenie Beanie',cursive;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1200px;height:1500px;overflow:hidden}
+  body{
+    position:relative;
+    background:
+      radial-gradient(760px 640px at 600px 900px, #F7F0E4, transparent 70%),
+      var(--papier);
+    color:var(--encre);font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  .cadre{position:absolute;inset:36px;border:1px solid rgba(38,35,28,.14);pointer-events:none}
+  .cadre::after{content:"";position:absolute;inset:9px;border:1px solid rgba(38,35,28,.06)}
+  .eyebrow{position:absolute;top:128px;left:112px;display:flex;align-items:center;gap:18px;
+    font-size:17px;font-weight:700;letter-spacing:.36em;text-transform:uppercase;color:var(--bois)}
+  .eyebrow::before{content:"";width:46px;height:1.5px;background:var(--bois)}
+  h1{position:absolute;top:176px;left:106px;font-family:var(--serif);font-weight:800;font-size:112px;
+    line-height:.98;letter-spacing:-.02em;color:var(--encre)}
+  h1 em{display:block;font-style:italic;font-weight:600;color:var(--bois)}
+  .scene{position:absolute;left:0;top:0;width:1200px;height:1500px}
+  .main{position:absolute;left:0;right:0;top:1240px;text-align:center;font-family:var(--hand);font-size:66px;
+    line-height:1;color:var(--bois);transform:rotate(-2deg)}
+  .logo{position:absolute;left:50%;top:1334px;width:230px;transform:translateX(-50%);
+    filter:brightness(0);opacity:.78}
+</style>
+</head>
+<body>
+
+<p class="eyebrow">Savoir-faire · Jura</p>
+<h1>De la plaque<em>à la monture.</em></h1>
+
+<svg class="scene" viewBox="0 0 1200 1500" aria-hidden="true">
+  <defs>
+    <!-- contour extérieur d'une face (deux cercles + pont), centré sur 0,0 -->
+    <path id="face" d="M-205 -105 L-135 -105 A95 95 0 0 1 -70.8 -80 L70.8 -80 A95 95 0 0 1 135 -105 L205 -105
+      A95 95 0 0 1 300 -10 L300 10 A95 95 0 0 1 205 105 L135 105 A95 95 0 0 1 40 10 L40 -10
+      A95 95 0 0 1 44.9 -40 L-44.9 -40 A95 95 0 0 1 -40 -10 L-40 10 A95 95 0 0 1 -135 105 L-205 105
+      A95 95 0 0 1 -300 10 L-300 -10 A95 95 0 0 1 -205 -105 Z"/>
+    <!-- la plaque du dessus, percée à la forme de la face -->
+    <mask id="percee" maskUnits="userSpaceOnUse" x="-600" y="-400" width="1200" height="800">
+      <rect x="-600" y="-400" width="1200" height="800" fill="#fff"/>
+      <use href="#face" transform="translate(0 18)" fill="#000"/>
+    </mask>
+    <!-- la face découpée : ouvertures des verres -->
+    <mask id="verres" maskUnits="userSpaceOnUse" x="-400" y="-200" width="800" height="400">
+      <use href="#face" fill="#fff"/>
+      <rect x="-270" y="-75" width="200" height="150" rx="66" fill="#000"/>
+      <rect x="70" y="-75" width="200" height="150" rx="66" fill="#000"/>
+    </mask>
+    <linearGradient id="lustre" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".30"/>
+      <stop offset=".45" stop-color="#fff" stop-opacity=".06"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".06"/>
+    </linearGradient>
+    <filter id="ombre-plaque" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#3A2A18" flood-opacity=".22"/>
+    </filter>
+    <filter id="ombre-face" x="-20%" y="-30%" width="140%" height="180%">
+      <feDropShadow dx="0" dy="46" stdDeviation="24" flood-color="#3A2A18" flood-opacity=".34"/>
+    </filter>
+  </defs>
+
+  <g transform="translate(0 -40)">
+  <!-- plaques d'acétate en éventail (épaisseur = liseré plus sombre) -->
+  <g filter="url(#ombre-plaque)">
+    <g transform="translate(560 900) rotate(-15)">
+      <rect x="-430" y="-202" width="860" height="440" rx="34" fill="#4652BF"/>
+      <rect x="-430" y="-220" width="860" height="440" rx="34" fill="#6170EE"/>
+      <rect x="-430" y="-220" width="860" height="440" rx="34" fill="url(#lustre)"/>
+    </g>
+    <g transform="translate(610 915) rotate(-7)">
+      <rect x="-430" y="-202" width="860" height="440" rx="34" fill="#C9A52C"/>
+      <rect x="-430" y="-220" width="860" height="440" rx="34" fill="#F4CF45"/>
+      <rect x="-430" y="-220" width="860" height="440" rx="34" fill="url(#lustre)"/>
+    </g>
+    <g transform="translate(640 950) rotate(5)">
+      <rect x="-430" y="-202" width="860" height="440" rx="34" fill="#5F6B42"/>
+      <rect x="-430" y="-220" width="860" height="440" rx="34" fill="#7E8C5A"/>
+      <rect x="-430" y="-220" width="860" height="440" rx="34" fill="url(#lustre)"/>
+    </g>
+    <!-- plaque du dessus : bicolore (corail sur rose), percée -->
+    <g transform="translate(600 975) rotate(-2)">
+      <g mask="url(#percee)">
+        <rect x="-430" y="-196" width="860" height="440" rx="34" fill="#F2BFA0"/>
+        <rect x="-430" y="-208" width="860" height="440" rx="34" fill="#D9473F"/>
+        <rect x="-430" y="-220" width="860" height="440" rx="34" fill="#FF625B"/>
+        <rect x="-430" y="-220" width="860" height="440" rx="34" fill="url(#lustre)"/>
+      </g>
+      <!-- tranche visible dans la découpe -->
+      <use href="#face" transform="translate(0 18)" fill="none" stroke="#B83A33" stroke-opacity=".55" stroke-width="3"/>
+    </g>
+  </g>
+
+  <!-- la face, sortie de sa plaque -->
+  <g transform="translate(628 700) rotate(-6)" filter="url(#ombre-face)">
+    <g mask="url(#verres)">
+      <use href="#face" transform="translate(0 22)" fill="#F2BFA0"/>
+      <use href="#face" transform="translate(0 11)" fill="#D9473F"/>
+      <use href="#face" fill="#FF625B"/>
+      <use href="#face" fill="url(#lustre)"/>
+    </g>
+  </g>
+
+  <!-- la face sort de sa plaque -->
+  <path d="M1000 930 C 1052 850, 1046 740, 986 668" fill="none" stroke="#866549" stroke-width="2.5" stroke-dasharray="3 11" stroke-linecap="round"/>
+  <path d="M1003 672 l-18 -5 l2 19" fill="none" stroke="#866549" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
+
+<p class="main">l'acétate, façonné dans le Jura</p>
+<img class="logo" src="../../assets/marques/anne-et-valentin.svg" alt="Anne &amp; Valentin">
+
+<div class="cadre"></div>
+</body>
+</html>

@@ -16,6 +16,11 @@ media:
     input: assets/marques
     output: assets/marques
     extensions: [svg, png, webp]
+  - name: visuels
+    label: Visuels des marques (galeries des fiches)
+    input: assets/marques/visuels
+    output: assets/marques/visuels
+    extensions: [jpg, jpeg, png, webp]
 
 # Contenus modifiables dans l'éditeur
 content:
@@ -91,4 +96,14 @@ content:
           - { name: madeInFrance, label: Fabriqué en France, type: boolean }
           - { name: url, label: Site officiel de la marque, type: string }
           - { name: logo, label: "Logo (SVG ou PNG à fond transparent — affiché en blanc sur fond sombre)", type: image, options: { media: marques } }
+          - { name: nouveaute, label: "Nouveauté — texte court (ex. « En magasin dès janvier 2027 ») ; laisser vide pour retirer le badge « Nouveau »", type: string }
+          - name: visuels
+            label: "Visuels de la fiche (galerie « En images ») — la 1re image sert aussi au partage sur les réseaux"
+            type: object
+            list: true
+            fields:
+              - { name: image, label: "Image (JPG ou WebP, 1600 px de large maximum)", type: image, options: { media: visuels } }
+              - { name: legende, label: Légende, type: string }
+              - { name: alt, label: "Description de l'image (lue aux malvoyants et par Google)", type: string }
+              - { name: credit, label: "Crédit (ex. « © Anne & Valentin » ou « Illustration Pigeard »)", type: string }
           - { name: slug, label: "Identifiant — NE PAS MODIFIER", type: string, readonly: true }

@@ -12,12 +12,23 @@ via PagesCMS) et génère :
   - le nombre de marques françaises affiché sur index.html (marqueurs
     GEN:stat-france-START / GEN:stat-france-END), même règle que le filtre
     « France » de marques.html
+  - la puce « Nouveau » de l'accueil (marqueurs GEN:nouveautes-START / -END)
+    pour chaque marque dont le champ « nouveaute » est rempli
+
+Champs facultatifs d'une marque (en plus des champs habituels) :
+  - "nouveaute" : texte court (ex. « En magasin dès janvier 2027 ») → bandeau
+    « Nouveau chez Pigeard » sur la fiche, pastille « Nouveau » sur la grille
+    (marques.html) et puce sur l'accueil ; vide ou absent = rien ;
+  - "visuels" : liste de {image, legende, alt, credit} → galerie « En images »
+    sur la fiche ; la 1re image sert aussi d'image de partage (og:image). Un
+    .webp de même nom à côté d'un .jpg/.png est servi en priorité (<picture>).
 
 Le JSON reste la source de vérité : on régénère à chaque modif (cf. GitHub Action).
 Lancer depuis la racine du dépôt :  python tools/build_static.py
 """
 
-import json, re, html, datetime, pathlib, sys
+import json, re, html, datetime, pathlib, struct, sys
+from urllib.parse import quote
 
 try:
     sys.stdout.reconfigure(encoding="utf-8")
@@ -34,6 +45,99 @@ def esc(s):
 def cat_label(c):
     return {"made-in-france": "made in France", "createur": "créateur"}.get(c, c)
 
+# ---------------------------------------------------------------- images
+def image_size(path):
+    """(largeur, hauteur) d'une image JPEG, PNG, GIF ou WebP, lue dans son
+    en-tête (bibliothèque standard seulement) ; None si illisible."""
+    try:
+        with open(path, "rb") as f:
+            head = f.read(32)
+            if head[:8] == b"\x89PNG\r\n\x1a\n":
+                return struct.unpack(">II", head[16:24])
+            if head[:6] in (b"GIF87a", b"GIF89a"):
+                return struct.unpack("<HH", head[6:10])
+            if head[:4] == b"RIFF" and head[8:12] == b"WEBP":
+                kind = head[12:16]
+                if kind == b"VP8 ":
+                    w, h = struct.unpack("<HH", head[26:30])
+                    return w & 0x3FFF, h & 0x3FFF
+                if kind == b"VP8L":
+                    bits = int.from_bytes(head[21:25], "little")
+                    return (bits & 0x3FFF) + 1, ((bits >> 14) & 0x3FFF) + 1
+                if kind == b"VP8X":
+                    return int.from_bytes(head[24:27], "little") + 1, int.from_bytes(head[27:30], "little") + 1
+                return None
+            if head[:2] == b"\xff\xd8":
+                f.seek(2)
+                while True:
+                    b = f.read(1)
+                    while b and b != b"\xff":
+                        b = f.read(1)
+                    while b == b"\xff":
+                        b = f.read(1)
+                    if not b:
+                        return None
+                    m = b[0]
+                    if m == 0xD8 or m == 0x01 or 0xD0 <= m <= 0xD7:
+                        continue
+                    seg = struct.unpack(">H", f.read(2))[0]
+                    if m in (0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7, 0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF):
+                        h, w = struct.unpack(">xHH", f.read(5))
+                        return w, h
+                    f.seek(seg - 2, 1)
+    except (OSError, struct.error):
+        return None
+    return None
+
+def txt(v):
+    """Valeur texte facultative du JSON (None, nombre… → chaîne nettoyée)."""
+    return str(v if v is not None else "").strip()
+
+def chemin_image(p):
+    """Chemin d'image du JSON, relatif à la racine du site (sans / initial)."""
+    return txt(p).lstrip("/")
+
+def url_image(p):
+    """Chemin d'image utilisable dans src/srcset (espaces, accents encodés)."""
+    return quote(p, safe="/-_.~")
+
+def build_visuels(b):
+    """Galerie « En images » (champ « visuels ») → (html, infos og:image ou None)."""
+    items = [v for v in (b.get("visuels") or []) if isinstance(v, dict) and chemin_image(v.get("image"))]
+    if not items:
+        return "", None
+    figs = []
+    for i, v in enumerate(items):
+        src = chemin_image(v.get("image"))
+        legende = txt(v.get("legende"))
+        alt = txt(v.get("alt")) or legende or txt(b.get("name"))
+        credit = txt(v.get("credit"))
+        size = image_size(ROOT / src)
+        if size is None and not (ROOT / src).exists():
+            print("  ! visuel introuvable pour %s : %s" % (b.get("slug"), src))
+        dims = (' width="%d" height="%d"' % size) if size else ""
+        img = '<img src="%s" alt="%s"%s loading="lazy" decoding="async">' % (esc(url_image(src)), esc(alt), dims)
+        webp = re.sub(r"\.(jpe?g|png)$", ".webp", src, flags=re.I)
+        if webp != src and (ROOT / webp).exists():
+            img = '<picture><source srcset="%s" type="image/webp">%s</picture>' % (esc(url_image(webp)), img)
+        cap = ""
+        if legende or credit:
+            cap = "<figcaption>%s%s</figcaption>" % (
+                esc(legende), ('<span class="credit">%s</span>' % esc(credit)) if credit else "")
+        # nombre impair d'images : la première occupe toute la largeur
+        cls = "bv reveal" + (" bv--large" if i == 0 and len(items) % 2 else "")
+        figs.append('      <figure class="%s"><div class="bv-img">%s</div>%s</figure>' % (cls, img, cap))
+    html_ = ('\n  <section class="brand-visuels" aria-labelledby="bv-titre"><div class="wrap">\n'
+             '    <div class="bv-head reveal"><span class="eyebrow">En images</span>'
+             '<h2 id="bv-titre">L\'univers %s</h2></div>\n'
+             '    <div class="bv-grid">\n%s\n    </div>\n'
+             '  </div></section>') % (esc(b.get("name")), "\n".join(figs))
+    first = items[0]
+    og = {"src": chemin_image(first.get("image")),
+          "size": image_size(ROOT / chemin_image(first.get("image"))),
+          "alt": txt(first.get("alt")) or txt(first.get("legende"))}
+    return html_, og
+
 # ---------------------------------------------------------------- brand page
 BRAND_TMPL = """<!DOCTYPE html>
 <html lang="fr">
@@ -49,11 +153,11 @@ BRAND_TMPL = """<!DOCTYPE html>
 <meta property="og:url" content="@@CANON@@" />
 <meta property="og:title" content="@@OGTITLE@@" />
 <meta property="og:description" content="@@DESC@@" />
-<meta property="og:image" content="https://www.pigeard-opticiens.fr/assets/photos/histoire-famille.jpg" />
+<meta property="og:image" content="@@OGIMAGE@@" />@@OGEXTRA@@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="@@OGTITLE@@" />
 <meta name="twitter:description" content="@@DESC@@" />
-<meta name="twitter:image" content="https://www.pigeard-opticiens.fr/assets/photos/histoire-famille.jpg" />
+<meta name="twitter:image" content="@@OGIMAGE@@" />
 <script type="application/ld+json">
 @@JSONLD@@
 </script>
@@ -64,7 +168,7 @@ BRAND_TMPL = """<!DOCTYPE html>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/brand/favicon-180.png">
-<link rel="stylesheet" href="assets/css/site.css?v=20260912">
+<link rel="stylesheet" href="assets/css/site.css?v=20260930">
 <!-- Écran de chargement (une fois par visite) : voile immédiat + logique dans loader.js -->
 <style>html.pg-loading{overflow:hidden}html.pg-loading::before{content:"";position:fixed;inset:0;z-index:11000;background:#26231C;pointer-events:none;animation:pg-voile .5s ease 3.8s forwards}@keyframes pg-voile{to{opacity:0;visibility:hidden}}</style>
 <script>try{if(!document.prerendering&&!sessionStorage.getItem('pg-loader-vu')&&!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('pg-loading')}catch(e){}</script>
@@ -90,7 +194,7 @@ BRAND_TMPL = """<!DOCTYPE html>
     <div class="watermark" aria-hidden="true">@@NAME@@</div>
     <a class="back" href="marques.html">← Toutes nos marques</a>
     <h1 class="brand-name">@@NAME@@</h1>
-    <p class="brand-tagline">@@TAGLINE@@</p>
+    <p class="brand-tagline">@@TAGLINE@@</p>@@NOUVEAU@@
     <div class="brand-meta">@@META@@</div>
   </section>
   <section class="brand-body"><div class="wrap">
@@ -98,17 +202,17 @@ BRAND_TMPL = """<!DOCTYPE html>
     <aside class="brand-aside">
       <h4>Origine</h4><div class="v">@@ORIGIN@@</div>
       <h4>Depuis</h4><div class="v">@@FOUNDED@@</div>
-      <h4>Esprit</h4><div class="v" style="font-size:1.05rem;font-style:italic;color:var(--creme)">@@STYLE@@</div>
+      <h4>Esprit</h4><div class="v" style="font-size:1.05rem;font-style:italic;color:var(--creme)">@@STYLE@@</div>@@NOUVEAU_ASIDE@@
       <a class="btn btn--primary" href="magasins.html#rdv">Essayer en boutique <span class="arr">→</span></a>
       @@SITE@@
     </aside>
-  </div></section>
+  </div></section>@@VISUELS@@
   <section class="wrap"><div class="brand-nav">
     <a href="@@PREV_HREF@@">← Précédente<span class="nm">@@PREV_NAME@@</span></a>
     <a href="@@NEXT_HREF@@" style="text-align:right">Suivante →<span class="nm">@@NEXT_NAME@@</span></a>
   </div></section>
   <section class="sec-sm sec--cream"><div class="wrap" style="text-align:center">
-    <h2 class="reveal" style="font-family:var(--serif);font-weight:700;font-size:clamp(1.8rem,5vw,3rem);max-width:20ch;margin:0 auto">Envie de l'essayer ? Venez la voir chez Pigeard.</h2>
+    <h2 class="reveal" style="font-family:var(--serif);font-weight:700;font-size:clamp(1.8rem,5vw,3rem);max-width:20ch;margin:0 auto">Envie de l'essayer ? Venez la voir chez Pigeard.</h2>@@NOUVEAU_CTA@@
     <div class="reveal" style="margin-top:26px"><a class="btn btn--primary" href="magasins.html#rdv">Prendre rendez-vous <span class="arr">→</span></a></div>
   </div></section>
 </main>
@@ -136,7 +240,7 @@ BRAND_TMPL = """<!DOCTYPE html>
 <script>
 if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
   gsap.from('.brand-name',{y:40,autoAlpha:0,duration:1.1,ease:'expo.out'});
-  gsap.from('.brand-tagline,.brand-meta',{y:20,autoAlpha:0,duration:.9,ease:'power3.out',stagger:.12,delay:.2});
+  gsap.from('.brand-tagline,.brand-nouveau,.brand-meta',{y:20,autoAlpha:0,duration:.9,ease:'power3.out',stagger:.12,delay:.2});
   gsap.from('#bParas p',{y:30,autoAlpha:0,duration:.8,ease:'power3.out',stagger:.12,scrollTrigger:{trigger:'#bParas',start:'top 85%'}});
   if(window.ScrollTrigger)ScrollTrigger.refresh();
 }
@@ -184,6 +288,26 @@ def build_brand_page(b, prev, nxt):
     }
     jsonld_str = json.dumps(jsonld, ensure_ascii=False, indent=2)
 
+    # nouveauté (bandeau, encart, rappel sous le CTA)
+    nv = txt(b.get("nouveaute"))
+    nouveau = aside = cta = ""
+    if nv:
+        nouveau = ('\n    <p class="brand-nouveau"><span class="bn-tag"><i aria-hidden="true"></i>Nouveau chez Pigeard</span>'
+                   '<span class="bn-txt">%s</span></p>') % esc(nv)
+        aside = '\n      <p class="aside-nouveau"><i aria-hidden="true"></i>%s</p>' % esc(nv)
+        cta = '\n    <p class="reveal"><span class="hand cta-nouveau">%s</span></p>' % esc(nv)
+
+    # galerie de visuels ; la 1re image devient l'image de partage
+    visuels, og = build_visuels(b)
+    og_image = BASE + "/assets/photos/histoire-famille.jpg"
+    og_extra = ""
+    if og:
+        og_image = BASE + "/" + url_image(og["src"])
+        if og["size"]:
+            og_extra += '\n<meta property="og:image:width" content="%d" />\n<meta property="og:image:height" content="%d" />' % og["size"]
+        if og["alt"]:
+            og_extra += '\n<meta property="og:image:alt" content="%s" />' % esc(og["alt"])
+
     repl = {
         "@@TITLE@@": esc("%s — Nos marques · Pigeard Opticiens" % name),
         "@@DESC@@": esc(desc),
@@ -198,6 +322,12 @@ def build_brand_page(b, prev, nxt):
         "@@FOUNDED@@": esc(founded),
         "@@STYLE@@": style,
         "@@SITE@@": site,
+        "@@OGIMAGE@@": esc(og_image),
+        "@@OGEXTRA@@": og_extra,
+        "@@NOUVEAU_ASIDE@@": aside,
+        "@@NOUVEAU_CTA@@": cta,
+        "@@NOUVEAU@@": nouveau,
+        "@@VISUELS@@": visuels,
         "@@PREV_HREF@@": "marque-%s.html" % prev["slug"],
         "@@PREV_NAME@@": esc(prev["name"]),
         "@@NEXT_HREF@@": "marque-%s.html" % nxt["slug"],
@@ -244,6 +374,14 @@ def main():
     #     + la carte « Pigeard sur mesure » de la grille (comptée par le filtre France)
     n_fr = sum(1 for b in brands if "france" in (b.get("origin") or "").lower()) + 1
     inject("index.html", "GEN:stat-france-START", "GEN:stat-france-END", str(n_fr))
+
+    # 2c) accueil : puce « Nouveau » pour chaque marque dont « nouveaute » est rempli
+    chips = "\n".join(
+        '<a class="chip-nouveau" href="marque-%s.html"><span class="bn-tag"><i aria-hidden="true"></i>Nouveau</span>'
+        '<span><b>%s</b> — %s</span><span class="arr" aria-hidden="true">→</span></a>'
+        % (b["slug"], esc(b["name"]), esc(txt(b.get("nouveaute"))))
+        for b in brands if txt(b.get("nouveaute")))
+    inject("index.html", "GEN:nouveautes-START", "GEN:nouveautes-END", chips)
 
     # 3) fallback crawlable creations.html
     crea_ns = "\n".join(

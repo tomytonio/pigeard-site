@@ -49,11 +49,22 @@ Sur la page **« Nos marques »**, chaque carte affiche le **logo** de la marque
 
 ---
 
+## 🆕 Nouveautés & visuels d'une marque
+
+Dans **« Nos marques »**, chaque marque a deux cases facultatives :
+
+- **Nouveauté** : un texte court, par exemple « En magasin dès janvier 2027 ». Tant qu'il est rempli, la marque affiche un badge **« Nouveau »** (sur la grille des marques, où elle passe en premier), un bandeau sur sa fiche et un rappel sur la page d'accueil. **Vide la case** quand la marque n'est plus une nouveauté : tout disparaît.
+- **Visuels de la fiche** : les images affichées dans la galerie **« En images »** de la fiche. Pour chaque image : la photo (**JPG**, 1600 px de large maximum), une **légende**, une **description** (lue aux personnes malvoyantes et par Google) et le **crédit** (ex. « © Anne & Valentin »). La 1re image sert aussi d'aperçu quand on partage la page sur les réseaux.
+
+> ⚠️ Les **photos officielles d'une marque** ne se publient qu'avec **son accord écrit** (à demander à la marque, par exemple à son commercial). Sans accord, garde les illustrations Pigeard.
+
+---
+
 ## 📌 Ce qui est modifiable aujourd'hui
 
 - ✅ **Textes — Page d'accueil** (accroches, titres et paragraphes de la page d'accueil)
 - ✅ **Créations sur-mesure** (noms, accroches, descriptifs, photos)
-- ✅ **Nos marques** (noms, accroches, présentations… et **logos**)
+- ✅ **Nos marques** (noms, accroches, présentations, **logos**, **nouveautés** et **visuels**)
 
 > 💡 Pour les titres sur **2 lignes** (ex. « Un savoir-faire / qui se transmet »), appuie sur **Entrée** dans la case pour créer la 2ᵉ ligne.
 
