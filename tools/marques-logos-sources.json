@@ -5,6 +5,11 @@
   "licence_ou_base": "Wikimedia Commons — Public domain (logo textuel non protégeable)",
   "dimensions": "600x128"
  },
+ "anne-et-valentin": {
+  "fichier": "assets/marques/anne-et-valentin.svg",
+  "source": "https://anneetvalentin.com/ (SVG intégré à l'en-tête de la page, relevé le 2026-09-30)",
+  "licence_ou_base": "site officiel de la marque"
+ },
  "caroline-abram": {
   "fichier": "assets/marques/caroline-abram.svg",
   "source": "https://www.carolineabram.com/img/header/CAROLINEABRAM-logo.svg",

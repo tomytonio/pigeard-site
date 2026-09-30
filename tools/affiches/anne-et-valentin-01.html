@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Visuel — Anne &amp; Valentin chez Pigeard</title>
+<!-- Visuel 1 600 × 1 000 de la fiche marque Anne & Valentin (galerie de
+     marque-anne-et-valentin.html + image de partage og:image), rendu en JPEG +
+     WebP via tools/affiches/rendu-visuel.mjs :
+       node rendu-visuel.mjs anne-et-valentin-01.html ../../assets/marques/visuels/anne-et-valentin-01 1600 1000
+     Création originale Pigeard : aucune photo de la marque n'est reproduite
+     (les mentions légales d'anneetvalentin.com soumettent toute reproduction
+     de leurs contenus à une autorisation écrite préalable).
+     - lunettes : illustration géométrique inventée (ce n'est pas un modèle
+       Anne & Valentin), en hommage au goût de la marque pour « la ligne, les
+       couleurs » (page « À propos » d'anneetvalentin.com, relevée le 30/09/2026) ;
+     - bleu #6170EE : repris de la charte de l'espace Pro Anne & Valentin
+       (styles de la page publique de connexion img.anneetvalentin.com) ; corail, crème,
+       camel et vert : charte Pigeard (assets/css/site.css) ;
+     - logo : assets/marques/anne-et-valentin.svg (site officiel, voir
+       tools/marques-logos-sources.json) ;
+     - « Lunettes de créateur » : titre de la page d'accueil officielle
+       (« Anne & Valentin, Lunettes de créateur français ») ; « Toulouse » :
+       « C'est dans la ville rose qu'a commencé l'aventure ANNE & VALENTIN »
+       (anneetvalentin.com/fr/nos-boutiques/toulouse). -->
+<link rel="stylesheet" href="../../assets/css/fonts.css">
+<style>
+  :root{
+    --fond:#12110E; --creme:#E7DDCB; --camel:#D1A379; --vert:#9DAA78;
+    --bleu:#6170EE; --corail:#FF625B; --jaune:#F4CF45; --rose:#FEE2CD;
+    --serif:'Playfair Display',Georgia,serif;
+    --sans:'Karla',system-ui,sans-serif;
+    --hand:'Reenie Beanie',cursive;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1600px;height:1000px;overflow:hidden}
+  body{
+    position:relative;
+    background:
+      radial-gradient(760px 620px at 440px 520px, #25221B, transparent 72%),
+      radial-gradient(700px 520px at 1260px 470px, #1B1914, transparent 75%),
+      var(--fond);
+    color:var(--creme);font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  .cadre{position:absolute;inset:36px;border:1px solid rgba(231,221,203,.13);pointer-events:none}
+  .cadre::after{content:"";position:absolute;inset:9px;border:1px solid rgba(231,221,203,.05)}
+
+  .scene{position:absolute;left:0;top:0;width:920px;height:1000px}
+
+  .texte{position:absolute;left:968px;top:0;width:560px;height:1000px}
+  .eyebrow{position:absolute;top:262px;left:0;display:flex;align-items:center;gap:18px;
+    font-size:17px;font-weight:700;letter-spacing:.36em;text-transform:uppercase;color:var(--vert)}
+  .eyebrow::before{content:"";width:46px;height:1.5px;background:var(--vert)}
+  .logo{position:absolute;top:318px;left:-8px;width:548px;height:auto;
+    filter:brightness(0) invert(1) sepia(.2);opacity:.96}
+  .nuancier{position:absolute;top:548px;left:2px;display:flex;gap:10px}
+  .nuancier i{display:block;width:30px;height:30px}
+  .nuancier i:nth-child(1){background:var(--bleu);border-radius:50%}
+  .nuancier i:nth-child(2){background:var(--corail)}
+  .nuancier i:nth-child(3){background:var(--jaune);border-radius:50% 50% 0 0}
+  .nuancier i:nth-child(4){background:var(--rose);border-radius:0 0 50% 50%}
+  .main{position:absolute;top:600px;left:0;font-family:var(--hand);font-size:76px;line-height:1;
+    color:var(--camel);transform:rotate(-3deg);transform-origin:left center;white-space:nowrap}
+  .chez{position:absolute;top:760px;left:2px;display:flex;align-items:center;gap:20px}
+  .chez span{font-size:16px;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:rgba(231,221,203,.62)}
+  .chez img{height:46px;width:auto;opacity:.92}
+  .depuis{position:absolute;top:826px;left:2px;font-family:var(--serif);font-style:italic;font-size:22px;
+    color:rgba(231,221,203,.55)}
+</style>
+</head>
+<body>
+
+<!-- Scène : lunettes géométriques bicolores sur une composition « hard edge » -->
+<svg class="scene" viewBox="0 0 920 1000" aria-hidden="true">
+  <defs>
+    <!-- partage des montures en deux couleurs (bord franc) -->
+    <clipPath id="g-haut"><polygon points="60,250 500,250 500,700 60,470"/></clipPath>
+    <clipPath id="g-bas"><polygon points="60,470 500,700 500,760 60,760"/></clipPath>
+    <clipPath id="d-haut"><rect x="460" y="300" width="400" height="200"/></clipPath>
+    <clipPath id="d-bas"><rect x="460" y="500" width="400" height="260"/></clipPath>
+    <filter id="ombre" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="34" stdDeviation="26" flood-color="#000" flood-opacity=".55"/>
+    </filter>
+    <linearGradient id="verre" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FEE2CD" stop-opacity=".22"/>
+      <stop offset=".55" stop-color="#FEE2CD" stop-opacity=".07"/>
+      <stop offset="1" stop-color="#FEE2CD" stop-opacity=".02"/>
+    </linearGradient>
+  </defs>
+
+  <!-- composition de fond -->
+  <circle cx="470" cy="505" r="352" fill="#FEE2CD" fill-opacity=".045"/>
+  <circle cx="470" cy="505" r="352" fill="none" stroke="rgba(231,221,203,.10)" stroke-width="1.5"/>
+  <circle cx="735" cy="292" r="118" fill="#F4CF45"/>
+  <rect x="112" y="690" width="352" height="44" fill="#6170EE"/>
+  <rect x="112" y="746" width="176" height="10" fill="#FF625B"/>
+  <line x1="58" y1="905" x2="880" y2="118" stroke="rgba(231,221,203,.38)" stroke-width="2"/>
+  <circle cx="176" cy="238" r="15" fill="#FF625B"/>
+  <circle cx="820" cy="820" r="8" fill="#E7DDCB" fill-opacity=".7"/>
+
+  <!-- la monture -->
+  <g filter="url(#ombre)">
+    <!-- verres -->
+    <circle cx="282" cy="505" r="118" fill="url(#verre)"/>
+    <rect x="523" y="386" width="238" height="222" rx="46" fill="url(#verre)"/>
+    <!-- cercle gauche : bleu dessus, corail dessous -->
+    <circle cx="282" cy="505" r="135" fill="none" stroke="#6170EE" stroke-width="36" clip-path="url(#g-haut)"/>
+    <circle cx="282" cy="505" r="135" fill="none" stroke="#FF625B" stroke-width="36" clip-path="url(#g-bas)"/>
+    <!-- cercle droit : corail dessus, rose dessous -->
+    <rect x="506" y="369" width="272" height="256" rx="62" fill="none" stroke="#FF625B" stroke-width="36" clip-path="url(#d-haut)"/>
+    <rect x="506" y="369" width="272" height="256" rx="62" fill="none" stroke="#FEE2CD" stroke-width="36" clip-path="url(#d-bas)"/>
+    <!-- pont -->
+    <path d="M412 470 Q456 420 500 470" fill="none" stroke="#E7DDCB" stroke-width="20" stroke-linecap="butt"/>
+    <!-- charnières -->
+    <rect x="112" y="458" width="42" height="22" rx="4" fill="#E7DDCB"/>
+    <rect x="788" y="458" width="42" height="22" rx="4" fill="#E7DDCB"/>
+    <!-- reflets -->
+    <path d="M216 432 A95 95 0 0 1 300 404" fill="none" stroke="rgba(255,255,255,.34)" stroke-width="7" stroke-linecap="round"/>
+    <path d="M560 424 Q566 410 588 408" fill="none" stroke="rgba(255,255,255,.30)" stroke-width="7" stroke-linecap="round"/>
+  </g>
+</svg>
+
+<div class="texte">
+  <p class="eyebrow">Lunettes de créateur · Toulouse</p>
+  <img class="logo" src="../../assets/marques/anne-et-valentin.svg" alt="Anne &amp; Valentin">
+  <div class="nuancier"><i></i><i></i><i></i><i></i></div>
+  <p class="main">la ligne et la couleur</p>
+  <div class="chez"><span>À découvrir chez</span><img src="../../assets/brand/pigeard-logo-white.svg" alt="Pigeard"></div>
+  <p class="depuis">opticien dans le Perche depuis 1863</p>
+</div>
+
+<div class="cadre"></div>
+</body>
+</html>

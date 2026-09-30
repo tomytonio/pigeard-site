@@ -16,6 +16,7 @@ commentaires de code, échanges avec le propriétaire.
 - ~76 pages HTML à la racine, très travaillées SEO (JSON-LD, sitemap, llms.txt).
 - Les pages `marque-*.html` + les grilles + `sitemap.xml` + le nombre de
   marques françaises de l'accueil (`index.html`, marqueurs `GEN:stat-france`)
+  + les puces « Nouveau » de l'accueil (marqueurs `GEN:nouveautes`)
   sont **générés** par `tools/build_static.py` à partir de `assets/data/*.json` — ne pas les éditer à
   la main pour le contenu ; le workflow GitHub `build-static.yml` les régénère
   automatiquement quand les JSON changent sur `main`.
@@ -81,7 +82,8 @@ commentaires de code, échanges avec le propriétaire.
 - `tools/affiches/` : visuels pour les réseaux sociaux (stories, posts) et
   affiches imprimables, composés en HTML avec la charte du site puis rendus via
   Playwright — `rendu-story.mjs` (1080×1920) ou `rendu-affiche.mjs` (A3
-  portrait, PNG 300 dpi + PDF). Le blason du Golf du Perche y est redessiné en
+  portrait, PNG 300 dpi + PDF) ; `rendu-visuel.mjs` (taille libre → JPEG +
+  WebP) pour les visuels publiés sur le site (galeries des fiches marques). Le blason du Golf du Perche y est redessiné en
   vectoriel (`logo-golf-du-perche.svg`). Visuels produits : la photo fournie
   est détourée sur fond transparent (ex. `brett-le-mans-classic-2026-monture.png`)
   et le logo de la marque vient de son site officiel (ex. `logo-brett.png`) ;
@@ -105,6 +107,34 @@ commentaires de code, échanges avec le propriétaire.
   Les logos ne servent qu'à désigner les marques vendues en magasin.
 - Le propriétaire remplace un logo via Pages CMS (champ « Logo », média
   `assets/marques`) — voir `GUIDE-EDITION.md`.
+
+## Nouveautés & visuels des fiches marques (depuis le 2026-09-30)
+
+- Deux champs **facultatifs** de `assets/data/marques.json`, éditables dans
+  Pages CMS ; une marque sans ces champs produit exactement la même page
+  qu'avant.
+- `nouveaute` (texte court, ex. « En magasin dès janvier 2027 ») : bandeau
+  « Nouveau chez Pigeard » + encart + rappel sous le CTA de la fiche, pastille
+  « Nouveau » sur la grille de `marques.html` (les nouveautés y passent en
+  tête), puce sur l'accueil (`GEN:nouveautes`). Vider le champ retire tout.
+- `visuels` (liste de `{image, legende, alt, credit}`) : galerie « En images »
+  sous le texte de la fiche. Images dans `assets/marques/visuels/` (JPG, un
+  `.webp` de même nom est servi en priorité via `<picture>`) ; dimensions lues
+  dans les fichiers par `build_static.py` (pas de décalage au chargement) ; la
+  1re image devient l'`og:image` de la fiche (1er visuel en JPG de préférence).
+- **Droits** : ne pas publier de photos officielles d'une marque sans son
+  accord écrit (ex. mentions légales d'anneetvalentin.com : reproduction
+  « interdite, sauf autorisation écrite préalable »). À défaut : créations
+  originales dans `tools/affiches/` (sources en commentaire), crédit
+  « Illustration Pigeard ».
+- **Anne & Valentin** (lunetier de Toulouse) : ajoutée le 2026-09-30 pour une
+  arrivée en magasin en janvier 2027 (magasin(s) non précisé(s) par le
+  propriétaire → textes « chez Pigeard ») ; 3 visuels originaux
+  (`tools/affiches/anne-et-valentin-0*.html`). Faits sourcés sur
+  anneetvalentin.com (pages À propos, boutique de Toulouse, concepts). La
+  marque a un espace Pro (img.anneetvalentin.com, identifiants requis, contenu
+  non vérifié) : photos officielles à ajouter au champ « visuels » une fois
+  l'accord écrit obtenu.
 
 ## Flux de données personnelles (RGPD) & skill dédié
 
