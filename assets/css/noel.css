@@ -14,6 +14,33 @@
 /* barre de progression : touche dorée pendant les fêtes */
 html.noel .progress{background:linear-gradient(90deg,var(--vert),var(--noel-or))}
 
+/* ---------- Bonnet sur la lunette de l'écran de chargement ----------
+   ajouté par noel.js dans .pg-loader-logo (loader.js) si l'écran est encore
+   affiché ; chute + rebond 0,85 s, puis pompon qui se balance */
+/* classe doublée : doit l'emporter sur « .pg-loader-logo svg » (aspect-ratio de la lunette) */
+.pg-bonnet.pg-bonnet{position:absolute;left:0;bottom:0;width:100%;height:auto;aspect-ratio:276/265.5;overflow:visible;pointer-events:none}
+.pg-bonnet .pg-bonnet-pose{transform-box:fill-box;transform-origin:39.6% 88%;animation:pg-bonnet-pose .85s both}
+.pg-bonnet .pg-bonnet-ombre{transform-box:fill-box;transform-origin:50% 50%;animation:pg-bonnet-ombre .85s both}
+.pg-bonnet .pg-bonnet-pointe{transform-box:fill-box;transform-origin:23% 12.5%;animation:pg-bonnet-elan .54s ease-out .36s both,pg-bonnet-balance 4.4s .9s infinite}
+@keyframes pg-bonnet-pose{
+0%{opacity:0;transform:translateY(-34px) rotate(-12deg);animation-timing-function:cubic-bezier(.55,0,.85,.45)}
+14%{opacity:1}
+44%{transform:translateY(0) rotate(3deg) scale(1.03,.93);animation-timing-function:cubic-bezier(.2,.6,.4,1)}
+66%{transform:translateY(-4px) rotate(-1.5deg) scale(.99,1.02);animation-timing-function:cubic-bezier(.5,0,.6,1)}
+84%{transform:translateY(0) rotate(.6deg) scale(1.005,.99)}
+100%{opacity:1;transform:none}}
+@keyframes pg-bonnet-ombre{
+0%{opacity:0;transform:scale(.45);animation-timing-function:cubic-bezier(.55,0,.85,.45)}
+44%{opacity:1;transform:scale(1.06,1)}
+100%{opacity:1;transform:none}}
+@keyframes pg-bonnet-elan{0%{transform:none}30%{transform:rotate(5deg)}65%{transform:rotate(-2deg)}100%{transform:none}}
+@keyframes pg-bonnet-balance{
+0%{transform:none;animation-timing-function:cubic-bezier(.33,.66,.66,1)}
+25%{transform:rotate(2.2deg);animation-timing-function:cubic-bezier(.37,0,.63,1)}
+75%{transform:rotate(-2.2deg);animation-timing-function:cubic-bezier(.33,0,.66,.33)}
+100%{transform:none}}
+@media(prefers-reduced-motion:reduce){.pg-bonnet *{animation:none!important}}
+
 /* ---------- Guirlande lumineuse sous le menu ----------
    Accrochée au bas du menu fixe : visible en haut de page,
    elle s'efface dès qu'on défile (menu « scrolled »). */

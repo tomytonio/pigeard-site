@@ -239,7 +239,7 @@
    ============================================================ */
 (function(){
   if(!window.fetch || !document.querySelector('header.nav')) return;
-  var VERSION = '20261008';
+  var VERSION = '20261008b';
   var apercu = false;
   try{
     var m = /[?&]noel=([01])\b/.exec(location.search);
@@ -262,7 +262,12 @@
     .then(function(c){
       if(!c || !(apercu || (c.actif && enSaison(c, new Date())))) return;
       window.PIGEARD_NOEL = c;
-      /* le script attend la feuille de style : aucun élément de décor sans son style */
+      /* le script attend la feuille de style : aucun élément de décor sans son
+         style ; il est préchargé en parallèle pour arriver à temps sur l'écran
+         de chargement (bonnet sur la lunette) */
+      var pre = document.createElement('link');
+      pre.rel = 'preload'; pre.as = 'script'; pre.href = 'assets/js/noel.js?v=' + VERSION;
+      document.head.appendChild(pre);
       var l = document.createElement('link');
       l.rel = 'stylesheet'; l.href = 'assets/css/noel.css?v=' + VERSION;
       l.onload = function(){

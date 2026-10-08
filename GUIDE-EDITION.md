@@ -62,9 +62,9 @@ Dans **« Nos marques »**, chaque marque a deux cases facultatives :
 
 ## 🎄 Décor de Noël
 
-Chaque année, **du 1er novembre au 31 janvier**, le site se met tout seul aux couleurs des fêtes : guirlande lumineuse sous le menu, boules suspendues, neige fine, petit sapin doré et message de saison en bas des pages. Rien à faire : il apparaît et disparaît aux bonnes dates.
+Chaque année, **du 1er novembre au 31 janvier**, le site se met tout seul aux couleurs des fêtes : bonnet de Noël sur la lunette de l'écran « Réglage de la netteté… », guirlande lumineuse sous le menu, boules suspendues, neige fine, petit sapin doré et message de saison en bas des pages. Rien à faire : il apparaît le 1er novembre et disparaît le 1er février, tous les ans.
 
-- **Voir le décor avant novembre** : ouvre le site avec `?noel=1` à la fin de l'adresse, par exemple **www.pigeard-opticiens.fr/?noel=1**. Le décor reste affiché sur toutes les pages tant que l'onglet est ouvert. Pour l'enlever : `?noel=0`.
+- **Voir le décor avant novembre** : ouvre le site avec `?noel=1` à la fin de l'adresse, par exemple **www.pigeard-opticiens.fr/?noel=1**. Le décor reste affiché sur toutes les pages tant que l'onglet est ouvert. Pour l'enlever : `?noel=0`. L'écran « Réglage de la netteté… » (et donc le bonnet) ne passe qu'une fois par onglet : pour le revoir, ouvre le lien dans un **nouvel onglet**.
 - **Réglages** (dans l'éditeur, rubrique **« Décor de Noël »**) :
   - **Décor de Noël activé** : décoche-le pour ne plus rien afficher, même en décembre.
   - **Début / Fin** : les dates, au format jour/mois (ex. `01/11` et `31/01`). Elles servent **tous les ans**, inutile de les changer.
