@@ -1,0 +1,96 @@
+/* ============================================================
+   PIGEARD — Décor des fêtes (noel.css)
+   Chargé uniquement pendant la saison, avec assets/js/noel.js,
+   par le bloc « Décor des fêtes » de site.js. Hors saison, aucun
+   octet de plus. Réglages : assets/data/noel.json (Pages CMS).
+   Parti pris : or chaud et blanc crème, traits fins, mouvements
+   lents — rien de criard.
+   ============================================================ */
+:root{
+  --noel-or:#D9B26A; --noel-or-clair:#F3DFAE;
+  --noel-fil:rgba(217,178,106,.55);
+}
+
+/* barre de progression : touche dorée pendant les fêtes */
+html.noel .progress{background:linear-gradient(90deg,var(--vert),var(--noel-or))}
+
+/* ---------- Guirlande lumineuse sous le menu ----------
+   Accrochée au bas du menu fixe : visible en haut de page,
+   elle s'efface dès qu'on défile (menu « scrolled »). */
+.noel-guirlande{position:absolute;left:0;top:100%;width:100%;height:0;pointer-events:none;opacity:0;transform:translateY(-8px);transition:opacity 1s ease,transform 1s var(--ease)}
+.noel-guirlande.on{opacity:1;transform:none}
+header.nav.scrolled .noel-guirlande{opacity:0;transform:translateY(-12px);transition-duration:.45s}
+header.nav.scrolled .noel-ampoule,header.nav.scrolled .noel-deco{animation-play-state:paused} /* invisibles : on économise */
+.noel-guirlande .fil{position:absolute;left:0;top:0;overflow:visible}
+.noel-guirlande .fil path.cable{fill:none;stroke:var(--noel-fil);stroke-width:1;stroke-linecap:round}
+.noel-guirlande .fil .noeud{fill:rgba(217,178,106,.22);stroke:var(--noel-or);stroke-width:.9;stroke-linejoin:round;stroke-linecap:round}
+.noel-ampoule{position:absolute;width:5px;height:7px;margin-left:-2.5px;border-radius:50% 50% 46% 46%/58% 58% 42% 42%;background:radial-gradient(circle at 50% 38%,#FFFBEF 0,#FBE3AE 46%,#E2B464 100%);box-shadow:0 0 5px 1px rgba(255,222,160,.75),0 0 14px 4px rgba(255,196,110,.26);animation:noel-scintille var(--d,3s) ease-in-out var(--r,0s) infinite alternate;will-change:opacity}
+.noel-ampoule::before{content:"";position:absolute;left:1px;top:-2px;width:3px;height:2.5px;border-radius:1px;background:#8C6A3A}
+.noel-ampoule.or{background:radial-gradient(circle at 50% 38%,#FFF3D2 0,#EBC27A 50%,#B98A3E 100%);box-shadow:0 0 6px 1px rgba(240,196,120,.7),0 0 16px 5px rgba(214,160,80,.24)}
+@keyframes noel-scintille{from{opacity:1}to{opacity:.36}}
+
+/* boules et étoile suspendues aux nœuds de la guirlande (écrans larges seulement) */
+.noel-deco{position:absolute;top:0;width:34px;margin-left:-17px;display:flex;flex-direction:column;align-items:center;transform-origin:50% 0;animation:noel-balance var(--dur,6s) ease-in-out var(--del,0s) infinite alternate}
+.noel-deco .lien{width:1px;height:var(--l,60px);background:linear-gradient(rgba(217,178,106,.75),rgba(217,178,106,.4))}
+.noel-deco svg{display:block;width:30px;height:auto;margin-top:-1px;filter:drop-shadow(0 8px 10px rgba(0,0,0,.5))}
+.noel-deco.etoile svg{width:26px}
+@keyframes noel-balance{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
+@media(max-width:899px){.noel-deco{display:none}}
+
+/* ---------- Neige (canvas plein écran, sous le menu) ---------- */
+.noel-neige{position:fixed;inset:0;width:100%;height:100%;z-index:8990;pointer-events:none;opacity:0;transition:opacity 1.8s ease}
+.noel-neige.on{opacity:1}
+
+/* ---------- Commandes « pause » (neige + scintillements) ----------
+   bouton rond flottant sur grand écran ; ailleurs, liens discrets
+   sous la carte de vœux et dans le menu mobile */
+.noel-btn{position:fixed;left:18px;bottom:18px;z-index:8995;width:42px;height:42px;padding:0;border-radius:50%;display:grid;place-items:center;color:var(--creme);background:rgba(14,13,11,.55);border:1px solid rgba(231,221,203,.18);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);opacity:0;transform:translateY(10px);transition:opacity .7s ease,transform .7s var(--ease),border-color .3s,color .3s}
+.noel-btn.on{opacity:.72;transform:none}
+.noel-btn:hover,.noel-btn:focus-visible{opacity:1;border-color:var(--noel-or);color:var(--noel-or-clair)}
+.noel-btn:focus-visible,.noel-lien:focus-visible{outline:2px solid var(--noel-or);outline-offset:3px}
+.noel-btn svg{width:19px;height:19px;overflow:visible}
+@media(max-width:1099px){.noel-btn{display:none}}
+.noel-lien{display:inline-flex;align-items:center;gap:9px;margin-top:22px;padding:8px 14px;border:1px solid transparent;border-radius:100px;background:none;color:var(--muted);font-size:.66rem;font-weight:600;letter-spacing:.2em;line-height:1.3;text-transform:uppercase;transition:color .3s,border-color .3s}
+.noel-lien:hover,.noel-lien:focus-visible{color:var(--noel-or-clair);border-color:rgba(217,178,106,.4)}
+.noel-lien svg{width:14px;height:14px;flex:0 0 14px;overflow:visible}
+.noel-lien--menu{margin-top:4px}
+.noel-btn .flocon,.noel-lien .flocon{fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;transition:opacity .3s}
+.noel-btn .barre,.noel-lien .barre{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;opacity:0;transition:opacity .3s}
+html.noel-pause .noel-btn .flocon,html.noel-pause .noel-lien .flocon{opacity:.5}
+html.noel-pause .noel-btn .barre,html.noel-pause .noel-lien .barre{opacity:1}
+
+/* ---------- Carte de vœux en tête du pied de page ---------- */
+.noel-carte{display:flex;flex-direction:column;align-items:center;text-align:center;padding-bottom:clamp(46px,7vh,72px);margin-bottom:clamp(46px,7vh,72px);border-bottom:1px solid var(--ligne)}
+.noel-sapin{width:clamp(112px,12vw,138px);height:auto;overflow:visible}
+.noel-sapin .trace{fill:none;stroke:var(--noel-or);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.6s cubic-bezier(.45,.05,.25,1)}
+.noel-sapin .trace.tronc{transition-delay:1.5s;transition-duration:.9s}
+.noel-sapin .trace.feston{stroke:rgba(239,233,223,.55);stroke-width:.8;transition-duration:1.4s}
+.noel-sapin .trace.f1{transition-delay:1.7s}
+.noel-sapin .trace.f2{transition-delay:1.95s}
+.noel-sapin .trace.f3{transition-delay:2.2s}
+.noel-sapin .lum{fill:#FFF1CF;opacity:0}
+.noel-sapin .halo{opacity:0;transition:opacity 1.2s ease 2.6s}
+.noel-sapin .etoile{fill:var(--noel-or-clair);stroke:var(--noel-or);stroke-width:.5;stroke-linejoin:round;opacity:0;transform-box:fill-box;transform-origin:50% 50%;transform:scale(.3) rotate(-60deg);transition:opacity .8s ease 2.4s,transform 1.2s cubic-bezier(.34,1.56,.64,1) 2.4s}
+.noel-message{font-family:var(--hand);font-size:clamp(2.1rem,4.6vw,2.8rem);line-height:1;color:var(--camel);margin-top:20px;transform:rotate(-2deg);clip-path:inset(0 100% -25% 0);-webkit-clip-path:inset(0 100% -25% 0);transition:clip-path 1.5s ease-in-out 1.1s,-webkit-clip-path 1.5s ease-in-out 1.1s}
+.noel-signature{margin-top:14px;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);opacity:0;transition:opacity 1s ease 2.4s}
+.noel-carte .noel-lien{opacity:0;transition:opacity 1s ease 2.9s,color .3s,border-color .3s}
+.noel-carte.vu .trace{stroke-dashoffset:0}
+.noel-carte.vu .etoile{opacity:1;transform:none}
+.noel-carte.vu .halo{opacity:1;animation:noel-halo 3.2s ease-in-out 3.8s infinite alternate}
+.noel-carte.vu .lum{animation:noel-allume .7s ease var(--a,3s) forwards,noel-scintille var(--d,2.8s) ease-in-out calc(var(--a,3s) + .7s) infinite alternate}
+.noel-carte.vu .noel-message{clip-path:inset(0 0 -25% 0);-webkit-clip-path:inset(0 0 -25% 0)}
+.noel-carte.vu .noel-signature,.noel-carte.vu .noel-lien{opacity:1}
+@keyframes noel-allume{from{opacity:0}to{opacity:1}}
+@keyframes noel-halo{from{opacity:1}to{opacity:.45}}
+
+/* ---------- Pause demandée par le visiteur ---------- */
+html.noel-pause .noel-ampoule,html.noel-pause .noel-deco{animation:none}
+html.noel-pause .noel-carte.vu .lum,html.noel-pause .noel-carte.vu .halo{animation:none;opacity:1}
+html.noel-pause .noel-neige{opacity:0}
+
+/* ---------- Animations réduites (réglage système) : décor fixe ---------- */
+@media(prefers-reduced-motion:reduce){
+  .noel-ampoule,.noel-deco{animation:none}
+  .noel-guirlande,.noel-sapin .trace,.noel-sapin .etoile,.noel-sapin .halo,.noel-message,.noel-signature,.noel-carte .noel-lien{transition:none}
+  .noel-carte.vu .lum,.noel-carte.vu .halo{animation:none;opacity:1}
+}

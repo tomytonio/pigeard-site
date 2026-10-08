@@ -227,3 +227,50 @@
   if(document.prerendering) document.addEventListener('prerenderingchange', lancerStats, {once:true});
   else lancerStats();
 })();
+
+/* ============================================================
+   DÉCOR DES FÊTES — guirlande, neige, sapin (noel.js + noel.css)
+   Réglages dans assets/data/noel.json (Pages CMS) : le décor
+   s'affiche tout seul chaque année entre « debut » et « fin »
+   (jour/mois, ex. 01/11 → 31/01) si « actif » est coché.
+   Aperçu hors saison : ajouter ?noel=1 à l'adresse (valable pour
+   tout l'onglet) ; ?noel=0 l'arrête. Hors saison, seul ce petit
+   fichier JSON est lu : ni CSS ni JS de décor chargés.
+   ============================================================ */
+(function(){
+  if(!window.fetch || !document.querySelector('header.nav')) return;
+  var VERSION = '20261008';
+  var apercu = false;
+  try{
+    var m = /[?&]noel=([01])\b/.exec(location.search);
+    if(m && m[1] === '1') sessionStorage.setItem('pg-noel-apercu', '1');
+    if(m && m[1] === '0'){ sessionStorage.removeItem('pg-noel-apercu'); return; }
+    apercu = sessionStorage.getItem('pg-noel-apercu') === '1';
+  }catch(e){}
+  /* « JJ/MM » → nombre MMJJ comparable (ex. 01/11 → 1101) */
+  function jour(txt, defaut){
+    var m = /^\s*(\d{1,2})\s*[\/.-]\s*(\d{1,2})\s*$/.exec(txt || '');
+    if(!m || +m[1] < 1 || +m[1] > 31 || +m[2] < 1 || +m[2] > 12) return defaut;
+    return (+m[2]) * 100 + (+m[1]);
+  }
+  function enSaison(c, d){
+    var debut = jour(c.debut, 1101), fin = jour(c.fin, 131), auj = (d.getMonth() + 1) * 100 + d.getDate();
+    return debut <= fin ? (auj >= debut && auj <= fin) : (auj >= debut || auj <= fin);
+  }
+  fetch('assets/data/noel.json')
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(c){
+      if(!c || !(apercu || (c.actif && enSaison(c, new Date())))) return;
+      window.PIGEARD_NOEL = c;
+      /* le script attend la feuille de style : aucun élément de décor sans son style */
+      var l = document.createElement('link');
+      l.rel = 'stylesheet'; l.href = 'assets/css/noel.css?v=' + VERSION;
+      l.onload = function(){
+        var s = document.createElement('script');
+        s.src = 'assets/js/noel.js?v=' + VERSION;
+        document.body.appendChild(s);
+      };
+      document.head.appendChild(l);
+    })
+    .catch(function(){});
+})();
