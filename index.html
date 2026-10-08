@@ -128,7 +128,7 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/brand/favicon-180.png">
-<link rel="stylesheet" href="assets/css/site.css?v=20260930b">
+<link rel="stylesheet" href="assets/css/site.css?v=20261008">
 <!-- Écran de chargement (une fois par visite) : voile immédiat + logique dans loader.js -->
 <style>html.pg-loading{overflow:hidden}html.pg-loading::before{content:"";position:fixed;inset:0;z-index:11000;background:#26231C;pointer-events:none;animation:pg-voile .5s ease 3.8s forwards}@keyframes pg-voile{to{opacity:0;visibility:hidden}}</style>
 <script>try{if(!document.prerendering&&!sessionStorage.getItem('pg-loader-vu')&&!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('pg-loading')}catch(e){}</script>
@@ -315,17 +315,38 @@
 <!-- ÉQUIPE (teaser) -->
 <section class="sec wrap" id="equipe-teaser">
   <div class="sec-head reveal"><h2 data-bind="textes.accueil.equipeTitre" data-bind-multiline>Les visages<br>de la maison</h2><p data-bind="textes.accueil.equipeTexte">Derrière chaque conseil, une équipe qui aime son métier — à Nogent, Brou et La Loupe.</p></div>
-  <div class="reveal" id="teamRow">
-    <div class="frame" style="aspect-ratio:3/4;--trot:-2deg"><picture><source srcset="assets/equipe/nogent/christophe.webp" type="image/webp"><img src="assets/equipe/nogent/christophe.jpg" alt="Christophe Pigeard" width="851" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Christophe</span></div>
-    <div class="frame" style="aspect-ratio:3/4;--trot:1.6deg"><picture><source srcset="assets/equipe/nogent/antoine.webp" type="image/webp"><img src="assets/equipe/nogent/antoine.jpg" alt="Antoine Pigeard" width="800" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Antoine</span></div>
-    <div class="frame" style="aspect-ratio:3/4;--trot:-1.2deg"><picture><source srcset="assets/equipe/brou/magali.webp" type="image/webp"><img src="assets/equipe/brou/magali.jpg" alt="Magali" width="890" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Magali</span></div>
-    <div class="frame" style="aspect-ratio:3/4;--trot:2deg"><picture><source srcset="assets/equipe/la-loupe/helene.webp" type="image/webp"><img src="assets/equipe/la-loupe/helene.jpg" alt="Hélène" width="800" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Hélène</span></div>
-    <div class="frame" style="aspect-ratio:3/4;--trot:-1.8deg"><picture><source srcset="assets/equipe/nogent/vincent.webp" type="image/webp"><img src="assets/equipe/nogent/vincent.jpg" alt="Vincent" width="800" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Vincent</span></div>
-    <div class="frame" style="aspect-ratio:3/4;--trot:1.3deg"><picture><source srcset="assets/equipe/nogent/christelle.webp" type="image/webp"><img src="assets/equipe/nogent/christelle.jpg" alt="Christelle" width="800" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Christelle</span></div>
-    <div class="frame" style="aspect-ratio:3/4;--trot:-1.4deg"><picture><source srcset="assets/equipe/nogent/ludo.webp" type="image/webp"><img src="assets/equipe/nogent/ludo.jpg" alt="Ludovic" width="800" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Ludo</span></div>
-    <div class="frame" style="aspect-ratio:3/4;--trot:1.7deg"><picture><source srcset="assets/equipe/la-loupe/clemence.webp" type="image/webp"><img src="assets/equipe/la-loupe/clemence.jpg" alt="Clémence" width="960" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Clémence</span></div>
+  <!-- une pile par magasin : l'épaisseur et le compteur montrent toute l'équipe (photos décoratives, les prénoms sont dans le texte) -->
+  <div class="reveal" id="teamPiles">
+    <a class="pile" href="equipe.html#nogent-le-rotrou" style="--c:var(--vert)">
+      <div class="pile-stack" aria-hidden="true">
+        <span class="pol"><picture><source srcset="assets/equipe/nogent/karim.webp" type="image/webp"><img src="assets/equipe/nogent/karim.jpg" alt="" width="800" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Karim</span></span>
+        <span class="pol"><picture><source srcset="assets/equipe/nogent/christelle.webp" type="image/webp"><img src="assets/equipe/nogent/christelle.jpg" alt="" width="800" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Christelle</span></span>
+        <span class="pol"><picture><source srcset="assets/equipe/nogent/isabelle.webp" type="image/webp"><img src="assets/equipe/nogent/isabelle.jpg" alt="" width="800" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Isabelle</span></span>
+        <span class="pol"><picture><source srcset="assets/equipe/nogent/ludo.webp" type="image/webp"><img src="assets/equipe/nogent/ludo.jpg" alt="" width="800" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Ludo</span></span>
+        <span class="pol"><picture><source srcset="assets/equipe/nogent/vincent.webp" type="image/webp"><img src="assets/equipe/nogent/vincent.jpg" alt="" width="800" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Vincent</span></span>
+        <span class="pol"><picture><source srcset="assets/equipe/nogent/antoine.webp" type="image/webp"><img src="assets/equipe/nogent/antoine.jpg" alt="" width="800" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Antoine</span></span>
+        <span class="pol"><picture><source srcset="assets/equipe/nogent/christophe.webp" type="image/webp"><img src="assets/equipe/nogent/christophe.jpg" alt="" width="851" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Christophe</span></span>
+      </div>
+      <div class="pile-txt"><span class="pile-kick"><span class="mag">Magasin 01 · </span>7 visages</span><h3>Nogent-le-Rotrou<span class="arr" aria-hidden="true">→</span></h3><p class="pile-noms">Christophe, Antoine, Vincent, Ludovic, Isabelle, Christelle et Karim</p></div>
+    </a>
+    <a class="pile" href="equipe.html#brou" style="--c:var(--camel)">
+      <div class="pile-stack" aria-hidden="true">
+        <span class="pol"><picture><source srcset="assets/equipe/brou/edouard.webp" type="image/webp"><img src="assets/equipe/brou/edouard.jpg" alt="" width="800" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Edouard</span></span>
+        <span class="pol"><picture><source srcset="assets/equipe/brou/ana.webp" type="image/webp"><img src="assets/equipe/brou/ana.jpg" alt="" width="800" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Ana</span></span>
+        <span class="pol"><picture><source srcset="assets/equipe/brou/magali.webp" type="image/webp"><img src="assets/equipe/brou/magali.jpg" alt="" width="890" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Magali</span></span>
+      </div>
+      <div class="pile-txt"><span class="pile-kick"><span class="mag">Magasin 02 · </span>3 visages</span><h3>Brou<span class="arr" aria-hidden="true">→</span></h3><p class="pile-noms">Magali, Edouard et Ana</p></div>
+    </a>
+    <a class="pile" href="equipe.html#la-loupe" style="--c:var(--moutarde)">
+      <div class="pile-stack" aria-hidden="true">
+        <span class="pol"><picture><source srcset="assets/equipe/la-loupe/christel.webp" type="image/webp"><img src="assets/equipe/la-loupe/christel.jpg" alt="" width="880" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Christel</span></span>
+        <span class="pol"><picture><source srcset="assets/equipe/la-loupe/clemence.webp" type="image/webp"><img src="assets/equipe/la-loupe/clemence.jpg" alt="" width="960" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Clémence</span></span>
+        <span class="pol"><picture><source srcset="assets/equipe/la-loupe/helene.webp" type="image/webp"><img src="assets/equipe/la-loupe/helene.jpg" alt="" width="800" height="1200" loading="lazy" decoding="async"></picture><span class="prenom">Hélène</span></span>
+      </div>
+      <div class="pile-txt"><span class="pile-kick"><span class="mag">Magasin 03 · </span>3 visages</span><h3>La Loupe<span class="arr" aria-hidden="true">→</span></h3><p class="pile-noms">Hélène, Christel et Clémence</p></div>
+    </a>
   </div>
-  <div class="reveal" style="margin-top:34px"><a class="btn btn--vert" href="equipe.html">Rencontrer l'équipe <span class="arr">→</span></a></div>
+  <div class="reveal" style="margin-top:34px"><a class="btn btn--vert" href="equipe.html">Rencontrer les 13 visages <span class="arr">→</span></a></div>
 </section>
 
 
@@ -416,7 +437,7 @@
 <script src="assets/js/vendor/gsap.min.js"></script>
 <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
 <script src="assets/js/vendor/lenis.min.js"></script>
-<script src="assets/js/site.js?v=20261008c"></script>
+<script src="assets/js/site.js?v=20261008d"></script>
 <script src="assets/js/avis.js?v=20260702c" defer></script>
 <script>
 /* stries lumineuses */
@@ -466,8 +487,35 @@ if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
   /* marquees défilants */
   gsap.to('#marquee',{xPercent:-50,duration:32,ease:'none',repeat:-1});
   gsap.fromTo('#marqueeBrands',{xPercent:-50},{xPercent:0,duration:42,ease:'none',repeat:-1});
-  /* team row stagger */
-  gsap.from('#teamRow .frame',{autoAlpha:0,y:30,stagger:.08,duration:.8,ease:'power3.out',scrollTrigger:{trigger:'#teamRow',start:'top 85%'}});
+  /* équipe : les piles arrivent une à une */
+  gsap.from('#teamPiles .pile',{autoAlpha:0,y:30,stagger:.12,duration:.8,ease:'power3.out',scrollTrigger:{trigger:'#teamPiles',start:'top 85%'}});
+  /* feuilleter une pile : la photo du dessus glisse, repasse dessous, la suivante apparaît
+     (au survol / focus clavier en continu, et une seule fois à l'arrivée comme indice) */
+  (function(){
+    var stacks=[].slice.call(document.querySelectorAll('#teamPiles .pile-stack'));
+    function feuilleter(st){
+      var top=st.lastElementChild;
+      if(!top || st.dataset.occupe) return;
+      st.dataset.occupe='1';
+      top.classList.add('sort');
+      setTimeout(function(){
+        st.insertBefore(top, st.firstElementChild);
+        void top.offsetWidth;          /* repart de l'état .sort une fois passée dessous */
+        top.classList.remove('sort');
+        delete st.dataset.occupe;
+      },380);
+    }
+    stacks.forEach(function(st){
+      var pile=st.parentNode, t=null;
+      function go(){ if(t) return; feuilleter(st); t=setInterval(function(){ feuilleter(st); },1300); }
+      function stop(){ clearInterval(t); t=null; }
+      if(matchMedia('(pointer:fine)').matches){ pile.addEventListener('mouseenter',go); pile.addEventListener('mouseleave',stop); }
+      pile.addEventListener('focus',go); pile.addEventListener('blur',stop);
+    });
+    ScrollTrigger.create({trigger:'#teamPiles',start:'top 65%',once:true,onEnter:function(){
+      stacks.forEach(function(st,i){ setTimeout(function(){ feuilleter(st); },700+i*320); });
+    }});
+  })();
 }
 </script>
 </body>

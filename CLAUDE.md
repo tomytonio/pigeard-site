@@ -90,6 +90,23 @@ commentaires de code, échanges avec le propriétaire.
   sources et informations non vérifiables notées en commentaire du HTML. Non
   servis au public (comme tout `/tools/`).
 
+## Équipe : aperçu de l'accueil (depuis le 2026-10-08)
+
+- Section « Les visages de la maison » de `index.html` (`#teamPiles`, CSS
+  `.pile*` dans `site.css`) : **une pile de polaroïds par magasin** contenant
+  toute l'équipe (7 / 3 / 3), compteur « N visages », prénoms en texte, lien
+  vers l'ancre du magasin sur `equipe.html` (`#nogent-le-rotrou`, `#brou`,
+  `#la-loupe`). Remplace la grille de 8 portraits, qui laissait croire que
+  l'équipe se limitait à 8 personnes (retour du propriétaire).
+- La dernière photo d'une pile est dessus ; positions par rang
+  (`:nth-last-child`), donc aucun réglage par photo. Le JS en bas de
+  `index.html` « feuillette » la pile (photo du dessus → dessous) au survol /
+  focus clavier, et une seule fois à l'arrivée. Sans JS : pile fixe.
+- L'équipe n'est pas dans Pages CMS. Arrivée ou départ : mettre à jour à la
+  main `equipe.html` (cartes, « N visages », méta description « 13
+  collaborateurs », « Treize passionnés ») **et** `index.html` (photo dans la
+  pile, compteur, prénoms, bouton « Rencontrer les 13 visages »).
+
 ## Logos des marques (page « Nos marques »)
 
 - `assets/marques/<slug>.svg|png` : logo de chaque marque, référencé par le champ

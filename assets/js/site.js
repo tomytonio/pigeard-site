@@ -54,7 +54,6 @@
       if(opts.retomber) opts.retomber(el);
     });
   };
-  document.querySelectorAll('#teamRow .frame').forEach(function(fr){ PIG.tilt(fr, {amp:9, scale:1.04}); });
 
   if(!reduce && window.gsap && window.ScrollTrigger){
     gsap.registerPlugin(ScrollTrigger);
