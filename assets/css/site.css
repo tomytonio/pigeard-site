@@ -506,16 +506,52 @@ footer.site{padding:clamp(80px,11vh,140px) 0 46px;border-top:1px solid var(--lig
 .lb .lb-next{right:14px;top:50%;transform:translateY(-50%)}
 
 /* ============================================================
-   VISAGES DE LA MAISON — polaroids scotchés (accueil)
+   VISAGES DE LA MAISON — une pile de polaroids par magasin (accueil)
+   L'épaisseur de chaque pile, son compteur et la liste des prénoms montrent
+   toute l'équipe. Les positions dépendent du rang dans la pile (le dernier
+   enfant est dessus) : le JS de index.html « feuillette » la pile en passant
+   la photo du dessus en dessous (classe .sort), au survol et une fois à
+   l'arrivée. Sans JS : pile fixe, rien ne bouge.
    ============================================================ */
-#teamRow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:36px 14px;margin-top:16px}
-@media(max-width:700px){#teamRow{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 12px}}
-#teamRow .frame{min-width:0;overflow:visible;border-radius:10px;background:#FBF6EC;padding:8px 8px 34px;box-shadow:0 16px 36px -16px rgba(0,0,0,.55);transform:rotate(var(--trot,0deg));transition:transform .5s var(--ease),box-shadow .5s;position:relative}
-#teamRow .frame::before{content:"";position:absolute;top:-11px;left:50%;transform:translateX(-50%) rotate(-2deg);width:64px;height:20px;background:rgba(231,221,203,.65);box-shadow:0 2px 5px rgba(0,0,0,.2);z-index:3}
-#teamRow .frame img{border-radius:6px;filter:saturate(.88) brightness(.94);transition:filter .5s}
-#teamRow .frame .prenom{position:absolute;left:0;right:0;bottom:6px;text-align:center;font-family:var(--hand);font-size:1.35rem;color:var(--bois);line-height:1;transform:rotate(-2deg)}
-#teamRow .frame:hover{box-shadow:0 26px 50px -18px rgba(126,140,90,.35);z-index:4}
-#teamRow .frame:hover img{filter:saturate(1.05) brightness(1.04)}
+#teamPiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(28px,4vw,56px);margin-top:16px}
+.pile{position:relative;display:block;color:inherit;text-decoration:none;text-align:center}
+.pile-stack{position:relative;width:clamp(170px,16vw,214px);aspect-ratio:200/300;margin:0 auto 34px;--kr:1}
+.pile-stack:not(:has(> .pol:nth-child(4))){--kr:2}
+.pile .pol{position:absolute;inset:0;background:#FBF6EC;border-radius:10px;padding:8px 8px 34px;box-shadow:0 14px 30px -14px rgba(0,0,0,.6);transform-origin:50% 92%;transform:translate(calc(var(--x,0px) * var(--kr)),calc(var(--y,0px) * var(--kr))) rotate(calc(var(--r,0deg) * var(--kr)));transition:transform .6s var(--ease),opacity .45s ease}
+.pile .pol:nth-last-child(1){--r:-1deg}
+.pile .pol:nth-last-child(2){--r:2.5deg}
+.pile .pol:nth-last-child(3){--r:-2.5deg}
+.pile .pol:nth-last-child(4){--r:4.5deg;--x:5px}
+.pile .pol:nth-last-child(5){--r:-5deg;--x:-4px}
+.pile .pol:nth-last-child(6){--r:7deg;--x:10px;--y:2px}
+.pile .pol:nth-last-child(7){--r:-8deg;--x:-10px;--y:4px}
+.pile .pol.sort{transform:translate(64%,-4%) rotate(9deg);opacity:0;transition:transform .38s cubic-bezier(.45,0,.75,.4),opacity .38s cubic-bezier(.8,0,1,.5)}
+.pile:last-child .pol.sort{transform:translate(-64%,-4%) rotate(-9deg)}
+.pile .pol img{width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;filter:saturate(.88) brightness(.94);transition:filter .5s}
+.pile .pol:last-child::before{content:"";position:absolute;top:-11px;left:50%;transform:translateX(-50%) rotate(-2deg);width:64px;height:20px;background:rgba(231,221,203,.65);box-shadow:0 2px 5px rgba(0,0,0,.2);z-index:3}
+.pile .prenom{position:absolute;left:0;right:0;bottom:6px;text-align:center;font-family:var(--hand);font-size:1.35rem;color:var(--bois);line-height:1;transform:rotate(-2deg)}
+.pile:hover,.pile:focus-visible{z-index:2}
+.pile:hover .pol img,.pile:focus-visible .pol img{filter:saturate(1.05) brightness(1.04)}
+.pile:focus-visible{outline:none}
+.pile:focus-visible .pile-txt h3{text-decoration:underline;text-underline-offset:6px}
+.pile-kick{display:inline-block;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--c)}
+.pile-txt h3{font-family:var(--serif);font-weight:700;font-size:clamp(1.5rem,2.3vw,2rem);line-height:1.05;margin:8px 0}
+.pile-txt h3 .arr{display:inline-block;color:var(--c);font-family:var(--sans);font-weight:400;font-size:.8em;margin-left:.25em;transition:transform .4s var(--ease)}
+.pile:hover .pile-txt h3 .arr{transform:translateX(5px)}
+.pile-noms{color:var(--muted);font-size:.92rem;line-height:1.5;max-width:30ch;margin:0 auto}
+@media(max-width:700px){
+  /* sur téléphone : pile à gauche, texte à droite */
+  #teamPiles{grid-template-columns:1fr;gap:34px}
+  .pile{display:grid;grid-template-columns:44% 1fr;align-items:center;gap:18px;text-align:left}
+  .pile-stack{width:min(100%,112px);margin:10px auto 0}
+  .pile-stack:not(:has(> .pol:nth-child(4))){--kr:2.2}
+  .pile .pol{padding:5px 5px 24px;border-radius:8px;transform-origin:50% 50%}
+  .pile .pol:last-child::before{width:46px;height:15px;top:-8px}
+  .pile .prenom{font-size:1.05rem;bottom:4px}
+  .pile-noms{margin:0;font-size:.88rem}
+  .pile-kick .mag{display:none}
+  .pile:last-child .pol.sort{transform:translate(64%,-4%) rotate(9deg)}
+}
 
 /* ============================================================
    AVIS GOOGLE — carrousel (accueil)

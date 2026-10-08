@@ -67,7 +67,7 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/brand/favicon-180.png">
-<link rel="stylesheet" href="assets/css/site.css?v=20260930b">
+<link rel="stylesheet" href="assets/css/site.css?v=20261008">
 <!-- Écran de chargement (une fois par visite) : voile immédiat + logique dans loader.js -->
 <style>html.pg-loading{overflow:hidden}html.pg-loading::before{content:"";position:fixed;inset:0;z-index:11000;background:#26231C;pointer-events:none;animation:pg-voile .5s ease 3.8s forwards}@keyframes pg-voile{to{opacity:0;visibility:hidden}}</style>
 <script>try{if(!document.prerendering&&!sessionStorage.getItem('pg-loader-vu')&&!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('pg-loading')}catch(e){}</script>
@@ -174,7 +174,7 @@
 </section>
 
 <!-- ════ MAGASIN 01 — NOGENT-LE-ROTROU ════ -->
-<section class="mag-cover" style="color:var(--vert)">
+<section id="nogent-le-rotrou" class="mag-cover" style="color:var(--vert)">
   <span class="ghost">Nogent</span>
   <div class="wrap">
     <div class="mc-media reveal"><div class="frame"><span class="tape" style="top:-16px;left:24px;transform:rotate(-3deg)"></span><picture><source srcset="assets/photos/mag-nogent.webp" type="image/webp"><img src="assets/photos/mag-nogent.jpg" alt="Magasin Pigeard Nogent-le-Rotrou" width="1200" height="800" loading="lazy" decoding="async"></picture></div></div>
@@ -200,7 +200,7 @@
 </section>
 
 <!-- ════ MAGASIN 02 — BROU ════ -->
-<section class="mag-cover flip" style="color:var(--camel)">
+<section id="brou" class="mag-cover flip" style="color:var(--camel)">
   <span class="ghost">Brou</span>
   <div class="wrap">
     <div class="mc-media reveal"><div class="frame"><span class="tape" style="top:-16px;left:30px;transform:rotate(3deg)"></span><picture><source srcset="assets/photos/mag-brou.webp" type="image/webp"><img src="assets/photos/mag-brou.jpg" alt="Magasin Pigeard Brou" width="1200" height="800" loading="lazy" decoding="async"></picture></div></div>
@@ -222,7 +222,7 @@
 </section>
 
 <!-- ════ MAGASIN 03 — LA LOUPE ════ -->
-<section class="mag-cover" style="color:var(--moutarde)">
+<section id="la-loupe" class="mag-cover" style="color:var(--moutarde)">
   <span class="ghost">La Loupe</span>
   <div class="wrap">
     <div class="mc-media reveal"><div class="frame"><span class="tape" style="top:-16px;left:24px;transform:rotate(-3deg)"></span><picture><source srcset="assets/photos/mag-laloupe.webp" type="image/webp"><img src="assets/photos/mag-laloupe.jpg" alt="Magasin Pigeard La Loupe" width="1200" height="900" loading="lazy" decoding="async"></picture></div></div>
@@ -267,7 +267,7 @@
 <script src="assets/js/vendor/gsap.min.js"></script>
 <script src="assets/js/vendor/ScrollTrigger.min.js"></script>
 <script src="assets/js/vendor/lenis.min.js"></script>
-<script src="assets/js/site.js?v=20261008"></script>
+<script src="assets/js/site.js?v=20261008b"></script>
 <script>
 if(window.PIGEARD && !PIGEARD.reduce && window.gsap){
   /* Hero */
