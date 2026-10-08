@@ -30,6 +30,46 @@
   /* hasard « stable » : même tirage à chaque dessin pour un même index */
   function hasard(i) { var x = Math.sin(i * 12.9898 + 78.233) * 43758.5453; return x - Math.floor(x); }
 
+  /* ---------- Bonnet de Noël sur la lunette de l'écran de chargement ----------
+     L'écran « Réglage de la netteté… » (loader.js) ne s'affiche qu'une fois par
+     visite : s'il est encore à l'écran quand ce script arrive, un bonnet vient
+     se poser sur le grand verre (chute courte, petit rebond, pompon qui se
+     balance). Dessin dans les coordonnées de la lunette (viewBox prolongé de
+     100 unités vers le haut). */
+  var BONNET = '<svg class="pg-bonnet" viewBox="262.5 117.75 276 265.5" aria-hidden="true" focusable="false"><defs>' +
+    '<path id="pgb-c" d="M-40-10C-39-44-26-74 4-88C20-95 42-90 54-76L47-66C41-52 38-30 40-10Z"/>' +
+    '<path id="pgb-q" d="M30.5-87.6C39.5-86.4 48-82.6 54-76C64-65 71-50 72-33L65.5-34C64-48 58-60 47-66Z"/>' +
+    '<path id="pgb-b" d="M-48 12C-30-7 30-7 48 12C55 8 54-5 46-8C28-25-28-25-46-8C-54-5-55 8-48 12Z"/>' +
+    '<radialGradient id="pgb-v" gradientUnits="userSpaceOnUse" cx="-14" cy="-74" r="104"><stop offset="0" stop-color="#C23A33"/><stop offset=".5" stop-color="#A72E29"/><stop offset="1" stop-color="#8E1F1C"/></radialGradient>' +
+    '<radialGradient id="pgb-s" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="1" gradientTransform="translate(-41 -40) rotate(16) scale(9 36)"><stop offset="0" stop-color="#F08A7E" stop-opacity=".42"/><stop offset="1" stop-color="#F08A7E" stop-opacity="0"/></radialGradient>' +
+    '<linearGradient id="pgb-k" gradientUnits="userSpaceOnUse" x1="19" y1="-14" x2="32" y2="-10"><stop offset="0" stop-color="#5A1211" stop-opacity="0"/><stop offset=".75" stop-color="#5A1211" stop-opacity=".22"/><stop offset="1" stop-color="#5A1211" stop-opacity=".06"/></linearGradient>' +
+    '<linearGradient id="pgb-t" gradientUnits="userSpaceOnUse" x1="50" y1="-78" x2="68" y2="-34"><stop offset="0" stop-color="#3A0B0A" stop-opacity="0"/><stop offset="1" stop-color="#3A0B0A" stop-opacity=".4"/></linearGradient>' +
+    '<linearGradient id="pgb-f" x2="0" y2="1"><stop offset="0" stop-color="#F7F3EB"/><stop offset=".45" stop-color="#EFE9DF"/><stop offset="1" stop-color="#CDBFA4"/></linearGradient>' +
+    '<linearGradient id="pgb-e"><stop offset="0" stop-color="#7A6A50" stop-opacity=".5"/><stop offset=".2" stop-color="#7A6A50" stop-opacity="0"/><stop offset=".8" stop-color="#7A6A50" stop-opacity="0"/><stop offset="1" stop-color="#7A6A50" stop-opacity=".5"/></linearGradient>' +
+    '<radialGradient id="pgb-p" cx=".38" cy=".32" r=".72"><stop offset="0" stop-color="#FBF8F2"/><stop offset=".6" stop-color="#E7DDCB"/><stop offset="1" stop-color="#BFAF90"/></radialGradient>' +
+    '<radialGradient id="pgb-o"><stop offset="0" stop-opacity=".55"/><stop offset="1" stop-opacity="0"/></radialGradient></defs>' +
+    '<g transform="translate(405 241) rotate(6) scale(.95)">' +
+    '<ellipse class="pg-bonnet-ombre" cy="9" rx="56" ry="12" fill="url(#pgb-o)"/>' +
+    '<g class="pg-bonnet-pose">' +
+    '<use href="#pgb-c" fill="url(#pgb-v)"/>' +
+    '<use href="#pgb-c" fill="url(#pgb-s)"/>' +
+    '<path d="M18-12C22-38 28-58 38-74C34-56 30-36 30-12Z" fill="url(#pgb-k)"/>' +
+    '<g class="pg-bonnet-pointe"><use href="#pgb-q" fill="url(#pgb-v)"/><use href="#pgb-q" fill="url(#pgb-t)"/>' +
+    '<path d="M65.5-34C64-48 58-60 47-66" fill="none" stroke="#5A1211" stroke-opacity=".5" stroke-width="1.4" stroke-linecap="round"/><circle cx="69.5" cy="-30" r="11" fill="url(#pgb-p)"/></g>' +
+    '<use href="#pgb-b" fill="url(#pgb-f)"/>' +
+    '<use href="#pgb-b" fill="url(#pgb-e)"/></g></g></svg>';
+  function bonnet() {
+    var ecran = document.querySelector('.pg-loader:not(.pg-loader-out)');
+    var logo = ecran && ecran.querySelector('.pg-loader-logo');
+    if (!logo || logo.querySelector('.pg-bonnet')) return;
+    logo.insertAdjacentHTML('beforeend', BONNET);
+    /* arrivée tardive (réseau lent) : l'écran peut s'effacer dès 1,6 s après
+       son apparition ; passé 0,7 s, la chute (0,85 s) n'aurait plus le temps
+       de finir → le bonnet apparaît déjà posé, en fondu court */
+    var debut = parseFloat(ecran.getAttribute('data-debut'));
+    if (!(performance.now() - debut <= 700)) logo.lastChild.classList.add('pg-bonnet--tard');
+  }
+
   /* ---------- Guirlande ---------- */
   var DEFS = '<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>' +
     '<radialGradient id="noelOr" cx="36%" cy="30%" r="78%"><stop offset="0" stop-color="#FBEFC9"/><stop offset=".42" stop-color="#D9B26A"/><stop offset="1" stop-color="#6E5124"/></radialGradient>' +
@@ -285,6 +325,7 @@
 
   /* ---------- Mise en place ---------- */
   function installer() {
+    bonnet();
     guirlande();
     carte();
     if (reduit) return; /* décor fixe : ni neige ni commandes */

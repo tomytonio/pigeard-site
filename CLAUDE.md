@@ -159,6 +159,15 @@ commentaires de code, échanges avec le propriétaire.
 
 ## Décor des fêtes (depuis le 2026-10-08)
 
+- Bonnet de Noël (velours rouge, fourrure crème, choisi par le propriétaire le
+  2026-10-08) posé sur le grand verre de la lunette de l'écran de chargement :
+  `noel.js` l'ajoute dans `.pg-loader-logo` si le loader est encore affiché
+  (`noel.js` est préchargé en parallèle de `noel.css` ; en général dans la
+  première demi-seconde du loader). `loader.js` pose `data-debut` sur l'écran :
+  si le bonnet arrive plus de 0,7 s après, il apparaît déjà posé (fondu
+  court, classe `pg-bonnet--tard`) au lieu de tomber ; s'il arrive pendant le
+  fondu de sortie, il n'est pas ajouté. Largeur de la lunette bornée à 40vh
+  (téléphone en paysage : le bonnet dépasse au-dessus de la lunette).
 - Guirlande lumineuse sous le menu (+ boules et étoile suspendues ≥ 900 px,
   côté droit ; à gauche aussi sur les pages à `.hero`), neige en canvas sous
   le menu (z-index 8990), sapin tracé + message de saison en tête du pied de
@@ -205,6 +214,8 @@ commentaires de code, échanges avec le propriétaire.
   (juste après `site.css`) : voile encre immédiat, lunette qui se remplit du
   bas vers le haut, message manuscrit « Réglage de la netteté… » qui se
   défloute.
+- Pendant les fêtes, un bonnet de Noël se pose sur la lunette (voir « Décor des
+  fêtes » : ajouté par `noel.js`, pas par `loader.js`).
 - Une fois **par visite** (`sessionStorage['pg-loader-vu']`), durée mini 1,6 s /
   maxi 3,2 s, jauge plafonnée à 90 % tant que la page n'est pas prête (DOM
   chargé + images `fetchpriority="high"` disponibles — on n'attend pas
