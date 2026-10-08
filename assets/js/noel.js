@@ -59,8 +59,15 @@
     '<use href="#pgb-b" fill="url(#pgb-f)"/>' +
     '<use href="#pgb-b" fill="url(#pgb-e)"/></g></g></svg>';
   function bonnet() {
-    var logo = document.querySelector('.pg-loader:not(.pg-loader-out) .pg-loader-logo');
-    if (logo && !logo.querySelector('.pg-bonnet')) logo.insertAdjacentHTML('beforeend', BONNET);
+    var ecran = document.querySelector('.pg-loader:not(.pg-loader-out)');
+    var logo = ecran && ecran.querySelector('.pg-loader-logo');
+    if (!logo || logo.querySelector('.pg-bonnet')) return;
+    logo.insertAdjacentHTML('beforeend', BONNET);
+    /* arrivée tardive (réseau lent) : l'écran peut s'effacer dès 1,6 s après
+       son apparition ; passé 0,7 s, la chute (0,85 s) n'aurait plus le temps
+       de finir → le bonnet apparaît déjà posé, en fondu court */
+    var debut = parseFloat(ecran.getAttribute('data-debut'));
+    if (!(performance.now() - debut <= 700)) logo.lastChild.classList.add('pg-bonnet--tard');
   }
 
   /* ---------- Guirlande ---------- */

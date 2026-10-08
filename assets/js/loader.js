@@ -22,7 +22,7 @@
     '.pg-loader{position:fixed;inset:0;z-index:11001;display:flex;align-items:center;justify-content:center;background:var(--encre,#26231C);transition:opacity .55s ease}' +
     '.pg-loader-out{opacity:0;pointer-events:none}' +
     '.pg-loader-box{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 24px}' +
-    '.pg-loader-logo{position:relative;width:min(220px,52vw);aspect-ratio:276/165.5}' +
+    '.pg-loader-logo{position:relative;width:min(220px,52vw,40vh);aspect-ratio:276/165.5}' +
     '.pg-loader-logo svg{position:absolute;left:0;bottom:0;width:100%;height:auto;aspect-ratio:276/165.5;display:block}' +
     '.pg-loader-ghost svg{opacity:.15}' +
     '.pg-loader-fill{position:absolute;left:0;bottom:0;width:100%;height:0%;overflow:hidden}' +
@@ -45,6 +45,7 @@
   var fill = overlay.querySelector('.pg-loader-fill');
   var msg = overlay.querySelector('.pg-loader-msg');
   var start = performance.now();
+  overlay.setAttribute('data-debut', String(start)); /* lu par noel.js (bonnet des fêtes) */
   var progress = 0;
   var loaded = document.readyState === 'complete';
   var finished = false;

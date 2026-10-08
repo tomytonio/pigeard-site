@@ -239,7 +239,7 @@
    ============================================================ */
 (function(){
   if(!window.fetch || !document.querySelector('header.nav')) return;
-  var VERSION = '20261008b';
+  var VERSION = '20261008c';
   var apercu = false;
   try{
     var m = /[?&]noel=([01])\b/.exec(location.search);
