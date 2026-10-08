@@ -1,0 +1,9 @@
+{
+  "actif": true,
+  "debut": "01/11",
+  "fin": "31/01",
+  "neige": true,
+  "messageFetes": "Belles fêtes de fin d'année",
+  "messageVoeux": "Belle et heureuse année {annee}",
+  "signature": "Toute l'équipe Pigeard"
+}

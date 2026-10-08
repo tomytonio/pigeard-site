@@ -107,3 +107,17 @@ content:
               - { name: alt, label: "Description de l'image (lue aux malvoyants et par Google)", type: string }
               - { name: credit, label: "Crédit (ex. « © Anne & Valentin » ou « Illustration Pigeard »)", type: string }
           - { name: slug, label: "Identifiant — NE PAS MODIFIER", type: string, readonly: true }
+
+  # ---- DÉCOR DE NOËL (guirlande, neige, sapin) ----
+  - name: noel
+    label: Décor de Noël
+    type: file
+    path: assets/data/noel.json
+    fields:
+      - { name: actif, label: "Décor de Noël activé — s'affiche tout seul entre les deux dates ci-dessous, chaque année (décocher pour ne plus l'afficher)", type: boolean }
+      - { name: debut, label: "Début — jour/mois (ex. 01/11 pour le 1er novembre)", type: string }
+      - { name: fin, label: "Fin — jour/mois (ex. 31/01 pour le 31 janvier)", type: string }
+      - { name: neige, label: "Neige qui tombe", type: boolean }
+      - { name: messageFetes, label: "Message du pied de page, jusqu'au 31 décembre", type: string }
+      - { name: messageVoeux, label: "Message du pied de page en janvier — {annee} devient l'année en cours", type: string }
+      - { name: signature, label: "Signature sous le message (laisser vide pour l'enlever)", type: string }

@@ -140,6 +140,27 @@ commentaires de code, échanges avec le propriétaire.
   non vérifié) : photos officielles à ajouter au champ « visuels » une fois
   l'accord écrit obtenu.
 
+## Décor des fêtes (depuis le 2026-10-08)
+
+- Guirlande lumineuse sous le menu (+ boules et étoile suspendues ≥ 900 px,
+  côté droit ; à gauche aussi sur les pages à `.hero`), neige en canvas sous
+  le menu (z-index 8990), sapin tracé + message de saison en tête du pied de
+  page. Fichiers : `assets/js/noel.js`, `assets/css/noel.css`, réglages
+  `assets/data/noel.json` (Pages CMS, rubrique « Décor de Noël »).
+- **Activation automatique chaque année** entre `debut` et `fin` (JJ/MM,
+  défaut 01/11 → 31/01) si `actif` est vrai : le bloc « Décor des fêtes » de
+  `site.js` lit le JSON à chaque page et ne charge `noel.css` puis `noel.js`
+  qu'en saison (rien d'autre hors saison). Message `messageFetes` jusqu'au
+  31/12, `messageVoeux` en janvier (`{annee}` remplacé).
+- **Aperçu** : `?noel=1` (mémorisé pour l'onglet, `sessionStorage['pg-noel-apercu']`),
+  `?noel=0` l'arrête. Après modification de `noel.js`/`noel.css`, bumper
+  `VERSION` dans ce bloc de `site.js` (puis le `?v=` de `site.js` dans les pages).
+- Pause visiteur (WCAG 2.2.2) : bouton rond flottant ≥ 1100 px, liens
+  « Arrêter la neige » sous la carte de vœux et dans le menu mobile ; choix
+  dans `localStorage['pg-noel-pause']` (listé dans les mentions légales).
+  `prefers-reduced-motion` : décor fixe, sans neige ni commandes (contrairement
+  au reste du site, voulu pour un effet plein écran continu).
+
 ## Flux de données personnelles (RGPD) & skill dédié
 
 - Le site n'embarque **aucun script tiers ni cookie** ; polices, GSAP, Lenis
