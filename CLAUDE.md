@@ -107,6 +107,26 @@ commentaires de code, échanges avec le propriétaire.
   collaborateurs », « Treize passionnés ») **et** `index.html` (photo dans la
   pile, compteur, prénoms, bouton « Rencontrer les 13 visages »).
 
+## Impression 3D en magasin — OOmade (aperçu du 2026-10-14, non publié)
+
+- Nouveau service : dépannage de lunettes cassées (monture imprimée à la forme
+  des verres, verres d'origine remontés) + montures sur mesure imprimées en
+  magasin, solution **OOmade** (oomade.com, société FTA), imprimante
+  **Bambu Lab P1S** (information du propriétaire).
+- Page dédiée `impression-3d.html` (sources des faits en commentaire du
+  `<head>`), carte « Nouveau » pleine largeur en tête de la grille
+  `#expertises` d'`index.html` (styles `.svc-feature` dans la page), section
+  `#impression-3d` en tête de `services.html` + lien dans le hero. Ajoutée au
+  sitemap (`build_static.py`) et à `llms.txt`.
+- **Images non commitées** (`assets/photos/impression-3d/`, exclues en local) :
+  photos d'oomade.com, dont les mentions légales interdisent la reproduction
+  « sauf autorisation écrite préalable de la société FTA » ; photo de la P1S
+  fournie par le propriétaire, provenance non vérifiée. Le dépôt GitHub est
+  **public** : ne pas les pousser avant l'accord écrit, ou les remplacer par
+  des photos prises en magasin.
+- À confirmer par le propriétaire avant publication : magasin(s) équipé(s),
+  tarif du dépannage, dépannage ouvert aux non-clients ou non.
+
 ## Logos des marques (page « Nos marques »)
 
 - `assets/marques/<slug>.svg|png` : logo de chaque marque, référencé par le champ
