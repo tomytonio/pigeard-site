@@ -107,25 +107,27 @@ commentaires de code, échanges avec le propriétaire.
   collaborateurs », « Treize passionnés ») **et** `index.html` (photo dans la
   pile, compteur, prénoms, bouton « Rencontrer les 13 visages »).
 
-## Impression 3D en magasin — OOmade (aperçu du 2026-10-14, non publié)
+## Impression 3D en magasin — OOmade (depuis le 2026-10-14)
 
-- Nouveau service : dépannage de lunettes cassées (monture imprimée à la forme
-  des verres, verres d'origine remontés) + montures sur mesure imprimées en
-  magasin, solution **OOmade** (oomade.com, société FTA), imprimante
-  **Bambu Lab P1S** (information du propriétaire).
-- Page dédiée `impression-3d.html` (sources des faits en commentaire du
-  `<head>`), carte « Nouveau » pleine largeur en tête de la grille
-  `#expertises` d'`index.html` (styles `.svc-feature` dans la page), section
-  `#impression-3d` en tête de `services.html` + lien dans le hero. Ajoutée au
-  sitemap (`build_static.py`) et à `llms.txt`.
-- **Images non commitées** (`assets/photos/impression-3d/`, exclues en local) :
-  photos d'oomade.com, dont les mentions légales interdisent la reproduction
-  « sauf autorisation écrite préalable de la société FTA » ; photo de la P1S
-  fournie par le propriétaire, provenance non vérifiée. Le dépôt GitHub est
-  **public** : ne pas les pousser avant l'accord écrit, ou les remplacer par
-  des photos prises en magasin.
-- À confirmer par le propriétaire avant publication : magasin(s) équipé(s),
-  tarif du dépannage, dépannage ouvert aux non-clients ou non.
+- Service des **3 magasins** (propriétaire, 2026-10-14) : dépannage de lunettes
+  cassées — monture imprimée à la forme des verres, verres d'origine remontés,
+  **30 €**, **une vingtaine de minutes**, **ouvert à tous** — et montures sur
+  mesure imprimées en magasin. Solution **OOmade** (oomade.com, société FTA),
+  imprimante **Bambu Lab P1S**.
+- Page dédiée `impression-3d.html` (sources en commentaire du `<head>`, FAQ +
+  JSON-LD avec l'offre à 30 €). Accueil : volontairement **discret** (demande
+  du propriétaire) — simple pastille « Nouveau : impression 3D & dépannage »
+  dans la carte 01 « Lunettes sur mesure » (`.svc-card--duo` : lien étiré sur
+  le titre + pastille cliquable, styles dans `index.html`). `services.html` :
+  section `#impression-3d` en tête + lien dans le hero. Sitemap
+  (`build_static.py`) et `llms.txt` à jour.
+- Photos : **uniquement** les deux fournies par le propriétaire
+  (`assets/photos/impression-3d/bambu-lab-p1s.*`, détourée, et
+  `imprimante-montures.*`). Ne pas reprendre de photos d'oomade.com : leurs
+  mentions légales interdisent la reproduction sans accord écrit de FTA.
+- Changement de tarif ou de délai : mettre à jour `impression-3d.html`
+  (hero, atouts, encart tarif, FAQ **et** les deux JSON-LD), `services.html`
+  et `llms.txt`.
 
 ## Logos des marques (page « Nos marques »)
 

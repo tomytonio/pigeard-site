@@ -26,7 +26,7 @@ Site officiel : https://www.pigeard-opticiens.fr/
 - **Basse vision** : aides visuelles et accompagnement spécialisé pour les déficiences visuelles.
 - **Audition — Nuance Audio** : solutions auditives.
 - **Verres Nikon** : verres haut de gamme fabriqués en France. Nos conseils : SeeMax AP en unifocal, Presio Master YourLife Z FP en progressif (gamme Z Suite, technologie Z-Contrast).
-- **Impression 3D en magasin (nouveau)** : dépannage de lunettes cassées — une monture est imprimée en 3D à la forme des verres du client, puis ses verres d'origine sont remontés (une dizaine de minutes d'impression, sans nouvelle ordonnance) ; montures sur mesure imprimées en magasin en PETG, norme ISO 12870. Solution OOmade, imprimante Bambu Lab P1S.
+- **Impression 3D en magasin (nouveau)** : dépannage de lunettes cassées dans les trois magasins, ouvert à tous — une monture est imprimée en 3D à la forme des verres du client, puis ses verres d'origine sont remontés (30 €, une vingtaine de minutes, sans nouvelle ordonnance) ; montures sur mesure imprimées en magasin en PETG, norme ISO 12870. Solution OOmade, imprimante Bambu Lab P1S.
 - **Lentilles de contact** : commande en ligne parmi les moins chères d'Internet, livraison offerte en magasin ou à domicile (un site de commande dédié par magasin).
 
 ## Pages principales
