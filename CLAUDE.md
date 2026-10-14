@@ -136,6 +136,17 @@ commentaires de code, échanges avec le propriétaire.
   atouts, encart tarif, étape 03, FAQ **et** les deux JSON-LD), `services.html`
   (texte et JSON-LD) et `llms.txt`.
 
+## Café offert pour toute commande (depuis le 2026-10-14)
+
+- Annoncé par le propriétaire (2026-10-14) : le café est offert en magasin
+  pour toute commande. Mention **volontairement discrète** (demande du
+  propriétaire) : note manuscrite avec une petite tasse sous l'étape 02
+  « Conseil & choix de la monture » du parcours de `services.html`
+  (`.step-cafe`, styles dans la page) + ligne « Engagements » de `llms.txt`.
+  Retrait ou changement : ces deux endroits seulement.
+- La police manuscrite (Reenie Beanie) n'a pas d'espace insécable (`&nbsp;`
+  s'affiche collé) : utiliser `white-space:nowrap` sur un `<span>`.
+
 ## Logos des marques (page « Nos marques »)
 
 - `assets/marques/<slug>.svg|png` : logo de chaque marque, référencé par le champ
