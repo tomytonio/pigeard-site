@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Visuel de partage — Impression 3D chez Pigeard</title>
+<!-- Image de partage 1 200 × 630 (og:image / twitter:image) de impression-3d.html,
+     rendue en JPEG + WebP via tools/affiches/rendu-visuel.mjs :
+       node rendu-visuel.mjs og-impression-3d.html ../../assets/photos/impression-3d/og-impression-3d 1200 630
+     - imprimante : photo de la Bambu Lab P1S fournie par le propriétaire le 2026-10-14,
+       détourée (assets/photos/impression-3d/bambu-lab-p1s.png) ;
+     - textes : informations du propriétaire du 2026-10-14 (3 magasins, 30 €, une
+       vingtaine de minutes) ; aucune photo ni logo d'oomade.com n'est reproduit. -->
+<link rel="stylesheet" href="../../assets/css/fonts.css">
+<style>
+  :root{
+    --fond:#12110E; --creme:#E7DDCB; --blanc:#EFE9DF; --camel:#D1A379; --vert:#9DAA78;
+    --corail:#FF625B; --muted:#938B7C;
+    --serif:'Playfair Display',Georgia,serif;
+    --sans:'Karla',system-ui,sans-serif;
+    --hand:'Reenie Beanie',cursive;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1200px;height:630px;overflow:hidden}
+  body{
+    position:relative;font-family:var(--sans);color:var(--blanc);
+    background:
+      radial-gradient(420px 380px at 930px 330px, rgba(239,233,223,.30), rgba(209,163,121,.10) 58%, transparent 80%),
+      radial-gradient(520px 420px at 160px 120px, rgba(126,140,90,.20), transparent 75%),
+      var(--fond);
+  }
+  .texte{position:absolute;left:78px;top:84px;width:620px}
+  .pill{display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#0E0D0B;background:var(--corail);padding:9px 18px;border-radius:100px}
+  .pill i{width:8px;height:8px;border-radius:50%;background:#0E0D0B}
+  h1{font-family:var(--serif);font-weight:800;font-size:66px;line-height:1.02;letter-spacing:-.02em;margin-top:26px}
+  h1 em{font-style:italic;color:var(--vert)}
+  .sous{font-family:var(--serif);font-style:italic;font-size:27px;line-height:1.35;color:var(--creme);margin-top:22px;max-width:560px}
+  .prix{display:flex;align-items:baseline;gap:16px;margin-top:30px}
+  .prix b{font-family:var(--serif);font-weight:800;font-size:58px;line-height:1;color:var(--blanc)}
+  .prix span{font-size:20px;color:var(--muted);max-width:300px;line-height:1.35}
+  .machine{position:absolute;right:120px;top:52px;height:500px;filter:drop-shadow(0 30px 36px rgba(0,0,0,.6))}
+  .hand{position:absolute;right:150px;bottom:24px;font-family:var(--hand);font-size:38px;color:var(--camel);transform:rotate(-3deg)}
+  .marque{position:absolute;left:78px;bottom:40px;font-size:15px;letter-spacing:.32em;text-transform:uppercase;color:var(--muted)}
+</style>
+</head>
+<body>
+  <div class="texte">
+    <span class="pill"><i></i>Nouveau dans nos 3 magasins</span>
+    <h1>Lunettes cassées ?<br>Dépannées <em>en 3D</em>.</h1>
+    <p class="sous">Une monture à la forme de vos verres, prête en une vingtaine de minutes.</p>
+    <div class="prix"><b>30 €</b><span>la monture de dépannage, ouvert à tous</span></div>
+  </div>
+  <img class="machine" src="../../assets/photos/impression-3d/bambu-lab-p1s.png" alt="">
+  <span class="hand">fabriqué sous vos yeux</span>
+  <div class="marque">Pigeard · Nogent-le-Rotrou · Brou · La Loupe</div>
+</body>
+</html>

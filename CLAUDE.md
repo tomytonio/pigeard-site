@@ -121,13 +121,20 @@ commentaires de code, échanges avec le propriétaire.
   le titre + pastille cliquable, styles dans `index.html`). `services.html` :
   section `#impression-3d` en tête + lien dans le hero. Sitemap
   (`build_static.py`) et `llms.txt` à jour.
-- Photos : **uniquement** les deux fournies par le propriétaire
-  (`assets/photos/impression-3d/bambu-lab-p1s.*`, détourée, et
-  `imprimante-montures.*`). Ne pas reprendre de photos d'oomade.com : leurs
-  mentions légales interdisent la reproduction sans accord écrit de FTA.
+- Photos : **uniquement** la Bambu Lab P1S fournie par le propriétaire
+  (`assets/photos/impression-3d/bambu-lab-p1s.*`, détourée, alpha érodé de
+  2 px contre le liseré blanc) + l'image de partage `og-impression-3d.*`
+  (1200×630, composée dans `tools/affiches/og-impression-3d.html`, rendu
+  `rendu-visuel.mjs`). Ne pas reprendre de photos d'oomade.com : leurs
+  mentions légales interdisent la reproduction sans accord écrit de FTA. Une
+  2e photo fournie (imprimante + 2 montures) était identique à
+  `oom13-proto-duo.jpg` d'oomade.com (dont une monture en acétate) : retirée
+  le 2026-10-14 sur décision du propriétaire, à remettre seulement avec
+  l'accord écrit de FTA ou une photo prise dans un magasin Pigeard.
 - Changement de tarif ou de délai : mettre à jour `impression-3d.html`
-  (hero, atouts, encart tarif, FAQ **et** les deux JSON-LD), `services.html`
-  et `llms.txt`.
+  (`<title>`, meta description, og:description et twitter:description, hero,
+  atouts, encart tarif, étape 03, FAQ **et** les deux JSON-LD), `services.html`
+  (texte et JSON-LD) et `llms.txt`.
 
 ## Logos des marques (page « Nos marques »)
 
