@@ -72,6 +72,7 @@
     window.addEventListener('resize', demande);
     anime();
 
-    if(window.ScrollTrigger){ try{ ScrollTrigger.refresh(); }catch(e){} }
+    if(window.PIGEARD && PIGEARD.refresh) PIGEARD.refresh();
+    else if(window.ScrollTrigger){ try{ ScrollTrigger.refresh(); }catch(e){} }
   }
 })();
