@@ -95,10 +95,13 @@ header.nav.scrolled{background:rgba(14,13,11,.74);backdrop-filter:blur(14px);bor
 .hero-bg{position:absolute;inset:0;z-index:0}
 .hero-photo-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;z-index:0;opacity:.35;filter:brightness(1.1)}
 .hero-photo-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(10,10,10,.55) 0%,rgba(10,10,10,.3) 50%,rgba(10,10,10,.75) 100%)}
-.blob{position:absolute;border-radius:50%;filter:blur(105px);opacity:.42;will-change:transform}
-.blob.v{background:radial-gradient(circle,rgba(126,140,90,.55),transparent 65%)}
-.blob.c{background:radial-gradient(circle,rgba(255,98,91,.42),transparent 65%)}
-.blob.m{background:radial-gradient(circle,rgba(209,160,75,.4),transparent 65%)}
+/* Halo : le flou est porté par ::before (calque non animé) → calculé une seule fois puis mis en cache ;
+   seul .blob bouge (transform). Flou et dégradé sur l'élément animé = flou recalculé à chaque image. */
+.blob{position:absolute;border-radius:50%;opacity:.42;will-change:transform}
+.blob::before{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--blob-fond);filter:blur(105px)}
+.blob.v{--blob-fond:radial-gradient(circle,rgba(126,140,90,.55),transparent 65%)}
+.blob.c{--blob-fond:radial-gradient(circle,rgba(255,98,91,.42),transparent 65%)}
+.blob.m{--blob-fond:radial-gradient(circle,rgba(209,160,75,.4),transparent 65%)}
 .streaks{position:absolute;inset:0;opacity:.4;mix-blend-mode:screen}
 /* — Sections avec vidéo de fond (services.html : sur-mesure, verres…) — */
 /* Poster (image fixe) en arrière-plan via background-image inline ; .sm-bgvid (vidéo) chargée par JS desktop. */
@@ -113,7 +116,9 @@ header.nav.scrolled{background:rgba(14,13,11,.74);backdrop-filter:blur(14px);bor
 @media(max-width:767px){
   .bgvid-sec .sm-bgvid-overlay{background:linear-gradient(180deg,rgba(10,10,10,.74) 0%,rgba(10,10,10,.88) 100%)}
 }
-.streak{position:absolute;top:-20%;height:140%;width:1px;background:linear-gradient(to bottom,transparent,rgba(239,233,223,.55),transparent);transform:rotate(14deg);filter:blur(.5px)}
+/* strie : le flou est porté par ::before (fixe, mis en cache), seule .streak est animée */
+.streak{position:absolute;top:-20%;height:140%;width:1px;transform:rotate(14deg)}
+.streak::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,transparent,rgba(239,233,223,.55),transparent);filter:blur(.5px)}
 .hero-inner{position:relative;z-index:2;width:100%}
 .hero-logo{width:min(620px,86vw);height:auto;margin:0 auto;display:block;filter:drop-shadow(0 20px 50px rgba(0,0,0,.5))}
 .hero-watermark{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);width:min(74vw,900px);z-index:0;opacity:.08}

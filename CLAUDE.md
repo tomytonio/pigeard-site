@@ -274,9 +274,41 @@ commentaires de code, échanges avec le propriétaire.
   Le gabarit de `tools/build_static.py` inclut le même bloc pour les pages
   `marque-*`.
 
+## Fluidité & performances (depuis le 2026-10-22)
+
+- Plainte du propriétaire (2026-10-22) : « après la lunette, le site lag ». Cause
+  principale mesurée : les halos `.blob` portaient `filter: blur(105px)` sur
+  l'élément animé → flou recalculé à chaque image (≈ 15 i/s au lieu de 60 dans un
+  test isolé). Corrigé **sans changer le rendu** (écart ≤ 3/255 au pixel) :
+  - **Règle : jamais de `filter` (blur, drop-shadow…) sur un élément animé en
+    `transform`.** Le filtre va sur un `::before` (ou un enfant) non animé, peint
+    une fois puis mis en cache ; seul le parent bouge. Appliqué à `.blob`
+    (dégradé via la variable `--blob-fond`) et `.streak`.
+  - Boucles GSAP infinies : `PIGEARD.boucle(tween, zone)` (site.js) les met en
+    pause quand `zone` (la section, qui doit rogner son contenu) est hors écran.
+    Utilisé pour les halos et les deux bandeaux défilants de l'accueil.
+  - `ScrollTrigger.refresh()` : passer par `PIGEARD.refresh()` (regroupe les
+    demandes rapprochées). Les textes `data-bind` (Pages CMS) ne sont réécrits
+    que s'ils diffèrent du HTML, et le recalcul n'a lieu qu'alors : **garder le
+    texte du HTML identique à `assets/data/textes.json`** (sinon remplacement
+    visible + recalcul à chaque chargement).
+  - Hauteur de page de la barre de progression mise en cache (ResizeObserver).
+- Essayés puis **écartés car le rendu changeait** (à ne pas retenter tels quels) :
+  barres de progression en `transform: scaleX` (barre de 2 px plus sombre),
+  Ken Burns de la photo du hero porté par un conteneur (photo 5 % moins nette),
+  trait « Découvrir » en `translateY` (anticrénelage différent).
+- Mesure : `tools/mesure-fluidite.mjs <page> mobile|desktop` (serveur local
+  requis ; `BASE=` pour comparer avec une autre version servie sur un autre
+  port). Chromium tourne sans GPU ici : comparer deux versions, ne pas lire les
+  chiffres comme absolus. Avant/après du 2026-10-22, accueil mobile CPU ×4 :
+  ~21 → ~57 images/s pendant le défilement.
+
 ## Vérification
 
 Pas de suite de tests : vérifier en conditions réelles. Serveur local
 (`python3 -m http.server`) + Playwright avec le Chromium préinstallé
 (`executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'`,
 `NODE_PATH=/opt/node22/lib/node_modules`). Après fusion, contrôler la prod.
+Toute modification d'animation : vérifier aussi la fluidité
+(`tools/mesure-fluidite.mjs`) et l'identité du rendu (captures figées comparées
+au pixel entre ancienne et nouvelle version).

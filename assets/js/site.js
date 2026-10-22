@@ -14,12 +14,22 @@
   /* --- Nav : état scrollé + barre de progression --- */
   var nav = document.getElementById('nav');
   var prog = document.getElementById('progress');
+  /* hauteur défilable mise en cache (relue seulement quand la page change de taille) :
+     la lire à chaque image forçait un recalcul de mise en page pendant le défilement */
+  var maxScroll = -1;
+  function mesurer(){ maxScroll = document.body.scrollHeight - innerHeight; }
+  if(window.ResizeObserver) new ResizeObserver(function(){ maxScroll = -1; }).observe(document.body);
+  window.addEventListener('resize', function(){ maxScroll = -1; });
+  var navScrolled = null;
   function onScroll(){
     var y = window.scrollY || window.pageYOffset;
-    if(nav) nav.classList.toggle('scrolled', y > 40);
-    if(prog){ var max = document.body.scrollHeight - innerHeight; prog.style.width = (max>0 ? (y/max*100) : 0) + '%'; }
+    if(nav && navScrolled !== (y > 40)){ navScrolled = y > 40; nav.classList.toggle('scrolled', navScrolled); }
+    if(prog){
+      if(maxScroll < 0 || y > maxScroll || !window.ResizeObserver) mesurer();
+      prog.style.width = (maxScroll>0 ? (y/maxScroll*100) : 0) + '%';
+    }
   }
-  window.addEventListener('scroll', onScroll); onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
 
   /* --- Menu mobile --- */
@@ -36,6 +46,32 @@
   });
 
   var PIG = window.PIGEARD = { reduce: reduce, force: !reduce, gsap: window.gsap || null, lenis: null };
+
+  /* --- Boucles infinies (halos, bandeaux défilants) : mises en pause tant que leur
+     section est hors de l'écran, reprises à l'identique dès qu'elle revient (marge de
+     300 px). Rien ne change à l'œil ; le navigateur cesse juste de les recalculer
+     à chaque image pendant qu'on lit le reste de la page. --- */
+  var veille = null;
+  PIG.boucle = function(tween, zone){
+    if(!tween || !zone || !window.IntersectionObserver) return tween;
+    if(!veille) veille = new IntersectionObserver(function(entrees){
+      entrees.forEach(function(e){
+        (e.target.__pgBoucles || []).forEach(function(t){ if(e.isIntersecting) t.resume(); else t.pause(); });
+      });
+    }, {rootMargin:'300px 0px'});
+    (zone.__pgBoucles = zone.__pgBoucles || []).push(tween);
+    veille.observe(zone);
+    return tween;
+  };
+
+  /* --- Recalcul des positions ScrollTrigger regroupé : plusieurs demandes rapprochées
+     (textes, avis, images…) = un seul recalcul, au lieu d'un à-coup à chaque fois --- */
+  var refreshPrevu = null;
+  PIG.refresh = function(){
+    if(!window.ScrollTrigger) return;
+    clearTimeout(refreshPrevu);
+    refreshPrevu = setTimeout(function(){ try{ ScrollTrigger.refresh(); }catch(e){} }, 120);
+  };
 
 
   /* --- Inclinaison 3D au survol : la carte suit la souris (souris précise uniquement) --- */
@@ -89,7 +125,8 @@
     });
     /* Nuances de couleur en fond : dérive douce et continue (vivant, subtil) */
     gsap.utils.toArray('.blob').forEach(function(b,i){
-      gsap.to(b,{ x:(i%2?'+=40':'-=40'), y:(i%2?'-=30':'+=30'), scale:1.14, duration:9+i*2, ease:'sine.inOut', yoyo:true, repeat:-1, delay:i*0.5 });
+      PIG.boucle(gsap.to(b,{ x:(i%2?'+=40':'-=40'), y:(i%2?'-=30':'+=30'), scale:1.14, duration:9+i*2, ease:'sine.inOut', yoyo:true, repeat:-1, delay:i*0.5 }),
+        b.closest('section, header, footer') || b.parentNode);
     });
     /* Notes manuscrites : "écriture qui se trace" (révélation gauche→droite à l'arrivée) */
     gsap.utils.toArray('.foot-brand .hand, .kicker').forEach(function(el){
@@ -136,18 +173,25 @@
 (function(){
   function get(o,p){ return p.split('.').reduce(function(a,k){ return (a!=null && a[k]!=null) ? a[k] : undefined; }, o); }
   function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  /* n'écrit que ce qui diffère de la page (le plus souvent rien) : renvoie true si la
+     mise en page a pu changer, pour ne recalculer les animations qu'à ce moment-là */
   function apply(data){
+    var change = false;
     document.querySelectorAll('[data-bind]').forEach(function(el){
       var v = get(data, el.getAttribute('data-bind')); if(v==null || v==='') return;
-      if(el.hasAttribute('data-bind-multiline')) el.innerHTML = esc(v).replace(/\n/g,'<br>');
-      else el.textContent = v;
+      if(el.hasAttribute('data-bind-multiline')){
+        var h = esc(v).replace(/\n/g,'<br>');
+        if(el.innerHTML !== h){ el.innerHTML = h; change = true; }
+      }
+      else if(el.textContent !== String(v)){ el.textContent = v; change = true; }
     });
     document.querySelectorAll('[data-bind-href]').forEach(function(el){
-      var v = get(data, el.getAttribute('data-bind-href')); if(v!=null && v!=='') el.setAttribute('href', v);
+      var v = get(data, el.getAttribute('data-bind-href')); if(v!=null && v!=='' && el.getAttribute('href') !== String(v)) el.setAttribute('href', v);
     });
     document.querySelectorAll('[data-bind-src]').forEach(function(el){
-      var v = get(data, el.getAttribute('data-bind-src')); if(v!=null && v!=='') el.setAttribute('src', v);
+      var v = get(data, el.getAttribute('data-bind-src')); if(v!=null && v!=='' && el.getAttribute('src') !== String(v)){ el.setAttribute('src', v); change = true; }
     });
+    return change;
   }
   if(!document.querySelector('[data-bind],[data-bind-href],[data-bind-src]')) return;
   var files = { textes:'assets/data/textes.json' };
@@ -158,8 +202,7 @@
       .then(function(j){ if(j) data[key]=j; })
       .catch(function(){});
   })).then(function(){
-    apply(data);
-    if(window.ScrollTrigger){ try{ ScrollTrigger.refresh(); }catch(e){} }
+    if(apply(data) && window.PIGEARD && PIGEARD.refresh) PIGEARD.refresh();
   });
 })();
 
