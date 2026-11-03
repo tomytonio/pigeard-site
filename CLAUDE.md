@@ -81,14 +81,33 @@ commentaires de code, échanges avec le propriétaire.
   pré-rendu.
 - `tools/affiches/` : visuels pour les réseaux sociaux (stories, posts) et
   affiches imprimables, composés en HTML avec la charte du site puis rendus via
-  Playwright — `rendu-story.mjs` (1080×1920) ou `rendu-affiche.mjs` (A3
-  portrait, PNG 300 dpi + PDF) ; `rendu-visuel.mjs` (taille libre → JPEG +
+  Playwright — `rendu-story.mjs` (1080×1920), `rendu-affiche.mjs` (A3
+  portrait, PNG 300 dpi + PDF) ou `rendu-a4.mjs` (A4 `paysage` ou `portrait`,
+  PNG 300 dpi + PDF) ; `rendu-visuel.mjs` (taille libre → JPEG +
   WebP) pour les visuels publiés sur le site (galeries des fiches marques). Le blason du Golf du Perche y est redessiné en
   vectoriel (`logo-golf-du-perche.svg`). Visuels produits : la photo fournie
   est détourée sur fond transparent (ex. `brett-le-mans-classic-2026-monture.png`)
   et le logo de la marque vient de son site officiel (ex. `logo-brett.png`) ;
   sources et informations non vérifiables notées en commentaire du HTML. Non
   servis au public (comme tout `/tools/`).
+
+## Journées Privilège 2026 (affiches magasin, 2026-11-03)
+
+- Opération du **15 novembre au 29 décembre 2026** : -50 % sur une sélection
+  de montures de grandes marques, mentions « *Sur articles signalés en
+  magasin. Voir conditions en magasin. Dispositif médical CE. » Source :
+  planning éditorial novembre 2026 de l'agence My Client Is Rich (PDF fourni
+  par le propriétaire, page 3 ; non commité, les `*.pdf` sont ignorés par git).
+- `tools/affiches/journees-privilege-2026-facing-a4-paysage.html` (A4 paysage,
+  fond blanc, posée sur le présentoir des montures en promotion : « Sur cette
+  sélection ») et `journees-privilege-2026-ecran-vitrine-a4.html` (A4 portrait
+  pour l'écran de la vitrine, photo du visuel de l'agence en fond :
+  `journees-privilege-2026-magasin.jpg`, magasin de Nogent-le-Rotrou).
+  Rendu : `node rendu-a4.mjs <html> <png> <pdf> paysage|portrait`.
+- Ces affiches reprennent les codes du visuel de l'agence, **pas la charte du
+  site** : bandeaux noir #000000 / corail #FF635B / vert #6A7959 (relevés au
+  pixel), étoile noire « -50% », police **Poppins** (OFL, auto-hébergée dans
+  `tools/affiches/polices/`, lettres identiques au visuel de l'agence).
 
 ## Équipe : aperçu de l'accueil (depuis le 2026-10-08)
 
@@ -307,7 +326,8 @@ commentaires de code, échanges avec le propriétaire.
 
 Pas de suite de tests : vérifier en conditions réelles. Serveur local
 (`python3 -m http.server`) + Playwright avec le Chromium préinstallé
-(`executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'`,
+(`chromium.launch()` sans `executablePath` : le chemin versionné
+`chromium-1194` codé en dur a disparu de l'environnement le 2026-11-03 ;
 `NODE_PATH=/opt/node22/lib/node_modules`). Après fusion, contrôler la prod.
 Toute modification d'animation : vérifier aussi la fluidité
 (`tools/mesure-fluidite.mjs`) et l'identité du rendu (captures figées comparées

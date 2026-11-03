@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Affiche facing A4 paysage — Les Journées Privilège Pigeard (15 nov. – 29 déc. 2026)</title>
+<!--
+  Affiche A4 paysage posée sur le présentoir des montures en promotion
+  (« facing »). Rendu : node rendu-a4.mjs <ce fichier> <sortie.png> <sortie.pdf> paysage
+  → PNG 3508×2480 (300 dpi) + PDF A4.
+
+  Sources :
+  - Offre, dates et mentions : planning éditorial novembre 2026 de l'agence
+    My Client Is Rich (« RS-novembre-pigeard.pdf », page 3, post 2 du mardi
+    10 novembre 2026) : « Du 15 novembre au 29 décembre 2026, découvrez notre
+    sélection de montures de grandes marques à -50 %* », « *Sur articles
+    signalés en magasin. Voir conditions en magasin. Dispositif médical CE. »
+    Seule adaptation : « une sélection » devient « cette sélection » (l'affiche
+    désigne les montures du présentoir).
+  - Codes graphiques repris du visuel de la campagne (même page) : bandeaux
+    noir / corail / vert, étoile noire « -50% ». Couleurs relevées au pixel sur
+    le visuel : noir #000000, corail #FF635B, vert #6A7959.
+  - Police : Poppins (SIL Open Font License, polices/OFL-poppins.txt), choisie
+    parce que ses lettres sont identiques à celles du visuel de l'agence
+    (comparaison faite à l'écran ; l'agence n'a pas nommé sa police).
+  - Logo : assets/brand/pigeard-logo-black.svg.
+  Fond blanc : imprimable sur une imprimante de bureau sans bord visible.
+-->
+<style>
+  @font-face{font-family:'Poppins';font-weight:500;src:url(polices/poppins-500-latin.woff2) format('woff2')}
+  @font-face{font-family:'Poppins';font-weight:600;src:url(polices/poppins-600-latin.woff2) format('woff2')}
+  @font-face{font-family:'Poppins';font-weight:700;src:url(polices/poppins-700-latin.woff2) format('woff2')}
+  @font-face{font-family:'Poppins';font-weight:800;src:url(polices/poppins-800-latin.woff2) format('woff2')}
+  :root{
+    --noir:#000000; --corail:#FF635B; --vert:#6A7959; --blanc:#FFFFFF; --gris:#3A3A3A;
+    --police:'Poppins',system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1754px;height:1240px;overflow:hidden}
+  body{position:relative;background:var(--blanc);color:var(--noir);font-family:var(--police);
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+
+  .logo{position:absolute;left:104px;top:100px;height:156px}
+
+  .pile{position:absolute;left:104px;top:340px;display:flex;flex-direction:column;align-items:flex-start}
+  .bande{color:var(--blanc);text-transform:uppercase;font-weight:700;line-height:1;white-space:nowrap}
+  .b-journees{background:var(--noir);font-size:112px;letter-spacing:.025em;padding:30px 32px 16px 32px}
+  .b-privilege{background:var(--corail);font-size:112px;letter-spacing:.025em;
+    margin-left:58px;padding:32px 64px 18px 72px;
+    clip-path:polygon(5% 7%, 97% 0, 100% 100%, 0 100%)}
+  .b-dates{background:var(--vert);text-transform:none;font-weight:500;font-size:49px;
+    letter-spacing:.005em;padding:15px 28px 11px 28px;margin-left:12px}
+
+  .phrase{position:absolute;left:104px;top:900px;width:980px;font-size:38px;font-weight:500;
+    line-height:1.32;color:var(--noir)}
+  .phrase b{font-weight:700;color:var(--corail)}
+
+  .etoile{position:absolute;left:1000px;top:262px;width:700px;height:700px}
+  .etoile svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(4deg)}
+  .etoile .contenu{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;color:var(--blanc);transform:rotate(9deg);text-align:center;padding-bottom:6px}
+  .etoile .taux{font-size:178px;font-weight:800;line-height:.9;letter-spacing:-.035em;margin-left:-10px}
+  .etoile .sur{margin-top:16px;font-size:35px;font-weight:700;line-height:1.08;text-transform:uppercase;
+    letter-spacing:.03em}
+
+  .mentions{position:absolute;left:104px;right:104px;bottom:74px;display:flex;align-items:center;
+    gap:26px;font-size:22px;font-weight:500;color:var(--gris)}
+  .mentions .filet{flex:none;width:56px;height:5px;background:var(--corail)}
+</style>
+</head>
+<body>
+  <img class="logo" src="../../assets/brand/pigeard-logo-black.svg" alt="pigeard — créateur de regards depuis 1863">
+
+  <div class="pile">
+    <div class="bande b-journees">Les journées</div>
+    <div class="bande b-privilege">Privilège</div>
+    <div class="bande b-dates">Du 15&nbsp;novembre au 29&nbsp;décembre</div>
+  </div>
+
+  <p class="phrase">Une belle occasion de vous faire plaisir ou de faire un <b>beau cadeau</b> à&nbsp;l’approche des fêtes.</p>
+
+  <div class="etoile">
+    <svg viewBox="-500 -500 1000 1000" aria-hidden="true"><polygon fill="#000" points="487,-6 386,76 457,178 346,199 374,319 247,307 224,444 118,377 42,497 -39,396 -148,462 -186,350 -284,396 -294,275 -414,269 -372,140 -478,88 -395,12 -482,-96 -375,-140 -417,-256 -291,-276 -304,-389 -179,-361 -126,-473 -23,-394 43,-494 100,-386 206,-450 247,-315 370,-320 343,-206 460,-175 399,-65"/></svg>
+    <div class="contenu">
+      <div class="taux">-50%</div>
+      <div class="sur">Sur cette sélection<br>de montures<br>de grandes<br>marques*</div>
+    </div>
+  </div>
+
+  <div class="mentions"><span class="filet"></span><span>*Sur articles signalés en magasin. Voir conditions en magasin. Dispositif médical CE.</span></div>
+</body>
+</html>

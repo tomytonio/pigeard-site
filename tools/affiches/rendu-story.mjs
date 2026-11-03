@@ -6,9 +6,7 @@ import { pathToFileURL } from 'node:url';
 import { resolve } from 'node:path';
 
 const [, , htmlPath, pngPath] = process.argv;
-const browser = await chromium.launch({
-  executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
-});
+const browser = await chromium.launch() // Chromium fourni avec Playwright (chemin résolu automatiquement);
 const page = await browser.newPage({
   viewport: { width: 1080, height: 1920 },
   deviceScaleFactor: 1,
