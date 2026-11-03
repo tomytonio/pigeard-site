@@ -14,9 +14,7 @@ if (!htmlPath || !sortie || !largeur || !hauteur) {
   console.error('Usage : node rendu-visuel.mjs <fichier.html> <sortie-sans-extension> <largeur> <hauteur>');
   process.exit(1);
 }
-const browser = await chromium.launch({
-  executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
-});
+const browser = await chromium.launch() // Chromium fourni avec Playwright (chemin résolu automatiquement);
 const page = await browser.newPage({
   viewport: { width: +largeur, height: +hauteur },
   deviceScaleFactor: 1,

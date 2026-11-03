@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Écran vitrine A4 portrait — Les Journées Privilège Pigeard (15 nov. – 29 déc. 2026)</title>
+<!--
+  Affiche A4 portrait affichée sur l'écran de la vitrine. Rendu :
+  node rendu-a4.mjs <ce fichier> <sortie.png> <sortie.pdf> portrait
+  → PNG 2480×3508 (300 dpi) + PDF A4.
+
+  Sources :
+  - Offre, dates, accroche et mentions : planning éditorial novembre 2026 de
+    l'agence My Client Is Rich (« RS-novembre-pigeard.pdf », page 3, post 2 du
+    mardi 10 novembre 2026) : « Du 15 novembre au 29 décembre 2026 […]
+    montures de grandes marques à -50 %* », « Nos opticiens vous attendent en
+    boutique pour vous aider à trouver la monture idéale », « *Sur articles
+    signalés en magasin. Voir conditions en magasin. Dispositif médical CE. »
+  - Photo de fond (journees-privilege-2026-magasin.jpg) : celle du visuel de
+    la campagne, extraite du même PDF (3277×4096 px), recadrée au format A4
+    (centrée) et ramenée à 2480×3508 px. Intérieur du magasin de
+    Nogent-le-Rotrou (même décor que assets/photos/boutique-nogent-interieur.jpg).
+  - Codes graphiques, couleurs (noir #000000, corail #FF635B, vert #6A7959,
+    relevées au pixel sur le visuel) et police Poppins : voir
+    journees-privilege-2026-facing-a4-paysage.html.
+  - Logo : assets/brand/pigeard-logo-white.svg.
+-->
+<style>
+  @font-face{font-family:'Poppins';font-weight:500;src:url(polices/poppins-500-latin.woff2) format('woff2')}
+  @font-face{font-family:'Poppins';font-weight:600;src:url(polices/poppins-600-latin.woff2) format('woff2')}
+  @font-face{font-family:'Poppins';font-weight:700;src:url(polices/poppins-700-latin.woff2) format('woff2')}
+  @font-face{font-family:'Poppins';font-weight:800;src:url(polices/poppins-800-latin.woff2) format('woff2')}
+  :root{
+    --noir:#000000; --corail:#FF635B; --vert:#6A7959; --blanc:#FFFFFF;
+    --police:'Poppins',system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1240px;height:1754px;overflow:hidden}
+  body{position:relative;background:#111 url(journees-privilege-2026-magasin.jpg) center/cover no-repeat;
+    color:var(--blanc);font-family:var(--police);
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  /* Voiles : haut (logo) et bas (mentions, sur le parquet ensoleillé) */
+  .voile{position:absolute;inset:0;pointer-events:none;
+    background:
+      linear-gradient(to bottom, rgba(0,0,0,.42) 0, rgba(0,0,0,0) 24%),
+      linear-gradient(to top, rgba(0,0,0,.82) 0, rgba(0,0,0,.55) 9%, rgba(0,0,0,0) 30%)}
+
+  .logo{position:absolute;left:50%;top:112px;height:204px;transform:translateX(-46%)}
+
+  .pile{position:absolute;left:0;right:0;top:548px;display:flex;flex-direction:column;align-items:center}
+  .bande{color:var(--blanc);text-transform:uppercase;font-weight:700;line-height:1;white-space:nowrap}
+  .b-journees{background:var(--noir);font-size:128px;letter-spacing:.025em;padding:34px 38px 18px 38px}
+  .b-privilege{background:var(--corail);font-size:128px;letter-spacing:.025em;
+    margin-left:70px;padding:36px 84px 20px 92px;
+    clip-path:polygon(5% 7%, 97% 0, 100% 100%, 0 100%)}
+  .b-dates{background:var(--vert);text-transform:none;font-weight:500;font-size:58px;
+    letter-spacing:.005em;padding:16px 32px 12px 32px}
+
+  .etoile{position:absolute;left:592px;top:1052px;width:600px;height:600px}
+  .etoile svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(4deg)}
+  .etoile .contenu{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;transform:rotate(9deg);text-align:center;padding-bottom:6px}
+  .etoile .taux{font-size:150px;font-weight:800;line-height:.9;letter-spacing:-.035em;margin-left:-10px}
+  .etoile .sur{margin-top:14px;font-size:30px;font-weight:700;line-height:1.08;text-transform:uppercase;
+    letter-spacing:.03em}
+
+  .accroche{position:absolute;left:84px;top:1262px;width:440px;font-size:44px;font-weight:600;line-height:1.18;
+    text-shadow:0 2px 18px rgba(0,0,0,.55)}
+  .accroche .ligne{display:block;width:64px;height:6px;background:var(--corail);margin-bottom:26px}
+
+  .mentions{position:absolute;left:0;right:0;bottom:52px;text-align:center;font-size:21px;font-weight:500;
+    color:rgba(255,255,255,.88)}
+</style>
+</head>
+<body>
+  <div class="voile"></div>
+  <img class="logo" src="../../assets/brand/pigeard-logo-white.svg" alt="pigeard — créateur de regards depuis 1863">
+
+  <div class="pile">
+    <div class="bande b-journees">Les journées</div>
+    <div class="bande b-privilege">Privilège</div>
+    <div class="bande b-dates">Du 15&nbsp;novembre au 29&nbsp;décembre</div>
+  </div>
+
+  <p class="accroche"><span class="ligne"></span>Nos opticiens<br>vous attendent<br>en&nbsp;boutique</p>
+
+  <div class="etoile">
+    <svg viewBox="-500 -500 1000 1000" aria-hidden="true"><polygon fill="#000" points="487,-6 386,76 457,178 346,199 374,319 247,307 224,444 118,377 42,497 -39,396 -148,462 -186,350 -284,396 -294,275 -414,269 -372,140 -478,88 -395,12 -482,-96 -375,-140 -417,-256 -291,-276 -304,-389 -179,-361 -126,-473 -23,-394 43,-494 100,-386 206,-450 247,-315 370,-320 343,-206 460,-175 399,-65"/></svg>
+    <div class="contenu">
+      <div class="taux">-50%</div>
+      <div class="sur">Sur une sélection<br>de montures<br>de grandes<br>marques*</div>
+    </div>
+  </div>
+
+  <div class="mentions">*Sur articles signalés en magasin. Voir conditions en magasin. Dispositif médical CE.</div>
+</body>
+</html>

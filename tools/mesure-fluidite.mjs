@@ -35,7 +35,7 @@ const SONDE = `(function(){
   })();
 })();`;
 
-const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+const browser = await chromium.launch();
 const res = [];
 for (let r = 0; r < essais; r++) {
   const ctx = await browser.newContext(mode === 'mobile'
