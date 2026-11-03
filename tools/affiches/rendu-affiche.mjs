@@ -6,7 +6,7 @@ import { pathToFileURL } from 'node:url';
 import { resolve } from 'node:path';
 
 const [, , htmlPath, pngPath, pdfPath] = process.argv;
-const browser = await chromium.launch() // Chromium fourni avec Playwright (chemin résolu automatiquement);
+const browser = await chromium.launch(); // Chromium fourni avec Playwright (chemin résolu automatiquement)
 const page = await browser.newPage({
   viewport: { width: 1754, height: 2480 },
   deviceScaleFactor: 2, // → 3508×4960 px, soit un A3 à 300 dpi (A4 à 420 dpi)

@@ -82,8 +82,9 @@ commentaires de code, échanges avec le propriétaire.
 - `tools/affiches/` : visuels pour les réseaux sociaux (stories, posts) et
   affiches imprimables, composés en HTML avec la charte du site puis rendus via
   Playwright — `rendu-story.mjs` (1080×1920), `rendu-affiche.mjs` (A3
-  portrait, PNG 300 dpi + PDF) ou `rendu-a4.mjs` (A4 `paysage` ou `portrait`,
-  PNG 300 dpi + PDF) ; `rendu-visuel.mjs` (taille libre → JPEG +
+  portrait, PNG 300 dpi + PDF), `rendu-a4.mjs` (A4 `paysage` ou `portrait`,
+  PNG 300 dpi + PDF) ou `rendu-ecran.mjs` (écrans : PNG en définition simple
+  et double, ex. 1920×1080 + 3840×2160) ; `rendu-visuel.mjs` (taille libre → JPEG +
   WebP) pour les visuels publiés sur le site (galeries des fiches marques). Le blason du Golf du Perche y est redessiné en
   vectoriel (`logo-golf-du-perche.svg`). Visuels produits : la photo fournie
   est détourée sur fond transparent (ex. `brett-le-mans-classic-2026-monture.png`)
@@ -100,10 +101,15 @@ commentaires de code, échanges avec le propriétaire.
   par le propriétaire, page 3 ; non commité, les `*.pdf` sont ignorés par git).
 - `tools/affiches/journees-privilege-2026-facing-a4-paysage.html` (A4 paysage,
   fond blanc, posée sur le présentoir des montures en promotion : « Sur cette
-  sélection ») et `journees-privilege-2026-ecran-vitrine-a4.html` (A4 portrait
-  pour l'écran de la vitrine, photo du visuel de l'agence en fond :
-  `journees-privilege-2026-magasin.jpg`, magasin de Nogent-le-Rotrou).
-  Rendu : `node rendu-a4.mjs <html> <png> <pdf> paysage|portrait`.
+  sélection ») et, pour l'**écran de la vitrine (format 16:9 paysage**,
+  demandé par le propriétaire le 2026-11-03),
+  `journees-privilege-2026-ecran-vitrine-16x9.html` → PNG 1920×1080 et
+  3840×2160 (`node rendu-ecran.mjs <html> <sortie> 1920 1080`). Fond : photo
+  du visuel de l'agence (magasin de Nogent-le-Rotrou), recadrée
+  `journees-privilege-2026-magasin-16x9.jpg`. La version A4 portrait
+  (`journees-privilege-2026-ecran-vitrine-a4.html`, `-magasin.jpg`) reste
+  disponible pour une impression en vitrine ; elle ne convient pas à l'écran.
+  Rendu A4 : `node rendu-a4.mjs <html> <png> <pdf> paysage|portrait`.
 - Ces affiches reprennent les codes du visuel de l'agence, **pas la charte du
   site** : bandeaux noir #000000 / corail #FF635B / vert #6A7959 (relevés au
   pixel), étoile noire « -50% », police **Poppins** (OFL, auto-hébergée dans
