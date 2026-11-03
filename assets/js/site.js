@@ -321,3 +321,54 @@
     })
     .catch(function(){});
 })();
+
+/* ============================================================
+   POPUP D'OPÉRATION COMMERCIALE — ex. « Journées Privilège »
+   (operation.js + operation.css). Réglages dans
+   assets/data/operation.json (Pages CMS, rubrique « Popup
+   opération commerciale ») : affiché entre « debut » et « fin »
+   (JJ/MM/AAAA, jours inclus) si « actif » est coché, une fois par
+   visite (sessionStorage « pg-operation-vu »), jamais sur les
+   mentions légales. Aperçu à toute date : ?operation=1 (rejoué à
+   chaque page, valable pour l'onglet) ; ?operation=0 l'arrête.
+   Hors période, seul ce petit fichier JSON est lu.
+   ============================================================ */
+(function(){
+  if(!window.fetch || !document.querySelector('header.nav')) return;
+  if(/\/mentions-legales(\.html)?$/.test(location.pathname)) return;
+  var VERSION = '20261103';
+  var apercu = false;
+  try{
+    var m = /[?&]operation=([01])\b/.exec(location.search);
+    if(m && m[1] === '1') sessionStorage.setItem('pg-operation-apercu', '1');
+    if(m && m[1] === '0'){ sessionStorage.removeItem('pg-operation-apercu'); return; }
+    apercu = sessionStorage.getItem('pg-operation-apercu') === '1';
+    if(!apercu && sessionStorage.getItem('pg-operation-vu')) return;
+  }catch(e){}
+  /* « JJ/MM/AAAA » → instant de début du jour (heure locale) ; lendemain pour la fin */
+  function instant(txt, lendemain){
+    var m = /^\s*(\d{1,2})\s*[\/.-]\s*(\d{1,2})\s*[\/.-]\s*(\d{4})\s*$/.exec(txt || '');
+    if(!m || +m[1] < 1 || +m[1] > 31 || +m[2] < 1 || +m[2] > 12) return null;
+    return new Date(+m[3], +m[2] - 1, +m[1] + (lendemain ? 1 : 0)).getTime();
+  }
+  fetch('assets/data/operation.json')
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(c){
+      if(!c) return;
+      if(!apercu){
+        var debut = instant(c.debut), fin = instant(c.fin, true), maintenant = Date.now();
+        if(!c.actif || debut === null || fin === null || maintenant < debut || maintenant >= fin) return;
+      }
+      window.PIGEARD_OPERATION = c;
+      window.PIGEARD_OPERATION_APERCU = apercu;
+      var l = document.createElement('link');
+      l.rel = 'stylesheet'; l.href = 'assets/css/operation.css?v=' + VERSION;
+      l.onload = function(){
+        var s = document.createElement('script');
+        s.src = 'assets/js/operation.js?v=' + VERSION;
+        document.body.appendChild(s);
+      };
+      document.head.appendChild(l);
+    })
+    .catch(function(){});
+})();

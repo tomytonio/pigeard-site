@@ -115,6 +115,32 @@ commentaires de code, échanges avec le propriétaire.
   site** : bandeaux noir #000000 / corail #FF635B / vert #6A7959 (relevés au
   pixel), étoile noire « -50% », police **Poppins** (OFL, auto-hébergée dans
   `tools/affiches/polices/`, lettres identiques au visuel de l'agence).
+- **Popup animé sur le site** (2026-11-03) : `assets/js/operation.js` +
+  `assets/css/operation.css`, chargés par le bloc « Popup d'opération » de
+  `site.js` seulement entre `debut` et `fin` de `assets/data/operation.json`
+  (JJ/MM/**AAAA**, jours inclus, heure locale du visiteur ; Pages CMS,
+  rubrique « Popup opération commerciale ») — réglé sur le 15/11 → 29/12/2026.
+  Une fois par visite (`sessionStorage['pg-operation-vu']`), ~1,8 s après la
+  fin du loader, jamais en pré-rendu ni sur `mentions-legales.html`. Aperçu :
+  `?operation=1` (rejoué à chaque page), `?operation=0`. Après modification
+  de `operation.js`/`.css`, bumper `VERSION` dans ce bloc de `site.js` (puis
+  le `?v=` de `site.js`).
+  - ≥ 700 px : fenêtre centrée (voile, `aria-modal`, focus gardé, Échap / × /
+    clic à côté, défilement et Lenis suspendus). < 700 px : carte compacte en
+    bas d'écran **sans voile ni photo**, page utilisable — Google Search
+    Central (« Avoid intrusive interstitials and dialogs ») déconseille les
+    fenêtres qui masquent le contenu (« may lead to poor search performance »).
+  - Corps de carte **blanc** (l'étoile noire chevauche photo et texte : sur
+    fond noir sa moitié basse disparaissait). Bandeau corail #F85A52 (texte
+    blanc à 3,2:1 ; le #FF635B de l'agence donnait 2,9:1). Bouton corail
+    #FF625B à texte foncé, comme `.btn--primary`.
+  - Poppins 500/700/800 copiée dans `assets/fonts/` (+ `OFL-poppins.txt`),
+    déclarée seulement dans `operation.css`. Photo : recadrage de
+    `boutique-nogent-interieur.jpg` (déjà publiée sur le site) →
+    `assets/photos/journees-privilege.webp` ; pas la photo du PDF de l'agence.
+  - Vérifié en local (Playwright) : 320 → 1920 px sans chevauchement, bornes
+    de dates en fuseau Europe/Paris, clavier, une fois par visite, i/s
+    inchangées pendant l'animation (CPU ×4).
 
 ## Équipe : aperçu de l'accueil (depuis le 2026-10-08)
 

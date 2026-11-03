@@ -121,3 +121,22 @@ content:
       - { name: messageFetes, label: "Message du pied de page, jusqu'au 31 décembre", type: string }
       - { name: messageVoeux, label: "Message du pied de page en janvier — {annee} devient l'année en cours", type: string }
       - { name: signature, label: "Signature sous le message (laisser vide pour l'enlever)", type: string }
+
+  # ---- POPUP D'OPÉRATION COMMERCIALE (ex. Journées Privilège) ----
+  - name: operation
+    label: Popup opération commerciale (Journées Privilège)
+    type: file
+    path: assets/data/operation.json
+    fields:
+      - { name: actif, label: "Popup activé — s'affiche tout seul entre les deux dates ci-dessous (décocher pour l'arrêter tout de suite)", type: boolean }
+      - { name: debut, label: "Premier jour — jour/mois/année (ex. 15/11/2026)", type: string }
+      - { name: fin, label: "Dernier jour inclus — jour/mois/année (ex. 29/12/2026)", type: string }
+      - { name: ligne1, label: "Bandeau noir (ex. Les journées)", type: string }
+      - { name: ligne2, label: "Bandeau corail (ex. Privilège)", type: string }
+      - { name: dates, label: "Bandeau vert : les dates (ex. Du 15 novembre au 29 décembre)", type: string }
+      - { name: remise, label: "Texte de l'étoile noire (ex. -50%) — laisser vide pour enlever l'étoile", type: string }
+      - { name: remiseTexte, label: "Phrase sous le visuel (ex. Sur une sélection de montures de grandes marques*)", type: string }
+      - { name: texte, label: "Paragraphe (affiché sur ordinateur seulement)", type: text }
+      - { name: bouton, label: "Texte du bouton", type: string }
+      - { name: lien, label: "Page ouverte par le bouton (ex. magasins.html)", type: string }
+      - { name: mentions, label: "Mentions obligatoires en petit (conditions de l'offre)", type: text }

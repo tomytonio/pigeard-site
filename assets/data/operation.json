@@ -1,0 +1,14 @@
+{
+  "actif": true,
+  "debut": "15/11/2026",
+  "fin": "29/12/2026",
+  "ligne1": "Les journées",
+  "ligne2": "Privilège",
+  "dates": "Du 15 novembre au 29 décembre",
+  "remise": "-50%",
+  "remiseTexte": "Sur une sélection de montures de grandes marques*",
+  "texte": "Quelques collections s'apprêtent à quitter nos vitrines. Une belle occasion de vous faire plaisir ou de faire un beau cadeau à l'approche des fêtes.",
+  "bouton": "Trouver mon magasin",
+  "lien": "magasins.html",
+  "mentions": "*Sur articles signalés en magasin. Voir conditions en magasin. Dispositif médical CE."
+}
