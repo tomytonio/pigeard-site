@@ -329,21 +329,24 @@
    opération commerciale ») : affiché entre « debut » et « fin »
    (JJ/MM/AAAA, jours inclus) si « actif » est coché, une fois par
    visite (sessionStorage « pg-operation-vu »), jamais sur les
-   mentions légales. Aperçu à toute date : ?operation=1 (rejoué à
-   chaque page, valable pour l'onglet) ; ?operation=0 l'arrête.
+   mentions légales. Aperçu à toute date : ?operation=1 (l'affiche
+   une fois, puis plus pendant la visite, comme pour un visiteur ;
+   rouvrir un lien ?operation=1 pour le revoir) ; ?operation=0
+   l'arrête.
    Hors période, seul ce petit fichier JSON est lu.
    ============================================================ */
 (function(){
   if(!window.fetch || !document.querySelector('header.nav')) return;
   if(/\/mentions-legales(\.html)?$/.test(location.pathname)) return;
-  var VERSION = '20261103';
+  var VERSION = '20261103b';
   var apercu = false;
   try{
     var m = /[?&]operation=([01])\b/.exec(location.search);
-    if(m && m[1] === '1') sessionStorage.setItem('pg-operation-apercu', '1');
+    if(m && m[1] === '1'){ sessionStorage.setItem('pg-operation-apercu', '1'); sessionStorage.removeItem('pg-operation-vu'); }
     if(m && m[1] === '0'){ sessionStorage.removeItem('pg-operation-apercu'); return; }
     apercu = sessionStorage.getItem('pg-operation-apercu') === '1';
-    if(!apercu && sessionStorage.getItem('pg-operation-vu')) return;
+    /* une fois par visite, aperçu compris (demande du propriétaire, 2026-11-03) */
+    if(sessionStorage.getItem('pg-operation-vu')) return;
   }catch(e){}
   /* « JJ/MM/AAAA » → instant de début du jour (heure locale) ; lendemain pour la fin */
   function instant(txt, lendemain){

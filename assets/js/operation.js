@@ -10,20 +10,34 @@
    - Téléphone : carte compacte en bas d'écran, sans voile, la page
      reste utilisable (recommandation Google contre les fenêtres
      intrusives sur mobile).
-   Une fois par visite (sessionStorage « pg-operation-vu »), sauf
-   en aperçu (?operation=1). Jamais en pré-rendu ni pendant
-   l'écran de chargement. Sans JS : rien.
+   Une fois par visite (sessionStorage « pg-operation-vu »), aperçu
+   (?operation=1) compris : les pages suivantes ne la rejouent pas.
+   Jamais en pré-rendu ni pendant l'écran de chargement. Sans JS :
+   rien.
    ============================================================ */
 (function () {
   'use strict';
   var c = window.PIGEARD_OPERATION;
   if (!c || document.querySelector('.op-fond')) return;
-  var apercu = !!window.PIGEARD_OPERATION_APERCU;
   var CLE = 'pg-operation-vu';
   var DELAI = 1800; /* ms laissées au visiteur pour découvrir la page */
 
   function texte(v, defaut) { return (typeof v === 'string' && v.trim()) ? v.trim() : defaut; }
-  function dejaVu() { try { return !apercu && !!sessionStorage.getItem(CLE); } catch (e) { return false; } }
+  /* Relu au moment d'afficher. Une page pré-rendue (speculation rules) a pu
+     être préparée avant que la fenêtre soit vue sur la page précédente, avec
+     une mémoire d'onglet antérieure : la page qui affiche la fenêtre prévient
+     les autres pages du site déjà ouvertes ou préparées par un BroadcastChannel
+     (moyen recommandé par Chrome pour transmettre un changement d'état aux
+     pages pré-rendues, developer.chrome.com/docs/web-platform/prerender-pages). */
+  var vuAilleurs = false, canal = null;
+  try {
+    canal = new BroadcastChannel('pg-operation');
+    canal.onmessage = function (e) { if (e.data === 'vu') vuAilleurs = true; };
+  } catch (e) {}
+  function dejaVu() {
+    if (vuAilleurs) return true;
+    try { return !!sessionStorage.getItem(CLE); } catch (e) { return false; }
+  }
   /* lien saisi dans l'éditeur : page du site ou adresse https, rien d'autre */
   function lienSur(v) {
     v = texte(v, '');
@@ -119,7 +133,8 @@
 
   function ouvrir() {
     if (dejaVu()) return;
-    try { if (!apercu) sessionStorage.setItem(CLE, '1'); } catch (e) {}
+    try { sessionStorage.setItem(CLE, '1'); } catch (e) {}
+    try { if (canal) canal.postMessage('vu'); } catch (e) {}
     fond = construire();
     carte = fond.querySelector('.op-carte');
     fond.querySelector('.op-fermer').addEventListener('click', fermer);
