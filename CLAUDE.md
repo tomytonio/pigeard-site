@@ -101,7 +101,11 @@ commentaires de code, échanges avec le propriétaire.
   par le propriétaire, page 3 ; non commité, les `*.pdf` sont ignorés par git).
 - `tools/affiches/journees-privilege-2026-facing-a4-paysage.html` (A4 paysage,
   fond blanc, posée sur le présentoir des montures en promotion : « Sur cette
-  sélection ») et, pour l'**écran de la vitrine (format 9:16 vertical**,
+  sélection ») ; variante **avec le magasin en fond** (même composition que le
+  16:9 retiré, demandée par le propriétaire le 2026-11-03)
+  `journees-privilege-2026-facing-a4-paysage-photo.html`, photo
+  `journees-privilege-2026-magasin-a4-paysage.jpg` (recadrage du visuel de
+  l'agence) ; et, pour l'**écran de la vitrine (format 9:16 vertical**,
   précisé par le propriétaire le 2026-11-03 ; une version 16:9 faite par
   erreur a été retirée),
   `journees-privilege-2026-ecran-vitrine-9x16.html` → PNG 1080×1920 et
