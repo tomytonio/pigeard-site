@@ -74,12 +74,26 @@ Chaque année, **du 1er novembre au 31 janvier**, le site se met tout seul aux c
 
 ---
 
+## 🏷️ Popup « Journées Privilège » (opérations commerciales)
+
+Du **15 novembre au 29 décembre 2026** (dates incluses), une petite fenêtre animée présente les Journées Privilège à l'arrivée sur le site : les bandeaux « Les journées / Privilège / Du 15 novembre au 29 décembre » se dévoilent, puis l'étoile « -50% » tourne et se pose. Elle apparaît **une fois par visite**, environ 2 secondes après l'écran « Réglage de la netteté… », et jamais sur la page des mentions légales. Sur ordinateur, c'est une fenêtre au centre de l'écran ; sur téléphone, une carte en bas d'écran qui laisse la page lisible (Google déconseille les fenêtres qui cachent la page sur mobile, cela peut nuire au référencement). Rien à faire : elle s'arrête toute seule le 30 décembre.
+
+- **La voir avant le 15 novembre** : ouvre le site avec `?operation=1` à la fin de l'adresse, par exemple **www.pigeard-opticiens.fr/?operation=1**. Elle se rejoue alors sur chaque page tant que l'onglet est ouvert. Pour l'arrêter : `?operation=0`.
+- **Réglages** (dans l'éditeur, rubrique **« Popup opération commerciale (Journées Privilège) »**) :
+  - **Popup activé** : décoche-le pour l'arrêter tout de suite.
+  - **Premier jour / Dernier jour inclus** : au format jour/mois/année (ex. `15/11/2026` et `29/12/2026`).
+  - **Les textes** : les trois bandeaux, l'étoile, la phrase, le paragraphe (sur ordinateur seulement), le bouton et la page qu'il ouvre (`magasins.html` par défaut), et les **mentions obligatoires** en petit. Garde toujours ces mentions tant que l'offre est affichée (« *Sur articles signalés en magasin… »).
+- **Pour une prochaine opération** : change les dates et les textes, coche « Popup activé », c'est tout. La photo du magasin et les couleurs restent les mêmes ; pour les changer, demande-le-moi.
+
+---
+
 ## 📌 Ce qui est modifiable aujourd'hui
 
 - ✅ **Textes — Page d'accueil** (accroches, titres et paragraphes de la page d'accueil)
 - ✅ **Créations sur-mesure** (noms, accroches, descriptifs, photos)
 - ✅ **Nos marques** (noms, accroches, présentations, **logos**, **nouveautés** et **visuels**)
 - ✅ **Décor de Noël** (activation, dates, neige, messages)
+- ✅ **Popup opération commerciale** (activation, dates, textes, mentions)
 
 > 💡 Pour les titres sur **2 lignes** (ex. « Un savoir-faire / qui se transmet »), appuie sur **Entrée** dans la case pour créer la 2ᵉ ligne.
 
