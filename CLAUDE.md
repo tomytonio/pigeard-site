@@ -126,7 +126,12 @@ commentaires de code, échanges avec le propriétaire.
   rubrique « Popup opération commerciale ») — réglé sur le 15/11 → 29/12/2026.
   Une fois par visite (`sessionStorage['pg-operation-vu']`), ~1,8 s après la
   fin du loader, jamais en pré-rendu ni sur `mentions-legales.html`. Aperçu :
-  `?operation=1` (rejoué à chaque page), `?operation=0`. Après modification
+  `?operation=1` (une fois par visite aussi, depuis le 2026-11-03 à la
+  demande du propriétaire : le lien force un nouvel affichage, les pages
+  suivantes ne le rejouent pas), `?operation=0`. Une page pré-rendue avec
+  une mémoire d'onglet antérieure est prévenue par `BroadcastChannel
+  ('pg-operation')` (pré-rendu non testable dans le Chromium automatisé
+  d'ici ; canal vérifié entre deux pages ouvertes). Après modification
   de `operation.js`/`.css`, bumper `VERSION` dans ce bloc de `site.js` (puis
   le `?v=` de `site.js`).
   - ≥ 700 px : fenêtre centrée (voile, `aria-modal`, focus gardé, Échap / × /
