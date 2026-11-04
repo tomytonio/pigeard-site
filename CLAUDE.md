@@ -192,6 +192,13 @@ commentaires de code, échanges avec le propriétaire.
   `oom13-proto-duo.jpg` d'oomade.com (dont une monture en acétate) : retirée
   le 2026-10-14 sur décision du propriétaire, à remettre seulement avec
   l'accord écrit de FTA ou une photo prise dans un magasin Pigeard.
+- **Écran vitrine 9:16** (2026-11-04) : `tools/affiches/impression-3d-ecran-vitrine-9x16.html`
+  → PNG 1080×1920 et 2160×3840 (`node rendu-ecran.mjs <html> <sortie> 1080 1920`),
+  charte du site (Playfair / Karla / Reenie Beanie, vert, corail, halo crème),
+  photo de la P1S, nom « OOmade » en texte seulement. Il annonce un dépannage
+  **en 30 minutes** (propriétaire, 2026-11-04 : « désormais en 30 mn ») ; le
+  site dit encore « une vingtaine de minutes » — non modifié, en attente de
+  décision du propriétaire (liste des endroits ci-dessous).
 - Changement de tarif ou de délai : mettre à jour `impression-3d.html`
   (`<title>`, meta description, og:description et twitter:description, hero,
   atouts, encart tarif, étape 03, FAQ **et** les deux JSON-LD), `services.html`
