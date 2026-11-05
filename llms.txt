@@ -39,6 +39,7 @@ Site officiel : https://www.pigeard-opticiens.fr/
 - Lunettes imprimées en 3D & dépannage de lunettes cassées : https://www.pigeard-opticiens.fr/impression-3d.html
 - Nos marques : https://www.pigeard-opticiens.fr/marques.html
 - L'équipe : https://www.pigeard-opticiens.fr/equipe.html
+- Les vidéos d'Iris (la vue et les lunettes expliquées en vidéo courte par Iris, notre assistante virtuelle créée par IA) : https://www.pigeard-opticiens.fr/videos-iris.html
 - Nos magasins & prise de rendez-vous : https://www.pigeard-opticiens.fr/magasins.html
 - Nos engagements & mutuelles : https://www.pigeard-opticiens.fr/engagements.html
 - Contact : https://www.pigeard-opticiens.fr/contact.html

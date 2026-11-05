@@ -5,8 +5,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Les vidéos d'Iris — Pigeard, opticien depuis 1863</title>
 <meta name="description" content="Les vidéos courtes d'Iris, l'assistante virtuelle de Pigeard Opticiens : la vue et les lunettes expliquées simplement. Myopie, verres polarisés… cherchez un sujet." />
-<!-- DÉMO (2026-11-05) : page non référencée tant qu'Antoine ne l'a pas validée. -->
-<meta name="robots" content="noindex, nofollow" />
+<link rel="canonical" href="https://www.pigeard-opticiens.fr/videos-iris.html" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:site_name" content="Pigeard Opticiens" />
+<meta property="og:url" content="https://www.pigeard-opticiens.fr/videos-iris.html" />
+<meta property="og:title" content="Les vidéos d'Iris · Pigeard Opticiens" />
+<meta property="og:description" content="La vue et les lunettes expliquées en vidéo courte par Iris, l'assistante virtuelle de Pigeard Opticiens." />
+<meta property="og:image" content="https://www.pigeard-opticiens.fr/assets/equipe/ia/iris.jpg" />
+<meta property="og:image:width" content="960" />
+<meta property="og:image:height" content="1200" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Les vidéos d'Iris · Pigeard Opticiens" />
+<meta name="twitter:description" content="La vue et les lunettes expliquées en vidéo courte par Iris, l'assistante virtuelle de Pigeard Opticiens." />
+<meta name="twitter:image" content="https://www.pigeard-opticiens.fr/assets/equipe/ia/iris.jpg" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://www.pigeard-opticiens.fr/videos-iris.html",
+  "url": "https://www.pigeard-opticiens.fr/videos-iris.html",
+  "name": "Les vidéos d'Iris — Pigeard Opticiens",
+  "description": "La vue et les lunettes expliquées en vidéo courte par Iris, l'assistante virtuelle de Pigeard Opticiens.",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.pigeard-opticiens.fr/"},
+      {"@type": "ListItem", "position": 2, "name": "L'équipe", "item": "https://www.pigeard-opticiens.fr/equipe.html"},
+      {"@type": "ListItem", "position": 3, "name": "Les vidéos d'Iris", "item": "https://www.pigeard-opticiens.fr/videos-iris.html"}
+    ]
+  }
+}
+</script>
 <!--
   Sources des contenus :
   - Titres et résumés : légendes validées par Antoine (Studio vidéo, LEGENDE.txt de video-polarise et
@@ -15,7 +45,7 @@
     « myopie » publiée sur YouTube seulement le 5/11/2026 (https://www.youtube.com/watch?v=5o0Wwe_pOeA).
   - Comptes : Instagram @pigeard.opticiens, TikTok @iris_pigeard, YouTube @PigeardOpticiens
     (vérifiés par le serveur de l'appli Pigeard via Buffer, 2026-11-05).
-  - Les cartes « Bientôt » marquées « Exemple » sont des sujets fictifs pour la démo.
+  - Ajouter une vidéo : voir la section « Iris et ses vidéos » de CLAUDE.md.
 -->
 <link rel="preload" href="assets/fonts/karla-normal-300-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/playfair-display-italic-400-700-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -163,7 +193,7 @@ html.vl-ouvert{overflow:hidden}
   <div class="hero-bg"><div class="blob v" style="width:38vw;height:38vw;top:-14%;right:-4%"></div><div class="blob m" style="width:22vw;height:22vw;bottom:-12%;left:6%"></div></div>
   <div class="wrap">
     <div>
-      <a class="eyebrow" href="demo-iris-equipe.html#ia" style="color:var(--corail)">L'équipe · partie IA</a>
+      <a class="eyebrow" href="equipe.html#ia" style="color:var(--corail)">L'équipe · partie IA</a>
       <h1>Les vidéos<br><em>d'Iris.</em></h1>
       <p class="lede">La vue et les lunettes expliquées en vidéo courte, avec le sourire. Cherchez un sujet : Iris a sûrement la réponse.</p>
     </div>
@@ -182,7 +212,6 @@ html.vl-ouvert{overflow:hidden}
       <button type="button" class="vt" data-t="" aria-pressed="true">Toutes<span class="n"></span></button>
       <button type="button" class="vt" data-t="vue" aria-pressed="false">La vue<span class="n"></span></button>
       <button type="button" class="vt" data-t="soleil" aria-pressed="false">Lunettes de soleil<span class="n"></span></button>
-      <button type="button" class="vt" data-t="verres" aria-pressed="false">Verres<span class="n"></span></button>
     </div>
     <div class="vi-recherche" id="recherche" role="search">
       <button type="button" class="loupe" id="loupe" aria-label="Rechercher une vidéo" aria-controls="q" aria-expanded="false">
@@ -228,23 +257,6 @@ html.vl-ouvert{overflow:hidden}
       </div>
     </article>
 
-    <!-- Exemples fictifs pour la démo -->
-    <article class="vcard vcard--bientot" data-theme="vue" data-mots="presbytie presbyte lire lecture près bras quarante ans">
-      <div class="vc-media"><span class="vc-q" aria-hidden="true">?</span><span class="vc-date">Bientôt</span></div>
-      <div class="vc-body">
-        <span class="vc-theme">La vue</span>
-        <h3>Presbytie&nbsp;: pourquoi tend-on les bras pour lire&nbsp;?</h3>
-        <p class="vc-exemple">exemple de sujet (démo)</p>
-      </div>
-    </article>
-    <article class="vcard vcard--bientot" data-theme="verres" data-mots="lumière bleue écrans écran ordinateur téléphone filtre verres protection">
-      <div class="vc-media"><span class="vc-q" aria-hidden="true">?</span><span class="vc-date">Bientôt</span></div>
-      <div class="vc-body">
-        <span class="vc-theme">Verres</span>
-        <h3>Lumière bleue&nbsp;: faut-il s'en protéger&nbsp;?</h3>
-        <p class="vc-exemple">exemple de sujet (démo)</p>
-      </div>
-    </article>
   </div>
 
   <div class="vi-vide" id="aucune" hidden>
@@ -277,7 +289,7 @@ html.vl-ouvert{overflow:hidden}
   <span class="eyebrow reveal" style="justify-content:center">Et pour vos yeux à vous</span>
   <h2 class="reveal" style="font-family:var(--serif);font-weight:700;font-size:clamp(2.2rem,6vw,3.8rem);line-height:1.04;max-width:20ch;margin:18px auto 0">Rien ne remplace<br><em style="font-style:italic;color:var(--vert)">un vrai examen.</em></h2>
   <span class="hand reveal" style="font-size:2rem;display:inline-block;margin-top:14px;color:var(--bois)">on vous attend en boutique</span>
-  <div class="reveal" style="margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap"><a class="btn btn--primary" href="magasins.html#rdv">Prendre rendez-vous <span class="arr">→</span></a><a class="btn btn--ghost" href="demo-iris-equipe.html#ia">Toute l'équipe</a></div>
+  <div class="reveal" style="margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap"><a class="btn btn--primary" href="magasins.html#rdv">Prendre rendez-vous <span class="arr">→</span></a><a class="btn btn--ghost" href="equipe.html#ia">Toute l'équipe</a></div>
 </div></section>
 
 <!-- FOOTER -->
@@ -285,7 +297,7 @@ html.vl-ouvert{overflow:hidden}
   <div class="foot-top">
     <div class="foot-brand"><img class="mac" src="assets/brand/macaron-cream.svg" alt="Pigeard depuis 1863" loading="lazy" decoding="async"><h3>Créateur de regards depuis 1863.</h3><span class="hand">à très vite chez Pigeard</span></div>
     <div class="foot-links">
-      <div class="foot-col"><h4>La maison</h4><a href="histoire.html">Notre histoire</a><a href="equipe.html">L'équipe</a><a href="videos-iris.html">Les vidéos d'Iris</a><a href="engagements.html">Nos engagements</a></div>
+      <div class="foot-col"><h4>La maison</h4><a href="histoire.html">Notre histoire</a><a href="equipe.html">L'équipe</a><a href="engagements.html">Nos engagements</a></div>
       <div class="foot-col"><h4>Expertises</h4><a href="services.html">Nos expertises</a><a href="marques.html">Nos marques</a><a href="creations.html">Nos créations</a></div>
       <div class="foot-col"><h4>Magasins</h4><a href="magasins.html">Nos 3 magasins</a><a href="opticien-nogent-le-rotrou.html">Opticien Nogent-le-Rotrou</a><a href="opticien-brou.html">Opticien Brou</a><a href="opticien-la-loupe.html">Opticien La Loupe</a><a href="contact.html">Contact</a><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a></div>
     </div>
