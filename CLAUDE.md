@@ -168,6 +168,21 @@ commentaires de code, échanges avec le propriétaire.
   collaborateurs », « Treize passionnés ») **et** `index.html` (photo dans la
   pile, compteur, prénoms, bouton « Rencontrer les 13 visages »).
 
+## Démo cachée « Iris » (depuis le 2026-11-05, à retirer après décision)
+
+- Demande du propriétaire : Iris (assistante virtuelle IA des vidéos courtes, studio vidéo sur son
+  PC) dans une partie « IA » en bas de la page équipe, avec à côté un accès à une page listant ses
+  vidéos (vignette, thème, loupe de recherche). **Démo à valider, pas encore intégrée au vrai site.**
+- Pages **cachées** (aucun lien du site n'y mène, `noindex, nofollow`, hors `sitemap.xml`) :
+  `demo-iris-equipe.html` (copie de `equipe.html` + partie 04 « L'IA de la maison ») et
+  `videos-iris.html` (recherche et filtres en JS, sans JS toutes les cartes restent visibles).
+  Images : `assets/equipe/ia/iris.*` (portrait fourni par le propriétaire) et `assets/videos-iris/`
+  (vignettes tirées des rendus des vidéos). Les deux cartes « Bientôt » sont des sujets fictifs.
+- La vraie intégration est prête sur la branche `claude/demo-iris-videos` (partie IA dans
+  `equipe.html` même). Si validé : partir de cette branche, retirer `noindex` et les cartes fictives,
+  supprimer `demo-iris-equipe.html`, ajouter `videos-iris.html` au sitemap (`build_static.py`) et à
+  `llms.txt`. Si abandonné : supprimer les deux pages et les images.
+
 ## Impression 3D en magasin — OOmade (depuis le 2026-10-14)
 
 - Service des **3 magasins** (propriétaire, 2026-10-14) : dépannage de lunettes
