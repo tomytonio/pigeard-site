@@ -143,6 +143,32 @@
 .svc-new .arr{color:var(--corail);transition:transform .35s var(--ease)}
 .svc-new:hover{border-color:var(--corail);background:rgba(255,98,91,.08)}
 .svc-new:hover .arr{transform:translateX(3px)}
+/* Les visages de la maison : petit emplacement pour Iris, l'IA de la maison (comme la partie 04 de equipe.html ; hors des 13 visages) */
+.iris-mini{display:flex;align-items:center;gap:clamp(18px,2.6vw,32px);max-width:740px;margin:44px 0 0;padding:16px clamp(16px,2.4vw,26px) 16px 20px;border-radius:14px;background:var(--noir-2);border:1px solid var(--ligne);color:var(--blanc-chaud);text-decoration:none;transition:border-color .5s,transform .5s var(--ease)}
+.iris-mini:hover,.iris-mini:focus-visible{border-color:rgba(255,98,91,.55);transform:translateY(-3px)}
+.iris-mini:focus-visible{outline:none}
+.im-pol{position:relative;flex:none;width:132px;aspect-ratio:200/300;background:#FBF6EC;border-radius:10px;padding:7px 7px 32px;box-shadow:0 12px 24px -12px rgba(0,0,0,.75);transform:rotate(-4deg);transition:transform .5s var(--ease)}
+.iris-mini:hover .im-pol{transform:rotate(-1deg) translateY(-2px)}
+.im-pol img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block;border-radius:6px}
+.im-pol .im-prenom{position:absolute;left:0;right:0;bottom:5px;text-align:center;font-family:var(--hand);font-size:1.45rem;color:var(--bois);line-height:1;transform:rotate(-2deg)}
+.im-ia{position:absolute;top:-10px;right:-13px;background:var(--corail);color:#0E0D0B;font-size:.7rem;font-weight:700;letter-spacing:.14em;padding:4px 9px;border-radius:100px}
+.im-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;text-align:left}
+.im-kick{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--corail)}
+.im-titre{font-family:var(--serif);font-weight:700;font-size:clamp(1.25rem,1.9vw,1.55rem);line-height:1.1}
+.im-titre .arr{display:inline-block;color:var(--corail);font-family:var(--sans);font-weight:400;font-size:.8em;margin-left:.3em;transition:transform .4s var(--ease)}
+.iris-mini:hover .im-titre .arr,.iris-mini:focus-visible .im-titre .arr{transform:translateX(5px)}
+.iris-mini:focus-visible .im-titre{text-decoration:underline;text-underline-offset:5px}
+.im-sub{color:var(--muted);font-size:.86rem;line-height:1.45}
+.im-thumbs{display:flex;flex:none;padding:4px 4px}
+.im-thumbs .th{width:40px;aspect-ratio:9/16;border-radius:6px;overflow:hidden;border:2px solid var(--creme);background:var(--noir-3);box-shadow:0 10px 20px -10px rgba(0,0,0,.9);transition:transform .5s var(--ease)}
+.im-thumbs .th+.th{margin-left:-10px}
+.im-thumbs .th img{width:100%;height:100%;object-fit:cover;display:block}
+.im-thumbs .th:nth-child(1){transform:rotate(-7deg)}
+.im-thumbs .th:nth-child(2){position:relative;z-index:2;transform:rotate(1deg) translateY(-3px)}
+.im-thumbs .th:nth-child(3){transform:rotate(8deg)}
+.iris-mini:hover .im-thumbs .th:nth-child(1){transform:rotate(-11deg) translateX(-3px)}
+.iris-mini:hover .im-thumbs .th:nth-child(3){transform:rotate(12deg) translateX(3px)}
+@media(max-width:700px){.iris-mini{margin-top:34px;padding:14px 16px;gap:16px}.im-pol{width:108px;padding:5px 5px 26px}.im-pol .im-prenom{font-size:1.2rem;bottom:4px}.im-thumbs{display:none}.im-et{display:none}}
 </style>
 <script type="speculationrules">
 {"prerender":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}
@@ -357,6 +383,12 @@
       <div class="pile-txt"><span class="pile-kick"><span class="mag">Magasin 03 · </span>3 visages</span><h3>La Loupe<span class="arr" aria-hidden="true">→</span></h3><p class="pile-noms">Hélène, Christel et Clémence</p></div>
     </a>
   </div>
+  <!-- Iris, l'IA de la maison : petit emplacement (comme la partie 04 de equipe.html) ; elle n'est pas comptée dans les 13 visages -->
+  <a class="iris-mini reveal" href="equipe.html#ia">
+    <span class="im-pol" aria-hidden="true"><picture><source srcset="assets/equipe/ia/iris.webp" type="image/webp"><img src="assets/equipe/ia/iris.jpg" alt="" width="960" height="1200" loading="lazy" decoding="async"></picture><span class="im-prenom">Iris</span><span class="im-ia">IA</span></span>
+    <span class="im-txt"><span class="im-kick"><span class="im-et">Et aussi · </span>1 visage numérique</span><span class="im-titre">Iris, l'IA de la maison<span class="arr" aria-hidden="true">→</span></span><span class="im-sub">Notre assistante virtuelle explique la vue en vidéo courte. Un personnage créé par intelligence artificielle.</span></span>
+    <span class="im-thumbs" aria-hidden="true"><span class="th"><picture><source srcset="assets/videos-iris/myopie.webp" type="image/webp"><img src="assets/videos-iris/myopie.jpg" alt="" width="540" height="960" loading="lazy" decoding="async"></picture></span><span class="th"><picture><source srcset="assets/videos-iris/polarise.webp" type="image/webp"><img src="assets/videos-iris/polarise.jpg" alt="" width="540" height="960" loading="lazy" decoding="async"></picture></span><span class="th"><picture><source srcset="assets/videos-iris/presbytie.webp" type="image/webp"><img src="assets/videos-iris/presbytie.jpg" alt="" width="540" height="960" loading="lazy" decoding="async"></picture></span></span>
+  </a>
   <div class="reveal" style="margin-top:34px"><a class="btn btn--vert" href="equipe.html">Rencontrer les 13 visages <span class="arr">→</span></a></div>
 </section>
 
