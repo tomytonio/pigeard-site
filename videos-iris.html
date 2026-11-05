@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Les vidéos d'Iris — Pigeard, opticien depuis 1863</title>
+<meta name="description" content="Les vidéos courtes d'Iris, l'assistante virtuelle de Pigeard Opticiens : la vue et les lunettes expliquées simplement. Myopie, verres polarisés… cherchez un sujet." />
+<!-- DÉMO (2026-11-05) : page non référencée tant qu'Antoine ne l'a pas validée. -->
+<meta name="robots" content="noindex" />
+<!--
+  Sources des contenus :
+  - Titres et résumés : légendes validées par Antoine (Studio vidéo, LEGENDE.txt de video-polarise et
+    video-myopie, 2026-11-05), elles-mêmes tirées des scripts de voix.
+  - Dates : programmation Buffer de « polarisé » (vendredi 6/11/2026 18 h, statut « programmée ») ;
+    « myopie » en brouillon pour le lundi 9/11/2026 18 h (pas encore envoyée).
+  - Comptes : Instagram @pigeard.opticiens, TikTok @iris_pigeard, YouTube @PigeardOpticiens
+    (vérifiés par le serveur de l'appli Pigeard via Buffer, 2026-11-05).
+  - Les cartes « Bientôt » marquées « Exemple » sont des sujets fictifs pour la démo.
+-->
+<link rel="preload" href="assets/fonts/karla-normal-300-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/playfair-display-italic-400-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/playfair-display-normal-400-900-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/brand/favicon-180.png">
+<link rel="stylesheet" href="assets/css/site.css?v=20261022">
+<!-- Écran de chargement (une fois par visite) : voile immédiat + logique dans loader.js -->
+<style>html.pg-loading{overflow:hidden}html.pg-loading::before{content:"";position:fixed;inset:0;z-index:11000;background:#26231C;pointer-events:none;animation:pg-voile .5s ease 3.8s forwards}@keyframes pg-voile{to{opacity:0;visibility:hidden}}</style>
+<script>try{if(!document.prerendering&&!sessionStorage.getItem('pg-loader-vu')&&!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('pg-loading')}catch(e){}</script>
+<script src="assets/js/loader.js" defer></script>
+<style>
+/* ---- Page « Les vidéos d'Iris » ---- */
+.vi-hero{padding:clamp(140px,22vh,230px) 0 clamp(40px,6vh,70px);position:relative;overflow:hidden}
+.vi-hero .wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(30px,6vw,90px);align-items:center;position:relative;z-index:2}
+.vi-hero h1{font-family:var(--serif);font-weight:800;font-size:clamp(3rem,8.4vw,7rem);line-height:.92;letter-spacing:-.03em;margin-top:10px}
+.vi-hero h1 em{font-style:italic;color:var(--corail)}
+.vi-hero .lede{max-width:40ch;margin-top:22px}
+.vi-iris{position:relative;max-width:360px;justify-self:end;width:100%}
+.vi-iris .frame{aspect-ratio:4/5}
+.vi-iris .bulle{position:absolute;left:-14%;bottom:12%;z-index:4;background:var(--creme);color:var(--encre);font-family:var(--hand);font-size:1.75rem;line-height:1;padding:12px 18px 10px;border-radius:18px 18px 18px 4px;transform:rotate(-4deg);box-shadow:0 18px 30px -16px rgba(0,0,0,.8)}
+
+/* Barre d'outils : thèmes + loupe */
+.vi-outils[hidden]{display:none}
+.vi-outils{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:18px 0 26px;border-bottom:1px solid var(--ligne);margin-bottom:34px}
+.vi-themes{display:flex;gap:8px;flex-wrap:wrap}
+.vt{font:inherit;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--blanc-chaud);background:transparent;border:1px solid var(--ligne);border-radius:100px;padding:9px 16px;cursor:pointer;transition:border-color .3s,background .3s,color .3s}
+.vt:hover{border-color:var(--vert)}
+.vt[aria-pressed="true"]{background:var(--vert);border-color:var(--vert);color:#0E0D0B}
+.vt .n{opacity:.6;margin-left:4px}
+.vi-recherche{display:flex;align-items:center;height:48px;border:1px solid var(--ligne);border-radius:100px;background:var(--noir-2);transition:border-color .3s,box-shadow .3s}
+.vi-recherche:focus-within{border-color:var(--corail);box-shadow:0 0 0 4px rgba(255,98,91,.15)}
+.vi-recherche .loupe{width:46px;height:46px;flex:none;display:grid;place-items:center;border:0;background:transparent;color:var(--camel);cursor:pointer;border-radius:50%}
+.vi-recherche .loupe svg{width:21px;height:21px}
+.vi-recherche input{width:0;opacity:0;border:0;background:transparent;color:var(--blanc-chaud);font:inherit;font-size:1rem;outline:0;padding:0;transition:width .45s var(--ease),opacity .3s,padding .45s var(--ease)}
+.vi-recherche.ouvert input{width:clamp(200px,26vw,320px);opacity:1;padding-right:18px}
+.vi-recherche input::placeholder{color:var(--muted)}
+.vi-recherche input::-webkit-search-cancel-button{filter:invert(.7)}
+.vi-compte{font-size:.82rem;color:var(--muted);margin:-18px 0 26px}
+
+/* Grille de vidéos */
+.vi-grille{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;padding-bottom:clamp(70px,10vh,120px)}
+.vcard{display:flex;flex-direction:column;border-radius:14px;overflow:hidden;background:var(--noir-2);border:1px solid var(--ligne);transition:border-color .5s,transform .5s var(--ease);animation:vc-entree .8s var(--ease) both}
+.vcard[hidden]{display:none!important}
+.vcard:hover{border-color:rgba(255,98,91,.5);transform:translateY(-5px)}
+@keyframes vc-entree{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.vc-media{position:relative;aspect-ratio:9/16;overflow:hidden;background:linear-gradient(160deg,#33302a,#0e0d0b)}
+.vc-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s var(--ease)}
+.vcard:hover .vc-media img{transform:scale(1.04)}
+.vc-media::after{content:"";position:absolute;inset:55% 0 0;background:linear-gradient(to top,rgba(14,13,11,.85),transparent);pointer-events:none}
+.vc-date{position:absolute;top:12px;left:12px;z-index:2;font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#0E0D0B;background:var(--creme);padding:5px 10px;border-radius:100px}
+.vc-duree{position:absolute;bottom:12px;right:12px;z-index:2;font-size:.75rem;font-weight:600;color:var(--blanc-chaud);background:rgba(14,13,11,.7);padding:3px 8px;border-radius:6px}
+.vc-play{position:absolute;bottom:12px;left:12px;z-index:2;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--corail);color:#0E0D0B;box-shadow:0 10px 24px -8px rgba(255,98,91,.7)}
+.vc-play svg{width:16px;height:16px;margin-left:3px}
+.vc-body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.vc-theme{align-self:flex-start;font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--vert-clair);border:1px solid rgba(126,140,90,.45);padding:4px 10px;border-radius:100px}
+.vc-body h3{font-family:var(--serif);font-weight:700;font-size:1.22rem;line-height:1.15}
+.vc-body p{font-size:.9rem;color:var(--muted);line-height:1.45}
+.vc-liens{margin-top:auto;padding-top:12px;border-top:1px solid var(--ligne);font-size:.8rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center}
+.vc-liens a{color:var(--blanc-chaud);text-decoration:underline;text-decoration-color:rgba(239,233,223,.3);text-underline-offset:3px}
+.vc-liens a:hover{color:var(--corail);text-decoration-color:var(--corail)}
+/* Vidéo à venir (pas encore de vignette) */
+.vcard--bientot .vc-media{display:grid;place-items:center;background:radial-gradient(circle at 50% 38%,rgba(255,98,91,.18),transparent 60%),linear-gradient(160deg,#2a2722,#0e0d0b)}
+.vcard--bientot .vc-media::after{display:none}
+.vc-q{font-family:var(--serif);font-weight:800;font-size:6rem;color:rgba(239,233,223,.16);line-height:1}
+.vcard--bientot .vc-date{background:transparent;color:var(--corail);border:1px solid rgba(255,98,91,.5)}
+.vc-exemple{font-family:var(--hand);font-size:1.35rem!important;color:var(--camel)!important;line-height:1.1!important}
+/* Aucun résultat */
+.vi-vide{text-align:center;padding:40px 0 120px}
+.vi-vide p{font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,3vw,1.8rem);color:var(--creme)}
+.vi-vide .hand{display:block;font-size:1.7rem;margin-top:10px}
+
+@media(max-width:1100px){.vi-grille{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:860px){
+  .vi-hero .wrap{grid-template-columns:1fr}
+  .vi-iris{justify-self:center;max-width:300px}
+  .vi-iris .bulle{left:-6%}
+  .vi-grille{grid-template-columns:repeat(2,1fr);gap:14px}
+}
+@media(max-width:600px){
+  .vi-hero{padding:clamp(110px,18vh,150px) 0 30px}
+  .vi-hero h1{font-size:clamp(2.6rem,13vw,3.4rem)}
+  .vi-outils{flex-direction:column-reverse;align-items:stretch}
+  .vi-recherche,.vi-recherche.ouvert{width:100%}
+  .vi-recherche input,.vi-recherche.ouvert input{width:100%;opacity:1;padding-right:16px}
+  .vi-themes{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 calc(-1 * clamp(20px,5vw,64px));padding:0 clamp(20px,5vw,64px)}
+  .vt{white-space:nowrap;padding:8px 13px;font-size:.7rem}
+  .vc-body{padding:12px 12px 14px;gap:8px}
+  .vc-body h3{font-size:1rem}
+  .vc-body p{display:none}
+  .vc-play{width:34px;height:34px}
+  .vc-liens{font-size:.72rem;gap:2px 8px}
+}
+@media(prefers-reduced-motion:reduce){.vcard{animation:none}.vi-recherche input{transition:none}}
+</style>
+<script type="speculationrules">
+{"prerender":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}
+</script>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+<a class="skip-link" href="#videos">Aller aux vidéos</a>
+<div class="grain"></div><div class="progress" id="progress"></div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="index.html"><img class="nav-logo" src="assets/brand/pigeard-logo-white.svg" alt="Pigeard"></a>
+  <nav class="nav-links"><a href="histoire.html">Notre histoire</a><a href="services.html">Nos expertises</a><a href="marques.html">Nos marques</a><a href="equipe.html">L'équipe</a><a href="magasins.html">Magasins</a></nav>
+  <button class="nav-cta" onclick="location.href='magasins.html#rdv'">Prendre rendez-vous</button>
+  <button class="burger" aria-label="Menu">☰</button>
+</header>
+<div class="mobile-menu"><button class="close">✕</button><a href="index.html">Accueil</a><a href="histoire.html">Notre histoire</a><a href="services.html">Nos expertises</a><a href="marques.html">Nos marques</a><a href="equipe.html">L'équipe</a><a href="magasins.html">Magasins</a></div>
+
+<!-- HERO -->
+<section class="vi-hero">
+  <div class="hero-bg"><div class="blob v" style="width:38vw;height:38vw;top:-14%;right:-4%"></div><div class="blob m" style="width:22vw;height:22vw;bottom:-12%;left:6%"></div></div>
+  <div class="wrap">
+    <div>
+      <a class="eyebrow" href="equipe.html#ia" style="color:var(--corail)">L'équipe · partie IA</a>
+      <h1>Les vidéos<br><em>d'Iris.</em></h1>
+      <p class="lede">La vue et les lunettes expliquées en vidéo courte, avec le sourire. Cherchez un sujet : Iris a sûrement la réponse.</p>
+    </div>
+    <div class="vi-iris reveal">
+      <div class="frame"><span class="tape" style="top:-16px;left:36px;transform:rotate(-4deg)"></span><picture><source srcset="assets/equipe/ia/iris.webp" type="image/webp"><img src="assets/equipe/ia/iris.jpg" alt="Iris, assistante virtuelle de Pigeard Opticiens, bras croisés dans le magasin" width="960" height="1200" fetchpriority="high" decoding="async"></picture></div>
+      <span class="bulle">une question ? une vidéo !</span>
+    </div>
+  </div>
+</section>
+
+<!-- VIDÉOS -->
+<section class="wrap" id="videos">
+  <!-- Outils (affichés par le script ; sans JS, toutes les vidéos restent visibles) -->
+  <div class="vi-outils" id="outils" hidden>
+    <div class="vi-themes" role="group" aria-label="Filtrer par thème">
+      <button type="button" class="vt" data-t="" aria-pressed="true">Toutes<span class="n"></span></button>
+      <button type="button" class="vt" data-t="vue" aria-pressed="false">La vue<span class="n"></span></button>
+      <button type="button" class="vt" data-t="soleil" aria-pressed="false">Lunettes de soleil<span class="n"></span></button>
+      <button type="button" class="vt" data-t="verres" aria-pressed="false">Verres<span class="n"></span></button>
+    </div>
+    <div class="vi-recherche" id="recherche" role="search">
+      <button type="button" class="loupe" id="loupe" aria-label="Rechercher une vidéo" aria-controls="q" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.6-4.6"/></svg>
+      </button>
+      <input type="search" id="q" placeholder="myopie, reflets, soleil…" aria-label="Rechercher une vidéo" autocomplete="off" enterkeyhint="search">
+    </div>
+  </div>
+  <p class="vi-compte" id="compte" aria-live="polite" hidden></p>
+
+  <div class="vi-grille" id="grille">
+    <!-- Vidéo programmée -->
+    <article class="vcard" data-theme="soleil" data-mots="polarisé polarisées polarisant reflet reflets éblouissement ébloui soleil route conduite voiture pare-brise télé écran test mer poissons gps">
+      <div class="vc-media">
+        <picture><source srcset="assets/videos-iris/polarise.webp" type="image/webp"><img src="assets/videos-iris/polarise.jpg" alt="Iris, la main en visière, sous le titre « Ébloui ! »" width="540" height="960" loading="lazy" decoding="async"></picture>
+        <span class="vc-date">Ven. 6 nov.</span>
+        <span class="vc-play" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 1.8v12.4a.8.8 0 0 0 1.2.7l10-6.2a.8.8 0 0 0 0-1.4l-10-6.2A.8.8 0 0 0 3 1.8z"/></svg></span>
+        <span class="vc-duree">1:22</span>
+      </div>
+      <div class="vc-body">
+        <span class="vc-theme">Lunettes de soleil</span>
+        <h3>Pourquoi les lunettes polarisées font disparaître les reflets&nbsp;?</h3>
+        <p>La lumière qui rebondit sur la route repart en vibrant à plat… et le verre polarisé la bloque. À la fin&nbsp;: un test tout simple devant votre télé&nbsp;!</p>
+        <div class="vc-liens"><span>Sur</span><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a><a href="https://www.tiktok.com/@iris_pigeard" target="_blank" rel="noopener">TikTok</a><a href="https://www.youtube.com/@PigeardOpticiens" target="_blank" rel="noopener">YouTube</a></div>
+      </div>
+    </article>
+
+    <!-- Vidéo prête (brouillon) -->
+    <article class="vcard" data-theme="vue" data-mots="myope myopie flou loin près bus rétine œil oeil ordonnance dioptries plisser yeux verre concave enfant">
+      <div class="vc-media">
+        <picture><source srcset="assets/videos-iris/myopie.webp" type="image/webp"><img src="assets/videos-iris/myopie.jpg" alt="Iris, pensive, sous le titre « Myope ? »" width="540" height="960" loading="lazy" decoding="async"></picture>
+        <span class="vc-date">Lun. 9 nov.</span>
+        <span class="vc-play" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 1.8v12.4a.8.8 0 0 0 1.2.7l10-6.2a.8.8 0 0 0 0-1.4l-10-6.2A.8.8 0 0 0 3 1.8z"/></svg></span>
+        <span class="vc-duree">1:20</span>
+      </div>
+      <div class="vc-body">
+        <span class="vc-theme">La vue</span>
+        <h3>Myope&nbsp;: vous voyez flou de loin… ou de près&nbsp;?</h3>
+        <p>Net de près, flou de loin&nbsp;: chez le myope, l'image se forme juste devant la rétine. Un verre concave la remet pile dessus.</p>
+        <div class="vc-liens"><span>Sur</span><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a><a href="https://www.tiktok.com/@iris_pigeard" target="_blank" rel="noopener">TikTok</a><a href="https://www.youtube.com/@PigeardOpticiens" target="_blank" rel="noopener">YouTube</a></div>
+      </div>
+    </article>
+
+    <!-- Exemples fictifs pour la démo -->
+    <article class="vcard vcard--bientot" data-theme="vue" data-mots="presbytie presbyte lire lecture près bras quarante ans">
+      <div class="vc-media"><span class="vc-q" aria-hidden="true">?</span><span class="vc-date">Bientôt</span></div>
+      <div class="vc-body">
+        <span class="vc-theme">La vue</span>
+        <h3>Presbytie&nbsp;: pourquoi tend-on les bras pour lire&nbsp;?</h3>
+        <p class="vc-exemple">exemple de sujet (démo)</p>
+      </div>
+    </article>
+    <article class="vcard vcard--bientot" data-theme="verres" data-mots="lumière bleue écrans écran ordinateur téléphone filtre verres protection">
+      <div class="vc-media"><span class="vc-q" aria-hidden="true">?</span><span class="vc-date">Bientôt</span></div>
+      <div class="vc-body">
+        <span class="vc-theme">Verres</span>
+        <h3>Lumière bleue&nbsp;: faut-il s'en protéger&nbsp;?</h3>
+        <p class="vc-exemple">exemple de sujet (démo)</p>
+      </div>
+    </article>
+  </div>
+
+  <div class="vi-vide" id="aucune" hidden>
+    <p>Aucune vidéo sur « <span id="aucune-q"></span> »… pour l'instant&nbsp;!</p>
+    <span class="hand">posez-nous la question en magasin, Iris prend note</span>
+  </div>
+</section>
+
+<!-- OUTRO (clair) -->
+<section class="sec-sm sec--cream"><div class="wrap" style="text-align:center">
+  <span class="eyebrow reveal" style="justify-content:center">Et pour vos yeux à vous</span>
+  <h2 class="reveal" style="font-family:var(--serif);font-weight:700;font-size:clamp(2.2rem,6vw,3.8rem);line-height:1.04;max-width:20ch;margin:18px auto 0">Rien ne remplace<br><em style="font-style:italic;color:var(--vert)">un vrai examen.</em></h2>
+  <span class="hand reveal" style="font-size:2rem;display:inline-block;margin-top:14px;color:var(--bois)">on vous attend en boutique</span>
+  <div class="reveal" style="margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap"><a class="btn btn--primary" href="magasins.html#rdv">Prendre rendez-vous <span class="arr">→</span></a><a class="btn btn--ghost" href="equipe.html">Toute l'équipe</a></div>
+</div></section>
+
+<!-- FOOTER -->
+<footer class="site"><div class="wrap">
+  <div class="foot-top">
+    <div class="foot-brand"><img class="mac" src="assets/brand/macaron-cream.svg" alt="Pigeard depuis 1863" loading="lazy" decoding="async"><h3>Créateur de regards depuis 1863.</h3><span class="hand">à très vite chez Pigeard</span></div>
+    <div class="foot-links">
+      <div class="foot-col"><h4>La maison</h4><a href="histoire.html">Notre histoire</a><a href="equipe.html">L'équipe</a><a href="videos-iris.html">Les vidéos d'Iris</a><a href="engagements.html">Nos engagements</a></div>
+      <div class="foot-col"><h4>Expertises</h4><a href="services.html">Nos expertises</a><a href="marques.html">Nos marques</a><a href="creations.html">Nos créations</a></div>
+      <div class="foot-col"><h4>Magasins</h4><a href="magasins.html">Nos 3 magasins</a><a href="opticien-nogent-le-rotrou.html">Opticien Nogent-le-Rotrou</a><a href="opticien-brou.html">Opticien Brou</a><a href="opticien-la-loupe.html">Opticien La Loupe</a><a href="contact.html">Contact</a><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a></div>
+    </div>
+  </div>
+  <div class="foot-bottom"><span>© 2026 Pigeard — Créateur de regards depuis 1863.</span><span><a href="mentions-legales.html">Mentions légales</a> · Nogent-le-Rotrou · Brou · La Loupe</span></div>
+</div></footer>
+
+<script src="assets/js/vendor/gsap.min.js"></script>
+<script src="assets/js/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/js/vendor/lenis.min.js"></script>
+<script src="assets/js/site.js?v=20261103b"></script>
+<script>
+/* Recherche (loupe) + filtres par thème. Sans JS : toutes les vidéos visibles, pas d'outils. */
+(function(){
+  var outils = document.getElementById('outils');
+  if(!outils) return;
+  var boite = document.getElementById('recherche'), loupe = document.getElementById('loupe'), champ = document.getElementById('q');
+  var compte = document.getElementById('compte'), vide = document.getElementById('aucune'), videQ = document.getElementById('aucune-q');
+  var cartes = [].slice.call(document.querySelectorAll('.vcard'));
+  var puces = [].slice.call(document.querySelectorAll('.vt'));
+  var theme = '';
+  function norm(s){ return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/œ/g, 'oe'); }
+  cartes.forEach(function(c){ c._txt = norm(c.textContent + ' ' + (c.getAttribute('data-mots') || '')); });
+  puces.forEach(function(b){
+    var t = b.getAttribute('data-t');
+    var n = cartes.filter(function(c){ return !t || c.getAttribute('data-theme') === t; }).length;
+    b.querySelector('.n').textContent = n;
+  });
+  function filtrer(){
+    var mots = norm(champ.value).split(/\s+/).filter(Boolean), n = 0;
+    cartes.forEach(function(c){
+      var ok = (!theme || c.getAttribute('data-theme') === theme) && mots.every(function(m){ return c._txt.indexOf(m) > -1; });
+      c.hidden = !ok; if(ok) n++;
+    });
+    compte.hidden = false;
+    compte.textContent = n + (n > 1 ? ' vidéos' : ' vidéo') + (mots.length ? ' pour « ' + champ.value.trim() + ' »' : '');
+    vide.hidden = n > 0;
+    if(!n) videQ.textContent = champ.value.trim() || 'ce thème';
+    if(window.PIGEARD && PIGEARD.refresh) PIGEARD.refresh();
+  }
+  function ouvrir(){ boite.classList.add('ouvert'); loupe.setAttribute('aria-expanded', 'true'); champ.focus(); }
+  function fermer(){ if(champ.value) return; boite.classList.remove('ouvert'); loupe.setAttribute('aria-expanded', 'false'); }
+  loupe.addEventListener('click', function(){ boite.classList.contains('ouvert') && !champ.value ? fermer() : ouvrir(); });
+  champ.addEventListener('focus', ouvrir);
+  champ.addEventListener('blur', function(){ setTimeout(fermer, 150); });
+  champ.addEventListener('input', filtrer);
+  champ.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ champ.value = ''; filtrer(); champ.blur(); } });
+  puces.forEach(function(b){
+    b.addEventListener('click', function(){
+      theme = b.getAttribute('data-t');
+      puces.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      filtrer();
+    });
+  });
+  /* Lien direct : videos-iris.html?q=myopie */
+  try{ var q = new URLSearchParams(location.search).get('q'); if(q){ champ.value = q; boite.classList.add('ouvert'); } }catch(e){}
+  outils.hidden = false;
+  filtrer();
+})();
+</script>
+</body>
+</html>

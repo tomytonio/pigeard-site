@@ -96,10 +96,39 @@
 .member .acc{min-height:0}
 @media(max-width:980px){.mag-cover .wrap{grid-template-columns:1fr;gap:26px}.mag-cover.flip .mc-media{order:0}}
 
+/* ---- Partie 04 : l'IA de la maison (Iris + accès aux vidéos) ---- */
+.ia-grid{grid-template-columns:repeat(3,1fr)}
+.member .pill-ia{position:absolute;top:10px;right:10px;z-index:2;font-size:.6rem;font-weight:700;letter-spacing:.16em;line-height:1.4;text-transform:uppercase;color:#0E0D0B;background:var(--corail);padding:4px 10px;border-radius:100px}
+.ia-videos{grid-column:span 2;display:grid;grid-template-columns:auto 1fr;gap:clamp(22px,3.4vw,46px);align-items:center;padding:clamp(24px,3.2vw,44px);border-radius:14px;background:var(--noir-2);border:1px solid var(--ligne);color:var(--blanc-chaud);transition:border-color .5s,transform .5s var(--ease)}
+.ia-videos:hover,.ia-videos:focus-visible{border-color:rgba(255,98,91,.55);transform:translateY(-5px)}
+.iv-thumbs{position:relative;width:clamp(170px,19vw,250px);aspect-ratio:1/1}
+.iv-thumbs .th{position:absolute;top:0;width:44%;aspect-ratio:9/16;border-radius:8px;overflow:hidden;border:3px solid var(--creme);background:var(--noir-3);box-shadow:0 22px 40px -18px rgba(0,0,0,.95);transition:transform .6s var(--ease)}
+.iv-thumbs .th img{width:100%;height:100%;object-fit:cover;display:block}
+.iv-thumbs .th:nth-child(1){left:0;transform:rotate(-8deg) translateY(8%)}
+.iv-thumbs .th:nth-child(2){left:25%;z-index:2;transform:rotate(1deg)}
+.iv-thumbs .th:nth-child(3){left:56%;transform:rotate(9deg) translateY(10%);display:grid;place-items:center;font-family:var(--serif);font-weight:800;font-size:2.6rem;color:var(--corail)}
+.ia-videos:hover .th:nth-child(1){transform:rotate(-12deg) translate(-6%,6%)}
+.ia-videos:hover .th:nth-child(3){transform:rotate(13deg) translate(6%,8%)}
+.iv-txt .eyebrow{color:var(--corail)}
+.iv-txt .eyebrow::before{background:var(--corail)}
+.iv-txt h3{font-family:var(--serif);font-weight:700;font-size:clamp(1.8rem,3.2vw,2.7rem);line-height:1;letter-spacing:-.01em;margin:14px 0 12px}
+.iv-txt p{color:var(--muted);max-width:42ch}
+.iv-txt .btn{margin-top:22px}
+.ia-note{margin-top:20px;font-size:.84rem;color:var(--muted);text-align:center}
+
 /* ── Mobile ≤ 768px ── */
 @media(max-width:768px){
   /* Grilles 3-col Brou & La Loupe → 2 col */
   .team-grid .grid-members[style*="repeat(3"]{grid-template-columns:repeat(2,1fr)!important}
+  /* Partie IA : Iris et la carte « vidéos » côte à côte */
+  .ia-grid{grid-template-columns:repeat(2,1fr)!important}
+  .ia-videos{grid-column:span 1;grid-template-columns:1fr;align-content:center;gap:14px;padding:16px 14px 18px;text-align:center}
+  .iv-thumbs{width:min(100%,170px);margin:0 auto}
+  .iv-txt .eyebrow{justify-content:center;font-size:.62rem;letter-spacing:.2em}
+  .iv-txt .eyebrow::before{display:none}
+  .iv-txt h3{font-size:1.45rem;margin:8px 0 6px}
+  .iv-txt p{font-size:.86rem;line-height:1.4}
+  .iv-txt .btn{margin-top:12px;padding:10px 14px;font-size:.68rem;letter-spacing:.06em}
 }
 
 /* ── Mobile ≤ 600px ── */
@@ -243,6 +272,40 @@
   </div>
 </section>
 
+<!-- ════ PARTIE 04 — L'IA DE LA MAISON (Iris) ════ -->
+<section id="ia" class="mag-cover flip" style="color:var(--corail)">
+  <span class="ghost">Iris</span>
+  <div class="wrap">
+    <div class="mc-media reveal"><div class="frame"><span class="tape" style="top:-16px;left:30px;transform:rotate(3deg)"></span><picture><source srcset="assets/videos-iris/iris-au-tableau.webp" type="image/webp"><img src="assets/videos-iris/iris-au-tableau.jpg" alt="Iris, l'assistante virtuelle Pigeard, qui rit devant le tableau de ses vidéos" width="1200" height="900" loading="lazy" decoding="async"></picture></div></div>
+    <div class="reveal" style="color:var(--blanc-chaud)">
+      <span class="mc-num" style="color:var(--corail)">Partie 04 — l'intelligence artificielle</span>
+      <h2>L'IA de la maison</h2>
+      <p class="mc-sub">Iris, notre assistante virtuelle · elle explique la vue en vidéo.</p>
+      <span class="mc-count" style="color:var(--corail);border-color:rgba(255,98,91,.4)">1 visage numérique</span>
+      <span class="mc-hand">la petite dernière de la famille</span>
+    </div>
+  </div>
+</section>
+<section class="team-grid wrap">
+  <div class="grid-members ia-grid">
+    <article class="member reveal"><div class="pf"><picture><source srcset="assets/equipe/ia/iris.webp" type="image/webp"><img src="assets/equipe/ia/iris.jpg" alt="Iris, assistante virtuelle de Pigeard Opticiens : lunettes écaille, chignon, polo noir à la lunette Pigeard" width="960" height="1200" loading="lazy" decoding="async"></picture><span class="pill-ia">IA</span></div><div class="info"><div class="nm">Iris</div><div class="role">Assistante virtuelle</div><div class="acc">la vue expliquée en vidéo</div></div></article>
+    <a class="ia-videos reveal" href="videos-iris.html">
+      <div class="iv-thumbs" aria-hidden="true">
+        <span class="th"><picture><source srcset="assets/videos-iris/myopie.webp" type="image/webp"><img src="assets/videos-iris/myopie.jpg" alt="" width="540" height="960" loading="lazy" decoding="async"></picture></span>
+        <span class="th"><picture><source srcset="assets/videos-iris/polarise.webp" type="image/webp"><img src="assets/videos-iris/polarise.jpg" alt="" width="540" height="960" loading="lazy" decoding="async"></picture></span>
+        <span class="th">?</span>
+      </div>
+      <div class="iv-txt">
+        <span class="eyebrow">Ses vidéos</span>
+        <h3>Les vidéos d'Iris</h3>
+        <p>Myopie, verres polarisés… Iris répond en vidéo courte aux questions qu'on se pose sur la vue.</p>
+        <span class="btn btn--ghost">Voir les vidéos <span class="arr">→</span></span>
+      </div>
+    </a>
+  </div>
+  <p class="ia-note">Iris est un personnage créé par intelligence artificielle. Ses vidéos sont préparées par l'équipe Pigeard.</p>
+</section>
+
 <!-- OUTRO (clair) -->
 <section class="sec-sm sec--cream"><div class="wrap" style="text-align:center">
   <span class="eyebrow reveal" style="justify-content:center">Une famille d'opticiens</span>
@@ -256,7 +319,7 @@
   <div class="foot-top">
     <div class="foot-brand"><img class="mac" src="assets/brand/macaron-cream.svg" alt="Pigeard depuis 1863" loading="lazy" decoding="async"><h3>Créateur de regards depuis 1863.</h3><span class="hand">à très vite chez Pigeard</span></div>
     <div class="foot-links">
-      <div class="foot-col"><h4>La maison</h4><a href="histoire.html">Notre histoire</a><a href="equipe.html">L'équipe</a><a href="engagements.html">Nos engagements</a></div>
+      <div class="foot-col"><h4>La maison</h4><a href="histoire.html">Notre histoire</a><a href="equipe.html">L'équipe</a><a href="videos-iris.html">Les vidéos d'Iris</a><a href="engagements.html">Nos engagements</a></div>
       <div class="foot-col"><h4>Expertises</h4><a href="services.html">Nos expertises</a><a href="marques.html">Nos marques</a><a href="creations.html">Nos créations</a></div>
       <div class="foot-col"><h4>Magasins</h4><a href="magasins.html">Nos 3 magasins</a><a href="opticien-nogent-le-rotrou.html">Opticien Nogent-le-Rotrou</a><a href="opticien-brou.html">Opticien Brou</a><a href="opticien-la-loupe.html">Opticien La Loupe</a><a href="contact.html">Contact</a><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a></div>
     </div>
