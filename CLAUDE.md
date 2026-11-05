@@ -212,9 +212,9 @@ commentaires de code, échanges avec le propriétaire.
   - **Ne pas changer** les classes `vcard`, `vc-date`, `vc-liens` ni l'attribut `data-youtube`
     sans adapter ce programme.
   - Activation manuelle (secours) : même opération à la main, après la vérification oEmbed.
-- État au 2026-11-05 : **myopie** lisible (`5o0Wwe_pOeA`, YouTube seulement) ; **polarisé**
-  programmée le vendredi 6/11 à 18 h et **presbytie** le lundi 9/11 à 17 h 30 (Instagram, TikTok,
-  YouTube), activées automatiquement à leur sortie.
+- État au 2026-11-06 : **myopie** lisible (`5o0Wwe_pOeA`, YouTube seulement) ; **polarisé**
+  programmée le vendredi 6/11 à 18 h, **presbytie** le lundi 9/11 à 17 h 30 et **progressifs** le
+  jeudi 12/11 à 17 h (Instagram, TikTok, YouTube), activées automatiquement à leur sortie.
 
 ## Impression 3D en magasin — OOmade (depuis le 2026-10-14)
 
