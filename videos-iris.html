@@ -12,7 +12,7 @@
   - Titres et résumés : légendes validées par Antoine (Studio vidéo, LEGENDE.txt de video-polarise et
     video-myopie, 2026-11-05), elles-mêmes tirées des scripts de voix.
   - Dates : programmation Buffer de « polarisé » (vendredi 6/11/2026 18 h, statut « programmée ») ;
-    « myopie » en brouillon pour le lundi 9/11/2026 18 h (pas encore envoyée).
+    « myopie » publiée sur YouTube seulement le 5/11/2026 (https://www.youtube.com/watch?v=5o0Wwe_pOeA).
   - Comptes : Instagram @pigeard.opticiens, TikTok @iris_pigeard, YouTube @PigeardOpticiens
     (vérifiés par le serveur de l'appli Pigeard via Buffer, 2026-11-05).
   - Les cartes « Bientôt » marquées « Exemple » sont des sujets fictifs pour la démo.
@@ -212,11 +212,11 @@ html.vl-ouvert{overflow:hidden}
       </div>
     </article>
 
-    <!-- Envoyée le 5/11 pour YouTube seulement, publication dès validation d'Antoine dans l'appli -->
-    <article class="vcard" data-youtube="" data-theme="vue" data-mots="myope myopie flou loin près bus rétine œil oeil ordonnance dioptries plisser yeux verre concave enfant">
+    <!-- Publiée le 5/11/2026 sur YouTube seulement : https://www.youtube.com/watch?v=5o0Wwe_pOeA -->
+    <article class="vcard" data-youtube="5o0Wwe_pOeA" data-theme="vue" data-mots="myope myopie flou loin près bus rétine œil oeil ordonnance dioptries plisser yeux verre concave enfant">
       <div class="vc-media">
         <picture><source srcset="assets/videos-iris/myopie.webp" type="image/webp"><img src="assets/videos-iris/myopie.jpg" alt="Iris, pensive, sous le titre « Myope ? »" width="540" height="960" loading="lazy" decoding="async"></picture>
-        <span class="vc-date">Bientôt</span>
+        <span class="vc-date">5 nov.</span>
         <button type="button" class="vc-lire" hidden aria-label="Lire la vidéo : Myope, vous voyez flou de loin… ou de près ?"><span class="vc-play" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 1.8v12.4a.8.8 0 0 0 1.2.7l10-6.2a.8.8 0 0 0 0-1.4l-10-6.2A.8.8 0 0 0 3 1.8z"/></svg></span></button>
         <span class="vc-duree">1:20</span>
       </div>
@@ -224,7 +224,7 @@ html.vl-ouvert{overflow:hidden}
         <span class="vc-theme">La vue</span>
         <h3>Myope&nbsp;: vous voyez flou de loin… ou de près&nbsp;?</h3>
         <p>Net de près, flou de loin&nbsp;: chez le myope, l'image se forme juste devant la rétine. Un verre concave la remet pile dessus.</p>
-        <div class="vc-liens"><span>Sur</span><a href="https://www.youtube.com/@PigeardOpticiens" target="_blank" rel="noopener">YouTube</a></div>
+        <div class="vc-liens"><span>Sur</span><a href="https://www.youtube.com/watch?v=5o0Wwe_pOeA" target="_blank" rel="noopener">YouTube</a></div>
       </div>
     </article>
 
@@ -371,7 +371,7 @@ html.vl-ouvert{overflow:hidden}
   function ouvrir(c){
     carte = c; retour = document.activeElement;
     titre.textContent = c.querySelector('h3').textContent;
-    lienYt.href = 'https://www.youtube.com/shorts/' + encodeURIComponent(c.getAttribute('data-youtube'));
+    lienYt.href = 'https://www.youtube.com/watch?v=' + encodeURIComponent(c.getAttribute('data-youtube'));
     dlg.hidden = false; document.documentElement.classList.add('vl-ouvert');
     if(window.PIGEARD && PIGEARD.lenis) PIGEARD.lenis.stop();
     accordDonne() ? lire() : demander();
