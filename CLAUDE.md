@@ -185,6 +185,12 @@ commentaires de code, échanges avec le propriétaire.
   en dessous, une colonne dans l'ordre titre → portrait → bandeau (« comme les équipes magasin »).
   **`demo-iris-equipe.html` fait foi** (la branche `claude/demo-iris-videos` est l'ancienne
   version).
+- **Lecture des vidéos** (choix du propriétaire, 2026-11-05) : sur le site via YouTube. Chaque carte
+  de `videos-iris.html` a un attribut `data-youtube` : vide = pas de bouton ▶ ; l'identifiant
+  YouTube (11 caractères, lu par `publish.py <ep> --statut` dans le dépôt Video une fois la vidéo
+  publiée) rend la carte lisible : fenêtre d'accord (CNIL, FAQ cookies q. 23), puis lecteur
+  `youtube-nocookie.com`. Au même moment, remplacer la date de la carte par la date de sortie.
+  Polarisé : à activer à sa sortie (vendredi 6/11 18 h). Myopie : publiée sur YouTube seulement.
 - Si validé : reporter la partie 04 et ses styles de `demo-iris-equipe.html` dans `equipe.html`,
   retirer `noindex` et les cartes fictives de `videos-iris.html` (et pointer ses liens vers
   `equipe.html#ia`), supprimer `demo-iris-equipe.html`, ajouter `videos-iris.html` au sitemap
@@ -324,7 +330,10 @@ commentaires de code, échanges avec le propriétaire.
 ## Flux de données personnelles (RGPD) & skill dédié
 
 - Le site n'embarque **aucun script tiers ni cookie** ; polices, GSAP, Lenis
-  et images sont auto-hébergés. Les seuls flux sortants vont vers le **n8n
+  et images sont auto-hébergés. **Seule exception, au clic** : le lecteur
+  YouTube (`youtube-nocookie.com`) des vidéos d'Iris (`videos-iris.html`),
+  chargé seulement après « Accepter et lire » dans une fenêtre d'accord dédiée
+  (flux F10 de l'état des lieux RGPD). Les seuls flux sortants vont vers le **n8n
   Pigeard** (`n8n-1zv1.srv1641932.hstgr.cloud`, VPS Hostinger) : formulaire
   de contact (`contact-site`), statistiques de visite maison (`stats-site`,
   `visites-site`, identifiant aléatoire en `sessionStorage`) et avis Google
