@@ -34,6 +34,11 @@ commentaires de code, échanges avec le propriétaire.
   ouvre une PR, puis **la fusionne lui-même** dans `main` (pas d'attente de
   validation), et vérifie ensuite le site en production (`curl` sur le HTML +
   les assets, ~10 min après la fusion).
+- **Exception automatique** (accord du propriétaire, 2026-11-05) : le programme
+  `scripts/site_activer.py` du dépôt `Video` (tâche Windows horaire sur le PC
+  d'Antoine) pousse **directement sur `main`** des commits « Vidéos d'Iris : …
+  [automatique] » qui ne modifient que les cartes de `videos-iris.html` (voir
+  « Iris et ses vidéos »). Toujours `git pull` avant de travailler.
 - nginx : redirection domaine nu → www, 404 personnalisée, gzip, redirections
   301 des anciennes URLs Shopify (QR codes imprimés !), fichiers de travail
   (`.md`, `.py`, `/tools/`, `/deploy/`…) non servis au public, et depuis le
@@ -189,12 +194,27 @@ commentaires de code, échanges avec le propriétaire.
   cookies q. 23 : finalités, liens FR Google, refus = lien direct, retrait sous le lecteur), puis
   lecteur `youtube-nocookie.com`. Rien n'est chargé depuis YouTube avant « Accepter et lire »
   (flux F10 de l'état des lieux RGPD, paragraphe dédié des mentions légales).
-- **Ajouter / activer une vidéo** : `publish.py <ep> --statut` (dépôt `Video`) donne le lien une
-  fois publiée ; vérifier qu'elle est publique et intégrable
-  (`https://www.youtube.com/oembed?url=<lien>&format=json` → 200) ; renseigner `data-youtube`,
-  remplacer la date par la date de sortie, pointer « Sur YouTube » vers la vidéo. État au
-  2026-11-05 : **myopie** lisible (`5o0Wwe_pOeA`, YouTube seulement) ; **polarisé** programmée le
-  vendredi 6/11 à 18 h (Instagram, TikTok, YouTube) → à activer à sa sortie.
+- **Ajouter une vidéo** (Claude, au moment de l'envoi de la vidéo, avec le même accord) : copier
+  une carte existante.
+  - Vignette dans `assets/videos-iris/<ep>.jpg` + `.webp`, où `<ep>` est le nom de l'épisode dans
+    le dépôt `Video`. C'est ainsi que le programme reconnaît la carte ; on peut aussi poser
+    `data-ep="<ep>"`.
+  - `data-youtube=""`, date prévue, thème, mots-clés, légende validée, liens vers les comptes.
+  - Toutes les vidéos sortent sur Instagram, TikTok et YouTube (décision du 2026-11-05).
+- **Activer une vidéo : automatique** (`scripts/site_activer.py` du dépôt `Video`, tâche Windows
+  « Pigeard - vidéos sur le site », toutes les heures et à l'ouverture de session).
+  - Il traite chaque carte à `data-youtube=""`. Il lit l'état dans l'appli Pigeard et vérifie que
+    la vidéo YouTube est publique (oEmbed 200).
+  - Il renseigne alors `data-youtube`, la date de sortie (« 6 nov. ») et les liens des
+    publications, puis pousse sur `main`.
+  - Il travaille dans un clone réservé (`~/Projets/automatisation/pigeard-site`).
+  - Journal : `~/Projets/automatisation/site-activer.log`. Essai sans écriture : `--essai`.
+  - **Ne pas changer** les classes `vcard`, `vc-date`, `vc-liens` ni l'attribut `data-youtube`
+    sans adapter ce programme.
+  - Activation manuelle (secours) : même opération à la main, après la vérification oEmbed.
+- État au 2026-11-05 : **myopie** lisible (`5o0Wwe_pOeA`, YouTube seulement) ; **polarisé**
+  programmée le vendredi 6/11 à 18 h (Instagram, TikTok, YouTube), activée automatiquement à sa
+  sortie.
 
 ## Impression 3D en magasin — OOmade (depuis le 2026-10-14)
 
