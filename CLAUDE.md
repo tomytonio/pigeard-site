@@ -168,33 +168,33 @@ commentaires de code, échanges avec le propriétaire.
   collaborateurs », « Treize passionnés ») **et** `index.html` (photo dans la
   pile, compteur, prénoms, bouton « Rencontrer les 13 visages »).
 
-## Démo cachée « Iris » (depuis le 2026-11-05, à retirer après décision)
+## Iris et ses vidéos (depuis le 2026-11-05)
 
-- Demande du propriétaire : Iris (assistante virtuelle IA des vidéos courtes, studio vidéo sur son
-  PC) dans une partie « IA » en bas de la page équipe, avec à côté un accès à une page listant ses
-  vidéos (vignette, thème, loupe de recherche). **Démo à valider, pas encore intégrée au vrai site.**
-- Pages **cachées** (aucun lien du site n'y mène, `noindex, nofollow`, hors `sitemap.xml`) :
-  `demo-iris-equipe.html` (copie de `equipe.html` + partie 04 « Iris, l'IA de la maison ») et
-  `videos-iris.html` (recherche et filtres en JS, sans JS toutes les cartes restent visibles).
-  Images : `assets/equipe/ia/iris.*` (portrait fourni par le propriétaire) et `assets/videos-iris/`
-  (vignettes tirées des rendus des vidéos). Les deux cartes « Bientôt » sont des sujets fictifs.
-- Retouches du propriétaire (2026-11-05) : le **portrait d'Iris** (pastille « IA ») remplace la
-  photo de magasin dans le séparateur (`.mag-cover--ia`, cadre 4:5), titre « Iris, l'IA de la
-  maison », pas de carte membre en double, accès aux vidéos par un bloc `.ia-bandeau` placé dans
-  le séparateur : **≥ 981 px, trois colonnes titre | portrait | vidéos** (gain de place demandé) ;
-  en dessous, une colonne dans l'ordre titre → portrait → bandeau (« comme les équipes magasin »).
-  **`demo-iris-equipe.html` fait foi** (la branche `claude/demo-iris-videos` est l'ancienne
-  version).
-- **Lecture des vidéos** (choix du propriétaire, 2026-11-05) : sur le site via YouTube. Chaque carte
-  de `videos-iris.html` a un attribut `data-youtube` : vide = pas de bouton ▶ ; l'identifiant
-  YouTube (11 caractères, lu par `publish.py <ep> --statut` dans le dépôt Video une fois la vidéo
-  publiée) rend la carte lisible : fenêtre d'accord (CNIL, FAQ cookies q. 23), puis lecteur
-  `youtube-nocookie.com`. Au même moment, remplacer la date de la carte par la date de sortie.
-  Polarisé : à activer à sa sortie (vendredi 6/11 18 h). Myopie : publiée sur YouTube seulement.
-- Si validé : reporter la partie 04 et ses styles de `demo-iris-equipe.html` dans `equipe.html`,
-  retirer `noindex` et les cartes fictives de `videos-iris.html` (et pointer ses liens vers
-  `equipe.html#ia`), supprimer `demo-iris-equipe.html`, ajouter `videos-iris.html` au sitemap
-  (`build_static.py`) et à `llms.txt`. Si abandonné : supprimer les deux pages et les images.
+- **Iris** : assistante virtuelle créée par IA, présentatrice des vidéos courtes de la maison
+  (fabriquées sur le PC d'Antoine, studio HyperFrames + dépôt `Video` ; publiées via l'appli Pigeard
+  et Buffer). Portrait fourni par le propriétaire : `assets/equipe/ia/iris.*`.
+- **`equipe.html`, partie 04 « Iris, l'IA de la maison »** (`#ia`, après La Loupe) : séparateur
+  `.mag-cover--ia` dont la photo est le **portrait d'Iris** (pastille « IA », cadre 4:5) et bloc
+  `.ia-bandeau` vers les vidéos. **≥ 981 px : trois colonnes titre | portrait | vidéos** (gain de
+  place demandé) ; en dessous, une colonne titre → portrait → bandeau (« comme les équipes
+  magasin »). Mention « Iris est un personnage créé par intelligence artificielle… » dessous. Iris
+  n'est **pas** comptée dans « 13 collaborateurs » ni dans le JSON-LD `employee`.
+- **`videos-iris.html`** (dans le sitemap et `llms.txt`) : une carte par vidéo (vignette 9:16 dans
+  `assets/videos-iris/<ep>.webp|jpg` tirée du rendu, date, durée, thème `data-theme`, mots-clés
+  `data-mots`, légende validée), filtres par thème et loupe de recherche (accents ignorés, lien
+  direct `?q=`). Sans JS : toutes les cartes visibles, pas d'outils. Un filtre de thème sans vidéo
+  est retiré (les styles `.vcard--bientot` restent pour annoncer une vidéo à venir).
+- **Lecture sur le site via YouTube** (choix du propriétaire) : `data-youtube` vide = pas de bouton
+  ▶ ; l'identifiant YouTube (11 caractères) rend la carte lisible : fenêtre d'accord (CNIL, FAQ
+  cookies q. 23 : finalités, liens FR Google, refus = lien direct, retrait sous le lecteur), puis
+  lecteur `youtube-nocookie.com`. Rien n'est chargé depuis YouTube avant « Accepter et lire »
+  (flux F10 de l'état des lieux RGPD, paragraphe dédié des mentions légales).
+- **Ajouter / activer une vidéo** : `publish.py <ep> --statut` (dépôt `Video`) donne le lien une
+  fois publiée ; vérifier qu'elle est publique et intégrable
+  (`https://www.youtube.com/oembed?url=<lien>&format=json` → 200) ; renseigner `data-youtube`,
+  remplacer la date par la date de sortie, pointer « Sur YouTube » vers la vidéo. État au
+  2026-11-05 : **myopie** lisible (`5o0Wwe_pOeA`, YouTube seulement) ; **polarisé** programmée le
+  vendredi 6/11 à 18 h (Instagram, TikTok, YouTube) → à activer à sa sortie.
 
 ## Impression 3D en magasin — OOmade (depuis le 2026-10-14)
 

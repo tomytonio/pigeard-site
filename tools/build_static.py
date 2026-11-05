@@ -398,6 +398,7 @@ def main():
         ("/impression-3d.html", "0.8", "monthly"),
         ("/marques.html", "0.8", "monthly"),
         ("/creations.html", "0.8", "monthly"), ("/equipe.html", "0.6", "yearly"),
+        ("/videos-iris.html", "0.6", "monthly"),
         ("/magasins.html", "0.9", "monthly"), ("/engagements.html", "0.7", "yearly"),
         ("/contact.html", "0.7", "yearly"), ("/mentions-legales.html", "0.3", "yearly"),
         ("/opticien-nogent-le-rotrou.html", "0.9", "monthly"),
