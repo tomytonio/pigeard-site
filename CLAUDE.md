@@ -180,9 +180,11 @@ commentaires de code, échanges avec le propriétaire.
   (vignettes tirées des rendus des vidéos). Les deux cartes « Bientôt » sont des sujets fictifs.
 - Retouches du propriétaire (2026-11-05) : le **portrait d'Iris** (pastille « IA ») remplace la
   photo de magasin dans le séparateur (`.mag-cover--ia`, cadre 4:5), titre « Iris, l'IA de la
-  maison », pas de carte membre en double, accès aux vidéos par un **bandeau discret** en dessous
-  (`.ia-bandeau`). **`demo-iris-equipe.html` fait foi** (la branche `claude/demo-iris-videos` est
-  l'ancienne version).
+  maison », pas de carte membre en double, accès aux vidéos par un bloc `.ia-bandeau` placé dans
+  le séparateur : **≥ 981 px, trois colonnes titre | portrait | vidéos** (gain de place demandé) ;
+  en dessous, une colonne dans l'ordre titre → portrait → bandeau (« comme les équipes magasin »).
+  **`demo-iris-equipe.html` fait foi** (la branche `claude/demo-iris-videos` est l'ancienne
+  version).
 - Si validé : reporter la partie 04 et ses styles de `demo-iris-equipe.html` dans `equipe.html`,
   retirer `noindex` et les cartes fictives de `videos-iris.html` (et pointer ses liens vers
   `equipe.html#ia`), supprimer `demo-iris-equipe.html`, ajouter `videos-iris.html` au sitemap
