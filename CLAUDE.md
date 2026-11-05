@@ -174,14 +174,19 @@ commentaires de code, échanges avec le propriétaire.
   PC) dans une partie « IA » en bas de la page équipe, avec à côté un accès à une page listant ses
   vidéos (vignette, thème, loupe de recherche). **Démo à valider, pas encore intégrée au vrai site.**
 - Pages **cachées** (aucun lien du site n'y mène, `noindex, nofollow`, hors `sitemap.xml`) :
-  `demo-iris-equipe.html` (copie de `equipe.html` + partie 04 « L'IA de la maison ») et
+  `demo-iris-equipe.html` (copie de `equipe.html` + partie 04 « Iris, l'IA de la maison ») et
   `videos-iris.html` (recherche et filtres en JS, sans JS toutes les cartes restent visibles).
   Images : `assets/equipe/ia/iris.*` (portrait fourni par le propriétaire) et `assets/videos-iris/`
   (vignettes tirées des rendus des vidéos). Les deux cartes « Bientôt » sont des sujets fictifs.
-- La vraie intégration est prête sur la branche `claude/demo-iris-videos` (partie IA dans
-  `equipe.html` même). Si validé : partir de cette branche, retirer `noindex` et les cartes fictives,
-  supprimer `demo-iris-equipe.html`, ajouter `videos-iris.html` au sitemap (`build_static.py`) et à
-  `llms.txt`. Si abandonné : supprimer les deux pages et les images.
+- Retouches du propriétaire (2026-11-05) : le **portrait d'Iris** (pastille « IA ») remplace la
+  photo de magasin dans le séparateur (`.mag-cover--ia`, cadre 4:5), titre « Iris, l'IA de la
+  maison », pas de carte membre en double, accès aux vidéos par un **bandeau discret** en dessous
+  (`.ia-bandeau`). **`demo-iris-equipe.html` fait foi** (la branche `claude/demo-iris-videos` est
+  l'ancienne version).
+- Si validé : reporter la partie 04 et ses styles de `demo-iris-equipe.html` dans `equipe.html`,
+  retirer `noindex` et les cartes fictives de `videos-iris.html` (et pointer ses liens vers
+  `equipe.html#ia`), supprimer `demo-iris-equipe.html`, ajouter `videos-iris.html` au sitemap
+  (`build_static.py`) et à `llms.txt`. Si abandonné : supprimer les deux pages et les images.
 
 ## Impression 3D en magasin — OOmade (depuis le 2026-10-14)
 
