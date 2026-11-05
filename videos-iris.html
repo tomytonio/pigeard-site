@@ -12,7 +12,7 @@
   - Titres et résumés : légendes validées par Antoine (Studio vidéo, LEGENDE.txt de video-polarise et
     video-myopie, 2026-11-05), elles-mêmes tirées des scripts de voix.
   - Dates : programmation Buffer de « polarisé » (vendredi 6/11/2026 18 h, statut « programmée ») ;
-    « myopie » en brouillon pour le lundi 9/11/2026 18 h (pas encore envoyée).
+    « myopie » publiée sur YouTube seulement le 5/11/2026 (https://www.youtube.com/watch?v=5o0Wwe_pOeA).
   - Comptes : Instagram @pigeard.opticiens, TikTok @iris_pigeard, YouTube @PigeardOpticiens
     (vérifiés par le serveur de l'appli Pigeard via Buffer, 2026-11-05).
   - Les cartes « Bientôt » marquées « Exemple » sont des sujets fictifs pour la démo.
@@ -72,6 +72,33 @@
 .vc-duree{position:absolute;bottom:12px;right:12px;z-index:2;font-size:.75rem;font-weight:600;color:var(--blanc-chaud);background:rgba(14,13,11,.7);padding:3px 8px;border-radius:6px}
 .vc-play{position:absolute;bottom:12px;left:12px;z-index:2;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--corail);color:#0E0D0B;box-shadow:0 10px 24px -8px rgba(255,98,91,.7)}
 .vc-play svg{width:16px;height:16px;margin-left:3px}
+/* Bouton de lecture : visible seulement quand la carte a un identifiant YouTube (data-youtube) */
+.vc-lire{position:absolute;inset:0;z-index:3;border:0;padding:0;background:transparent;cursor:pointer;border-radius:0}
+.vc-lire[hidden]{display:none}
+.vc-lire:focus-visible{outline:3px solid var(--corail);outline-offset:-3px}
+.vc-lire .vc-play{transition:transform .4s var(--ease)}
+.vc-lire:hover .vc-play{transform:scale(1.1)}
+/* Fenêtre de lecture : accord pour YouTube, puis lecteur (rien n'est chargé depuis YouTube avant l'accord) */
+html.vl-ouvert{overflow:hidden}
+.vi-lecteur{position:fixed;inset:0;z-index:12000;display:grid;place-items:center;padding:16px}
+.vi-lecteur[hidden]{display:none}
+.vl-voile{position:absolute;inset:0;background:rgba(14,13,11,.84);backdrop-filter:blur(6px)}
+.vl-boite{position:relative;width:min(100%,470px);max-height:calc(100dvh - 32px);overflow:auto;background:var(--noir-2);border:1px solid var(--ligne);border-radius:16px;padding:30px 24px 22px;box-shadow:0 40px 80px -30px rgba(0,0,0,.95)}
+.vl-fermer{position:absolute;top:10px;right:10px;z-index:2;width:38px;height:38px;border-radius:50%;border:1px solid var(--ligne);background:var(--noir-2);color:var(--blanc-chaud);font:inherit;font-size:1rem;cursor:pointer}
+.vl-fermer:hover{border-color:var(--corail)}
+.vl-accord .eyebrow{color:var(--corail)}
+.vl-accord .eyebrow::before{background:var(--corail)}
+.vl-accord h2{font-family:var(--serif);font-weight:700;font-size:1.45rem;line-height:1.15;margin:10px 40px 14px 0}
+.vl-accord p{font-size:.95rem;color:var(--creme);line-height:1.5}
+.vl-petit{font-size:.8rem!important;color:var(--muted)!important;line-height:1.5;margin-top:12px}
+.vl-petit a,.vl-retirer{color:var(--blanc-chaud);text-decoration:underline;text-decoration-color:rgba(239,233,223,.35);text-underline-offset:3px}
+.vl-retirer{background:none;border:0;padding:0;font:inherit;cursor:pointer}
+.vl-choix{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.vl-choix .btn{font-family:inherit;cursor:pointer}
+.vl-choix .btn--ghost{background:transparent}
+.vl-cadre{aspect-ratio:9/16;width:min(100%,calc((100dvh - 150px) * 9 / 16));margin:0 auto;border-radius:10px;overflow:hidden;background:#000}
+.vl-cadre iframe{width:100%;height:100%;border:0;display:block}
+.vl-video .vl-petit{text-align:center}
 .vc-body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
 .vc-theme{align-self:flex-start;font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--vert-clair);border:1px solid rgba(126,140,90,.45);padding:4px 10px;border-radius:100px}
 .vc-body h3{font-family:var(--serif);font-weight:700;font-size:1.22rem;line-height:1.15}
@@ -166,13 +193,15 @@
   </div>
   <p class="vi-compte" id="compte" aria-live="polite" hidden></p>
 
+  <!-- data-youtube : identifiant de la vidéo YouTube (11 caractères, lu dans « npm run publier -- <ep> --statut »).
+       Vide = pas encore publiée : pas de bouton lecture. Rempli = la carte devient lisible (accord demandé au clic). -->
   <div class="vi-grille" id="grille">
-    <!-- Vidéo programmée -->
-    <article class="vcard" data-theme="soleil" data-mots="polarisé polarisées polarisant reflet reflets éblouissement ébloui soleil route conduite voiture pare-brise télé écran test mer poissons gps">
+    <!-- Vidéo programmée : vendredi 6/11 18 h (Instagram, TikTok, YouTube) -->
+    <article class="vcard" data-youtube="" data-theme="soleil" data-mots="polarisé polarisées polarisant reflet reflets éblouissement ébloui soleil route conduite voiture pare-brise télé écran test mer poissons gps">
       <div class="vc-media">
         <picture><source srcset="assets/videos-iris/polarise.webp" type="image/webp"><img src="assets/videos-iris/polarise.jpg" alt="Iris, la main en visière, sous le titre « Ébloui ! »" width="540" height="960" loading="lazy" decoding="async"></picture>
         <span class="vc-date">Ven. 6 nov.</span>
-        <span class="vc-play" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 1.8v12.4a.8.8 0 0 0 1.2.7l10-6.2a.8.8 0 0 0 0-1.4l-10-6.2A.8.8 0 0 0 3 1.8z"/></svg></span>
+        <button type="button" class="vc-lire" hidden aria-label="Lire la vidéo : Pourquoi les lunettes polarisées font disparaître les reflets ?"><span class="vc-play" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 1.8v12.4a.8.8 0 0 0 1.2.7l10-6.2a.8.8 0 0 0 0-1.4l-10-6.2A.8.8 0 0 0 3 1.8z"/></svg></span></button>
         <span class="vc-duree">1:22</span>
       </div>
       <div class="vc-body">
@@ -183,19 +212,19 @@
       </div>
     </article>
 
-    <!-- Vidéo prête (brouillon) -->
-    <article class="vcard" data-theme="vue" data-mots="myope myopie flou loin près bus rétine œil oeil ordonnance dioptries plisser yeux verre concave enfant">
+    <!-- Publiée le 5/11/2026 sur YouTube seulement : https://www.youtube.com/watch?v=5o0Wwe_pOeA -->
+    <article class="vcard" data-youtube="5o0Wwe_pOeA" data-theme="vue" data-mots="myope myopie flou loin près bus rétine œil oeil ordonnance dioptries plisser yeux verre concave enfant">
       <div class="vc-media">
         <picture><source srcset="assets/videos-iris/myopie.webp" type="image/webp"><img src="assets/videos-iris/myopie.jpg" alt="Iris, pensive, sous le titre « Myope ? »" width="540" height="960" loading="lazy" decoding="async"></picture>
-        <span class="vc-date">Lun. 9 nov.</span>
-        <span class="vc-play" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 1.8v12.4a.8.8 0 0 0 1.2.7l10-6.2a.8.8 0 0 0 0-1.4l-10-6.2A.8.8 0 0 0 3 1.8z"/></svg></span>
+        <span class="vc-date">5 nov.</span>
+        <button type="button" class="vc-lire" hidden aria-label="Lire la vidéo : Myope, vous voyez flou de loin… ou de près ?"><span class="vc-play" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 1.8v12.4a.8.8 0 0 0 1.2.7l10-6.2a.8.8 0 0 0 0-1.4l-10-6.2A.8.8 0 0 0 3 1.8z"/></svg></span></button>
         <span class="vc-duree">1:20</span>
       </div>
       <div class="vc-body">
         <span class="vc-theme">La vue</span>
         <h3>Myope&nbsp;: vous voyez flou de loin… ou de près&nbsp;?</h3>
         <p>Net de près, flou de loin&nbsp;: chez le myope, l'image se forme juste devant la rétine. Un verre concave la remet pile dessus.</p>
-        <div class="vc-liens"><span>Sur</span><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a><a href="https://www.tiktok.com/@iris_pigeard" target="_blank" rel="noopener">TikTok</a><a href="https://www.youtube.com/@PigeardOpticiens" target="_blank" rel="noopener">YouTube</a></div>
+        <div class="vc-liens"><span>Sur</span><a href="https://www.youtube.com/watch?v=5o0Wwe_pOeA" target="_blank" rel="noopener">YouTube</a></div>
       </div>
     </article>
 
@@ -221,6 +250,25 @@
   <div class="vi-vide" id="aucune" hidden>
     <p>Aucune vidéo sur « <span id="aucune-q"></span> »… pour l'instant&nbsp;!</p>
     <span class="hand">posez-nous la question en magasin, Iris prend note</span>
+  </div>
+
+  <!-- Fenêtre de lecture (CNIL, FAQ cookies, question 23 : accord demandé au moment d'activer le contenu externe) -->
+  <div class="vi-lecteur" id="lecteur" role="dialog" aria-modal="true" aria-labelledby="lecteur-titre" hidden>
+    <div class="vl-voile" data-fermer></div>
+    <div class="vl-boite">
+      <button type="button" class="vl-fermer" data-fermer aria-label="Fermer">✕</button>
+      <div class="vl-accord" id="accord">
+        <span class="eyebrow">Vidéo hébergée sur YouTube</span>
+        <h2 id="lecteur-titre">Vidéo</h2>
+        <p>Pour la lire ici, votre navigateur se connecte à YouTube (Google), qui peut alors déposer et lire des traceurs sur votre appareil pour ses propres usages&nbsp;: fonctionnement, sécurité, analyse, publicité et personnalisation. Nous utilisons le mode «&nbsp;confidentialité avancée&nbsp;» de YouTube&nbsp;: les publicités du lecteur n'y sont pas personnalisées.</p>
+        <p class="vl-petit">Rien n'est chargé depuis YouTube avant votre accord. Si vous refusez, vous pouvez la regarder <a id="lien-yt" href="https://www.youtube.com/@PigeardOpticiens" target="_blank" rel="noopener">directement sur YouTube</a>. Votre accord vaut jusqu'à la fermeture de l'onglet, et vous pouvez le retirer à tout moment sous le lecteur. <a href="https://policies.google.com/technologies/cookies?hl=fr" target="_blank" rel="noopener">Traceurs de Google</a> · <a href="https://policies.google.com/privacy?hl=fr" target="_blank" rel="noopener">règles de confidentialité de Google</a> · <a href="mentions-legales.html#donnees-personnelles">nos mentions légales</a>.</p>
+        <div class="vl-choix"><button type="button" class="btn btn--primary" id="accepter">Accepter et lire</button><button type="button" class="btn btn--ghost" data-fermer>Non merci</button></div>
+      </div>
+      <div class="vl-video" id="video" hidden>
+        <div class="vl-cadre" id="cadre"></div>
+        <p class="vl-petit">Lecture via YouTube (Google) · <button type="button" class="vl-retirer" id="retirer">Retirer mon accord</button></p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -296,6 +344,63 @@
   try{ var q = new URLSearchParams(location.search).get('q'); if(q){ champ.value = q; boite.classList.add('ouvert'); } }catch(e){}
   outils.hidden = false;
   filtrer();
+})();
+
+/* Lecture YouTube : accord demandé au clic (CNIL, FAQ cookies, question 23), puis lecteur
+   youtube-nocookie.com. Rien n'est chargé depuis YouTube avant « Accepter et lire ».
+   L'accord est retenu pour l'onglet (sessionStorage « pg-youtube-ok ») et se retire sous le lecteur. */
+(function(){
+  var dlg = document.getElementById('lecteur');
+  if(!dlg) return;
+  var accord = document.getElementById('accord'), zone = document.getElementById('video'), cadre = document.getElementById('cadre');
+  var titre = document.getElementById('lecteur-titre'), lienYt = document.getElementById('lien-yt');
+  var btnOk = document.getElementById('accepter'), btnRetirer = document.getElementById('retirer');
+  var CLE = 'pg-youtube-ok', carte = null, retour = null;
+  function accordDonne(){ try{ return sessionStorage.getItem(CLE) === '1'; }catch(e){ return false; } }
+  function lire(){
+    var id = carte.getAttribute('data-youtube'), f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) + '?autoplay=1&playsinline=1&rel=0';
+    f.title = 'Vidéo : ' + titre.textContent;
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.setAttribute('allowfullscreen', '');
+    f.referrerPolicy = 'strict-origin-when-cross-origin';
+    cadre.innerHTML = ''; cadre.appendChild(f);
+    accord.hidden = true; zone.hidden = false; btnRetirer.focus();
+  }
+  function demander(){ cadre.innerHTML = ''; zone.hidden = true; accord.hidden = false; btnOk.focus(); }
+  function ouvrir(c){
+    carte = c; retour = document.activeElement;
+    titre.textContent = c.querySelector('h3').textContent;
+    lienYt.href = 'https://www.youtube.com/watch?v=' + encodeURIComponent(c.getAttribute('data-youtube'));
+    dlg.hidden = false; document.documentElement.classList.add('vl-ouvert');
+    if(window.PIGEARD && PIGEARD.lenis) PIGEARD.lenis.stop();
+    accordDonne() ? lire() : demander();
+  }
+  function fermer(){
+    cadre.innerHTML = ''; dlg.hidden = true; document.documentElement.classList.remove('vl-ouvert');
+    if(window.PIGEARD && PIGEARD.lenis) PIGEARD.lenis.start();
+    if(retour && retour.focus) retour.focus();
+  }
+  btnOk.addEventListener('click', function(){ try{ sessionStorage.setItem(CLE, '1'); }catch(e){} lire(); });
+  btnRetirer.addEventListener('click', function(){ try{ sessionStorage.removeItem(CLE); }catch(e){} demander(); });
+  dlg.addEventListener('click', function(e){ if(e.target.closest('[data-fermer]')) fermer(); });
+  document.addEventListener('keydown', function(e){
+    if(dlg.hidden) return;
+    if(e.key === 'Escape'){ fermer(); return; }
+    if(e.key === 'Tab'){ /* garder le focus dans la fenêtre */
+      var f = [].slice.call(dlg.querySelectorAll('button, a[href], iframe')).filter(function(el){ return el.offsetParent !== null; });
+      if(!f.length) return;
+      if(e.shiftKey && document.activeElement === f[0]){ e.preventDefault(); f[f.length - 1].focus(); }
+      else if(!e.shiftKey && document.activeElement === f[f.length - 1]){ e.preventDefault(); f[0].focus(); }
+    }
+  });
+  [].slice.call(document.querySelectorAll('.vcard[data-youtube]')).forEach(function(c){
+    if(!/^[\w-]{11}$/.test(c.getAttribute('data-youtube') || '')) return;
+    var b = c.querySelector('.vc-lire');
+    if(!b) return;
+    b.hidden = false;
+    b.addEventListener('click', function(){ ouvrir(c); });
+  });
 })();
 </script>
 </body>
