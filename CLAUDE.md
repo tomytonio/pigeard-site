@@ -201,6 +201,8 @@ commentaires de code, échanges avec le propriétaire.
     `data-ep="<ep>"`.
   - `data-youtube=""`, date prévue, thème, mots-clés, légende validée, liens vers les comptes.
   - Toutes les vidéos sortent sur Instagram, TikTok et YouTube (décision du 2026-11-05).
+  - Comptes : Instagram @pigeard.opticiens, TikTok **@pigeard.opticiens** (anciennement
+    @iris_pigeard, renommé le 2026-11-06 : l'ancien lien ne répond plus), YouTube @PigeardOpticiens.
 - **Activer une vidéo : automatique** (`scripts/site_activer.py` du dépôt `Video`, tâche Windows
   « Pigeard - vidéos sur le site », toutes les heures et à l'ouverture de session).
   - Il traite chaque carte à `data-youtube=""`. Il lit l'état dans l'appli Pigeard et vérifie que
