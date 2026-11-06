@@ -212,6 +212,14 @@ commentaires de code, échanges avec le propriétaire.
   - **Ne pas changer** les classes `vcard`, `vc-date`, `vc-liens` ni l'attribut `data-youtube`
     sans adapter ce programme.
   - Activation manuelle (secours) : même opération à la main, après la vérification oEmbed.
+- **Écran vitrine 9:16** (2026-11-06) : `tools/affiches/iris-videos-ecran-vitrine-9x16.html` → PNG
+  1080×1920 et 2160×3840 (`node rendu-ecran.mjs <html> <sortie> 1080 1920`). Portrait d'Iris,
+  « L'optique, en vidéos ludiques », thèmes des vidéos, QR code vers `videos-iris.html`
+  (`qr-videos-iris.svg`, npm `qrcode`), bandeau « suivez-nous ! » avec les logos YouTube, Facebook,
+  Instagram, TikTok (tracés Simple Icons, CC0) et les comptes. Le texte dit « sur notre site et nos
+  réseaux » : les vidéos ne sortent pas sur Facebook (décision du 2026-11-05), Facebook n'est que
+  dans « suivez-nous » (demande du propriétaire). Règles de marque notées en commentaire du HTML ;
+  Instagram demande une autorisation pour la publicité extérieure (« out-of-home advertising »).
 - État au 2026-11-06 : **myopie** lisible (`5o0Wwe_pOeA`, YouTube seulement) ; **polarisé**
   programmée le vendredi 6/11 à 18 h, **presbytie** le lundi 9/11 à 17 h 30 et **progressifs** le
   jeudi 12/11 à 17 h (Instagram, TikTok, YouTube), activées automatiquement à leur sortie.
