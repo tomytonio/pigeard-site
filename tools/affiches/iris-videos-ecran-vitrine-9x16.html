@@ -14,7 +14,7 @@
 
   Sources :
   - Portrait d'Iris : assets/equipe/ia/iris.jpg (960×1200, fourni par le propriétaire),
-    affiché en 880×1100 dans la version 1080×1920 (agrandi ×1,83 dans la version 4K).
+    affiché en 840×1050 dans la version 1080×1920 (agrandi ×1,75 dans la version 4K).
   - Thèmes (myopie, presbytie, verres polarisés, progressifs) : les 4 vidéos de
     videos-iris.html au 2026-11-06.
   - Comptes : Instagram @pigeard.opticiens, TikTok @pigeard.opticiens (anciennement @iris_pigeard, changé le 2026-11-06 ; profil
@@ -65,47 +65,47 @@
   .grain{position:absolute;inset:0;z-index:9;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-  .logo{position:absolute;z-index:3;left:50%;top:50px;height:80px;transform:translateX(-50%)}
+  .logo{position:absolute;z-index:3;left:50%;top:42px;height:76px;transform:translateX(-50%)}
 
-  /* Iris (960×1200 d'origine, affichée à 880×1100), fondue dans le fond */
-  .iris{position:absolute;left:100px;top:108px;width:880px;height:1100px;
-    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 58%,transparent 76%),
-                       linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%);
+  /* Iris (960×1200 d'origine, affichée à 840×1050), bras croisés visibles, fondue dans le fond */
+  .iris{position:absolute;left:120px;top:90px;width:840px;height:1050px;
+    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 9%,#000 83%,transparent 96%),
+                       linear-gradient(90deg,transparent 0,#000 13%,#000 87%,transparent 100%);
     -webkit-mask-composite:source-in;mask-composite:intersect}
   .iris img{display:block;width:100%;height:100%}
-  .pill-ia{position:absolute;z-index:3;left:690px;top:438px;font-size:24px;font-weight:700;letter-spacing:.16em;
+  .pill-ia{position:absolute;z-index:3;left:676px;top:424px;font-size:24px;font-weight:700;letter-spacing:.16em;
     line-height:1;text-transform:uppercase;color:#0E0D0B;background:var(--corail);padding:12px 22px 11px;border-radius:100px;
     box-shadow:0 14px 26px -12px rgba(255,98,91,.9)}
-  .coucou{position:absolute;z-index:3;left:62px;top:214px;font-family:var(--hand);font-size:74px;line-height:.86;
+  .coucou{position:absolute;z-index:3;left:62px;top:204px;font-family:var(--hand);font-size:74px;line-height:.86;
     color:var(--camel);transform:rotate(-7deg);text-shadow:0 2px 18px rgba(14,13,11,.95),0 0 4px rgba(14,13,11,.8)}
   .coucou svg{display:block;margin:-30px 0 0 150px}
 
-  .texte{position:absolute;z-index:3;left:64px;right:64px;top:906px;text-align:center}
+  .texte{position:absolute;z-index:3;left:64px;right:64px;top:1012px;text-align:center}
   .pill{display:inline-flex;align-items:center;gap:14px;font-size:25px;font-weight:700;letter-spacing:.16em;
     line-height:1;text-transform:uppercase;color:#0E0D0B;background:var(--corail);padding:15px 28px 14px;border-radius:100px}
   .pill i{width:11px;height:11px;border-radius:50%;background:#0E0D0B}
-  h1{font-family:var(--serif);font-weight:800;font-size:116px;line-height:.98;letter-spacing:-.025em;margin-top:26px}
-  h1 em{display:block;font-weight:700;font-size:96px;letter-spacing:-.02em;color:var(--vert-clair);white-space:nowrap;margin-top:4px}
+  h1{font-family:var(--serif);font-weight:800;font-size:106px;line-height:.98;letter-spacing:-.025em;margin-top:20px}
+  h1 em{display:block;font-weight:700;font-size:90px;letter-spacing:-.02em;color:var(--vert-clair);white-space:nowrap;margin-top:4px}
 
-  .themes{display:flex;justify-content:center;gap:14px;margin-top:30px}
+  .themes{display:flex;justify-content:center;gap:14px;margin-top:24px}
   .themes span{font-size:25px;font-weight:600;letter-spacing:.02em;line-height:1;color:var(--creme);
     border:1.5px solid rgba(231,221,203,.32);border-radius:100px;padding:13px 22px 12px}
 
-  .site{display:flex;align-items:center;gap:34px;margin-top:36px;text-align:left}
-  .site p{flex:1;font-family:var(--serif);font-style:italic;font-size:38px;line-height:1.28;color:var(--creme)}
+  .site{display:flex;align-items:center;gap:34px;margin-top:24px;text-align:left}
+  .site p{flex:1;font-family:var(--serif);font-style:italic;font-size:36px;line-height:1.28;color:var(--creme)}
   .site p b{font-style:normal;font-weight:700;color:var(--blanc-chaud)}
-  .qr{flex:none;width:168px;padding:14px 14px 10px;border-radius:16px;background:var(--blanc-chaud);text-align:center;
+  .qr{flex:none;width:152px;padding:12px 12px 8px;border-radius:16px;background:var(--blanc-chaud);text-align:center;
     box-shadow:0 22px 40px -22px rgba(0,0,0,.9)}
-  .qr img{display:block;width:140px;height:140px}
-  .qr span{display:block;margin-top:7px;font-size:15px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#0E0D0B}
+  .qr img{display:block;width:128px;height:128px}
+  .qr span{display:block;margin-top:5px;font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#0E0D0B}
 
   /* Suivez-nous : les 4 réseaux */
-  .suivez{position:absolute;z-index:3;left:60px;right:60px;top:1574px;padding:12px 24px 26px;border-radius:24px;
+  .suivez{position:absolute;z-index:3;left:60px;right:60px;bottom:74px;padding:8px 24px 22px;border-radius:24px;
     border:1px solid var(--ligne);background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.014));text-align:center}
-  .suivez h2{font-family:var(--hand);font-weight:400;font-size:80px;line-height:.9;color:var(--camel)}
-  .reseaux{display:grid;grid-template-columns:repeat(4,1fr);margin-top:10px}
-  .reseau svg{display:block;width:88px;height:88px;margin:0 auto}
-  .reseau span{display:block;margin-top:46px;font-size:21px;font-weight:600;line-height:1;color:var(--creme);white-space:nowrap}
+  .suivez h2{font-family:var(--hand);font-weight:400;font-size:72px;line-height:.9;color:var(--camel)}
+  .reseaux{display:grid;grid-template-columns:repeat(4,1fr);margin-top:6px}
+  .reseau svg{display:block;width:84px;height:84px;margin:0 auto}
+  .reseau span{display:block;margin-top:42px;font-size:21px;font-weight:600;line-height:1;color:var(--creme);white-space:nowrap}
 
   .pied{position:absolute;z-index:3;left:0;right:0;bottom:30px;text-align:center;font-size:19px;line-height:1.5;color:rgba(231,221,203,.5)}
 </style>
