@@ -213,6 +213,7 @@ html.vl-ouvert{overflow:hidden}
       <button type="button" class="vt" data-t="" aria-pressed="true">Toutes<span class="n"></span></button>
       <button type="button" class="vt" data-t="vue" aria-pressed="false">La vue<span class="n"></span></button>
       <button type="button" class="vt" data-t="soleil" aria-pressed="false">Lunettes de soleil<span class="n"></span></button>
+      <button type="button" class="vt" data-t="entretien" aria-pressed="false">Entretien<span class="n"></span></button>
     </div>
     <div class="vi-recherche" id="recherche" role="search">
       <button type="button" class="loupe" id="loupe" aria-label="Rechercher une vidéo" aria-controls="q" aria-expanded="false">
@@ -226,6 +227,22 @@ html.vl-ouvert{overflow:hidden}
   <!-- data-youtube : identifiant de la vidéo YouTube (11 caractères, lu dans « npm run publier -- <ep> --statut »).
        Vide = pas encore publiée : pas de bouton lecture. Rempli = la carte devient lisible (accord demandé au clic). -->
   <div class="vi-grille" id="grille">
+    <!-- Vidéo programmée : lundi 23/11 17 h (Instagram, TikTok, YouTube, Facebook) -->
+    <article class="vcard" data-youtube="" data-ep="entretien" data-theme="entretien" data-mots="entretien nettoyer nettoyage essuyer lunettes verres t-shirt tee-shirt essuie-tout poussière poussières rayures rayer poncer papier de verre traitements antireflet eau température ambiante savon spray microfibre chiffon gras traces doigts astuce opticien">
+      <div class="vc-media">
+        <picture><source srcset="assets/videos-iris/entretien.webp" type="image/webp"><img src="assets/videos-iris/entretien.jpg" alt="Iris, prise en faute, frotte ses lunettes avec son polo, sous le titre « Entretien »" width="540" height="960" loading="lazy" decoding="async"></picture>
+        <span class="vc-date">Lun. 23 nov.</span>
+        <button type="button" class="vc-lire" hidden aria-label="Lire la vidéo : Comment nettoyer vos lunettes sans les abîmer ?"><span class="vc-play" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 1.8v12.4a.8.8 0 0 0 1.2.7l10-6.2a.8.8 0 0 0 0-1.4l-10-6.2A.8.8 0 0 0 3 1.8z"/></svg></span></button>
+        <span class="vc-duree">1:17</span>
+      </div>
+      <div class="vc-body">
+        <span class="vc-theme">Entretien</span>
+        <h3>Comment nettoyer vos lunettes sans les abîmer&nbsp;?</h3>
+        <p>Avec votre t-shirt, vous les poncez&nbsp;! Eau à température ambiante, savon ou spray, microfibre… et l'astuce des opticiens, au bout de vos doigts.</p>
+        <div class="vc-liens"><span>Sur</span><a href="https://instagram.com/pigeard.opticiens" target="_blank" rel="noopener">Instagram</a><a href="https://www.tiktok.com/@pigeard.opticiens" target="_blank" rel="noopener">TikTok</a><a href="https://www.youtube.com/@PigeardOpticiens" target="_blank" rel="noopener">YouTube</a></div>
+      </div>
+    </article>
+
     <!-- Vidéo programmée : lundi 16/11 17 h (Instagram, TikTok, YouTube, Facebook) -->
     <article class="vcard" data-youtube="" data-ep="progressifs" data-theme="vue" data-mots="verres progressifs progressif fabrication fabriquer usine semi-fini palet surfaçage diamant polissage vernis anti-rayures antireflet gravure laser détourage monture premier prix haut de gamme bas de gamme gamme prix sur mesure personnalisé morphologie traitements couches mille-feuille centrage écart pupillaire opticien made in france">
       <div class="vc-media">
