@@ -81,6 +81,19 @@ commentaires de code, échanges avec le propriétaire.
 - `assets/js/site.js` : moteur commun (GSAP + ScrollTrigger + Lenis, chargés
   depuis `assets/js/vendor/`).
 - Logo lunettes : `assets/brand/lunette-white.svg` (et déclinaisons).
+- **Menu mobile** (bloc « Menu mobile » de `site.js`, depuis le 2026-11-12) : le
+  bouton ☰ annonce son état (`aria-expanded`, `aria-controls`), Échap ferme le
+  menu, le focus passe sur la croix (deux images après l'ouverture : avant, le
+  menu est encore `visibility:hidden`) puis revient au ☰, et la page ne défile
+  plus derrière (`lenis.stop()` / `start()`, sans toucher à `overflow` : aucun
+  décalage). Zones de toucher élargies par un `::after` invisible (44 × 48 px
+  pour le ☰ dessiné en 22 × 28 px, 47 × 50 px pour la croix) : ne pas les
+  retirer, le dessin n'a pas bougé.
+- **Année automatique** (bloc « Année en cours » de `site.js`, 2026-11-12) : le
+  « © AAAA » du pied de page et le compteur « ans de métier » de l'accueil
+  (`data-depuis="1863"`) suivent l'année du visiteur. Le texte du HTML
+  (« © 2026 », `data-count="163"`) reste le repli sans JS et n'est remplacé que
+  si l'année est plus récente : inutile de le modifier chaque 1er janvier.
 - Les pages utilisent les **speculation rules** (pré-rendu) et un repli
   `<noscript>` : toute fonctionnalité JS doit rester inoffensive sans JS et en
   pré-rendu.
@@ -172,6 +185,31 @@ commentaires de code, échanges avec le propriétaire.
   main `equipe.html` (cartes, « N visages », méta description « 13
   collaborateurs », « Treize passionnés ») **et** `index.html` (photo dans la
   pile, compteur, prénoms, bouton « Rencontrer les 13 visages »).
+- Photo d'une pile ajoutée ou remplacée : refaire sa vignette réduite (voir
+  « Vignettes réduites de l'accueil » ci-dessous).
+
+## Vignettes réduites de l'accueil (depuis le 2026-11-12)
+
+- Sur `index.html`, les 13 portraits des piles, le portrait d'Iris et 4 tuiles
+  Instagram (ambiance-1, ambiance-2, optikid, gen-atelier) sont affichés en
+  petit : chacun a une copie réduite `<nom>-petit.webp` à côté de l'original
+  (600 px de haut pour les portraits, 600 px de petit côté pour les tuiles),
+  proposée au navigateur avec la grande : `<source srcset="…-petit.webp 400w,
+  ….webp 800w" sizes="…">`. Gain mesuré sur l'accueil mobile : 896 → 456 Ko
+  d'images chargées au défilement. Les autres pages gardent les originaux.
+- `tools/vignettes.py` les fabrique (`--force` pour tout refaire, `--liste`
+  pour afficher les largeurs « NNNw » à reporter dans `srcset`). À relancer
+  quand une de ces photos est remplacée.
+- **`sizes` dit au navigateur la largeur dont l'image a besoin**, cadrage
+  « cover » compris (une photo plus large que son cadre doit couvrir la
+  hauteur) : piles 102 px ≤ 700 px d'écran puis 198 px (plus pour les photos
+  moins étroites que 2:3) ; tuiles = côté du carré × rapport largeur/hauteur de
+  la photo. Tant que `sizes` ne sous-estime pas, le navigateur ne choisit la
+  vignette que si elle suffit : jamais d'image agrandie (contrôlé le
+  2026-11-12 sur 23 largeurs × 7 densités d'écran, 0 agrandissement). Mise en
+  page de ces blocs modifiée → revoir `sizes`.
+- Pas de vignette pour `gen-eyewear-paper` (déjà chargée en grand par la
+  section Marques) ni `mag-nogent` (gain de 8 Ko seulement).
 
 ## Iris et ses vidéos (depuis le 2026-11-05)
 
@@ -341,16 +379,34 @@ commentaires de code, échanges avec le propriétaire.
 - Guirlande lumineuse sous le menu (+ boules et étoile suspendues ≥ 900 px,
   côté droit ; à gauche aussi sur les pages à `.hero`), neige en canvas sous
   le menu (z-index 8990), sapin tracé + message de saison en tête du pied de
-  page. Fichiers : `assets/js/noel.js`, `assets/css/noel.css`, réglages
-  `assets/data/noel.json` (Pages CMS, rubrique « Décor de Noël »).
+  page. Fichiers : `assets/js/noel.js`, `assets/js/noel-neige.js`,
+  `assets/css/noel.css`, réglages `assets/data/noel.json` (Pages CMS, rubrique
+  « Décor de Noël »).
+- **Neige calculée dans un fil d'exécution séparé** (2026-11-12) : la
+  simulation est dans `noel-neige.js`, lancée par `noel.js` dans un Worker
+  avec un `OffscreenCanvas` ; la page n'a plus rien à calculer ni à dessiner
+  pour la neige (c'était le premier poste de coût sur mobile : accueil
+  32 → 52 images/s en défilement, CPU ×4). `noel.js` envoie au fil la taille de
+  l'écran, la position de défilement, marche / arrêt (pause du visiteur, onglet
+  masqué). **Repli automatique dans la page** (même fichier chargé comme script
+  ordinaire, même simulation) si le navigateur n'a pas `OffscreenCanvas`, si le
+  fichier ne se charge pas, si le fil signale une erreur ou reste muet 10 s.
+  Le fil n'est créé qu'au premier démarrage (jamais en pré-rendu ni tant que la
+  neige est en pause). Testé ici sous Chromium seulement ; Safari / iPhone non
+  testable d'ici (à regarder sur un téléphone ; coupe-circuit : case « Neige
+  qui tombe » de Pages CMS).
+- Lumières du sapin du pied de page : en pause quand la carte de vœux est hors
+  de l'écran (`PIGEARD.veille`, classe `pg-veille`, voir « Fluidité »).
 - **Activation automatique chaque année** entre `debut` et `fin` (JJ/MM,
   défaut 01/11 → 31/01) si `actif` est vrai : le bloc « Décor des fêtes » de
   `site.js` lit le JSON à chaque page et ne charge `noel.css` puis `noel.js`
   qu'en saison (rien d'autre hors saison). Message `messageFetes` jusqu'au
   31/12, `messageVoeux` en janvier (`{annee}` remplacé).
 - **Aperçu** : `?noel=1` (mémorisé pour l'onglet, `sessionStorage['pg-noel-apercu']`),
-  `?noel=0` l'arrête. Après modification de `noel.js`/`noel.css`, bumper
-  `VERSION` dans ce bloc de `site.js` (puis le `?v=` de `site.js` dans les pages).
+  `?noel=0` l'arrête. Après modification de `noel.js`/`noel-neige.js`/`noel.css`,
+  bumper `VERSION` dans ce bloc de `site.js` (puis le `?v=` de `site.js` dans les
+  pages) ; `noel.js` lit cette version (`PIGEARD_NOEL_VERSION`) pour charger
+  `noel-neige.js`.
 - Pause visiteur (WCAG 2.2.2) : bouton rond flottant ≥ 1100 px, liens
   « Arrêter la neige » sous la carte de vœux et dans le menu mobile ; choix
   dans `localStorage['pg-noel-pause']` (listé dans les mentions légales).
@@ -422,15 +478,47 @@ commentaires de code, échanges avec le propriétaire.
     texte du HTML identique à `assets/data/textes.json`** (sinon remplacement
     visible + recalcul à chaque chargement).
   - Hauteur de page de la barre de progression mise en cache (ResizeObserver).
+- **Animations CSS infinies : en pause hors écran** (2026-11-12). La photo du
+  hero qui respire, les 6 stries, le trait « Découvrir » et le point des
+  pastilles « Nouveau » tournaient en permanence, même en bas de page (9
+  éléments recalculés à chaque image, plus une mise en page par image pour le
+  trait, qui anime `top`). `site.js` pose la classe `pg-veille` sur leur bloc
+  quand il est à plus de 300 px de l'écran (même observateur que
+  `PIGEARD.boucle`) et `site.css` les met en pause (`animation-play-state`).
+  Rendu inchangé. **Toute nouvelle animation CSS infinie** : ajouter son
+  sélecteur aux deux endroits (liste de `querySelectorAll` dans `site.js`,
+  règle `.pg-veille …` dans `site.css`), ou appeler `PIGEARD.veille(bloc)`.
+- **Barre de progression** : sa largeur est écrite dans `requestAnimationFrame`
+  (même image, même affichage), plus dans l'événement de défilement — écrite
+  là, elle forçait ScrollTrigger et Lenis à recalculer la mise en page.
+- Mesures du 2026-11-12 (mobile, CPU ×4, avant → après) : accueil en
+  défilement avec le décor de Noël 32 → 52 images/s ; sans décor 52 → 55 ;
+  accueil immobile au milieu de la page 850 → 75 ms de calcul par seconde ;
+  `services.html` avec décor 42 → 57 images/s. Ordinateur : images/s
+  quasi inchangées (~29 → ~32, limitées ici par l'absence de carte graphique), calcul
+  820 → 580 ms/s.
 - Essayés puis **écartés car le rendu changeait** (à ne pas retenter tels quels) :
   barres de progression en `transform: scaleX` (barre de 2 px plus sombre),
   Ken Burns de la photo du hero porté par un conteneur (photo 5 % moins nette),
   trait « Découvrir » en `translateY` (anticrénelage différent).
+- Essayés le 2026-11-12 puis **écartés faute de gain mesurable** : frise de
+  l'accueil sans relecture des positions à chaque image ; entrée du logo non
+  jouée sous l'écran de chargement ; neige en demi-résolution (gain inférieur
+  au fil séparé et rendu non identique). **Non fait** : ne pas charger Lenis
+  sur les appareils uniquement tactiles (il n'y lisse rien et pose trois
+  écouteurs tactiles bloquants) — gain mesuré faible (~6 % de calcul), et il
+  faudrait réécrire à l'identique le défilement doux des ancres et le blocage
+  du défilement (popup, vidéos d'Iris, menu) sans pouvoir tester sur iPhone.
 - Mesure : `tools/mesure-fluidite.mjs <page> mobile|desktop` (serveur local
   requis ; `BASE=` pour comparer avec une autre version servie sur un autre
-  port). Chromium tourne sans GPU ici : comparer deux versions, ne pas lire les
-  chiffres comme absolus. Avant/après du 2026-10-22, accueil mobile CPU ×4 :
-  ~21 → ~57 images/s pendant le défilement.
+  port ; `Q='?noel=0'` sans le décor ; `REPOS=6000` page immobile à 6000 px).
+  Chromium tourne sans GPU ici : comparer deux versions, ne pas lire les
+  chiffres comme absolus. **Mode mobile réparé le 2026-11-12** : le geste
+  tactile simulé de Chromium ne faisait plus défiler la page (Chromium 153),
+  l'outil mesurait une page immobile ; il envoie maintenant de vrais événements
+  tactiles et affiche la distance défilée (colonne « défilé (px) », à
+  contrôler). Les ~57 images/s notées le 2026-10-22 ne sont pas comparables
+  aux mesures actuelles.
 
 ## Vérification
 
@@ -442,3 +530,26 @@ Pas de suite de tests : vérifier en conditions réelles. Serveur local
 Toute modification d'animation : vérifier aussi la fluidité
 (`tools/mesure-fluidite.mjs`) et l'identité du rendu (captures figées comparées
 au pixel entre ancienne et nouvelle version).
+
+Captures figées qui se comparent vraiment (méthode du 2026-11-12, ~440
+captures, 0 pixel d'écart reproductible) : ancienne version servie sur un
+autre port (`git archive`), `Math.random` remplacé par une suite fixe et
+`sessionStorage['pg-loader-vu']` posé avant le chargement ; feuille de style
+injectée **avant tout rendu** (`animation-play-state:paused`,
+`animation-delay:-2s`, `transition:none` sur `*`, neige masquée) — injectée
+après, les animations sont figées à un instant différent à chaque essai ;
+un premier passage fait défiler toute la page (déclenche les apparitions et
+charge les images), puis les boucles GSAP infinies sont arrêtées au même point
+(`pause()`, `time(1.5)`, `resume` neutralisé) ; captures écran par écran.
+Bruit résiduel : quelques pixels d'anticrénelage sur les bords des polaroïds
+inclinés, sur ordinateur.
+
+## Défaut connu, non corrigé (constaté le 2026-11-12)
+
+- Les sections qui portent à la fois `sec` et `wrap` (`<section class="sec
+  wrap">` : expertises, mutuelles, équipe, avis, Instagram… sur l'accueil et
+  d'autres pages) n'ont **aucune marge latérale entre 601 et 1280 px de large**
+  (tablettes, portables 13 pouces) : le `padding` de `.sec` écrase celui de
+  `.wrap`. En dessous de 600 px et au-dessus de 1280 px, rien à signaler. Le
+  corriger (`padding-inline` sur `.sec.wrap`) change le visuel sur ces écrans :
+  décision du propriétaire attendue, non corrigé d'office.

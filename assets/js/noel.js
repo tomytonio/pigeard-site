@@ -5,7 +5,8 @@
    (Pages CMS) — ou en aperçu avec ?noel=1. Ajoute :
    - une guirlande lumineuse sous le menu (+ boules suspendues
      sur grand écran), qui s'efface au défilement ;
-   - une neige fine et lente (canvas, sous le menu) ;
+   - une neige fine et lente (canvas, sous le menu ; simulation
+     dans noel-neige.js, lancée dans un fil d'exécution séparé) ;
    - un sapin tracé à la main + message de saison en tête du
      pied de page ;
    - de quoi mettre neige et scintillements en pause (bouton
@@ -177,6 +178,8 @@
     if (cfg.signature) el.querySelector('.noel-signature').textContent = cfg.signature;
     pied.insertBefore(el, pied.firstChild);
 
+    /* lumières du sapin en pause quand la carte est hors de l'écran (classe pg-veille, voir site.js) */
+    if (window.PIGEARD && window.PIGEARD.veille) window.PIGEARD.veille(el);
     if (reduit || !('IntersectionObserver' in window)) { el.classList.add('vu'); return; }
     var io = new IntersectionObserver(function (entrees) {
       entrees.forEach(function (e) {
@@ -186,92 +189,105 @@
     io.observe(el);
   }
 
-  /* ---------- Neige ---------- */
+  /* ---------- Neige ----------
+     La simulation est dans assets/js/noel-neige.js. Elle tourne de préférence
+     dans un fil d'exécution séparé (Worker + OffscreenCanvas) : le fil principal
+     de la page — défilement, animations — n'a alors plus rien à calculer ni à
+     dessiner pour la neige. Navigateur qui ne le permet pas, fichier non chargé
+     ou erreur du fil séparé : la même simulation est lancée dans la page, comme
+     avant. Le fil n'est créé qu'au premier démarrage (jamais en pré-rendu ni
+     tant que la neige est en pause). */
   function neige() {
-    var c = document.createElement('canvas');
-    var ctx = c.getContext && c.getContext('2d');
-    if (!ctx) return null;
-    c.className = 'noel-neige';
-    c.setAttribute('aria-hidden', 'true');
+    var SRC = 'assets/js/noel-neige.js?v=' + (window.PIGEARD_NOEL_VERSION || '');
+    function canevas() {
+      var el = document.createElement('canvas');
+      el.className = 'noel-neige';
+      el.setAttribute('aria-hidden', 'true');
+      return el;
+    }
+    var c = canevas();
+    if (!c.getContext) return null;
     document.body.appendChild(c);
 
-    function sprite(rgb) {
-      var s = document.createElement('canvas');
-      s.width = s.height = 32;
-      var g = s.getContext('2d');
-      var gr = g.createRadialGradient(16, 16, 0, 16, 16, 16);
-      gr.addColorStop(0, 'rgba(' + rgb + ',1)');
-      gr.addColorStop(0.3, 'rgba(' + rgb + ',.8)');
-      gr.addColorStop(1, 'rgba(' + rgb + ',0)');
-      g.fillStyle = gr;
-      g.fillRect(0, 0, 32, 32);
-      return s;
+    var actif = false, pret = false, moteur = null, fil = null, garde = 0;
+    function dims() { return { W: window.innerWidth, H: window.innerHeight, dpr: Math.min(window.devicePixelRatio || 1, 2) }; }
+    function defilement() { return window.scrollY || window.pageYOffset || 0; }
+    function surDefilement() { if (fil && actif) fil.postMessage({ t: 'defilement', y: defilement() }); }
+    function surVisibilite() {
+      if (!fil || !actif) return;
+      if (document.visibilityState === 'hidden') fil.postMessage({ t: 'arret' });
+      else fil.postMessage({ t: 'marche', d: dims(), y: defilement() });
     }
-    var BLANC = sprite('255,250,240'), OR = sprite('240,206,140');
-    var W = 0, H = 0, flocons = [], actif = false, raf = 0, avant = 0, defile = 0;
 
-    function flocon(enHaut) {
-      var r = 0.8 + Math.pow(Math.random(), 2.2) * 2.4; /* surtout de petits flocons, quelques gros au premier plan */
-      return {
-        x: Math.random() * W, y: enHaut ? -8 - Math.random() * 40 : Math.random() * H, r: r,
-        v: 0.2 + r * 0.19 + Math.random() * 0.1,          /* vitesse de chute (px par image à 60 i/s) */
-        a: 0.28 + (r / 3) * 0.5 + Math.random() * 0.1,     /* opacité */
-        ph: Math.random() * 6.283, fr: 0.4 + Math.random() * 0.8, amp: 0.12 + Math.random() * 0.3,
-        or: Math.random() < 0.07                            /* rares paillettes dorées qui scintillent */
-      };
-    }
-    function taille() {
-      var w = window.innerWidth, h = window.innerHeight;
-      /* barre d'adresse mobile : ignorer les petites variations de hauteur */
-      if (W && w === W && Math.abs(h - H) < 120) return;
-      W = w; H = h;
-      var dpr = Math.min(window.devicePixelRatio || 1, 2);
-      c.width = Math.round(W * dpr); c.height = Math.round(H * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      var n = Math.round(Math.min(84, Math.max(30, W * H / 17000)));
-      while (flocons.length < n) flocons.push(flocon(false));
-      flocons.length = n;
-    }
-    function image(t) {
-      raf = requestAnimationFrame(image);
-      var dt = avant ? Math.min(3, (t - avant) / 16.67) : 1;
-      avant = t;
-      /* au défilement, la neige file légèrement (profondeur) */
-      var sy = window.scrollY || window.pageYOffset || 0;
-      var ds = Math.max(-60, Math.min(60, sy - defile));
-      defile = sy;
-      var vent = Math.sin(t * 0.00011) * 0.18;
-      ctx.clearRect(0, 0, W, H);
-      for (var i = 0; i < flocons.length; i++) {
-        var p = flocons[i];
-        p.y += p.v * dt - ds * (p.r / 3) * 0.35;
-        p.x += (Math.sin(t * 0.001 * p.fr + p.ph) * p.amp + vent * (p.r / 3 + 0.4)) * dt;
-        if (p.y > H + 12) { flocons[i] = p = flocon(true); }
-        else if (p.y < -60) { p.y = H + 8; }
-        if (p.x < -12) p.x = W + 12; else if (p.x > W + 12) p.x = -12;
-        var a = p.a;
-        if (p.or) a *= 0.5 + 0.5 * Math.sin(t * 0.004 * p.fr + p.ph);
-        if (a <= 0.01) continue;
-        ctx.globalAlpha = a;
-        var s = p.r * 4;
-        ctx.drawImage(p.or ? OR : BLANC, p.x - s / 2, p.y - s / 2, s, s);
+    /* repli : simulation dans la page */
+    function dansLaPage(confie) {
+      clearTimeout(garde);
+      window.removeEventListener('scroll', surDefilement);
+      document.removeEventListener('visibilitychange', surVisibilite);
+      if (fil) { fil.onmessage = fil.onerror = null; try { fil.terminate(); } catch (e) {} fil = null; }
+      moteur = null;
+      if (confie) {
+        /* un canevas confié à un fil séparé ne peut plus être dessiné ici : on le remplace */
+        var neuf = canevas();
+        if (actif) neuf.classList.add('on');
+        if (c.parentNode) c.parentNode.replaceChild(neuf, c);
+        c = neuf;
       }
-      ctx.globalAlpha = 1;
+      var s = document.createElement('script');
+      s.src = SRC;
+      s.onload = function () {
+        moteur = window.PIGEARD_NEIGE ? window.PIGEARD_NEIGE(c) : null;
+        if (moteur && actif) moteur.demarrer(dims());
+      };
+      document.body.appendChild(s);
     }
+
+    /* simulation dans un fil séparé */
+    function dansUnFil() {
+      var confie = false;
+      try {
+        fil = new Worker(SRC);
+        var hors = c.transferControlToOffscreen();
+        confie = true;
+        fil.onmessage = function (e) {
+          var t = e.data && e.data.t;
+          if (t === 'pret') clearTimeout(garde);
+          else if (t === 'erreur') dansLaPage(true);
+        };
+        fil.onerror = function () { dansLaPage(true); };
+        fil.postMessage({ t: 'init', canvas: hors, d: dims() }, [hors]);
+        garde = setTimeout(function () { dansLaPage(true); }, 10000); /* fil resté muet */
+        moteur = {
+          taille: function (d) { fil.postMessage({ t: 'taille', d: d }); },
+          demarrer: function (d) { fil.postMessage({ t: 'marche', d: d, y: defilement() }); },
+          arreter: function () { fil.postMessage({ t: 'arret' }); }
+        };
+        window.addEventListener('scroll', surDefilement, { passive: true });
+        document.addEventListener('visibilitychange', surVisibilite);
+      } catch (e) { dansLaPage(confie); }
+    }
+
     var minuterie;
-    window.addEventListener('resize', function () { clearTimeout(minuterie); minuterie = setTimeout(taille, 150); });
+    window.addEventListener('resize', function () {
+      clearTimeout(minuterie);
+      minuterie = setTimeout(function () { if (moteur) moteur.taille(dims()); }, 150);
+    });
     return {
       demarrer: function () {
         if (actif) return;
-        actif = true; taille(); avant = 0;
-        defile = window.scrollY || window.pageYOffset || 0;
-        raf = requestAnimationFrame(image);
+        actif = true;
         c.classList.add('on');
+        if (!pret) {
+          pret = true;
+          if (window.Worker && window.OffscreenCanvas && c.transferControlToOffscreen) dansUnFil();
+          else dansLaPage(false);
+        }
+        if (moteur) moteur.demarrer(dims());
       },
       arreter: function () {
         actif = false;
-        cancelAnimationFrame(raf);
         c.classList.remove('on');
+        if (moteur) moteur.arreter();
       }
     };
   }
