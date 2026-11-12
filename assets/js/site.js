@@ -1,7 +1,7 @@
 /* ============================================================
    PIGEARD — moteur partagé (site.js)
-   À charger APRÈS gsap, ScrollTrigger et lenis (CDN), puis le
-   script inline propre à la page. Expose window.PIGEARD.
+   À charger APRÈS gsap, ScrollTrigger et lenis (assets/js/vendor/),
+   puis le script inline propre à la page. Expose window.PIGEARD.
    ============================================================ */
 (function(){
   /* Animations ACTIVES par défaut (le site se veut très animé) — plus besoin de ?motion=force.
@@ -21,23 +21,50 @@
   if(window.ResizeObserver) new ResizeObserver(function(){ maxScroll = -1; }).observe(document.body);
   window.addEventListener('resize', function(){ maxScroll = -1; });
   var navScrolled = null;
+  /* la largeur de la barre est écrite en fin d'image (même image, donc même affichage) :
+     écrite dans l'événement de défilement, elle obligeait ScrollTrigger et Lenis, qui lisent
+     la position juste après, à recalculer la mise en page au milieu de leurs calculs */
+  var progLargeur = '0%', progPrevue = false;
+  function ecrireProg(){ progPrevue = false; prog.style.width = progLargeur; }
   function onScroll(){
     var y = window.scrollY || window.pageYOffset;
     if(nav && navScrolled !== (y > 40)){ navScrolled = y > 40; nav.classList.toggle('scrolled', navScrolled); }
     if(prog){
       if(maxScroll < 0 || y > maxScroll || !window.ResizeObserver) mesurer();
-      prog.style.width = (maxScroll>0 ? (y/maxScroll*100) : 0) + '%';
+      progLargeur = (maxScroll>0 ? (y/maxScroll*100) : 0) + '%';
+      if(!progPrevue){ progPrevue = true; requestAnimationFrame(ecrireProg); }
     }
   }
   window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
 
-  /* --- Menu mobile --- */
+  /* --- Menu mobile ---
+     Ouvert : état annoncé aux lecteurs d'écran (aria-expanded), Échap le ferme, le focus
+     passe sur la croix puis revient au bouton, et la page ne défile plus derrière. */
   var burger = document.querySelector('.burger');
   var mobile = document.querySelector('.mobile-menu');
   if(burger && mobile){
-    burger.addEventListener('click', function(){ mobile.classList.add('open'); });
-    mobile.addEventListener('click', function(e){ if(e.target.matches('a, .close, .mobile-menu')) mobile.classList.remove('open'); });
+    var croix = mobile.querySelector('.close');
+    if(!mobile.id) mobile.id = 'menu-mobile';
+    burger.setAttribute('aria-controls', mobile.id);
+    burger.setAttribute('aria-expanded', 'false');
+    var menu = function(ouvert){
+      if(mobile.classList.contains('open') === ouvert) return;
+      mobile.classList.toggle('open', ouvert);
+      burger.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+      var lenis = window.PIGEARD && window.PIGEARD.lenis;
+      if(lenis){ try{ if(ouvert) lenis.stop(); else lenis.start(); }catch(e){} }
+      if(ouvert){
+        /* deux images plus tard : avant, le menu est encore « visibility:hidden » (début de sa transition) et refuse le focus */
+        requestAnimationFrame(function(){ requestAnimationFrame(function(){
+          if(croix && mobile.classList.contains('open')){ try{ croix.focus({preventScroll:true}); }catch(e){} }
+        }); });
+      }
+      else if(mobile.contains(document.activeElement)){ try{ burger.focus({preventScroll:true}); }catch(e){} }
+    };
+    burger.addEventListener('click', function(){ menu(true); });
+    mobile.addEventListener('click', function(e){ if(e.target.matches('a, .close, .mobile-menu')) menu(false); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape' || e.key === 'Esc') menu(false); });
   }
 
   /* --- Lueur souris sur les cartes services --- */
@@ -52,17 +79,29 @@
      300 px). Rien ne change à l'œil ; le navigateur cesse juste de les recalculer
      à chaque image pendant qu'on lit le reste de la page. --- */
   var veille = null;
-  PIG.boucle = function(tween, zone){
-    if(!tween || !zone || !window.IntersectionObserver) return tween;
+  function surveiller(zone){
     if(!veille) veille = new IntersectionObserver(function(entrees){
       entrees.forEach(function(e){
+        e.target.classList.toggle('pg-veille', !e.isIntersecting);
         (e.target.__pgBoucles || []).forEach(function(t){ if(e.isIntersecting) t.resume(); else t.pause(); });
       });
     }, {rootMargin:'300px 0px'});
-    (zone.__pgBoucles = zone.__pgBoucles || []).push(tween);
     veille.observe(zone);
+  }
+  PIG.boucle = function(tween, zone){
+    if(!tween || !zone || !window.IntersectionObserver) return tween;
+    (zone.__pgBoucles = zone.__pgBoucles || []).push(tween);
+    surveiller(zone);
     return tween;
   };
+  /* --- Même veille pour les animations CSS infinies (photo du hero qui respire, stries,
+     trait « Découvrir », point des pastilles « Nouveau ») : hors de l'écran, leur bloc reçoit
+     la classe pg-veille, qui les met en pause (règle dans site.css). Sans cela elles étaient
+     recalculées à chaque image pendant toute la lecture de la page. --- */
+  PIG.veille = function(zone){ if(zone && window.IntersectionObserver) surveiller(zone); };
+  document.querySelectorAll('.hero-photo-bg, .streaks, .scrollcue, .bn-tag, .aside-nouveau').forEach(function(el){
+    PIG.veille(el.closest('section, header, footer') || el.parentNode);
+  });
 
   /* --- Recalcul des positions ScrollTrigger regroupé : plusieurs demandes rapprochées
      (textes, avis, images…) = un seul recalcul, au lieu d'un à-coup à chaque fois --- */
@@ -90,6 +129,20 @@
       if(opts.retomber) opts.retomber(el);
     });
   };
+
+  /* --- Année en cours : « © AAAA » du pied de page et compteur « ans de métier »
+     (data-depuis="1863"). Le texte du HTML reste tel quel sans JS ; il n'est remplacé
+     que si l'année a changé depuis sa dernière mise à jour. --- */
+  (function(){
+    var an = new Date().getFullYear();
+    var c = document.querySelector('.foot-bottom span');
+    var m = c && !c.children.length && /©\s*(\d{4})/.exec(c.textContent);
+    if(m && an > +m[1] && an < +m[1] + 30) c.textContent = c.textContent.replace(/©\s*\d{4}/, '© ' + an);
+    document.querySelectorAll('.stat .n[data-count][data-depuis]').forEach(function(el){
+      var ans = an - (+el.dataset.depuis);
+      if(ans > +el.dataset.count && ans < +el.dataset.count + 30) el.dataset.count = ans;
+    });
+  })();
 
   if(!reduce && window.gsap && window.ScrollTrigger){
     gsap.registerPlugin(ScrollTrigger);
@@ -281,7 +334,8 @@
    ============================================================ */
 (function(){
   if(!window.fetch || !document.querySelector('header.nav')) return;
-  var VERSION = '20261008c';
+  var VERSION = '20261112';
+  window.PIGEARD_NOEL_VERSION = VERSION; /* lu par noel.js pour charger noel-neige.js */
   var apercu = false;
   try{
     var m = /[?&]noel=([01])\b/.exec(location.search);
