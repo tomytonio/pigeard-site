@@ -92,7 +92,9 @@ commentaires de code, échanges avec le propriétaire.
 - **Taille et police du menu** (2026-11-13, demande du propriétaire) : liens du
   menu PC (`.nav-links a`) de 14 px à 981 px de large jusqu'à 16 px dès ~1250 px
   (`clamp`, écart entre liens 22 → 36 px ; au plus étroit il reste 32 px de
-  part et d'autre). Menu téléphone (`.mobile-menu a`) en **Karla 600**
+  part et d'autre), en **blanc** (`--blanc-chaud`, plus le gris `--muted`) ;
+  le survol affiche le trait vert de la page active. Fond derrière les liens
+  contrôlé sur toutes les pages (luminance max 77/255 : contraste ≥ 6:1). Menu téléphone (`.mobile-menu a`) en **Karla 600**
   (`--sans`) au lieu du Playfair, jugé plus moderne. Contrôlé sans débordement
   de 320 px à 1920 px.
 - **Année automatique** (bloc « Année en cours » de `site.js`, 2026-11-12) : le
