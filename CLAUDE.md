@@ -89,6 +89,12 @@ commentaires de code, échanges avec le propriétaire.
   décalage). Zones de toucher élargies par un `::after` invisible (44 × 48 px
   pour le ☰ dessiné en 22 × 28 px, 47 × 50 px pour la croix) : ne pas les
   retirer, le dessin n'a pas bougé.
+- **Taille et police du menu** (2026-11-13, demande du propriétaire) : liens du
+  menu PC (`.nav-links a`) de 14 px à 981 px de large jusqu'à 16 px dès ~1250 px
+  (`clamp`, écart entre liens 22 → 36 px ; au plus étroit il reste 32 px de
+  part et d'autre). Menu téléphone (`.mobile-menu a`) en **Karla 600**
+  (`--sans`) au lieu du Playfair, jugé plus moderne. Contrôlé sans débordement
+  de 320 px à 1920 px.
 - **Année automatique** (bloc « Année en cours » de `site.js`, 2026-11-12) : le
   « © AAAA » du pied de page et le compteur « ans de métier » de l'accueil
   (`data-depuis="1863"`) suivent l'année du visiteur. Le texte du HTML
