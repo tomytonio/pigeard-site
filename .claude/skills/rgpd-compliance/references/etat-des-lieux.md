@@ -11,7 +11,8 @@ Dernière mise à jour : **2026-11-03** (popup Journées Privilège : deux clés
 | Élément | Valeur (telle qu'affichée dans `mentions-legales.html`, « juin 2026 ») |
 |---|---|
 | Éditeur | Optique Pigeard SAS — 4 rue Gouverneur, 28400 Nogent-le-Rotrou — SIRET 431 741 032 00053 — TVA FR 53 431 741 032 — tél. 02 37 52 03 39 — nogent@pigeard-opticiens.fr |
-| Directeur de la publication | Antoine Pigeard |
+| Présidente (depuis la cession du 20/11/2026) | HOLDING A. PIGEARD, SARL au capital de 1 000 €, RCS Chartres 132 441 122, représentée par Antoine Pigeard, gérant |
+| Directeur de la publication | Antoine Pigeard, gérant de HOLDING A. PIGEARD, Présidente (loi n° 82-652 du 29/07/1982, art. 93-2 : représentant légal de l'éditeur personne morale) |
 | Hébergeur | Hostinger International Ltd., 61 Lordou Vironos Street, 6023 Larnaca, Chypre (VPS Hostinger ; nginx dans Docker, écoute en HTTP sur le port 80 derrière un proxy qui termine le TLS et redirige http→https en 308) |
 | Dépôt du code | GitHub `tomytonio/pigeard-site`, **public** (vérifié le 2026-09-08 : l'API GitHub répond 200 sans authentification) → ne jamais y commiter de donnée client |
 | Outils internes | Pages CMS (édition des JSON par le propriétaire via son compte GitHub), GitHub Actions (`build-static.yml`), n8n auto-hébergé (`n8n-1zv1.srv1641932.hstgr.cloud`, VPS Hostinger) |
