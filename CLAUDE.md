@@ -26,8 +26,10 @@ commentaires de code, échanges avec le propriétaire.
 ## Hébergement & publication (⚠️ à jour au 2026-07-10)
 
 - **Hostinger VPS** (Docker + nginx), config dans `deploy/nginx-vitrine.conf`.
-  **Netlify est abandonné** — `netlify.toml` est un vestige inoffensif ; le
-  robot Netlify commente encore les PR, ignorer ses previews.
+  **Netlify est abandonné** — `netlify.toml` supprimé le 2026-11-19 à la
+  demande du propriétaire. Si le robot Netlify commente encore une PR, c'est que
+  l'application Netlify reste reliée au dépôt côté Netlify/GitHub (à
+  déconnecter par le propriétaire) : ignorer ses previews.
 - Le serveur fait un `git pull` de `main` **toutes les 5 minutes** : fusionner
   dans `main` = mise en ligne sous ~5 min sur https://www.pigeard-opticiens.fr.
 - **Workflow validé par le propriétaire** : Claude développe sur sa branche,
