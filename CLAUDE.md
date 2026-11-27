@@ -308,7 +308,42 @@ commentaires de code, échanges avec le propriétaire.
 - Changement de tarif ou de délai : mettre à jour `impression-3d.html`
   (`<title>`, meta description, og:description et twitter:description, hero,
   atouts, encart tarif, étape 03, FAQ **et** les deux JSON-LD), `services.html`
-  (texte et JSON-LD) et `llms.txt`.
+  (texte et JSON-LD), `llms.txt` **et la question « lunettes cassées » des FAQ
+  des trois pages magasins** (texte visible + JSON-LD).
+
+## Visibilité Google & IA (audit du 2026-11-27)
+
+- Audit fait à la main (9 recherches Google avec Aperçu IA, Bing, fiches Maps) :
+  l'IA de Google cite Pigeard sur 8 recherches sur 9 ; absente sur « lunettes sur
+  mesure Eure-et-Loir ». Rapport hors dépôt (artefact Claude du propriétaire).
+  Requêtes à rejouer fin janvier 2027 pour mesurer l'effet.
+- **Pas de note d'avis dans le JSON-LD** (`aggregateRating` retiré de
+  `index.html`, `magasins.html` et des 3 pages magasins) : Google ignore les
+  notes qu'un commerce publie sur lui-même, et ces chiffres se périmaient. Ne pas
+  les remettre.
+- Les **pastilles d'avis visibles** (`.g-reviews` de `magasins.html` et des 3
+  pages magasins, méta descriptions « Note Google x/5 », encarts « Nos deux autres
+  magasins ») restent **statiques** : valeurs du 2026-11-27 (Nogent 4,8 · 53,
+  Brou 4,9 · 58, La Loupe 4,8 · 50). Le total de l'accueil (`#avisSous`) est
+  remplacé en direct par `avis.js` ; son texte de repli dit 161.
+- **FAQ** (`<details class="faq-item">` + JSON-LD `FAQPage`, même style que
+  `engagements.html`) sur les 3 pages magasins (rendez-vous, lundi, sur mesure,
+  mutuelles, dépannage 3D, Optikid ; basse vision à Nogent) et sur
+  `creations.html`. **Le texte visible et le JSON-LD doivent rester
+  identiques** ; espace insécable avant « ? ». Tout changement d'horaires, de
+  tarif ou de délai touche aussi ces FAQ.
+- `creations.html` vise la recherche « lunettes sur mesure » Perche /
+  Eure-et-Loir : titre, méta, H1, section `#fabrication` (4 étapes, faits repris
+  de `services.html#sur-mesure` : Opti3, Logic Side Carve, acétate du Jura, à
+  partir d'environ 300 €), FAQ et JSON-LD `Service` (`#service`, fournisseur
+  `#nogent`).
+- **Nuance Audio = « lunettes à assistance auditive »**, jamais « appareils » ou
+  « aides auditives » (ce n'est pas un dispositif d'audioprothèse ; le centre
+  d'audioprothèse est prévu en septembre 2027).
+- Organisation (JSON-LD de l'accueil) : `alternateName` « Optique Pigeard » (nom
+  des fiches Google), `legalName` « Optique Pigeard SAS », logo
+  `assets/brand/favicon-512.png` (fond noir : visible sur fond blanc, le SVG blanc
+  ne l'était pas), `sameAs` Instagram, Facebook, TikTok, YouTube.
 
 ## Café Nespresso offert pour toute demande de devis (depuis le 2026-10-14)
 
